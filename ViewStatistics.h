@@ -11,6 +11,8 @@
 
 #define PACKETCACHE_SIZE 1000
 
+#include "AutNetworkSink.h"
+
 class CGnucleusDoc;
 class CAutNetwork;
 
@@ -31,11 +33,13 @@ protected:
 	virtual ~CViewStatistics();
 
 public:
+	bool SockSelected(int);
+
 	void SelectNode(int);
 
 	void OnSockUpdate();
-	void OnPacketIncoming(int NodeID, packet_Header* packet, int size, int ErrorCode, bool Local);
-	void OnPacketOutgoing(int NodeID, packet_Header* packet, int size, bool Local);
+	void OnPacketIncoming(NetworkPacket &InPacket);
+	void OnPacketOutgoing(NetworkPacket &OutPacket);
 		
 	CPropertySheet		m_pSheet;
 
@@ -70,7 +74,7 @@ public:
 protected:
 	void ExtendedInfo(int);
 	
-	bool SockSelected(int);
+	
 	BOOL CreatePropSheet(CWnd*, CPropertySheet*);
 	void SizePropSheet(CWnd*, CPropertySheet*, UINT);
 	void SizePropSheet(CWnd*, CPropertySheet*, CRect);

@@ -182,10 +182,7 @@ void CSearchResultsCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 
 			const TCHAR* pPlural = (HostCount == 1) ? " Host" : " Hosts";
 
-			if(!Result->Sha1Hash.IsEmpty())
-				lstrcpy(pItem->pszText, "* " + DWrdtoStr(HostCount) + pPlural);
-			else
-				lstrcpy(pItem->pszText, DWrdtoStr(HostCount) + pPlural);
+			lstrcpy(pItem->pszText, DWrdtoStr(HostCount) + pPlural);
 
 			break;
 			}

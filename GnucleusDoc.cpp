@@ -162,13 +162,13 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 		m_autCore->Connect2(NETWORK_G2);
 		
 		m_autNetwork->ClientMode();
-		m_pChat->m_AutoConnect = true;;
+		m_pChat->m_AutoConnect = true;
 	}
 
 	//DELETE THIS
 	//m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
 	//m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
-	//m_autPrefs->SetMaxLeaves(10);
+	//m_autPrefs->SetMaxLeaves(100);
 
 	// Connect to chat
 	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)

@@ -17,8 +17,10 @@ public:
 	virtual ~CAutNetworkSink();
 
 	void OnChange(int NodeID);
-	void OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local);
-	void OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local);
+	//void OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local);
+	void OnPacketIncoming2(int NetworkID, bool TCP, uint32 IP, int Port, VARIANT* packet, int size, bool Local, int ErrorCode);
+	//void OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local);
+	void OnPacketOutgoing2(int NetworkID, bool TCP, uint32 IP, int Port, VARIANT* packet, int size, bool Local);
 	void OnAuthenticate(int NodeID);
 	void OnChallenge(int NodeID, LPCTSTR Challenge);
 
@@ -31,6 +33,38 @@ protected:
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
 
+};
+
+struct NetworkPacket
+{
+	int  Network;
+	bool TCP;
+
+	IP   Host;
+	int  Port;
+		
+	bool Incoming;
+	bool Local;
+	int  ErrorCode;
+	
+	byte* Packet;
+	int   PacketLength;
+
+	NetworkPacket()
+	{
+		Network = 0;
+		TCP		= true;
+
+		Host.S_addr = 0;
+		Port        = 0;
+		
+		Incoming  = false;
+		Local     = false;
+		ErrorCode = 0;
+	
+		Packet       = NULL;
+		PacketLength = 0;
+	};
 };
 
 

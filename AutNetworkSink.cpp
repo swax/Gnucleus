@@ -65,10 +65,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CAutNetworkSink, CCmdTarget)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnChange", 1, OnChange, VT_EMPTY, VTS_I4)
-	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketIncoming", 2, OnPacketIncoming, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_I4 VTS_BOOL)
-	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketOutgoing", 3, OnPacketOutgoing, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL)
+	//DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketIncoming", 2, OnPacketIncoming, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_I4 VTS_BOOL)
+	//DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketOutgoing", 3, OnPacketOutgoing, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnAuthenticate", 4, OnAuthenticate, VT_EMPTY, VTS_I4)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnChallenge", 5, OnChallenge, VT_EMPTY, VTS_I4 VTS_BSTR)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketIncoming2", 6, OnPacketIncoming2, VT_EMPTY, VTS_I4 VTS_BOOL VTS_UI4 VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL VTS_I4)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketOutgoing2", 7, OnPacketOutgoing2, VT_EMPTY, VTS_I4 VTS_BOOL VTS_UI4 VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL)
 END_DISPATCH_MAP() 
 
 
@@ -88,7 +90,27 @@ void CAutNetworkSink::OnChange(int NodeID)
 		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnSockUpdate();
 }
 
-void CAutNetworkSink::OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local)
+//void CAutNetworkSink::OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local)
+//{
+//	if((packet->vt & VT_ARRAY) == 0)
+//		return;
+//
+//	if((packet->vt & VT_UI1) == 0)
+//		return;
+//
+//	SAFEARRAY* psa = packet->parray;
+//
+//	byte* bArray;
+//	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
+//
+//	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+//		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(NodeID, (packet_Header*) bArray, size, ErrorCode, Local);
+//
+//	SafeArrayUnaccessData(psa);
+//	
+//}
+
+void CAutNetworkSink::OnPacketIncoming2(int NetworkID, bool TCP, uint32 IP, int Port, VARIANT* packet, int size, bool Local, int ErrorCode)
 {
 	if((packet->vt & VT_ARRAY) == 0)
 		return;
@@ -101,16 +123,49 @@ void CAutNetworkSink::OnPacketIncoming(int NodeID, VARIANT* packet, int size, in
 	byte* bArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
 
+	NetworkPacket InPacket;
+	InPacket.Network      = NetworkID;
+	InPacket.TCP          = TCP;
+	InPacket.Host.S_addr  = IP;
+	InPacket.Port		  = Port;
+	InPacket.Incoming	  = true;
+	InPacket.Local		  = Local;
+	InPacket.Packet		  = bArray;
+	InPacket.PacketLength = size;
+	InPacket.ErrorCode    = ErrorCode;
+
 	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
-		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(NodeID, (packet_Header*) bArray, size, ErrorCode, Local);
+	{
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(InPacket);
+	}
 
 	SafeArrayUnaccessData(psa);
-	
 }
+//
+//void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local)
+//{
+//	
+//	if((packet->vt & VT_ARRAY) == 0)
+//		return;
+//
+//	if((packet->vt & VT_UI1) == 0)
+//		return;
+//
+//	SAFEARRAY* psa = packet->parray;
+//
+//	byte* bArray;
+//	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
+//
+//
+//	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+//		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(NodeID, (packet_Header*) bArray, size, Local);
+//
+//	SafeArrayUnaccessData(psa);
+//	
+//}
 
-void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local)
+void CAutNetworkSink::OnPacketOutgoing2(int NetworkID, bool TCP, uint32 IP, int Port, VARIANT* packet, int size, bool Local)
 {
-	
 	if((packet->vt & VT_ARRAY) == 0)
 		return;
 
@@ -122,14 +177,23 @@ void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bo
 	byte* bArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
 
+	NetworkPacket OutPacket;
+	OutPacket.Network      = NetworkID;
+	OutPacket.TCP          = TCP;
+	OutPacket.Host.S_addr  = IP;
+	OutPacket.Port		   = Port;
+	OutPacket.Incoming	   = false;
+	OutPacket.Local		   = Local;
+	OutPacket.Packet	   = bArray;
+	OutPacket.PacketLength = size;
+	OutPacket.ErrorCode    = 0;
 
 	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
-		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(NodeID, (packet_Header*) bArray, size, Local);
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(OutPacket);
 
 	SafeArrayUnaccessData(psa);
 	
 }
-
 // Us challenging the remote host
 void CAutNetworkSink::OnAuthenticate(int NodeID)
 {

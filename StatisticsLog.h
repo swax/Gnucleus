@@ -8,7 +8,9 @@
 
 #include "DlgResizer.h"
 #include "afxwin.h"
+#include "AutNetworkSink.h"
 
+class CViewStatistics;
 
 class CStatisticsLog : public CPropertyPage
 {
@@ -18,12 +20,20 @@ public:
 	CStatisticsLog();
 	~CStatisticsLog();
 
-	void PacketIncoming(packet_Header*);
+	bool SockConnected(CViewStatistics* pView, int &NodeID, NetworkPacket &Packet);
+
+	void ProcessPacket(CViewStatistics* pView, NetworkPacket &Packet);
+
+	CString GetPacketType(NetworkPacket &Packet);
+	CString GetPacketHex(NetworkPacket &Packet);
+	CString GetPacketAscii(NetworkPacket &Packet);
+
+	/*void PacketIncoming(packet_Header*);
 	void PacketGood(packet_Header*);
 	void PacketBad(packet_Header*, int);
 
 	void PacketOutgoing(packet_Header*);
-	void PacketOutgoingLocal(packet_Header*);
+	void PacketOutgoingLocal(packet_Header*);*/
 
 	void CleanBuffer();
 
@@ -70,6 +80,12 @@ protected:
 public:
 	CButton m_chkIn;
 	CButton m_chkOut;
+	CButton m_chkSelConnections;
+	CButton m_chkConnectionless;
+	CButton m_chkGnutella;
+	CButton m_chkG2;
+	CButton m_chkTCP;
+	CButton m_chkUDP;
 };
 
 //{{AFX_INSERT_LOCATION}}

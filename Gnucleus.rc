@@ -478,34 +478,30 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
 CAPTION "Log"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Packet Types",IDC_STATIC,185,6,150,35
-    CONTROL         "&Pings",IDC_CHECK_PINGS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,195,17,33,10
-    CONTROL         "Po&ngs",IDC_CHECK_PONGS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,195,26,36,10
-    CONTROL         "&Queries",IDC_CHECK_QUERIES,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,241,17,50,10
-    CONTROL         "Q&uery Hits",IDC_CHECK_QUERYHITS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,241,26,50,10
-    CONTROL         "Pus&hes",IDC_CHECK_PUSHES,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,295,17,35,10
-    RTEXT           "&Buffer (lines):",IDC_STATIC_BUFFSIZE,354,7,50,10
-    EDITTEXT        IDC_EDIT_BUFFSIZE,354,17,50,12,ES_RIGHT | ES_WANTRETURN | 
+    RTEXT           "&Buffer (lines):",IDC_STATIC_BUFFSIZE,300,7,50,10
+    EDITTEXT        IDC_EDIT_BUFFSIZE,354,6,50,12,ES_RIGHT | ES_WANTRETURN | 
                     ES_NUMBER
-    PUSHBUTTON      "&Flush",IDC_BUTTON_FLUSH,354,32,50,14
+    PUSHBUTTON      "&Flush",IDC_BUTTON_FLUSH,354,21,50,14
     CONTROL         "List1",IDC_LIST_LOG,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHAREIMAGELISTS | LVS_NOSORTHEADER | 
-                    WS_BORDER | WS_TABSTOP,6,48,395,135
-    GROUPBOX        "Show",IDC_STATIC,6,6,78,35
-    CONTROL         "&Good Packets",IDC_CHECK_GOOD,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,19,17,60,10
-    CONTROL         "&Bad Packets",IDC_CHECK_BAD,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,19,26,60,10
-    GROUPBOX        "Direction",IDC_STATIC,96,6,78,35
-    CONTROL         "&Incoming",IDC_CHECK_IN,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,109,17,60,10
-    CONTROL         "&Outgoing",IDC_CHECK_OUT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,109,26,60,10
+                    WS_BORDER | WS_TABSTOP,6,42,396,141
+    CONTROL         "Gnutella",IDC_CHECK_GNUTELLA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,96,12,42,10
+    CONTROL         "G2",IDC_CHECK_G2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    96,24,25,10
+    CONTROL         "TCP",IDC_CHECK_TCP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,150,12,30,10
+    CONTROL         "UDP",IDC_CHECK_UDP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,150,24,31,10
+    CONTROL         "All Connections",IDC_CHECK_SELCONNECTIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,12,65,10
+    CONTROL         "Connectionless",IDC_CHECK_CONNECTIONLESS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,24,64,10
+    CONTROL         "In",IDC_CHECK_IN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    204,12,22,10
+    CONTROL         "Out",IDC_CHECK_OUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,204,24,27,10
+    LTEXT           "Filter",IDC_STATIC,7,3,16,8
 END
 
 IDD_STAT_MAIN DIALOGEX 0, 0, 398, 261
@@ -1423,8 +1419,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,0,3
- PRODUCTVERSION 2,0,0,3
+ FILEVERSION 2,0,0,4
+ PRODUCTVERSION 2,0,0,4
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1442,12 +1438,12 @@ BEGIN
             VALUE "Comments", "Client Application for Gnutella"
             VALUE "CompanyName", "John Marshall"
             VALUE "FileDescription", "Gnucleus"
-            VALUE "FileVersion", "2.0.0.3"
+            VALUE "FileVersion", "2.0.0.4"
             VALUE "InternalName", "Gnucleus"
             VALUE "LegalCopyright", "Copyright (C) 2000-2003"
             VALUE "OriginalFilename", "Gnucleus.exe"
             VALUE "ProductName", "Gnucleus"
-            VALUE "ProductVersion", "2.0.0.3"
+            VALUE "ProductVersion", "2.0.0.4"
         END
     END
     BLOCK "VarFileInfo"

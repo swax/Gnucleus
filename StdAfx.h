@@ -55,7 +55,7 @@
 
 
 // Master Version
-#define GNUCLEUS_VERSION    "2.0.0.3"
+#define GNUCLEUS_VERSION    "2.0.0.4"
 #define BUILD_CORE_VERSION  "1.0.0.0"
 
 // Threading
@@ -145,6 +145,12 @@
 #define LIMIT_LESS			1
 #define LIMIT_EXACTLY		2
 #define LIMIT_MORE			3
+
+
+typedef unsigned char    uint8;
+typedef unsigned short   uint16;
+typedef unsigned int     uint32;
+typedef unsigned __int64 uint64;
 
 
 // Windows Custom Messages

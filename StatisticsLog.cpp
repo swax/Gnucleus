@@ -25,6 +25,8 @@
 
 #include "stdafx.h"
 #include "Gnucleus.h"
+#include "AutNetwork.h"
+#include "ViewStatistics.h"
 #include "StatisticsLog.h"
 
 #ifdef _DEBUG
@@ -51,19 +53,18 @@ void CStatisticsLog::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CStatisticsLog)
 	DDX_Control(pDX, IDC_BUTTON_FLUSH, m_btnFlush);
-	DDX_Control(pDX, IDC_CHECK_QUERYHITS, m_chkQueryHits);
-	DDX_Control(pDX, IDC_CHECK_BAD, m_chkBad);
-	DDX_Control(pDX, IDC_CHECK_GOOD, m_chkGood);
 	DDX_Control(pDX, IDC_STATIC_BUFFSIZE, m_stBuffSize);
 	DDX_Control(pDX, IDC_LIST_LOG, m_lstLog);
 	DDX_Control(pDX, IDC_EDIT_BUFFSIZE, m_ebBuffSize);
-	DDX_Control(pDX, IDC_CHECK_QUERIES, m_chkQueries);
-	DDX_Control(pDX, IDC_CHECK_PUSHES, m_chkPushes);
-	DDX_Control(pDX, IDC_CHECK_PONGS, m_chkPongs);
-	DDX_Control(pDX, IDC_CHECK_PINGS, m_chkPings);
 	//}}AFX_DATA_MAP
 	DDX_Control(pDX, IDC_CHECK_IN, m_chkIn);
 	DDX_Control(pDX, IDC_CHECK_OUT, m_chkOut);
+	DDX_Control(pDX, IDC_CHECK_SELCONNECTIONS, m_chkSelConnections);
+	DDX_Control(pDX, IDC_CHECK_CONNECTIONLESS, m_chkConnectionless);
+	DDX_Control(pDX, IDC_CHECK_GNUTELLA, m_chkGnutella);
+	DDX_Control(pDX, IDC_CHECK_G2, m_chkG2);
+	DDX_Control(pDX, IDC_CHECK_TCP, m_chkTCP);
+	DDX_Control(pDX, IDC_CHECK_UDP, m_chkUDP);
 }
 
 
@@ -102,16 +103,25 @@ BOOL CStatisticsLog::OnInitDialog()
 	CRect rect;
 	m_lstLog.GetWindowRect(&rect);
 
-	m_lstLog.InsertColumn( 0, "Incoming Packet", LVCFMT_LEFT,
-		(rect.Width() - offSet) * 4/10, 0);
-	m_lstLog.InsertColumn( 1, "Hops", LVCFMT_RIGHT,
+	// Network // Direction // Transport // Address // Type // Size // ASCII // HEX 
+
+	m_lstLog.InsertColumn( 0, "Network", LVCFMT_LEFT,
+		(rect.Width() - offSet) * 1/10, 0);
+	m_lstLog.InsertColumn( 1, "Direction", LVCFMT_LEFT,
 		(rect.Width() - offSet) * 1/10, 1);
-	m_lstLog.InsertColumn( 2, "TTL", LVCFMT_RIGHT,
+	m_lstLog.InsertColumn( 2, "Transport", LVCFMT_LEFT,
 		(rect.Width() - offSet) * 1/10, 2);
-	m_lstLog.InsertColumn( 3, "Payload", LVCFMT_LEFT,
-		(rect.Width() - offSet) * 6/10, 3);
-	m_lstLog.InsertColumn( 4, "GUID", LVCFMT_LEFT,
-		(rect.Width() - offSet) * 4/10, 4);
+	m_lstLog.InsertColumn( 3, "Address", LVCFMT_LEFT,
+		(rect.Width() - offSet) * 1/10, 3);
+	m_lstLog.InsertColumn( 4, "Type", LVCFMT_LEFT,
+		(rect.Width() - offSet) * 1/10, 3);
+	m_lstLog.InsertColumn( 5, "Size", LVCFMT_RIGHT,
+		(rect.Width() - offSet) * 1/10, 4);
+	m_lstLog.InsertColumn( 6, "Ascii", LVCFMT_LEFT,
+		(rect.Width() - offSet) * 3/10, 4);
+	m_lstLog.InsertColumn( 7, "Hex", LVCFMT_LEFT,
+		(rect.Width() - offSet) * 3/10, 4);
+	
 
 	m_lstLog.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
@@ -127,73 +137,254 @@ BOOL CStatisticsLog::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CStatisticsLog::PacketIncoming(packet_Header* packet)
+void CStatisticsLog::ProcessPacket(CViewStatistics* pView, NetworkPacket &Packet)
 {
-	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
-	{
-		m_lstLog.InsertItem(0, "In: " + PacketName(packet) + "Received", 0);
-		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
-		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
-		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
-		m_lstLog.SetItemText(0, 4, GetGuid(packet));
-	}
+	if(pView->m_Paused)
+		return;
 
-	CleanBuffer();
+	if(Packet.Network == NETWORK_GNUTELLA && m_chkGnutella.GetCheck() == 0)
+		return;
+
+	if(Packet.Network == NETWORK_G2 && m_chkG2.GetCheck() == 0)
+		return;
+
+	if(Packet.TCP && m_chkTCP.GetCheck() == 0)
+		return;
+
+	if(!Packet.TCP && m_chkUDP.GetCheck() == 0)
+		return;
+
+	if(Packet.Incoming && m_chkIn.GetCheck() == 0)
+		return;
+
+	if(!Packet.Incoming && m_chkOut.GetCheck() == 0)
+		return;
+
+	int  NodeID = 0;
+	bool DirectlyConnected = SockConnected(pView, NodeID, Packet);
+	bool Selected = pView->SockSelected(NodeID);
+
+	if( DirectlyConnected && !Selected && m_chkSelConnections.GetCheck() == 0)
+		return;
+
+	if( !DirectlyConnected && m_chkConnectionless.GetCheck() == 0)
+		return;
+
+	CString Network = "Unknown";
+	if(Packet.Network == NETWORK_GNUTELLA)
+		Network = "Gnutella";
+	if(Packet.Network == NETWORK_G2)
+		Network = "G2";
+
+	// Add to packet log list
+	// Network // Direction // Transport // Address // Type // Size // ASCII // HEX 
+	m_lstLog.InsertItem(0, Network, -1);
+	m_lstLog.SetItemText(0, 1, Packet.Incoming ? "in" : "out");
+	m_lstLog.SetItemText(0, 2, Packet.TCP ? "TCP" : "UDP");
+	m_lstLog.SetItemText(0, 3, IPtoStr(Packet.Host) + ":" + DWrdtoStr(Packet.Port));
+	m_lstLog.SetItemText(0, 4, GetPacketType(Packet));
+	m_lstLog.SetItemText(0, 5, DWrdtoStr(Packet.PacketLength));
+	m_lstLog.SetItemText(0, 6, GetPacketAscii(Packet));
+	m_lstLog.SetItemText(0, 7, GetPacketHex(Packet));
 }
 
-void CStatisticsLog::PacketGood(packet_Header* packet)
+bool CStatisticsLog::SockConnected(CViewStatistics* pView, int &NodeID, NetworkPacket &Packet)
 {
-	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
+	// Get current node IDs and put them into a vector
+	VARIANT var = pView->m_autNetwork->GetNodeIDs();
+	SAFEARRAY* psa = var.parray;
+
+	int* nArray;
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
+
+	std::vector<int> NodeIDs;
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
 	{
-		m_lstLog.InsertItem(0, "In: " + PacketName(packet), PacketIcon(packet));
-		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
-		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
-		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
-		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+		if( pView->m_autNetwork->GetNodeIP(nArray[i]) == Packet.Host.S_addr)
+		{
+			NodeID = nArray[i];
+			return true;
+		}
 	}
+
+	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
+
+
+	// Get child IDs and put them into a vector
+	var = pView->m_autNetwork->GetChildNodeIDs();
+	psa = var.parray;
+
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
+
+	std::vector<int> ChildIDs;
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+	if( pView->m_autNetwork->GetNodeIP(nArray[i]) == Packet.Host.S_addr)
+	{
+		NodeID = nArray[i];
+		return true;
+	}
+
+	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
+
+	return false;
+}
+
+CString CStatisticsLog::GetPacketType(NetworkPacket &Packet)
+{
+	if(Packet.Network == NETWORK_GNUTELLA)
+	{
+		// Not laying over correctly, probably need push/pop
+		//packet_Header* GnuPacket = (packet_Header*) &Packet.Packet;
 		
-	CleanBuffer();
-}
+		switch(Packet.Packet[16])
+		{
+		case 0x00:
+			return "Ping";
+			break;
+		case 0x01:
+			return "Pong";
+			break;
+		case 0x02:
+			return "Bye";
+			break;
+		case 0x30:
+			return "Patch";
+			break;
+		case 0x40:
+			return "Push";
+			break;
+		case 0x80:
+			return "Query";
+			break;
+		case 0x81:
+			return "QueryHit";
+			break;
+		}
 
-void CStatisticsLog::PacketBad(packet_Header* packet, int ErrorCode)
-{
-	if(m_chkBad.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
-	{
-		m_lstLog.InsertItem(0, "In: " + PacketName(packet) + ErrorName(ErrorCode), 3);
-		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
-		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
-		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
-		m_lstLog.SetItemText(0, 4, GetGuid(packet));
-	}
-}
-
-void CStatisticsLog::PacketOutgoing(packet_Header* packet)
-{
-	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkOut.GetCheck())
-	{
-		m_lstLog.InsertItem(0, "Out: " + PacketName(packet), PacketIcon(packet));
-		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
-		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
-		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
-		m_lstLog.SetItemText(0, 4, GetGuid(packet));
-	}
-
-	CleanBuffer();
-}
-
-void CStatisticsLog::PacketOutgoingLocal(packet_Header* packet)
-{
-	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkOut.GetCheck())
-	{
-		m_lstLog.InsertItem(0, "Out: " + PacketName(packet) + " Sent", PacketIcon(packet));
-		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
-		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
-		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
-		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+		return EncodeBase16(&Packet.Packet[16], 1);
 	}
 
-	CleanBuffer();
+	if(Packet.Network == NETWORK_G2)
+	{
+		byte* stream = Packet.Packet;
+		int   length = Packet.PacketLength;
+
+		byte control = stream[0];
+
+		stream += 1;
+		length -= 1;
+
+		byte lenLen  = ( control & 0xC0 ) >> 6; 
+		byte nameLen = ( control & 0x38 ) >> 3;
+
+		// Read Packet Length
+		if( lenLen )
+		{	
+			stream += lenLen;
+			length -= lenLen;
+		}
+
+		// Read Packet Name (length is always one greater)
+		nameLen += 1;
+
+		return CString((char*)stream, nameLen);
+	}
+
+	return "Unknown";
 }
+
+CString CStatisticsLog::GetPacketHex(NetworkPacket &Packet)
+{
+	CString Hex;
+
+	for(int i = 0; i < Packet.PacketLength; i++)
+		Hex += EncodeBase16(Packet.Packet + i, 1) + " ";
+
+	return Hex;
+}
+
+CString CStatisticsLog::GetPacketAscii(NetworkPacket &Packet)
+{
+	CString Ascii;
+
+	for(int i = 0; i < Packet.PacketLength; i++)
+		if(Packet.Packet[i] >= 33 && Packet.Packet[i] <= 126)
+			Ascii += (char) Packet.Packet[i];
+		else
+			Ascii += ".";
+
+	return Ascii;
+}
+
+//void CStatisticsLog::PacketIncoming(packet_Header* packet)
+//{
+//	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
+//	{
+//		m_lstLog.InsertItem(0, "In: " + PacketName(packet) + "Received", 0);
+//		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
+//		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
+//		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
+//		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+//	}
+//
+//	CleanBuffer();
+//}
+//
+//void CStatisticsLog::PacketGood(packet_Header* packet)
+//{
+//	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
+//	{
+//		m_lstLog.InsertItem(0, "In: " + PacketName(packet), PacketIcon(packet));
+//		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
+//		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
+//		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
+//		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+//	}
+//		
+//	CleanBuffer();
+//}
+//
+//void CStatisticsLog::PacketBad(packet_Header* packet, int ErrorCode)
+//{
+//	if(m_chkBad.GetCheck() && PacketChecked(packet) && m_chkIn.GetCheck())
+//	{
+//		m_lstLog.InsertItem(0, "In: " + PacketName(packet) + ErrorName(ErrorCode), 3);
+//		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
+//		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
+//		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
+//		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+//	}
+//}
+//
+//void CStatisticsLog::PacketOutgoing(packet_Header* packet)
+//{
+//	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkOut.GetCheck())
+//	{
+//		m_lstLog.InsertItem(0, "Out: " + PacketName(packet), PacketIcon(packet));
+//		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
+//		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
+//		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
+//		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+//	}
+//
+//	CleanBuffer();
+//}
+//
+//void CStatisticsLog::PacketOutgoingLocal(packet_Header* packet)
+//{
+//	if(m_chkGood.GetCheck() && PacketChecked(packet) && m_chkOut.GetCheck())
+//	{
+//		m_lstLog.InsertItem(0, "Out: " + PacketName(packet) + " Sent", PacketIcon(packet));
+//		m_lstLog.SetItemText(0, 1, DWrdtoStr(packet->Hops));
+//		m_lstLog.SetItemText(0, 2, DWrdtoStr(packet->TTL));
+//		m_lstLog.SetItemText(0, 3, PacketExtra(packet));
+//		m_lstLog.SetItemText(0, 4, GetGuid(packet));
+//	}
+//
+//	CleanBuffer();
+//}
 
 void CStatisticsLog::CleanBuffer()
 {

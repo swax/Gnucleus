@@ -369,3 +369,47 @@ CTimeSpan LocalTimeZone()
 
 	return CTimeSpan(0, TZHours, TZMins, 0);
 }
+
+static byte base16Chars[17] = "0123456789ABCDEF";
+
+#define BASE16_LOOKUP_MAX 23
+static byte base16Lookup[BASE16_LOOKUP_MAX][2] =
+{
+    { '0', 0x0 },
+    { '1', 0x1 },
+    { '2', 0x2 },
+    { '3', 0x3 },
+    { '4', 0x4 },
+    { '5', 0x5 },
+    { '6', 0x6 },
+    { '7', 0x7 },
+    { '8', 0x8 },
+    { '9', 0x9 },
+	{ ':', 0x9 },
+    { ';', 0x9 },
+    { '<', 0x9 },
+    { '=', 0x9 },
+    { '>', 0x9 },
+    { '?', 0x9 },
+    { '@', 0x9 },
+    { 'A', 0xA },
+    { 'B', 0xB },
+    { 'C', 0xC },
+    { 'D', 0xD },
+    { 'E', 0xE },
+    { 'F', 0xF }
+};
+
+CString EncodeBase16(byte* buffer, unsigned int bufLen)
+{
+	CString Base16Buff;
+
+	for(int i = 0; i < bufLen; i++)
+	{
+		Base16Buff += base16Chars[buffer[i] >> 4];
+		Base16Buff += base16Chars[buffer[i] & 0xf];
+	}
+
+    return Base16Buff;
+}
+

@@ -139,10 +139,10 @@ void CViewStatistics::OnInitialUpdate()
 	m_TabMemory		  = new CStatisticsMemory(this);
 	m_TabError		  = new CStatisticsError(this);
 
-	m_pSheet.AddPage(m_TabMain);
+	//m_pSheet.AddPage(m_TabMain);
 	//m_pSheet.AddPage(m_TabDistribution);
-	m_pSheet.AddPage(m_TabPackets);
-	m_pSheet.AddPage(m_TabBandwidth);
+	//m_pSheet.AddPage(m_TabPackets);
+	//m_pSheet.AddPage(m_TabBandwidth);
 	m_pSheet.AddPage(m_TabLog);
 	//m_pSheet.AddPage(m_TabMemory);
 	//m_pSheet.AddPage(m_TabError);
@@ -219,7 +219,6 @@ void CViewStatistics::OnSockUpdate()
 
 
 	// Get child IDs and put them into a vector
-	VariantClear(&var);
 	var = m_autNetwork->GetChildNodeIDs();
 	psa = var.parray;
 
@@ -230,7 +229,7 @@ void CViewStatistics::OnSockUpdate()
 		 ChildIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
-
+	VariantClear(&var);
 
 	// Mode 0 - Normal nodes
 	// Mode 1 - Child nodes
@@ -315,39 +314,43 @@ void CViewStatistics::OnSockUpdate()
 		m_lstNodes.DeleteItem(pos);
 }
 
-void CViewStatistics::OnPacketIncoming(int NodeID, packet_Header* packet, int size, int ErrorCode, bool Local)
+void CViewStatistics::OnPacketIncoming(NetworkPacket &InPacket)
 {
-	if(!m_Paused && SockSelected(NodeID))
-	{
-		// Update views
-		if(Local)
-		{
-			m_TabDistribution->PacketIncoming(packet);
-			m_TabLog->PacketIncoming(packet);
-		}
+	m_TabLog->ProcessPacket(this, InPacket);
 
-		else if(ErrorCode == 0)
-		{
-			m_TabLog->PacketGood(packet);
-		}
+	//if(!m_Paused && SockSelected(NodeID))
+	//{
+	//	// Update views
+	//	if(Local)
+	//	{
+	//		//m_TabDistribution->PacketIncoming(packet);
+	//		m_TabLog->PacketIncoming(InPacket.Packet);
+	//	}
 
-		else
-			m_TabLog->PacketBad(packet, ErrorCode);
+	//	else if(ErrorCode == 0)
+	//	{
+	//		m_TabLog->PacketGood(InPacket.Packet);
+	//	}
+
+	//	else
+	//		m_TabLog->PacketBad(InPacket.Packet, InPacket.ErrorCode);
 
 
-		m_TabPackets->UpdateData();
-	}
+	//	//m_TabPackets->UpdateData();
+	//}
 }
 
-void CViewStatistics::OnPacketOutgoing(int NodeID, packet_Header* packet, int size, bool Local)
+void CViewStatistics::OnPacketOutgoing(NetworkPacket &OutPacket)
 {
-	if(!m_Paused && SockSelected(NodeID))
+	m_TabLog->ProcessPacket(this, OutPacket);
+
+	/*if(!m_Paused && SockSelected(NodeID))
 	{
 		if(Local)
-			m_TabLog->PacketOutgoingLocal(packet);
+			m_TabLog->PacketOutgoingLocal(OutPacket.Packet);
 		else
-			m_TabLog->PacketOutgoing(packet);
-	}
+			m_TabLog->PacketOutgoing(OutPacket.Packet);
+	}*/
 }
 
 bool CViewStatistics::SockSelected(int NodeID)

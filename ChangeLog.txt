@@ -1,4 +1,7 @@
 
+Gnucleus 2.0.0.4
+	swabby: G2 packet logging
+
 Gnucleus 2.0.0.3
 	swabby: G2 Support in
 	swabby: Node count added to search results

@@ -32,4 +32,6 @@ CTime	StrToCTime(CString& str);	// Converts a string representation to a CTime
 CString CTimeToStr(CTime& time);	// reverse of above
 CString GetTimeZoneStr(void);
 
+CString EncodeBase16(byte* buffer, unsigned int bufLen);
+
 #endif

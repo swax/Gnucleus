@@ -421,6 +421,7 @@
 #define IDC_FILE_INFO                   1258
 #define IDC_PLAY                        1259
 #define IDC_CHECK1                      1260
+#define IDC_CHECK_GNUTELLA              1260
 #define IDC_CHECK_IDENT_DISABLE         1261
 #define IDC_EDIT2                       1263
 #define IDC_EDIT_REASON                 1263
@@ -448,6 +449,12 @@
 #define IDC_STATIC_DISPLAY              1289
 #define IDC_STATIC_NODES_SEARCHED       1290
 #define IDC_STATIC_REFINE               1291
+#define IDC_CHECK_G2                    1292
+#define IDC_CHECK_TCP                   1293
+#define IDC_CHECK_UDP                   1294
+#define IDC_CHECK_SELCONNECTIONS        1296
+#define IDC_CHECK_CONNECTIONLESS        1297
+#define IDC_CHECK8                      1299
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -589,7 +596,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        283
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1292
+#define _APS_NEXT_CONTROL_VALUE         1300
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif
