@@ -177,9 +177,9 @@ void CViewStatistics::OnInitialUpdate()
 	m_pDoc->m_pViewStatistics.push_back( GetSafeHwnd() );
 
 	OnSockUpdate();
-	m_TabDistribution->UpdateDistribution();
+	/*m_TabDistribution->UpdateDistribution();
 	m_TabPackets->UpdateData();
-	m_TabBandwidth->UpdateBandwidth();
+	m_TabBandwidth->UpdateBandwidth();*/
 }
 
 void CViewStatistics::OnSockUpdate()
@@ -392,9 +392,9 @@ void CViewStatistics::OnButtonPauseGo()
 		m_TimeStarted = CTime::GetCurrentTime();
 		GetParentFrame()->SetWindowText("Statistics - " + m_TimeStarted.Format("%I:%M %p"));
 
-		m_TabDistribution->UpdateDistribution();
+		/*m_TabDistribution->UpdateDistribution();
 		m_TabPackets->UpdateData();
-		m_TabBandwidth->UpdateBandwidth();
+		m_TabBandwidth->UpdateBandwidth();*/
 	}
 }
 
@@ -517,9 +517,9 @@ void CViewStatistics::SelectNode(int NodeID)
 
 	if(!m_Paused)
 	{
-		m_TabDistribution->UpdateDistribution();
+		/*m_TabDistribution->UpdateDistribution();
 		m_TabPackets->UpdateData();
-		m_TabBandwidth->UpdateBandwidth();
+		m_TabBandwidth->UpdateBandwidth();*/
 	}
 }
 
@@ -536,8 +536,8 @@ void CViewStatistics::OnItemchangedListNodes(NMHDR* pNMHDR, LRESULT* pResult)
 	if(!m_Paused)
 	{
 		//m_TabDistribution->UpdateDistribution();
-		m_TabPackets->UpdateData();
-		m_TabBandwidth->UpdateBandwidth();
+		//m_TabPackets->UpdateData();
+		//m_TabBandwidth->UpdateBandwidth();
 	}
 	
 	*pResult = 0;
