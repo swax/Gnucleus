@@ -73,6 +73,7 @@ void CTransfersUp::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_REMOVE, m_btnRemove);
 	DDX_Control(pDX, IDC_BUTTON_CONFIGURE, m_btnConfigure);
 	//}}AFX_DATA_MAP
+	DDX_Control(pDX, IDC_CHECK_QUEUED, m_chkQueued);
 }
 
 
@@ -90,6 +91,7 @@ BEGIN_MESSAGE_MAP(CTransfersUp, CPropertyPage)
 	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_UPLOADS, OnColumnclickListUploads)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_UPLOADS, OnItemchangedListUploads)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_CHECK_QUEUED, OnCheckQueued)
 END_MESSAGE_MAP()
 
 int m_UpSortColumn = -1, m_UpSortOrder = 0;
@@ -241,11 +243,14 @@ void CTransfersUp::OnUpdate(int UploadID)
 
 	switch(m_autUpload->GetStatus(UploadID))
 	{
+	case TRANSFER_QUEUED:
+		shouldshow = m_chkQueued.GetCheck();
+		break;
+
 	case TRANSFER_CONNECTING:
 	case TRANSFER_PUSH:
 	case TRANSFER_CONNECTED:
 	case TRANSFER_SENDING:
-	case TRANSFER_QUEUED:
 		shouldshow = m_chkActive.GetCheck();
 		break;
 		
@@ -369,6 +374,7 @@ void CTransfersUp::ReloadLists()
 	m_ActiveList.clear();
 	m_CompletedList.clear();
 	m_ErroredList.clear();   
+	m_QueuedList.clear();
 
 	
 	// Get new download ID list
@@ -386,8 +392,11 @@ void CTransfersUp::ReloadLists()
 		case TRANSFER_PUSH:
 		case TRANSFER_CONNECTED:
 		case TRANSFER_SENDING:
-		case TRANSFER_QUEUED:
 			m_ActiveList.push_back(nArray[i]);
+			break;
+
+		case TRANSFER_QUEUED:
+			m_QueuedList.push_back(nArray[i]);
 			break;
 
 		case TRANSFER_COMPLETED:
@@ -429,6 +438,10 @@ void CTransfersUp::UpdateView()
 
 	if(m_chkComplete.GetCheck())
 		for(itItem = m_CompletedList.begin(); itItem != m_CompletedList.end(); itItem++)
+			ListItems.push_back(*itItem);
+
+	if(m_chkQueued.GetCheck())
+		for(itItem = m_QueuedList.begin(); itItem != m_QueuedList.end(); itItem++)
 			ListItems.push_back(*itItem);
 
 	if(m_chkError.GetCheck())
@@ -534,7 +547,8 @@ CString CTransfersUp::GetStatus(int UploadID)
 		break;
 
 	case TRANSFER_QUEUED:
-		Status = "Queued...";
+		Status = "Number " + DWrdtoStr(m_autUpload->GetQueuePos(UploadID)) + " in Queue";
+		break;
 
 	case TRANSFER_SENDING:
 		if(m_autUpload->GetFileLength(UploadID))
@@ -605,6 +619,11 @@ void CTransfersUp::OnCheckComplete()
 void CTransfersUp::OnCheckError() 
 {
 	ReloadLists();	
+}
+
+void CTransfersUp::OnCheckQueued()
+{
+	ReloadLists();
 }
 
 void CTransfersUp::OnRclickListUploads(NMHDR* pNMHDR, LRESULT* pResult) 
@@ -806,3 +825,5 @@ void CTransfersUp::OnItemchangedListUploads(NMHDR* pNMHDR, LRESULT* pResult)
 //
 //	return "";
 //}
+
+

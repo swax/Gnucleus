@@ -12,24 +12,12 @@ todo
 Interface
 	quick keys accesiblity support
 	use btnST
-	stat banner
-	fix media player
 	
 
 Pending Patches
 	MP3 Extended Info
-	Improved HTTP headers
 	DCC / Buddylist
 	Webserver
-
-
-Network
-	Figure out how to avoid CLOSE_WAIT and FIN_WAIT states
-
-
-Evolver
-	Put hash of updates files on server and then search by hash over gnutella
-
 
 Chat 
 	Text colors

@@ -198,6 +198,7 @@
 #define IDC_CHECK_ERROR                 1077
 #define IDC_CHECK_ACTIVE                1078
 #define IDC_CHECK_PENDING               1079
+#define IDC_CHECK_ERROR2                1079
 #define IDC_CHECK_COMPLETE              1080
 #define IDC_LIST_DOWNLOADS              1081
 #define IDC_PSHEET_TRANSFER             1082
@@ -415,6 +416,7 @@
 #define IDC_EDIT_PARTIALS               1268
 #define IDC_STATIC_GNUCDNA              1269
 #define IDC_STATIC_DNALICENSE           1270
+#define IDC_CHECK_QUEUED                1271
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -545,7 +547,6 @@
 #define IDS_APP_ISAPI                   32919
 #define IDS_STATUS_MOVEDTEMP            32920
 #define IDS_CONFIG                      32921
-#define ID_ACCELERATOR32930             32930
 #define IDS_VERSION                     61216
 #define ID_INDICATOR_RECV               61217
 #define ID_INDICATOR_SEND               61218
@@ -557,7 +558,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        279
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1271
+#define _APS_NEXT_CONTROL_VALUE         1272
 #define _APS_NEXT_SYMED_VALUE           106
 #endif
 #endif

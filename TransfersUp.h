@@ -7,6 +7,7 @@
 
 
 #include "DlgResizer.h"
+#include "afxwin.h"
 
 
 class CViewTransfers;
@@ -65,6 +66,7 @@ protected:
 
 	std::vector<int> m_ActiveList;
 	std::vector<int> m_CompletedList;
+	std::vector<int> m_QueuedList;
 	std::vector<int> m_ErroredList;    
 
 	CDlgResizer m_DlgResizer;
@@ -87,6 +89,9 @@ protected:
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()	
+public:
+	CButton m_chkQueued;
+	afx_msg void OnCheckQueued();
 };
 
 //{{AFX_INSERT_LOCATION}}
