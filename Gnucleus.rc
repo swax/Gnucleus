@@ -1145,21 +1145,31 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "My Network Model",IDC_STATIC,10,10,255,75
     CONTROL         "&Regular node on the internet",IDC_RADIO_MODEL_INTERNET,
-                    "Button",BS_AUTORADIOBUTTON,20,30,170,10
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,12,138,170,
+                    10
     CONTROL         "Node in a college or &LAN",IDC_RADIO_MODEL_PRIVATE,
-                    "Button",BS_AUTORADIOBUTTON,20,45,170,10
+                    "Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,12,153,170,
+                    10
     CONTROL         "Internal &IRC Server",IDC_CHECK_IRCSERVER,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,35,63,90,10
-    EDITTEXT        IDC_EDIT_IRCSERVER,128,60,110,12,ES_AUTOHSCROLL
-    GROUPBOX        "Ultrapeer Settings",IDC_STATIC,10,95,255,55
-    CONTROL         "Able to become &Ultrapeer",IDC_CHECK_SUPERNODE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,20,114,155,10
-    LTEXT           "Host a &max of",IDC_STATIC,35,130,50,10
-    EDITTEXT        IDC_EDIT_MAXLEAF,85,128,40,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,28,170,90,
+                    10
+    EDITTEXT        IDC_EDIT_IRCSERVER,120,167,110,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    CONTROL         "Able to become an Ultrapeer or Hub",IDC_CHECK_SUPERNODE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,48,155,10
+    LTEXT           "Host a &max of",IDC_STATIC,36,68,50,10
+    EDITTEXT        IDC_EDIT_MAXLEAF,86,66,40,12,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_NUMBER
-    LTEXT           "leaf nodes (1500 limit)",IDC_STATIC,130,130,94,10
+    LTEXT           "leaf nodes",IDC_STATIC,131,68,94,10
+    CONTROL         "Connect to Gnutella",IDC_CHECK_CONNECT_GNUTELLA,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,12,89,10
+    CONTROL         "Connect to G2",IDC_CHECK_CONNECT_G2,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,30,95,10
+    CONTROL         "Force Gnutella Ultrapeer Mode",IDC_CHECK_FORCE_ULTRA,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,36,84,113,10
+    CONTROL         "Force G2 Hub Mode",IDC_CHECK_FORCE_HUB,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,36,103,81,10
 END
 
 IDD_CONNECT_BASIC DIALOGEX 0, 0, 312, 175
@@ -1419,8 +1429,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,1,0
- PRODUCTVERSION 2,0,1,0
+ FILEVERSION 2,0,1,1
+ PRODUCTVERSION 2,0,1,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1438,12 +1448,12 @@ BEGIN
             VALUE "Comments", "Client Application for Gnutella"
             VALUE "CompanyName", "John Marshall Group"
             VALUE "FileDescription", "Gnucleus"
-            VALUE "FileVersion", "2.0.1.0"
+            VALUE "FileVersion", "2.0.1.1"
             VALUE "InternalName", "Gnucleus"
             VALUE "LegalCopyright", "Copyright (C) 2000-2004"
             VALUE "OriginalFilename", "Gnucleus.exe"
             VALUE "ProductName", "Gnucleus"
-            VALUE "ProductVersion", "2.0.1.0"
+            VALUE "ProductVersion", "2.0.1.1"
         END
     END
     BLOCK "VarFileInfo"

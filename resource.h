@@ -422,6 +422,7 @@
 #define IDC_PLAY                        1259
 #define IDC_CHECK1                      1260
 #define IDC_CHECK_GNUTELLA              1260
+#define IDC_CHECK_CONNECT_GNUTELLA      1260
 #define IDC_CHECK_IDENT_DISABLE         1261
 #define IDC_EDIT2                       1263
 #define IDC_EDIT_REASON                 1263
@@ -455,6 +456,10 @@
 #define IDC_CHECK_SELCONNECTIONS        1296
 #define IDC_CHECK_CONNECTIONLESS        1297
 #define IDC_CHECK8                      1299
+#define IDC_CHECK_CONNECT_G2            1300
+#define IDC_CHECK_FORCE_ULTRA           1301
+#define IDC_CHECK4                      1302
+#define IDC_CHECK_FORCE_HUB             1302
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -596,7 +601,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        283
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1300
+#define _APS_NEXT_CONTROL_VALUE         1303
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

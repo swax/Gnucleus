@@ -11,6 +11,12 @@ public:
 
 	// Network
 	bool m_AutoConnect;
+	
+	bool m_ConnectGnutella;
+	bool m_ConnectG2;
+	
+	bool m_ForceGnuUltra;
+	bool m_ForceG2Hub;
 
 	// Tray
 	bool  m_TrayOnMin;			

@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 class CGnucleusDoc;
 class CAutPrefs;
@@ -46,4 +47,10 @@ protected:
 	afx_msg void OnChangeEditMaxleaf();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()	
+public:
+	afx_msg void OnBnClickedCheck1();
+	CButton m_chkConnectGnutella;
+	CButton m_chkConnectG2;
+	CButton m_chkForceGnutella;
+	CButton m_chkForceG2;
 };

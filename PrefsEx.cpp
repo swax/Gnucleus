@@ -47,9 +47,23 @@ void CPrefsEx::LoadPrefsEx(CString ConfigFile)
 {
 	char buffer[256];
 
+	// Network
 	GetPrivateProfileString("Local", "AutoConnect", "1", buffer, 256, ConfigFile);
 	m_AutoConnect = (0 != atoi(buffer));
 
+	GetPrivateProfileString("Local", "ConnectGnutella", "1", buffer, 256, ConfigFile);
+	m_ConnectGnutella = (0 != atoi(buffer));
+
+	GetPrivateProfileString("Local", "ConnectG2", "1", buffer, 256, ConfigFile);
+	m_ConnectG2 = (0 != atoi(buffer));
+
+	GetPrivateProfileString("Local", "ForceGnuUltra", "0", buffer, 256, ConfigFile);
+	m_ForceGnuUltra = (0 != atoi(buffer));
+
+	GetPrivateProfileString("Local", "ForceG2Hub", "0", buffer, 256, ConfigFile);
+	m_ForceG2Hub = (0 != atoi(buffer));
+
+	// Client
 	GetPrivateProfileString("Local", "TrayOnMin", "1", buffer, 256, ConfigFile);
 	m_TrayOnMin = (0 != atoi(buffer));
 	GetPrivateProfileString("Local", "TrayOnClose", "0", buffer, 256, ConfigFile);
@@ -74,6 +88,10 @@ void CPrefsEx::SavePrefsEx(CString ConfigFile)
 {
 	WritePrivateProfileString("Local", "AutoConnect",		  DWrdtoStr(m_AutoConnect),		ConfigFile);
 
+	WritePrivateProfileString("Local", "ConnectGnutella", DWrdtoStr(m_ConnectGnutella),	ConfigFile);
+	WritePrivateProfileString("Local", "ConnectG2",		  DWrdtoStr(m_ConnectG2),		ConfigFile);
+	WritePrivateProfileString("Local", "ForceGnuUltra",	  DWrdtoStr(m_ForceGnuUltra),	ConfigFile);
+	WritePrivateProfileString("Local", "ForceG2Hub",      DWrdtoStr(m_ForceG2Hub),		ConfigFile);
 
 	WritePrivateProfileString("Local", "TrayOnMin",		  DWrdtoStr(m_TrayOnMin),			ConfigFile);
 	WritePrivateProfileString("Local", "TrayOnClose",     DWrdtoStr(m_TrayOnClose),			ConfigFile);

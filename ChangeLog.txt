@@ -1,3 +1,6 @@
+Gnucleus 2.0.1.1
+	swabby: Added additional network settings
+
 Gnucleus 2.0.1.0
 	swabby: Point release, stable DNA 1.0.2.6
 

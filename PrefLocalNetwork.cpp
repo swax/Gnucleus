@@ -29,11 +29,14 @@
 
 #include "AutPrefs.h"
 #include "AutNetwork.h"
+#include "AutCore.h"
 #include "ChatPrefs.h"
 #include "ChatControl.h"
 #include "NetSetup.h"
+#include "PrefsEx.h"
 
 #include "PrefLocalNetwork.h"
+#include ".\preflocalnetwork.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,6 +72,10 @@ void CPrefLocalNetwork::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_IRCSERVER, m_ebIRCServer);
 	DDX_Control(pDX, IDC_CHECK_IRCSERVER, m_chkIRCServer);
 	//}}AFX_DATA_MAP
+	DDX_Control(pDX, IDC_CHECK_CONNECT_GNUTELLA, m_chkConnectGnutella);
+	DDX_Control(pDX, IDC_CHECK_CONNECT_G2, m_chkConnectG2);
+	DDX_Control(pDX, IDC_CHECK_FORCE_ULTRA, m_chkForceGnutella);
+	DDX_Control(pDX, IDC_CHECK_FORCE_HUB, m_chkForceG2);
 }
 
 
@@ -81,6 +88,7 @@ BEGIN_MESSAGE_MAP(CPrefLocalNetwork, CPropertyPage)
 	ON_BN_CLICKED(IDC_CHECK_SUPERNODE, OnCheckSupernode)
 	ON_EN_CHANGE(IDC_EDIT_MAXLEAF, OnChangeEditMaxleaf)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_CHECK1, OnBnClickedCheck1)
 END_MESSAGE_MAP()
 
 
@@ -93,7 +101,32 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 	m_autPrefs   = m_pDoc->m_autPrefs;
 	m_autNetwork = m_pDoc->m_autNetwork;
 	m_chatPrefs  = m_pDoc->m_pChat->m_pPrefs;
+
+
+	if( m_pDoc->m_pPrefsEx->m_ConnectGnutella)
+		m_chkConnectGnutella.SetCheck(1);
+	if( m_pDoc->m_pPrefsEx->m_ConnectG2)
+		m_chkConnectG2.SetCheck(1);
+
+	m_ebMaxLeaves.SetWindowText( DWrdtoStr(m_autPrefs->GetMaxLeaves()));
+
+	if(m_autPrefs->GetSuperNodeAble())
+	{
+		m_chkSuperNode.SetCheck(true);
+	}
+	else
+	{
+		m_ebMaxLeaves.EnableWindow(false);
+		m_chkForceGnutella.EnableWindow(false);
+		m_chkForceG2.EnableWindow(false);
+	}
 	
+	if( m_pDoc->m_pPrefsEx->m_ForceGnuUltra)
+		m_chkForceGnutella.SetCheck(1);
+	if( m_pDoc->m_pPrefsEx->m_ForceG2Hub)
+		m_chkForceG2.SetCheck(1);
+	
+
 	//Network Model
 	if(m_autPrefs->GetLanMode())
 	{
@@ -116,12 +149,7 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 
 
 
-	m_ebMaxLeaves.SetWindowText( DWrdtoStr(m_autPrefs->GetMaxLeaves()));
-
-	if(m_autPrefs->GetSuperNodeAble())
-		m_chkSuperNode.SetCheck(true);
-	else
-		m_ebMaxLeaves.EnableWindow(false);
+	
 
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -172,9 +200,17 @@ void CPrefLocalNetwork::OnChangeEditIrcserver()
 void CPrefLocalNetwork::OnCheckSupernode() 
 {
 	if(m_chkSuperNode.GetCheck())
+	{
 		m_ebMaxLeaves.EnableWindow(true);
+		m_chkForceGnutella.EnableWindow(true);
+		m_chkForceG2.EnableWindow(true);
+	}
 	else
+	{
 		m_ebMaxLeaves.EnableWindow(false);
+		m_chkForceGnutella.EnableWindow(false);
+		m_chkForceG2.EnableWindow(false);
+	}
 
 	SetModified();
 }
@@ -186,6 +222,45 @@ void CPrefLocalNetwork::OnChangeEditMaxleaf()
 
 BOOL CPrefLocalNetwork::OnApply() 
 {
+	m_pDoc->m_pPrefsEx->m_ConnectGnutella = m_chkConnectGnutella.GetCheck();
+	if(m_chkConnectGnutella.GetCheck())
+		m_pDoc->m_autCore->Connect2(NETWORK_GNUTELLA);
+	else
+		m_pDoc->m_autCore->Disconnect2(NETWORK_GNUTELLA);
+	
+	m_pDoc->m_pPrefsEx->m_ConnectG2 = m_chkConnectG2.GetCheck();
+	if(m_chkConnectG2.GetCheck())
+		m_pDoc->m_autCore->Connect2(NETWORK_G2);
+	else
+		m_pDoc->m_autCore->Disconnect2(NETWORK_G2);
+
+	if(m_chkSuperNode.GetCheck())
+	{
+		m_autPrefs->SetSuperNodeAble(true);
+
+		CString strTemp;
+		m_ebMaxLeaves.GetWindowText(strTemp);
+		m_autPrefs->SetMaxLeaves(atoi(strTemp));
+
+		m_pDoc->m_pPrefsEx->m_ForceGnuUltra = m_chkForceGnutella.GetCheck();
+		m_pDoc->m_autNetwork->ForceUltrapeer2(m_chkForceGnutella.GetCheck(), NETWORK_GNUTELLA);
+
+		m_pDoc->m_pPrefsEx->m_ForceG2Hub = m_chkForceG2.GetCheck();
+		m_pDoc->m_autNetwork->ForceUltrapeer2(m_chkForceG2.GetCheck(), NETWORK_G2);
+
+	}
+	else
+	{
+		m_autPrefs->SetSuperNodeAble(false);
+
+		m_pDoc->m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
+		m_pDoc->m_autNetwork->ForceUltrapeer2(false, NETWORK_G2);
+
+		m_pDoc->m_pPrefsEx->m_ForceG2Hub    = false;
+		m_pDoc->m_pPrefsEx->m_ForceGnuUltra = false;
+	}
+
+
 	// Network model
 	if(((CButton*) GetDlgItem(IDC_RADIO_MODEL_INTERNET))->GetCheck())
 	{
@@ -217,19 +292,9 @@ BOOL CPrefLocalNetwork::OnApply()
 	}
 	else
 		m_autNetwork->LanModeOff();
-	
 
 
-	if(m_chkSuperNode.GetCheck())
-		m_autPrefs->SetSuperNodeAble(true);
-	else
-		m_autPrefs->SetSuperNodeAble(false);
-
-
-	CString strTemp;
-	m_ebMaxLeaves.GetWindowText(strTemp);
-	m_autPrefs->SetMaxLeaves(atoi(strTemp));
-
+	m_pDoc->m_pPrefsEx->SavePrefsEx( m_pDoc->m_RunPath + "Data\\GnuConfigEx.ini");
 
 
 	return CPropertyPage::OnApply();
@@ -242,3 +307,8 @@ BOOL CPrefLocalNetwork::OnApply()
 
 
 
+
+void CPrefLocalNetwork::OnBnClickedCheck1()
+{
+	// TODO: Add your control notification handler code here
+}
