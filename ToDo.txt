@@ -4,7 +4,7 @@ list items please email me at swabby@c0re.net and I can give you some more
 insight on the problem and advice.	
 
 
-frame main timer
+Fix resource errors during debug run
 
 todo	
 	Share view update without deleting all items
