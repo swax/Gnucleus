@@ -126,15 +126,15 @@ public:
 	{
 		SetProperty(0x9, VT_UI4, propVal);
 	}
-	BOOL GetUpdate()
+	long GetUpdate()
 	{
-		BOOL result;
-		GetProperty(0xb, VT_BOOL, (void*)&result);
+		long result;
+		GetProperty(0xb, VT_I4, (void*)&result);
 		return result;
 	}
-	void SetUpdate(BOOL propVal)
+	void SetUpdate(long propVal)
 	{
-		SetProperty(0xb, VT_BOOL, propVal);
+		SetProperty(0xb, VT_I4, propVal);
 	}
 	unsigned char GetNetworkModel()
 	{
