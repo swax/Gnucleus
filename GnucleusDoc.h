@@ -6,6 +6,7 @@ class CAutCore;
 class CAutPrefs;
 class CAutNetwork;
 class CAutCache;
+class CAutMeta;
 class CAutShare;
 class CAutSearch;
 class CAutDownload;
@@ -51,6 +52,7 @@ public:
 	CAutPrefs*	  m_autPrefs;
 	CAutNetwork*  m_autNetwork;
 	CAutCache*	  m_autCache;
+	CAutMeta*	  m_autMeta;
 	CAutShare*	  m_autShare;
 	CAutSearch*   m_autSearch;
 	CAutDownload* m_autDownload;

@@ -17,12 +17,11 @@ class CAutShare;
 
 class CFrameConnect;
 class CFrameBrowser;
+class CViewSearch;
 
 class CBuildMap;
 class CChatControl;
 class CPrefsEx;
-
-//class CEvolve;
 
 
 #include "WindowListDlg.h"
@@ -39,6 +38,8 @@ public:
 	CFrameBrowser* OpenBrowser(CString);
 
 	void SearchFromConnect();
+	CViewSearch* CreateSearchWindow();
+
 
 	CGnucleusApp* m_pApp;
 	CGnucleusDoc* m_pDoc;
@@ -121,6 +122,7 @@ protected:
 	afx_msg void OnToolsBrowsenetwork();
 	afx_msg void OnToolsScheduler();
 	afx_msg void OnHelpReportgnucache();
+	afx_msg void OnToolsMetaSearch();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

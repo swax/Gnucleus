@@ -327,6 +327,9 @@
 					RelativePath=".\SearchInfo.cpp">
 				</File>
 				<File
+					RelativePath="SearchMeta.cpp">
+				</File>
+				<File
 					RelativePath=".\SearchResults.cpp">
 				</File>
 				<File
@@ -648,6 +651,9 @@
 					RelativePath=".\SearchInfo.h">
 				</File>
 				<File
+					RelativePath="SearchMeta.h">
+				</File>
+				<File
 					RelativePath=".\SearchResults.h">
 				</File>
 				<File
@@ -743,6 +749,9 @@
 				</File>
 				<File
 					RelativePath="AutDownloadSink.h">
+				</File>
+				<File
+					RelativePath="AutMeta.h">
 				</File>
 				<File
 					RelativePath="AutNetwork.h">

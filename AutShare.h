@@ -156,6 +156,25 @@ public:
 		InvokeHelper(0x16, DISPATCH_METHOD, VT_UI4, (void*)&result, NULL);
 		return result;
 	}
+	long GetFileMetaID(long FileID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x17, DISPATCH_METHOD, VT_I4, (void*)&result, parms, FileID);
+		return result;
+	}
+	CString GetFileAttributeValue(long FileID, long AttributeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x18, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID, AttributeID);
+		return result;
+	}
+	void SetFileAttributeValue(long FileID, long AttributeID, LPCTSTR Value)
+	{
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x19, DISPATCH_METHOD, VT_EMPTY, NULL, parms, FileID, AttributeID, Value);
+	}
 
 	// IShare properties
 public:

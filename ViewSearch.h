@@ -43,7 +43,8 @@ protected:
 
 public:
 	void SendQuery();
-	
+	void UpdateTitle();
+
 	void OnUpdate(UINT ResultID);
 	void OnResult(UINT ResultID);
 	void OnRefresh();

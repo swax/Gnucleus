@@ -216,7 +216,7 @@ void CSearchInfo::UpdateInfo()
 			pHost->Icon	    = m_pDoc->GetIconIndex(m_autSearch->GetResultName(m_SearchID, m_ResultID));
 
 			// Get extended host info
-			_variant_t var2 = m_autSearch->GetHostMetadata(m_SearchID, m_ResultID, HostID);
+			_variant_t var2 = m_autSearch->GetHostExtended(m_SearchID, m_ResultID, HostID);
 			SAFEARRAY* psa2 = var2.parray;
 
 			BSTR* strArray;

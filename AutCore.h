@@ -116,6 +116,12 @@ public:
 		InvokeHelper(0x15, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
 		return result;
 	}
+	LPDISPATCH GetIMeta()
+	{
+		LPDISPATCH result;
+		InvokeHelper(0x17, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
+		return result;
+	}
 
 	// ICore properties
 public:

@@ -273,17 +273,19 @@ CString GetVendor(CString VendorID)
 	
 	if(VendorID == "MNAP") return "MyNapster";
 
-	if(VendorID == "MRPH") return "Morpheus";
+	if(VendorID == "MRPH" || VendorID == "MMMM") return "Morpheus";
 	
 	if(VendorID == "NAPS") return "NapShare";
 
 	if(VendorID == "OCFG") return "OCFolders";
 
+	if(VendorID == "RAZA") return "Shareaza";
+
 	if(VendorID == "SNUT") return "SwapNut";
 
 	if(VendorID == "TOAD") return "ToadNode";
 
-	return "Unknown";
+	return VendorID;
 }
 
 // Converts a string representation to a CTime

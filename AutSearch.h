@@ -181,7 +181,7 @@ public:
 		InvokeHelper(0x19, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	VARIANT GetHostMetadata(long SearchID, unsigned long ResultID, unsigned long HostID)
+	VARIANT GetHostExtended(long SearchID, unsigned long ResultID, unsigned long HostID)
 	{
 		VARIANT result;
 		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
@@ -193,6 +193,48 @@ public:
 		long result;
 		static BYTE parms[] = VTS_I4 VTS_UI4 ;
 		InvokeHelper(0x1b, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
+		return result;
+	}
+	long StartMetaSearch(LPCTSTR Query, long MetaID, VARIANT * AttributeList)
+	{
+		long result;
+		static BYTE parms[] = VTS_BSTR VTS_I4 VTS_PVARIANT ;
+		InvokeHelper(0x1c, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, MetaID, AttributeList);
+		return result;
+	}
+	long StartHashSearch(LPCTSTR Query, LPCTSTR Hash)
+	{
+		long result;
+		static BYTE parms[] = VTS_BSTR VTS_BSTR ;
+		InvokeHelper(0x1d, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, Hash);
+		return result;
+	}
+	long GetResultMetaID(long SearchID, unsigned long ResultID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		InvokeHelper(0x1e, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
+		return result;
+	}
+	CString GetResultAttributeValue(long SearchID, unsigned long ResultID, long AttributeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_I4 ;
+		InvokeHelper(0x1f, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, AttributeID);
+		return result;
+	}
+	long GetHostMetaID(long SearchID, unsigned long ResultID, unsigned long HostID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		InvokeHelper(0x20, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
+		return result;
+	}
+	CString GetHostAttributeValue(long SearchID, unsigned long ResultID, unsigned long HostID, long AttributeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 VTS_I4 ;
+		InvokeHelper(0x21, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HostID, AttributeID);
 		return result;
 	}
 

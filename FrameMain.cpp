@@ -64,6 +64,7 @@
 
 #include "SchedulerDlg.h"
 #include "WebCacheDlg.h"
+#include "SearchMeta.h"
 
 #include "FrameMain.h"
 
@@ -109,6 +110,7 @@ BEGIN_MESSAGE_MAP(CFrameMain, CMDIFrameWnd)
 	ON_COMMAND(ID_TOOLS_BROWSENETWORK, OnToolsBrowsenetwork)
 	ON_COMMAND(ID_TOOLS_SCHEDULER, OnToolsScheduler)
 	ON_COMMAND(ID_HELP_REPORTGNUCACHE, OnHelpReportgnucache)
+	ON_COMMAND(ID_TOOLS_METASEARCH, OnToolsMetaSearch)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -654,10 +656,7 @@ void CFrameMain::OnButtonSearch()
 	}
 
 	// Create Window
-	CFrameSearch* m_pWindowSearch = (CFrameSearch*) m_pApp->m_pSearchTemplate->CreateNewFrame(m_pDoc, NULL);
-	m_pApp->m_pSearchTemplate->InitialUpdateFrame(m_pWindowSearch, m_pDoc);
-
-	CViewSearch* pSearch = ((CViewSearch*) m_pWindowSearch->GetActiveView());
+	CViewSearch* pSearch = CreateSearchWindow();
 
 	// Send Query
 	pSearch->m_Search = search;
@@ -673,6 +672,16 @@ void CFrameMain::OnButtonSearch()
 
 		pCombo->InsertString(0, search);
 	}
+}
+
+CViewSearch* CFrameMain::CreateSearchWindow()
+{
+	CFrameSearch* m_pWindowSearch = (CFrameSearch*) m_pApp->m_pSearchTemplate->CreateNewFrame(m_pDoc, NULL);
+	m_pApp->m_pSearchTemplate->InitialUpdateFrame(m_pWindowSearch, m_pDoc);
+
+	CViewSearch* pSearch = ((CViewSearch*) m_pWindowSearch->GetActiveView());
+
+	return pSearch;
 }
 
 BOOL CFrameMain::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -853,3 +862,9 @@ void CFrameMain::OnHelpReportgnucache()
 	CacheDlg.DoModal();
 }
 
+void CFrameMain::OnToolsMetaSearch()
+{
+	CSearchMeta SearchDlg(NULL, this);
+
+	SearchDlg.DoModal();
+}

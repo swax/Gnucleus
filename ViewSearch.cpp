@@ -279,7 +279,7 @@ void CViewSearch::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pD
 	CFormView::OnActivateView(bActivate, pActivateView, pDeactiveView);
 }
 
-void CViewSearch::SendQuery()
+void CViewSearch::UpdateTitle()
 {
 	CString Title =  "Finding - " + m_Search;
 	GetParentFrame()->SetWindowText(Title);
@@ -294,6 +294,11 @@ void CViewSearch::SendQuery()
 
 	Title += ", 0 Results";
 	GetParentFrame()->SetWindowText(Title);
+}
+
+void CViewSearch::SendQuery()
+{
+	UpdateTitle();
 
 	m_SearchID = m_autSearch->StartSearch(m_Search);
 }

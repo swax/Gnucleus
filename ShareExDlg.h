@@ -1,3 +1,5 @@
+#include "afxwin.h"
+#include "afxcmn.h"
 #if !defined(AFX_SHAREEXDLG_H__D97EE6B7_0E1E_4AE4_B1E3_B33F0EA2AEA8__INCLUDED_)
 #define AFX_SHAREEXDLG_H__D97EE6B7_0E1E_4AE4_B1E3_B33F0EA2AEA8__INCLUDED_
 
@@ -8,6 +10,7 @@
 
 class CGnucleusDoc;
 class CAutShare;
+class CAutMeta;
 
 
 class CShareExDlg : public CDialog
@@ -16,15 +19,18 @@ public:
 	CShareExDlg(CWnd* pParent = NULL);
 
 	UINT m_FileID;
+	int  m_MetaID;
+
+	std::vector<int> m_ModifiedIDs;
 
 	CGnucleusDoc* m_pDoc;
 	CAutShare*	  m_autShare;
+	CAutMeta*	  m_autMeta;
 
 
 	//{{AFX_DATA(CShareExDlg)
 	enum { IDD = IDD_SHARE_INFO };
 	CListCtrl	m_lstAltLocs;
-	CEdit	m_ebBitprintHash;
 	CEdit	m_ebSha1Hash;
 	CListCtrl	m_lstKeywords;
 	CEdit	m_ebSize;
@@ -46,6 +52,14 @@ protected:
 	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	CStatic m_stcMetaData;
+	CListCtrl m_lstMetaData;
+	afx_msg void OnLvnItemchangedListMetadata(NMHDR *pNMHDR, LRESULT *pResult);
+	CComboBox m_cmbModify;
+	CButton m_btnSet;
+	afx_msg void OnBnClickedButtonSet();
+	afx_msg void OnBnClickedButtonOk();
 };
 
 

@@ -233,7 +233,7 @@ UINT TestInetThread(LPVOID pVoidChat)
 	CChatControl* pChat  = (CChatControl*) pVoidChat;
 	CChatPrefs*  pPrefs =  pChat->m_pPrefs;
 
-	//pChat->m_pDoc->LogError("Internet Test Thread Started\n");
+	TRACE0("*** Internet Test Thread Started\n");
 
 	srand( (unsigned)time(NULL) );
 	bool Found = false;

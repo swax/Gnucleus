@@ -2,6 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by Gnucleus.rc
 //
+#define IDOK2                           2
+#define ID_BUTTON_CANCEL                2
 #define IDD_ABOUTBOX                    100
 #define IDD_GNUCLEUS_FORM               101
 #define IDD_CONNECT                     102
@@ -113,6 +115,8 @@
 #define IDB_TRANSFERS                   256
 #define IDD_PREF_SEARCH_BLOCK           275
 #define IDR_SEARCHEX_RCLICK             276
+#define IDD_SEARCH_META                 279
+#define ID_TOOLS_METASEARCH             280
 #define IDC_STATIC_AUTHOR               1000
 #define IDC_EDIT_HOST                   1001
 #define IDC_EDIT_PORT                   1002
@@ -147,6 +151,7 @@
 #define IDC_LIST_MEMORYZ                1013
 #define IDC_LIST_ALTLOCS                1013
 #define IDC_COMBO_SEARCH                1014
+#define IDC_LIST_METADATA               1014
 #define IDC_CHECK_PINGS                 1015
 #define IDC_COMBO_SPEED                 1016
 #define IDC_CHECK_PONGS                 1016
@@ -258,6 +263,7 @@
 #define IDC_BUTTON_SHARED               1121
 #define IDC_BUTTON_NEW                  1121
 #define IDC_BUTTON_CLOSE                1121
+#define IDC_BUTTON_SET                  1121
 #define IDC_BUTTON_UPDATE               1122
 #define IDC_BUTTON_EVOVLE               1122
 #define IDC_BUTTON_EVOLVE               1122
@@ -418,6 +424,14 @@
 #define IDC_STATIC_GNUCDNA              1269
 #define IDC_STATIC_DNALICENSE           1270
 #define IDC_CHECK_QUEUED                1271
+#define IDC_STATIC_METADATA             1272
+#define IDC_COMBO1                      1274
+#define ID_BUTTON_OK                    1275
+#define IDC_EDIT_QUERY                  1276
+#define IDC_LIST_ATTRIBUTES             1277
+#define IDC_COMBO_META                  1279
+#define IDC_COMBO3                      1281
+#define IDC_COMBO_SPECIFY               1281
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -557,9 +571,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        279
+#define _APS_NEXT_RESOURCE_VALUE        281
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1272
+#define _APS_NEXT_CONTROL_VALUE         1282
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

@@ -32,6 +32,7 @@
 #include "AutPrefs.h"
 #include "AutNetwork.h"
 #include "AutCache.h"
+#include "AutMeta.h"
 #include "AutShare.h"
 #include "AutSearch.h"
 #include "AutDownload.h"
@@ -98,6 +99,10 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	m_autCore->SetClientCode("GNUC");
 
 	m_RunPath = m_autCore->GetRunPath();
+
+
+	// Load Meta data schemas
+	m_autMeta->LoadSchemaDir(m_RunPath + "\\Schemas");
 
 
 	// Load preferences
@@ -200,6 +205,10 @@ void CGnucleusDoc::ConnectCore()
 	m_autCache = new CAutCache;
 	m_autCache->AttachDispatch( m_autCore->GetICache(), false );
 
+	// Attach meta object
+	m_autMeta = new CAutMeta;
+	m_autMeta->AttachDispatch( m_autCore->GetIMeta(), false );
+
 	// Attach share object
 	m_autShare = new CAutShare;
 	m_autShare->AttachDispatch( m_autCore->GetIShare(), false );
@@ -287,6 +296,9 @@ void CGnucleusDoc::DisconnectCore()
 
 	delete m_autShare;
 	m_autShare = NULL;
+
+	delete m_autMeta;
+	m_autMeta = NULL;	
 
 	delete m_autCache;
 	m_autCache = NULL;
