@@ -121,7 +121,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	
 
 	// Load web caches
-	if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+	if(m_autPrefs->GetLanMode())
 		m_autCache->LoadWebCache(m_RunPath + "LanWebCache.net");
 	else
 	{
@@ -146,7 +146,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	// Display LAN setup dialog
-	if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+	if(m_autPrefs->GetLanMode())
 		if(!m_pApp->m_Min)
 		{		
 			CNetSetup NetSetup(this);
@@ -163,7 +163,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	// Connect to chat
-	if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE && m_pChat->m_pPrefs->m_InternalIRC)
+	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)
 		m_pChat->GetConnect();
 	
 
@@ -328,7 +328,7 @@ CGnucleusDoc::~CGnucleusDoc()
 	
 
 	// Save web caches
-	if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+	if(m_autPrefs->GetLanMode())
 		m_autCache->SaveWebCache(m_RunPath + "LanWebCache.net");
 	else
 	{	

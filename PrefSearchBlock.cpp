@@ -289,6 +289,7 @@ BOOL CPrefSearchBlock::OnApply()
 
 	m_autPrefs->SetBlockList(&vaBlocked);
 
+	VariantClear(&vaBlocked);
 
 	return CPropertyPage::OnApply();
 }

@@ -106,11 +106,6 @@ BOOL CConnectAdvanced::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
 	
-	if(m_pDoc->m_autPrefs->GetNetworkModel() != NETWORK_PRIVATE)
-	{
-		m_ebHost.SetWindowText("router.limewire.com");
-		m_ebPort.SetWindowText("6346");
-	}	
 
 	// Connected Nodes listbox
 	CRect rect;

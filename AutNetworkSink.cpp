@@ -97,16 +97,11 @@ void CAutNetworkSink::OnPacketIncoming(int NodeID, VARIANT* packet, int size, in
 	byte* bArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
 
-	byte* bPacket = new byte[size];
-	for(int i = 0; i < psa->rgsabound->cElements; i++)
-		 bPacket[i] = bArray[i];
+	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(NodeID, (packet_Header*) bArray, size, ErrorCode, Local);
 
 	SafeArrayUnaccessData(psa);
-
-	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
-		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(NodeID, (packet_Header*) bPacket, size, ErrorCode, Local);
-
-	delete [] bPacket;
+	
 }
 
 void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local)
@@ -123,16 +118,12 @@ void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bo
 	byte* bArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
 
-	byte* bPacket = new byte[size];
-	for(int i = 0; i < psa->rgsabound->cElements; i++)
-		 bPacket[i] = bArray[i];
-
-	SafeArrayUnaccessData(psa);
 
 	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
-		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(NodeID, (packet_Header*) bPacket, size, Local);
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(NodeID, (packet_Header*) bArray, size, Local);
 
-	delete [] bPacket;
+	SafeArrayUnaccessData(psa);
+	
 }
 
 

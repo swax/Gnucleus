@@ -152,7 +152,7 @@ void CChatControl::StopIdentd()
 void CChatControl::GetConnect()
 {
 	// Test for internet connection 
-	if(m_autPrefs->GetNetworkModel() != NETWORK_PRIVATE && !m_InetTested)
+	if(!m_autPrefs->GetLanMode() && !m_InetTested)
 	{
 		CWinThread* pThread = AfxBeginThread(TestInetThread, this, THREAD_PRIORITY_NORMAL, 0, CREATE_SUSPENDED);
 		AssignThreadToCPU(pThread, CPU_0);
@@ -161,7 +161,7 @@ void CChatControl::GetConnect()
 		return;
 	}
 
-	if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+	if(m_autPrefs->GetLanMode())
 	{
 		if(m_pPrefs->m_InternalIRC)
 		{

@@ -198,24 +198,6 @@ BOOL CGnucleusApp::InitInstance()
 		SendMessage(m_pMainWnd->m_hWnd, WM_COMMAND, ID_WINDOW_CASCADE, NULL);
 
 
-	// Display Start Page for LAN
-	if(m_pDoc->m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE && !m_Min)
-	{
-		CFrameBrowser* HelpPage = pMainFrame->OpenBrowser(m_pDoc->m_RunPath + "Help\\index.htm");
-
-		if(HelpPage)
-		{
-			RECT MainWin;
-			AfxGetMainWnd()->GetWindowRect(&MainWin);
-	
-			int y = (MainWin.bottom - MainWin.top) / 2 - 200,
-				x = (MainWin.right - MainWin.left) / 2 - 175;
-
-			HelpPage->MoveWindow(x, y, 350, 400);
-		}
-	}
-
-
 	return true;
 }
 

@@ -215,7 +215,7 @@ int CFrameMain::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 
 	// Tray Icon
-	if(m_autPrefs->GetNetworkModel() == NETWORK_INTERNET)
+	if(m_autPrefs->GetLanMode())
 	{
 		m_TrayIconOn  = IDR_TRAYON;
 		m_TrayIconOff = IDR_TRAYOFF;

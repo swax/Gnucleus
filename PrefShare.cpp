@@ -321,6 +321,7 @@ BOOL CPrefShare::OnApply()
 
 		m_autShare->SetSharedDirs(&vaDirs);
 
+		VariantClear(&vaDirs);
 
 		m_FilesSharedModified = false;
 	}

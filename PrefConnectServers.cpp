@@ -206,6 +206,8 @@ BOOL CPrefConnectServers::OnApply()
 
 	m_autPrefs->SetHostServers(&vaNodes);
 	
+	VariantClear(&vaNodes);
+
 	return CPropertyPage::OnApply();
 }
 

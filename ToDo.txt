@@ -15,7 +15,6 @@ Interface
 	
 
 Pending Patches
-	MP3 Extended Info
 	DCC / Buddylist
 	Webserver
 

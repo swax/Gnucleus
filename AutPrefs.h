@@ -136,16 +136,6 @@ public:
 	{
 		SetProperty(0xb, VT_I4, propVal);
 	}
-	unsigned char GetNetworkModel()
-	{
-		unsigned char result;
-		GetProperty(0x10, VT_UI1, (void*)&result);
-		return result;
-	}
-	void SetNetworkModel(unsigned char propVal)
-	{
-		SetProperty(0x10, VT_UI1, propVal);
-	}
 	BOOL GetSuperNodeAble()
 	{
 		BOOL result;
@@ -176,13 +166,13 @@ public:
 	{
 		SetProperty(0x13, VT_UI4, propVal);
 	}
-	BOOL GetLan()
+	BOOL GetLanMode()
 	{
 		BOOL result;
 		GetProperty(0x14, VT_BOOL, (void*)&result);
 		return result;
 	}
-	void SetLan(BOOL propVal)
+	void SetLanMode(BOOL propVal)
 	{
 		SetProperty(0x14, VT_BOOL, propVal);
 	}
@@ -195,26 +185,6 @@ public:
 	void SetLanName(CString propVal)
 	{
 		SetProperty(0x15, VT_BSTR, propVal);
-	}
-	BOOL GetInternalUpdate()
-	{
-		BOOL result;
-		GetProperty(0x16, VT_BOOL, (void*)&result);
-		return result;
-	}
-	void SetInternalUpdate(BOOL propVal)
-	{
-		SetProperty(0x16, VT_BOOL, propVal);
-	}
-	CString GetInternalUpdateAddr()
-	{
-		CString result;
-		GetProperty(0x17, VT_BSTR, (void*)&result);
-		return result;
-	}
-	void SetInternalUpdateAddr(CString propVal)
-	{
-		SetProperty(0x17, VT_BSTR, propVal);
 	}
 	BOOL GetBehindFirewall()
 	{

@@ -258,6 +258,7 @@ void CSearchMeta::OnOK()
 
 	pSearch->m_SearchID = m_autSearch->StartMetaSearch(pSearch->m_Search, m_MetaID, &vaAttr);
 
+	VariantClear(&vaAttr);
 
 	CDialog::OnOK();
 }

@@ -201,6 +201,8 @@ BOOL CPrefConnectScreen::OnApply()
 
 	m_autPrefs->SetScreenedNodes(&vaNodes);
 	
+	VariantClear(&vaNodes);
+		
 	return CPropertyPage::OnApply();
 }
 

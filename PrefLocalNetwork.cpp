@@ -28,6 +28,7 @@
 #include "GnucleusDoc.h"
 
 #include "AutPrefs.h"
+#include "AutNetwork.h"
 #include "ChatPrefs.h"
 #include "ChatControl.h"
 
@@ -49,6 +50,8 @@ CPrefLocalNetwork::CPrefLocalNetwork() : CPropertyPage(CPrefLocalNetwork::IDD)
 
 	m_pDoc	     = NULL;
 	m_autPrefs   = NULL;
+	m_autNetwork = NULL;
+
 	m_chatPrefs  = NULL;
 }
 
@@ -93,10 +96,11 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 	// There may be a simpler way to get this pointer
 	m_pDoc       = (CGnucleusDoc*) ((CGnucleusApp*)AfxGetApp())->m_pDoc;
 	m_autPrefs   = m_pDoc->m_autPrefs;
+	m_autNetwork = m_pDoc->m_autNetwork;
 	m_chatPrefs  = m_pDoc->m_pChat->m_pPrefs;
 	
 	//Network Model
-	if(m_autPrefs->GetNetworkModel() == NETWORK_INTERNET)
+	if(m_autPrefs->GetLanMode())
 	{
 		((CButton*) GetDlgItem(IDC_RADIO_MODEL_INTERNET))->SetCheck(true);
 		
@@ -107,7 +111,7 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 	//else if(m_pPrefs->m_NetworkModel == NETWORK_LAN)
 	//	((CButton*) GetDlgItem(IDC_RADIO_MODEL_LAN))->SetCheck(true);
 
-	else if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+	else if(m_autPrefs->GetLanMode())
 	{
 		((CButton*) GetDlgItem(IDC_RADIO_MODEL_PRIVATE))->SetCheck(true);
 	
@@ -246,28 +250,23 @@ BOOL CPrefLocalNetwork::OnApply()
 	// Network model
 	if(((CButton*) GetDlgItem(IDC_RADIO_MODEL_INTERNET))->GetCheck())
 	{
-		if(m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE)
+		if(m_autPrefs->GetLanMode())
 			AfxMessageBox("Restart Gnucleus to use on the Internet");
 
-		m_autPrefs->SetNetworkModel(NETWORK_INTERNET);
-		
-		m_autPrefs->SetLan(false);
-		m_autPrefs->SetInternalUpdate(false);
+		m_autNetwork->LanModeOff();
+
 		m_chatPrefs->m_InternalIRC	= false;
 	}
 
-	//else if(((CButton*) GetDlgItem(IDC_RADIO_MODEL_LAN))->GetCheck())
-	//	m_pPrefs->m_NetworkModel = NETWORK_LAN;
-	
 	else if(((CButton*) GetDlgItem(IDC_RADIO_MODEL_PRIVATE))->GetCheck())
 	{
 		CString store;
 		
-		if(m_autPrefs->GetNetworkModel() == NETWORK_INTERNET)
+		if(!m_autPrefs->GetLanMode())
 			AfxMessageBox("Restart Gnucleus to Finish LAN Setup");
 
 
-		m_autPrefs->SetNetworkModel(NETWORK_PRIVATE);
+		m_autPrefs->SetLanMode(true);
 			
 		
 		// Internal IRC Server
@@ -282,7 +281,7 @@ BOOL CPrefLocalNetwork::OnApply()
 			m_chatPrefs->m_InternalIRC = false;
 	}
 	else
-		m_autPrefs->SetNetworkModel(NETWORK_INTERNET);
+		m_autNetwork->LanModeOff();
 	
 
 

@@ -157,7 +157,7 @@ void CConnectBasic::OnTimer(UINT nIDEvent)
 		{
 			int MinConnects = 0;
 
-			if(m_pDoc->m_autPrefs->GetLan())
+			if(m_pDoc->m_autPrefs->GetLanMode())
 				m_stcConnect.SetWindowText("Connected to the " + m_pDoc->m_autPrefs->GetLanName() + " Network");
 			else
 				m_stcConnect.SetWindowText("Connected to the Gnutella Network");

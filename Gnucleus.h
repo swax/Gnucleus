@@ -1,13 +1,4 @@
-#if !defined(AFX_GNUCLEUS_H__24A0CEC4_881B_11D4_ACF2_00A0CC533D52__INCLUDED_)
-#define AFX_GNUCLEUS_H__24A0CEC4_881B_11D4_ACF2_00A0CC533D52__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-
-#ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
-#endif
 
 
 #include "resource.h"       // main symbols
@@ -67,8 +58,3 @@ public:
 	bool		  m_Minimize;
 };
 
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_GNUCLEUS_H__24A0CEC4_881B_11D4_ACF2_00A0CC533D52__INCLUDED_)

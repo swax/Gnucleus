@@ -74,10 +74,6 @@
 #define UPDATE_BETA			2
 #define UPDATE_NONE			3
 
-#define NETWORK_INTERNET	1
-#define NETWORK_LAN			2
-#define NETWORK_PRIVATE		3
-
 #define SOCK_UNKNOWN		0
 #define SOCK_CONNECTING		1
 #define SOCK_CONNECTED		2

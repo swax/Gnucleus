@@ -1,10 +1,4 @@
-#if !defined(AFX_FRAMEMAIN_H__24A0CEC8_881B_11D4_ACF2_00A0CC533D52__INCLUDED_)
-#define AFX_FRAMEMAIN_H__24A0CEC8_881B_11D4_ACF2_00A0CC533D52__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
-
 
 class CGnucleusApp;
 class CGnucleusDoc;
@@ -127,8 +121,3 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_FRAMEMAIN_H__24A0CEC8_881B_11D4_ACF2_00A0CC533D52__INCLUDED_)

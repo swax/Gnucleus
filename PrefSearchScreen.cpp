@@ -169,6 +169,7 @@ BOOL CPrefSearchScreen::OnApply()
 
 	m_autPrefs->SetScreenedWords(&vaWords);
 
+	VariantClear(&vaWords);
 
 	return CPropertyPage::OnApply();
 }
