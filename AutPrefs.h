@@ -146,16 +146,6 @@ public:
 	{
 		SetProperty(0x11, VT_BOOL, propVal);
 	}
-	BOOL GetDedicated()
-	{
-		BOOL result;
-		GetProperty(0x12, VT_BOOL, (void*)&result);
-		return result;
-	}
-	void SetDedicated(BOOL propVal)
-	{
-		SetProperty(0x12, VT_BOOL, propVal);
-	}
 	unsigned long GetMaxLeaves()
 	{
 		unsigned long result;
@@ -195,16 +185,6 @@ public:
 	void SetBehindFirewall(BOOL propVal)
 	{
 		SetProperty(0x1a, VT_BOOL, propVal);
-	}
-	BOOL GetAutoConnect()
-	{
-		BOOL result;
-		GetProperty(0x1b, VT_BOOL, (void*)&result);
-		return result;
-	}
-	void SetAutoConnect(BOOL propVal)
-	{
-		SetProperty(0x1b, VT_BOOL, propVal);
 	}
 	long GetLeafModeConnects()
 	{

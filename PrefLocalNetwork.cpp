@@ -64,9 +64,6 @@ void CPrefLocalNetwork::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPrefLocalNetwork)
 	DDX_Control(pDX, IDC_EDIT_MAXLEAF, m_ebMaxLeaves);
-	DDX_Control(pDX, IDC_STATIC_USAGE, m_stcUsage);
-	DDX_Control(pDX, IDC_SLIDER_USAGE, m_sldrUsage);
-	DDX_Control(pDX, IDC_CHECK_DEDICATED, m_chkDedicated);
 	DDX_Control(pDX, IDC_CHECK_SUPERNODE, m_chkSuperNode);
 	DDX_Control(pDX, IDC_EDIT_IRCSERVER, m_ebIRCServer);
 	DDX_Control(pDX, IDC_CHECK_IRCSERVER, m_chkIRCServer);
@@ -80,10 +77,7 @@ BEGIN_MESSAGE_MAP(CPrefLocalNetwork, CPropertyPage)
 	ON_BN_CLICKED(IDC_RADIO_MODEL_PRIVATE, OnRadioModelPrivate)
 	ON_BN_CLICKED(IDC_CHECK_IRCSERVER, OnCheckIrcserver)
 	ON_EN_CHANGE(IDC_EDIT_IRCSERVER, OnChangeEditIrcserver)
-	ON_NOTIFY(NM_RELEASEDCAPTURE, IDC_SLIDER_USAGE, OnReleasedcaptureSliderUsage)
-	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER_USAGE, OnCustomdrawSliderUsage)
 	ON_BN_CLICKED(IDC_CHECK_SUPERNODE, OnCheckSupernode)
-	ON_BN_CLICKED(IDC_CHECK_DEDICATED, OnCheckDedicated)
 	ON_EN_CHANGE(IDC_EDIT_MAXLEAF, OnChangeEditMaxleaf)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -131,25 +125,13 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 	m_ebIRCServer.SetWindowText(m_chatPrefs->m_InternalIRCAddr);
 
 
-	// SuperNode Settings
-	m_sldrUsage.SetRange(10, 100);
-	m_sldrUsage.SetTicFreq(5);
-	m_sldrUsage.SetPos(15);
 
 	m_ebMaxLeaves.SetWindowText( DWrdtoStr(m_autPrefs->GetMaxLeaves()));
 
 	if(m_autPrefs->GetSuperNodeAble())
 		m_chkSuperNode.SetCheck(true);
 	else
-	{
 		m_ebMaxLeaves.EnableWindow(false);
-		m_chkDedicated.EnableWindow(false);
-		m_stcUsage.EnableWindow(false);
-		m_sldrUsage.EnableWindow(false);
-	}
-
-	if(m_autPrefs->GetDedicated())
-		m_chkDedicated.SetCheck(true);
 
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -200,44 +182,11 @@ void CPrefLocalNetwork::OnChangeEditIrcserver()
 void CPrefLocalNetwork::OnCheckSupernode() 
 {
 	if(m_chkSuperNode.GetCheck())
-	{
 		m_ebMaxLeaves.EnableWindow(true);
-		m_chkDedicated.EnableWindow(true);
-		m_stcUsage.EnableWindow(true);
-		m_sldrUsage.EnableWindow(true);
-	}
 	else
-	{
 		m_ebMaxLeaves.EnableWindow(false);
-		m_chkDedicated.EnableWindow(false);
-		m_stcUsage.EnableWindow(false);
-		m_sldrUsage.EnableWindow(false);
-	}
 
 	SetModified();
-}
-
-void CPrefLocalNetwork::OnCheckDedicated() 
-{
-	SetModified();
-}
-
-void CPrefLocalNetwork::OnReleasedcaptureSliderUsage(NMHDR* pNMHDR, LRESULT* pResult) 
-{
-	m_stcUsage.SetWindowText("Max Processor Usage, " + DWrdtoStr(m_sldrUsage.GetPos()) + "%");
-	
-	SetModified();
-
-	*pResult = 0;
-}
-
-void CPrefLocalNetwork::OnCustomdrawSliderUsage(NMHDR* pNMHDR, LRESULT* pResult) 
-{
-	m_stcUsage.SetWindowText("Max Processor Usage, " + DWrdtoStr(m_sldrUsage.GetPos()) + "%");
-	
-	SetModified();
-
-	*pResult = 0;
 }
 
 void CPrefLocalNetwork::OnChangeEditMaxleaf() 

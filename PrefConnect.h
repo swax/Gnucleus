@@ -8,7 +8,7 @@
 
 class CGnucleusDoc;
 class CAutPrefs; 
-
+class CPrefsEx;
 
 class CPrefConnect : public CPropertyPage
 {
@@ -40,7 +40,7 @@ public:
 protected:
 	CGnucleusDoc* m_pDoc;
 	CAutPrefs*    m_autPrefs;
-
+	CPrefsEx*     m_pPrefsEx;
 
 	//{{AFX_MSG(CPrefConnect)
 	virtual BOOL OnInitDialog();

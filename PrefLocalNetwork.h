@@ -17,9 +17,6 @@ public:
 	//{{AFX_DATA(CPrefLocalNetwork)
 	enum { IDD = IDD_PREF_LOCAL_NETWORK };
 	CEdit	m_ebMaxLeaves;
-	CStatic	m_stcUsage;
-	CSliderCtrl	m_sldrUsage;
-	CButton	m_chkDedicated;
 	CButton	m_chkSuperNode;
 	CEdit	m_ebIRCServer;
 	CButton	m_chkIRCServer;
@@ -45,10 +42,7 @@ protected:
 	afx_msg void OnRadioModelPrivate();
 	afx_msg void OnCheckIrcserver();
 	afx_msg void OnChangeEditIrcserver();
-	afx_msg void OnReleasedcaptureSliderUsage(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnCustomdrawSliderUsage(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnCheckSupernode();
-	afx_msg void OnCheckDedicated();
 	afx_msg void OnChangeEditMaxleaf();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()	

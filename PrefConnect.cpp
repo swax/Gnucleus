@@ -26,6 +26,7 @@
 #include "stdafx.h"
 #include "Gnucleus.h"
 #include "GnucleusDoc.h"
+#include "PrefsEx.h"
 
 #include "AutPrefs.h"
 
@@ -48,6 +49,7 @@ CPrefConnect::CPrefConnect() : CPropertyPage(CPrefConnect::IDD)
 
 	m_pDoc		= NULL;
 	m_autPrefs  = NULL;
+	m_pPrefsEx  = NULL;
 }
 
 CPrefConnect::~CPrefConnect()
@@ -88,9 +90,11 @@ BOOL CPrefConnect::OnInitDialog()
 	// There may be a simpler way to get this pointer
 	m_pDoc     = (CGnucleusDoc*) ((CGnucleusApp*)AfxGetApp())->m_pDoc;
 	m_autPrefs = m_pDoc->m_autPrefs;
+	m_pPrefsEx = m_pDoc->m_pPrefsEx;
+
 
 	// AutoConnect
-	if(m_autPrefs->GetAutoConnect())
+	if(m_pPrefsEx->m_AutoConnect)
 		m_chkAutoConnect.SetCheck(1);
 
 	m_ebLeafConnects.SetWindowText(DWrdtoStr(m_autPrefs->GetLeafModeConnects()));
@@ -163,9 +167,9 @@ BOOL CPrefConnect::OnApply()
 
 	// AutoConnect
 	if(m_chkAutoConnect.GetCheck() == 1)
-		m_autPrefs->SetAutoConnect(true);
+		m_pPrefsEx->m_AutoConnect = true;
 	else
-		m_autPrefs->SetAutoConnect(false);
+		m_pPrefsEx->m_AutoConnect = false;
 
 	m_ebLeafConnects.GetWindowText(store);
 	m_autPrefs->SetLeafModeConnects(atoi(store));

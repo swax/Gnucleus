@@ -9,6 +9,9 @@ public:
 	void LoadPrefsEx(CString);
 	void SavePrefsEx(CString);
 
+	// Network
+	bool m_AutoConnect;
+
 	// Tray
 	bool  m_TrayOnMin;			
 	bool  m_TrayOnClose;

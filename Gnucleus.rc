@@ -1158,13 +1158,6 @@ BEGIN
     EDITTEXT        IDC_EDIT_MAXLEAF,85,128,40,12,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_NUMBER
     LTEXT           "leaf nodes (1500 limit)",IDC_STATIC,130,130,94,10
-    LTEXT           "Max Processor Usage, 10%",IDC_STATIC_USAGE,10,160,100,
-                    10,NOT WS_VISIBLE
-    CONTROL         "Slider1",IDC_SLIDER_USAGE,"msctls_trackbar32",TBS_TOP | 
-                    TBS_NOTICKS | NOT WS_VISIBLE | WS_TABSTOP,10,171,95,10
-    CONTROL         "Dedicated Ultrapeer",IDC_CHECK_DEDICATED,"Button",
-                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,115,165,
-                    140,10
 END
 
 IDD_CONNECT_BASIC DIALOGEX 0, 0, 312, 175

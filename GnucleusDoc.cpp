@@ -155,7 +155,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	// Start connecting
-	if(m_autPrefs->GetAutoConnect())
+	if(m_pPrefsEx->m_AutoConnect)
 	{
 		m_autCore->Connect();
 		m_pChat->m_AutoConnect = true;;

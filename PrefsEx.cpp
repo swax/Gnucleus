@@ -28,6 +28,8 @@
 
 CPrefsEx::CPrefsEx(void)
 {
+	m_AutoConnect	= true;
+
 	m_TrayOnMin			= true;
 	m_TrayOnClose		= false;
 
@@ -44,6 +46,9 @@ CPrefsEx::~CPrefsEx(void)
 void CPrefsEx::LoadPrefsEx(CString ConfigFile)
 {
 	char buffer[256];
+
+	GetPrivateProfileString("Local", "AutoConnect", "1", buffer, 256, ConfigFile);
+	m_AutoConnect = (0 != atoi(buffer));
 
 	GetPrivateProfileString("Local", "TrayOnMin", "1", buffer, 256, ConfigFile);
 	m_TrayOnMin = (0 != atoi(buffer));
@@ -67,6 +72,9 @@ void CPrefsEx::LoadPrefsEx(CString ConfigFile)
 
 void CPrefsEx::SavePrefsEx(CString ConfigFile)
 {
+	WritePrivateProfileString("Local", "AutoConnect",		  DWrdtoStr(m_AutoConnect),		ConfigFile);
+
+
 	WritePrivateProfileString("Local", "TrayOnMin",		  DWrdtoStr(m_TrayOnMin),			ConfigFile);
 	WritePrivateProfileString("Local", "TrayOnClose",     DWrdtoStr(m_TrayOnClose),			ConfigFile);
 
