@@ -19,6 +19,8 @@ public:
 	void OnChange(int NodeID);
 	void OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local);
 	void OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local);
+	void OnAuthenticate(int NodeID);
+	void OnChallenge(int NodeID, LPCTSTR Challenge);
 
 	virtual void OnFinalRelease();
 

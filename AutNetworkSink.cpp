@@ -27,6 +27,8 @@
 #include "Gnucleus.h"
 #include "GnucleusDoc.h"
 
+#include "AutNetwork.h"
+
 #include "ViewConnect.h"
 #include "ViewStatistics.h"
 
@@ -65,6 +67,8 @@ BEGIN_DISPATCH_MAP(CAutNetworkSink, CCmdTarget)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnChange", 1, OnChange, VT_EMPTY, VTS_I4)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketIncoming", 2, OnPacketIncoming, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_I4 VTS_BOOL)
 	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketOutgoing", 3, OnPacketOutgoing, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnAuthenticate", 4, OnAuthenticate, VT_EMPTY, VTS_I4)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnChallenge", 5, OnChallenge, VT_EMPTY, VTS_I4 VTS_BSTR)
 END_DISPATCH_MAP() 
 
 
@@ -126,4 +130,27 @@ void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bo
 	
 }
 
+// Us challenging the remote host
+void CAutNetworkSink::OnAuthenticate(int NodeID)
+{
+	// SAMPLE, MAKE SURE TO DELETE
 
+	/*srand( (unsigned) time(NULL) );
+
+	int nChallenge = rand() % 14 + 0;
+	int nAnswer    = 14 - nChallenge;
+
+	m_pDoc->m_autNetwork->SendChallenge(NodeID, DWrdtoStr(nChallenge), DWrdtoStr(nAnswer) );*/
+}
+
+
+// Remote host challenging us
+void CAutNetworkSink::OnChallenge(int NodeID, LPCTSTR Challenge)
+{
+	// SAMPLE, MAKE SURE TO DELETE
+
+	/*int nChallenge = atoi(Challenge);
+	int nAnswer    = 14 - nChallenge;
+
+	m_pDoc->m_autNetwork->AnswerChallenge(NodeID, DWrdtoStr(nAnswer) );*/
+}

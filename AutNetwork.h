@@ -222,6 +222,16 @@ public:
 		InvokeHelper(0x26, DISPATCH_METHOD, VT_VARIANT, (void*)&result, NULL);
 		return result;
 	}
+	void SendChallenge(long NodeID, LPCTSTR Challenge, LPCTSTR Answer)
+	{
+		static BYTE parms[] = VTS_I4 VTS_BSTR VTS_BSTR ;
+		InvokeHelper(0x27, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NodeID, Challenge, Answer);
+	}
+	void AnswerChallenge(long NodeID, LPCTSTR Answer)
+	{
+		static BYTE parms[] = VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x28, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NodeID, Answer);
+	}
 
 	// INetwork properties
 public:
