@@ -55,6 +55,9 @@ Name: {app}\Data
 Use7zip=false
 
 [INI]
+Filename: {app}\Data\GnuConfig.ini; Section: Search; Key: DownloadPath; String: {app}\Downloads; Flags: createkeyifdoesntexist
+Filename: {app}\Data\GnuConfig.ini; Section: Share; Key: Dir0; String: {app}\Downloads, Recursive; Flags: createkeyifdoesntexist
+Filename: {app}\Data\GnuConfig.ini; Section: Transfer; Key: PartialDir; String: {app}\Partials; Flags: createkeyifdoesntexist
 
 [UninstallDelete]
 Name: {app}\GnuHashes.ini; Type: files
