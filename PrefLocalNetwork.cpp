@@ -31,6 +31,7 @@
 #include "AutNetwork.h"
 #include "ChatPrefs.h"
 #include "ChatControl.h"
+#include "NetSetup.h"
 
 #include "PrefLocalNetwork.h"
 
@@ -95,17 +96,6 @@ BOOL CPrefLocalNetwork::OnInitDialog()
 	
 	//Network Model
 	if(m_autPrefs->GetLanMode())
-	{
-		((CButton*) GetDlgItem(IDC_RADIO_MODEL_INTERNET))->SetCheck(true);
-		
-		m_chkIRCServer.EnableWindow(false);
-		m_ebIRCServer.EnableWindow(false);
-	}
-
-	//else if(m_pPrefs->m_NetworkModel == NETWORK_LAN)
-	//	((CButton*) GetDlgItem(IDC_RADIO_MODEL_LAN))->SetCheck(true);
-
-	else if(m_autPrefs->GetLanMode())
 	{
 		((CButton*) GetDlgItem(IDC_RADIO_MODEL_PRIVATE))->SetCheck(true);
 	
@@ -199,9 +189,6 @@ BOOL CPrefLocalNetwork::OnApply()
 	// Network model
 	if(((CButton*) GetDlgItem(IDC_RADIO_MODEL_INTERNET))->GetCheck())
 	{
-		if(m_autPrefs->GetLanMode())
-			AfxMessageBox("Restart Gnucleus to use on the Internet");
-
 		m_autNetwork->LanModeOff();
 
 		m_chatPrefs->m_InternalIRC	= false;
@@ -211,13 +198,12 @@ BOOL CPrefLocalNetwork::OnApply()
 	{
 		CString store;
 		
-		if(!m_autPrefs->GetLanMode())
-			AfxMessageBox("Restart Gnucleus to Finish LAN Setup");
-
-
-		m_autPrefs->SetLanMode(true);
+		m_autNetwork->LanModeOn();
 			
+		CNetSetup NetSetup(m_pDoc);
+		NetSetup.DoModal();
 		
+
 		// Internal IRC Server
 		if(m_chkIRCServer.GetCheck())
 		{

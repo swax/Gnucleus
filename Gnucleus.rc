@@ -1218,15 +1218,15 @@ BEGIN
                     WS_BORDER | WS_TABSTOP,17,20,343,173
 END
 
-IDD_LAN_SETUP DIALOG  0, 0, 157, 170
+IDD_LAN_SETUP DIALOGEX 0, 0, 157, 170
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "LAN / Campus Setup"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LTEXT           "Active LAN Networks:",IDC_STATIC,10,10,125,10
     CONTROL         "List2",IDC_LIST_LAN,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,10,20,140,75
-    DEFPUSHBUTTON   "Join",IDC_BUTTON_JOIN,25,105,50,14
+    DEFPUSHBUTTON   "Join",IDC_BUTTON_JOIN,25,105,50,14,WS_DISABLED
     PUSHBUTTON      "Create",IDC_BUTTON_NEW,80,105,50,14
     GROUPBOX        "Help",IDC_STATIC,10,130,140,30
     LTEXT           "Select a network from above and Join it or create your own network.",

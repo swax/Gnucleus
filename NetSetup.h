@@ -1,3 +1,4 @@
+#include "afxwin.h"
 #if !defined(AFX_NETSETUP_H__FBC4DC0C_3DE9_4356_BA60_DE478D7AD51A__INCLUDED_)
 #define AFX_NETSETUP_H__FBC4DC0C_3DE9_4356_BA60_DE478D7AD51A__INCLUDED_
 
@@ -43,6 +44,9 @@ protected:
 	afx_msg void OnButtonNew();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLvnItemchangedListLan(NMHDR *pNMHDR, LRESULT *pResult);
+	CButton m_btnJoin;
 };
 
 //{{AFX_INSERT_LOCATION}}

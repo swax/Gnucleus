@@ -69,6 +69,7 @@ void CNetSetup::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CNetSetup)
 	DDX_Control(pDX, IDC_LIST_LAN, m_lstLan);
 	//}}AFX_DATA_MAP
+	DDX_Control(pDX, IDC_BUTTON_JOIN, m_btnJoin);
 }
 
 
@@ -78,6 +79,7 @@ BEGIN_MESSAGE_MAP(CNetSetup, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_JOIN, OnButtonJoin)
 	ON_BN_CLICKED(IDC_BUTTON_NEW, OnButtonNew)
 	//}}AFX_MSG_MAP
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_LAN, OnLvnItemchangedListLan)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -133,21 +135,26 @@ void CNetSetup::OnTimer(UINT nIDEvent)
 		m_lstLan.SetItemText(i, 1, "0");
 
 
+	CString LanName;
+	
 	for(i = 0; i < LanNodeIDs.size(); i++)
 	{
-		if(m_autNetwork->GetLanNodeName(LanNodeIDs[i]) == "")
+	
+		LanName = m_autNetwork->GetLanNodeName(LanNodeIDs[i]);
+
+		if(LanName.IsEmpty())
 			continue;
 
 		LVFINDINFO info;
 		info.flags = LVFI_STRING;
-		info.psz   = m_autNetwork->GetLanNodeName(LanNodeIDs[i]);
+		info.psz   = LanName;
 
 		int pos = m_lstLan.FindItem(&info);
 
 		if(pos == -1)
 		{
 			pos = m_lstLan.GetItemCount();
-			m_lstLan.InsertItem(pos, m_autNetwork->GetLanNodeName(LanNodeIDs[i]));
+			m_lstLan.InsertItem(pos, LanName);
 			m_lstLan.SetItemText(pos, 1, DWrdtoStr(1 + m_autNetwork->GetLanNodeLeaves(LanNodeIDs[i])));
 		}
 		else
@@ -166,9 +173,10 @@ void CNetSetup::OnTimer(UINT nIDEvent)
 	int sel = m_lstLan.GetSelectionMark();
 	if(sel == -1 && m_autPrefs->GetLanName() != "")
 	{
+		LanName = m_autPrefs->GetLanName();
 		LVFINDINFO info;
 		info.flags = LVFI_STRING;
-		info.psz   = m_autPrefs->GetLanName();
+		info.psz   = LanName;
 
 		int ipos = m_lstLan.FindItem(&info);
 
@@ -192,7 +200,7 @@ void CNetSetup::OnButtonJoin()
 
 	CString Network	= m_lstLan.GetItemText(pos, 0);
 
-	m_autNetwork->LanModeOn(Network);
+	m_autNetwork->JoinLan(Network);
 
 	OnOK();
 }
@@ -209,7 +217,7 @@ void CNetSetup::OnButtonNew()
 		if(NewNetworkDlg.m_Name == "")
 			return;
 
-		m_autNetwork->LanModeOn(NewNetworkDlg.m_Name);
+		m_autNetwork->JoinLan(NewNetworkDlg.m_Name);
 
 		OnOK();
 	}
@@ -217,3 +225,12 @@ void CNetSetup::OnButtonNew()
 		return;
 }
 
+
+void CNetSetup::OnLvnItemchangedListLan(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	
+	m_btnJoin.EnableWindow();
+
+	*pResult = 0;
+}

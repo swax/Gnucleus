@@ -121,18 +121,15 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	
 
 	// Load web caches
-	if(m_autPrefs->GetLanMode())
-		m_autCache->LoadWebCache(m_RunPath + "LanWebCache.net");
-	else
+	m_autCache->LoadWebCache(m_RunPath + "WebCache.net");
+	
+	if(!m_autCache->GetWebCacheSize())
 	{
-		m_autCache->LoadWebCache(m_RunPath + "WebCache.net");
-		if(!m_autCache->GetWebCacheSize())
-		{
-			// HARDCODED: a few default caches
-			m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
-			m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
-		}
+		// HARDCODED: a few default caches
+		m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
+		m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
 	}
+
 
 	
 	// Load update servers and check for update
@@ -147,14 +144,22 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 	// Display LAN setup dialog
 	if(m_autPrefs->GetLanMode())
-		if(!m_pApp->m_Min)
+	{
+		m_autNetwork->LanModeOn();
+
+		m_autCache->LoadWebCache(m_RunPath + "LanWebCache.net");
+		
+		if( !(m_pApp->m_Min && !m_autPrefs->GetLanName().IsEmpty()) )
 		{		
 			CNetSetup NetSetup(this);
 			NetSetup.DoModal();
 		}
+	}
+
 
 	//DELETE THIS
 	//m_autNetwork->ForceUltrapeer(true);
+
 
 	// Start connecting
 	if(m_pPrefsEx->m_AutoConnect)

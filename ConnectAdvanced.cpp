@@ -253,7 +253,7 @@ void CConnectAdvanced::UpdateConnectView()
 			// Adding children
 			else
 			{
-				if(m_autNetwork->GetNodeMode(NodeIDs[i]) != CLIENT_LEAF)
+				if(m_autNetwork->GetNodeMode(NodeIDs[i]) != CLIENT_LEAF || m_autNetwork->ClientMode() != CLIENT_ULTRAPEER)
 					continue;
 
 				Children++;

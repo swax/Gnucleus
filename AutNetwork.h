@@ -120,10 +120,9 @@ public:
 		InvokeHelper(0x14, DISPATCH_METHOD, VT_VARIANT, (void*)&result, NULL);
 		return result;
 	}
-	void LanModeOn(LPCTSTR LanName)
+	void LanModeOn()
 	{
-		static BYTE parms[] = VTS_BSTR ;
-		InvokeHelper(0x15, DISPATCH_METHOD, VT_EMPTY, NULL, parms, LanName);
+		InvokeHelper(0x15, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 	}
 	void LanModeOff()
 	{
@@ -211,6 +210,11 @@ public:
 	{
 		static BYTE parms[] = VTS_BOOL ;
 		InvokeHelper(0x24, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Enabled);
+	}
+	void JoinLan(LPCTSTR LanName)
+	{
+		static BYTE parms[] = VTS_BSTR ;
+		InvokeHelper(0x25, DISPATCH_METHOD, VT_EMPTY, NULL, parms, LanName);
 	}
 
 	// INetwork properties
