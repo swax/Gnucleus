@@ -342,6 +342,9 @@ void CDrawItemIter::DrawIcons()
 					case RESULT_NOSOURCES:
 						hIcon = AfxGetApp()->LoadIcon(IDR_RESULT_NOHOSTS);
 						break;
+					case RESULT_SHARED:
+						hIcon = AfxGetApp()->LoadIcon(IDR_RESULT_COMPLETED);
+						break;
 					}
 						
 					

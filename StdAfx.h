@@ -122,6 +122,7 @@
 #define RESULT_DOWNLOADING	3
 #define RESULT_COMPLETED	4
 #define RESULT_NOSOURCES	5
+#define RESULT_SHARED		6
 
 #define HASH_SHA1			0
 #define HASH_MD5			1
