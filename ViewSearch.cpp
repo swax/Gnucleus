@@ -185,8 +185,8 @@ void CViewSearch::OnSize(UINT nType, int cx, int cy)
 		GetWindowRect(&rect_Wnd);
 		m_tabSearch.GetWindowRect(&rect_tabSearch);
 
-		top_tabSearch  = rect_tabSearch.top  - rect_Wnd.top - 2;
-		left_tabSearch = rect_tabSearch.left - rect_Wnd.left - 2;
+		top_tabSearch  = rect_tabSearch.top  - rect_Wnd.top;
+		left_tabSearch = rect_tabSearch.left - rect_Wnd.left;
 
 		m_tabSearch.MoveWindow(left_tabSearch, top_tabSearch, cx - left_tabSearch, cy - top_tabSearch);
 		SizePropSheet(this, &m_pSheet, IDC_PSHEET_SEARCH);
@@ -259,7 +259,7 @@ void CViewSearch::SizePropSheet(CWnd* pParent, CPropertySheet* pPSheet, CRect rc
 
 	pPSheet->MoveWindow(rcNewPos.left, rcNewPos.top, rcNewPos.Width(), rcNewPos.Height());
 
-	pTabCtrl->SetWindowPos(NULL, 0, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
+	pTabCtrl->SetWindowPos(NULL, -1, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
 
 	int nCurrentPage = pPSheet->GetActiveIndex();
 	//for(int i = 0; i < pPSheet->GetPageCount(); ++i)
@@ -393,3 +393,14 @@ SearchResult* CViewSearch::AddResult(UINT ResultID)
 	return &m_ResultList.back();
 }
 
+
+BOOL CViewSearch::PreCreateWindow(CREATESTRUCT& cs)
+{
+	BOOL nRet = CFormView::PreCreateWindow(cs);
+
+	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
+
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+	return nRet;
+}

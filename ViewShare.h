@@ -160,6 +160,7 @@ protected:
 	afx_msg void OnItemchangedListShared(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 };
 
 /////////////////////////////////////////////////////////////////////////////

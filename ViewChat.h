@@ -97,6 +97,7 @@ protected:
 	afx_msg void OnUpdateChatDisconnect(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 };
 
 

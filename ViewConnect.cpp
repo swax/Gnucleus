@@ -142,8 +142,8 @@ void CViewConnect::OnSize(UINT nType, int cx, int cy)
 		GetWindowRect(&rect_Wnd);
 		m_tabConnect.GetWindowRect(&rect_tabConnect);
 
-		top_tabConnect  = rect_tabConnect.top  - rect_Wnd.top - 2;
-		left_tabConnect = rect_tabConnect.left - rect_Wnd.left - 2;
+		top_tabConnect  = rect_tabConnect.top  - rect_Wnd.top;
+		left_tabConnect = rect_tabConnect.left - rect_Wnd.left;
 
 		m_tabConnect.MoveWindow(left_tabConnect, top_tabConnect, cx - left_tabConnect , cy - top_tabConnect );
 		SizePropSheet(this, &m_pSheet, IDC_PSHEET_CONNECT);
@@ -208,7 +208,7 @@ void CViewConnect::SizePropSheet(CWnd* pParent, CPropertySheet* pPSheet, CRect r
 
 	pPSheet->MoveWindow(rcNewPos.left, rcNewPos.top, rcNewPos.Width(), rcNewPos.Height());
 
-	pTabCtrl->SetWindowPos(NULL, 0, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
+	pTabCtrl->SetWindowPos(NULL, -1, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
 
 	int nCurrentPage = pPSheet->GetActiveIndex();
 	//for(int i = 0; i < pPSheet->GetPageCount(); ++i)
@@ -255,3 +255,14 @@ void CViewConnect::OnSockUpdate()
 }
 
 
+
+BOOL CViewConnect::PreCreateWindow(CREATESTRUCT& cs)
+{
+	BOOL nRet = CFormView::PreCreateWindow(cs);
+
+	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
+
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+	return nRet;
+}

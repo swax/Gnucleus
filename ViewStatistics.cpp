@@ -404,18 +404,18 @@ void CViewStatistics::OnSize(UINT nType, int cx, int cy)
 		m_btnPauseGo.GetWindowRect(&rPause);
 		m_tabSheet.GetWindowRect(&rTabs);
 
-		top_btnPause    = rPause.top    - rWnd.top  - 2;
-		left_btnPause   = rPause.left   - rWnd.left - 2; 
+		top_btnPause    = rPause.top    - rWnd.top;
+		left_btnPause   = rPause.left   - rWnd.left; 
 		width_btnPause  = rPause.right  - rPause.left;
 		height_btnPause = rPause.bottom - rPause.top;
 
-		top_lstNodes    = rNodes.top    - rWnd.top  - 2;
-		left_lstNodes   = rNodes.left   - rWnd.left - 2; 
+		top_lstNodes    = rNodes.top    - rWnd.top;
+		left_lstNodes   = rNodes.left   - rWnd.left; 
 		width_lstNodes  = rNodes.right  - rNodes.left;
 		height_lstNodes = rNodes.bottom - rNodes.top;
 
-		top_tabSheet  = rTabs.top  - rWnd.top  - 2;
-		left_tabSheet = rTabs.left - rWnd.left - 2;
+		top_tabSheet  = rTabs.top  - rWnd.top;
+		left_tabSheet = rTabs.left - rWnd.left;
 		
 		m_btnPauseGo.MoveWindow(left_btnPause, cy - 12 - height_btnPause, width_btnPause, height_btnPause);
 		m_lstNodes.MoveWindow(left_lstNodes, top_lstNodes, width_lstNodes, (cy - 12 - height_btnPause) - 12 - top_lstNodes);
@@ -624,3 +624,14 @@ void CViewStatistics::ExtendedInfo(int NodeID)
 //
 //	CFormView::OnTimer(nIDEvent);
 //}
+
+BOOL CViewStatistics::PreCreateWindow(CREATESTRUCT& cs)
+{
+	BOOL nRet = CFormView::PreCreateWindow(cs);
+
+	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
+
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+	return nRet;
+}

@@ -27,6 +27,8 @@ public:
 	protected:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	//}}AFX_VIRTUAL	
+public:
+	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
 };
 
 

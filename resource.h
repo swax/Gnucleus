@@ -545,6 +545,7 @@
 #define IDS_APP_ISAPI                   32919
 #define IDS_STATUS_MOVEDTEMP            32920
 #define IDS_CONFIG                      32921
+#define ID_ACCELERATOR32930             32930
 #define IDS_VERSION                     61216
 #define ID_INDICATOR_RECV               61217
 #define ID_INDICATOR_SEND               61218
@@ -555,7 +556,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        279
-#define _APS_NEXT_COMMAND_VALUE         32924
+#define _APS_NEXT_COMMAND_VALUE         32932
 #define _APS_NEXT_CONTROL_VALUE         1271
 #define _APS_NEXT_SYMED_VALUE           106
 #endif

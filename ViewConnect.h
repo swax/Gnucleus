@@ -67,6 +67,7 @@ protected:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 };
 
 #ifndef _DEBUG  // debug version in ViewConnect.cpp

@@ -182,11 +182,11 @@ BEGIN
     END
     POPUP "&View"
     BEGIN
-        MENUITEM "&Connections\tCtrl+Alt+1",    ID_VIEW_CONNECTIONS
-        MENUITEM "&Transfers\tAlt+2",           ID_VIEW_TRANSFERS
-        MENUITEM "&Shared Files",               ID_VIEW_SHARE
-        MENUITEM "C&hat",                       ID_VIEW_CHAT
-        MENUITEM "Browser",                     ID_VIEW_BROWSER
+        MENUITEM "&Connections\tF1",            ID_VIEW_CONNECTIONS
+        MENUITEM "&Transfers\tF2",              ID_VIEW_TRANSFERS
+        MENUITEM "&Shared Files\tF3",           ID_VIEW_SHARE
+        MENUITEM "C&hat\tF4",                   ID_VIEW_CHAT
+        MENUITEM "Browser\tF5",                 ID_VIEW_BROWSER
         MENUITEM SEPARATOR
         MENUITEM "Too&lbar",                    ID_VIEW_TOOLBAR
         MENUITEM "Stat&us Bar",                 ID_VIEW_STATUS_BAR
@@ -397,6 +397,11 @@ BEGIN
     "S",            ID_GOTO_SEARCH,         VIRTKEY, ALT, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_VIEW_CONNECTIONS,    VIRTKEY, NOINVERT
+    VK_F2,          ID_VIEW_TRANSFERS,      VIRTKEY, NOINVERT
+    VK_F3,          ID_VIEW_SHARE,          VIRTKEY, NOINVERT
+    VK_F4,          ID_VIEW_CHAT,           VIRTKEY, NOINVERT
+    VK_F5,          ID_VIEW_BROWSER,        VIRTKEY, NOINVERT
 END
 
 

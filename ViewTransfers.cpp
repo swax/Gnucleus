@@ -156,8 +156,8 @@ void CViewTransfers::OnSize(UINT nType, int cx, int cy)
 		GetWindowRect(&rect_Wnd);
 		m_tabTransfers.GetWindowRect(&rect_tabTransfers);
 
-		top_tabTransfers  = rect_tabTransfers.top  - rect_Wnd.top - 2;
-		left_tabTransfers = rect_tabTransfers.left - rect_Wnd.left - 2;
+		top_tabTransfers  = rect_tabTransfers.top  - rect_Wnd.top;
+		left_tabTransfers = rect_tabTransfers.left - rect_Wnd.left;
 
 		m_tabTransfers.MoveWindow(left_tabTransfers, top_tabTransfers, cx - left_tabTransfers , cy - top_tabTransfers );
 		SizePropSheet(this, &m_pSheet, IDC_PSHEET_TRANSFER);
@@ -230,7 +230,7 @@ void CViewTransfers::SizePropSheet(CWnd* pParent, CPropertySheet* pPSheet, CRect
 
 	pPSheet->MoveWindow(rcNewPos.left, rcNewPos.top, rcNewPos.Width(), rcNewPos.Height());
 
-	pTabCtrl->SetWindowPos(NULL, 0, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
+	pTabCtrl->SetWindowPos(NULL, -1, 4, rcNewPos.Width() + 4, rcNewPos.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
 
 	int nCurrentPage = pPSheet->GetActiveIndex();
 	//for(int i = 0; i < pPSheet->GetPageCount(); ++i)
@@ -258,4 +258,14 @@ void CViewTransfers::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 {
 	
 	CFormView::OnActivateView(bActivate, pActivateView, pDeactiveView);
+}
+BOOL CViewTransfers::PreCreateWindow(CREATESTRUCT& cs)
+{
+	BOOL nRet = CFormView::PreCreateWindow(cs);
+
+	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
+
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+	return nRet;
 }

@@ -603,3 +603,14 @@ void CViewShare::OnItemchangedListShared(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 }
 
+
+BOOL CViewShare::PreCreateWindow(CREATESTRUCT& cs)
+{
+	BOOL nRet = CFormView::PreCreateWindow(cs);
+
+	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
+
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
+	return nRet;
+}

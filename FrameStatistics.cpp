@@ -49,6 +49,7 @@ CFrameStatistics::~CFrameStatistics()
 BEGIN_MESSAGE_MAP(CFrameStatistics, CGnuMdiChildWnd)
 	//{{AFX_MSG_MAP(CFrameStatistics)
 	//}}AFX_MSG_MAP
+	ON_WM_SIZING()
 END_MESSAGE_MAP()
 
 
@@ -60,5 +61,79 @@ BOOL CFrameStatistics::PreCreateWindow(CREATESTRUCT& cs)
 	if( !CGnuMdiChildWnd::PreCreateWindow(cs) )
 		return false;
 
+	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
 	return true;
 }
+
+#define YWINMIN 350	
+#define XWINMIN 650
+
+#define FORM_BOTTOM \
+	if(cRect.Height() < YWINMIN) \
+		pRect->bottom = pRect->top + YWINMIN;
+
+#define FORM_TOP \
+	if(cRect.Height() < YWINMIN) \
+		pRect->top = pRect->bottom - YWINMIN;
+
+#define FORM_LEFT \
+	if(cRect.Width() < XWINMIN) \
+		pRect->left = pRect->right - XWINMIN;
+
+#define FORM_RIGHT \
+	if(cRect.Width() < XWINMIN) \
+		pRect->right = pRect->left + XWINMIN;
+
+
+void CFrameStatistics::OnSizing(UINT fwSide, LPRECT pRect) 
+{
+	CGnuMdiChildWnd::OnSizing(fwSide, pRect);
+
+	CRect cRect = pRect;
+
+	switch(fwSide)
+	{
+	case WMSZ_BOTTOM:
+		FORM_BOTTOM;
+		break;
+
+	case WMSZ_BOTTOMLEFT:
+		FORM_BOTTOM;
+		FORM_LEFT;
+		break;
+
+	case WMSZ_BOTTOMRIGHT:
+		FORM_BOTTOM;
+		FORM_RIGHT;
+		break;
+
+	case WMSZ_TOP:
+		FORM_TOP;
+		break;
+
+	case WMSZ_TOPLEFT:
+		FORM_TOP;
+		FORM_LEFT;
+		break;
+
+	case WMSZ_TOPRIGHT:
+		FORM_TOP;
+		FORM_RIGHT;
+		break;
+
+	case WMSZ_LEFT:
+		FORM_LEFT;
+		break;
+
+	case WMSZ_RIGHT:
+		FORM_RIGHT;
+		break;
+
+	default:
+		break;
+	}
+
+}
+
+

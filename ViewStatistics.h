@@ -97,6 +97,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 //	afx_msg void OnTimer(UINT nIDEvent);
+protected:
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 };
 
 /////////////////////////////////////////////////////////////////////////////
