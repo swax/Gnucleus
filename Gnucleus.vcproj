@@ -1029,6 +1029,9 @@
 		<File
 			RelativePath=".\ToDo.txt">
 		</File>
+		<File
+			RelativePath="gnucleus.exe.manifest">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -442,9 +442,9 @@ void CFrameMain::OnViewChat()
 		CFrameChat* m_pWindowChat = (CFrameChat*) m_pApp->m_pChatTemplate->CreateNewFrame(m_pDoc, NULL);
 		m_pApp->m_pChatTemplate->InitialUpdateFrame(m_pWindowChat, m_pDoc);
 
-		if(m_pChat->m_pPrefs->m_Nick.Find("Gnuwt") != -1)
+		if(m_pChat->m_pPrefs->m_Nick.Find("Gnuwt") != -1 || m_pChat->m_pPrefs->m_Nick.IsEmpty())
 		{	
-			AfxMessageBox("Please change your default name, 'Gnuwt', to something else");
+			AfxMessageBox("Please set your nickname for chat");
 		
 			m_pDoc->m_nLastPref = PREF_CHAT;
 			AfxGetApp()->m_pMainWnd->SendMessage(WM_COMMAND, ID_VIEW_PREFERENCES, NULL);		

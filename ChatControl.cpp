@@ -182,7 +182,7 @@ void CChatControl::GetConnect()
 	if(m_pDoc->m_pViewChat)
 		if(m_pPrefs->m_PrefNet == "GnuDefault")
 		{
-			AddServer("irc.openprojects.net", 6667);
+			AddServer("irc.freenode.net", 6667);
 			return;
 		}
 			
@@ -435,12 +435,12 @@ void CChatControl::OnAccept(int nErrorCode)
 void CChatControl::CheckNicks()
 {
 	// If user hasnt changed the default names, set it as a random string from the share
-	/*if(m_pPrefs->m_Nick.Find("Gnuwt") == 0)
-		m_pPrefs->m_Nick = m_pDoc->m_pShare->GetRandString(m_pPrefs->m_Nick);
+	if(m_pPrefs->m_Nick.Find("Gnuwt") == 0)
+		m_pPrefs->m_Nick = "";
 
 
 	if(m_pPrefs->m_AltNick.Find("Gnuwt") == 0)
-		m_pPrefs->m_AltNick = m_pDoc->m_pShare->GetRandString(m_pPrefs->m_AltNick);*/
+		m_pPrefs->m_AltNick = "";
 }
 
 void CChatControl::Timer()
@@ -496,7 +496,7 @@ void CChatControl::Timer()
 			bool ChatConnect = false;
 
 			for(int i = 0; i < m_ServerList.size(); i++)
-				if(m_ServerList[i]->m_Host == "irc.openprojects.net")
+				if(m_ServerList[i]->m_Host == "irc.freenode.net")
 					ChatConnect = true;
 
 			if(!ChatConnect)

@@ -399,7 +399,7 @@ void CChatServer::Receive_Welcome(CString Welcome, int code)
 		// Connected to server now so join channels
 		CString Join;
 
-		if(m_Host != "irc.openprojects.net")
+		if(m_Host != "irc.freenode.net")
 		{
 			Join = "JOIN #gnutella/cache." + DWrdtoStr(m_CacheNum) + "\r\n";
 			Send(Join, Join.GetLength());
@@ -414,7 +414,7 @@ void CChatServer::Receive_Welcome(CString Welcome, int code)
 
 		if(m_pChat->m_pDoc->m_pViewChat)
 		{
-			if(m_Host != "irc.openprojects.net")
+			if(m_Host != "irc.freenode.net")
 				Join = "JOIN #gnutella/chat\r\n";
 			else
 				Join = "JOIN #gnucleus\r\n";

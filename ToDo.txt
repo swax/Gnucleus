@@ -2,6 +2,7 @@
 Fix resource errors during debug run
 
 todo	
+	Re-implement scheduler
 	Share view update without deleting all items
 	
 Interface
