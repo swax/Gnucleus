@@ -422,7 +422,7 @@ BEGIN
                     8
     LTEXT           "Gnucleus comes with ABSOLUTELY NO WARRANTY.  This is free software, and you are welcome to redistribute it under certain conditions.  Read GPL.txt in the application directory for further information concerning licensing.",
                     IDC_STATIC,51,194,245,30
-    LTEXT           "Copyright (C) 2002-2004 John Marshall",IDC_STATIC,51,
+    LTEXT           "Copyright (C) 2002-2005 John Marshall",IDC_STATIC,51,
                     183,245,10
     GROUPBOX        "Licenses",IDC_STATIC,36,167,270,104
     GROUPBOX        "Resources",IDC_STATIC,36,108,270,50
