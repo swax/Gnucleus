@@ -123,7 +123,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(m_autDownload->GetFileLength(m_DownloadID))) + " bytes");
 	
 	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autDownload->GetHash(m_DownloadID, HASH_SHA1));
-
+	
 	Expand();
 	UpdateInfo();
 
@@ -166,6 +166,8 @@ struct DownExOrder : public std::binary_function<int, int, bool>
 
 void CTransfersDownEx::UpdateInfo()
 {
+	m_stcBitprintHash.SetWindowText("TigerTree Hash:  " + m_autDownload->GetHash(m_DownloadID, HASH_TIGER));
+
 	m_HostNum = m_autDownload->GetSourceCount(m_DownloadID);
 	CString Plural = m_HostNum == 1 ? " Host:" : " Hosts";
 	m_stcHosts.SetWindowText(CommaIze(DWrdtoStr(m_HostNum)) + Plural);
