@@ -252,6 +252,12 @@ CString CStatisticsLog::GetPacketType(NetworkPacket &Packet)
 		case 0x30:
 			return "Patch";
 			break;
+		case 0x31:
+			return "VendMsg";
+			break;
+		case 0x32:
+			return "VendMsg";
+			break;
 		case 0x40:
 			return "Push";
 			break;
