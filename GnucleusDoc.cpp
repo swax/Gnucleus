@@ -172,7 +172,8 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	//DELETE THIS
 	//m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
 	//m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
-	//m_autPrefs->SetMaxLeaves(10);
+	//m_autPrefs->SetMaxLeaves(100);
+	//m_autPrefs->SetForcedPort(6666);
 
 	// Connect to chat
 	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)
@@ -186,7 +187,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 void CGnucleusDoc::ConnectCore()
 {
 	m_autCore = new CAutCore;
-	if(!m_autCore->CreateDispatch("GnucDNA.Core"))
+	if(!m_autCore->CreateDispatch("GnucCOM.Core"))
 	{
 		AfxMessageBox("Could not load GnucDNA");
 		return;
