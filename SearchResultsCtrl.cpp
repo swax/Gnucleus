@@ -96,6 +96,7 @@ void CSearchResultsCtrl::MyInit(CViewSearch* pView)
 	InsertColumn(eDistCol, "Distribution", LVCFMT_RIGHT, nWidth * 2./18, 4);
 
 	SetExtendedStyle(LVS_EX_FULLROWSELECT);
+
 	SetImageList(GetSharedImageList(), LVSIL_SMALL);
 
 	SortBy = -5;
@@ -135,7 +136,7 @@ void CSearchResultsCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 	{
 		ASSERT(pItem->cchTextMax > 200);
 		
-		switch (pItem->iSubItem)
+		switch (GetHeaderCtrl()->OrderToIndex(pItem->iSubItem))
 		{
 		case eNameCol:
 			lstrcpy(pItem->pszText, Result->Name);

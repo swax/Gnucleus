@@ -26,7 +26,7 @@
 #include "stdafx.h"
 #include "Gnucleus.h"
 #include "PrefsEx.h"
-//#include "Evolve.h"
+#include "EvolverDlg.h"
 
 #include "AutCore.h"
 #include "AutPrefs.h"
@@ -36,12 +36,14 @@
 #include "AutSearch.h"
 #include "AutDownload.h"
 #include "AutUpload.h"
+#include "AutUpdate.h"
 
 #include "AutNetworkSink.h"
 #include "AutShareSink.h"
 #include "AutSearchSink.h"
 #include "AutDownloadSink.h"
 #include "AutUploadSink.h"
+#include "AutUpdateSink.h"
 
 #include "ChatControl.h"
 #include "ChatServer.h"
@@ -92,7 +94,8 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	ConnectCore();
 
 	m_autCore->SetClientName("Gnucleus");
-	m_autCore->SetClientVersion(GNUCLEUS_VERSION);
+	m_autCore->SetClientVersion(GNUCLEUS_VERSION); // Chop off beta value
+	m_autCore->SetClientCode("GNUC");
 
 	m_RunPath = m_autCore->GetRunPath();
 
@@ -126,6 +129,12 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 		}
 	}
 
+	
+	// Load update servers and check for update
+	m_autUpdate->AddServer("http://gnucleus.gnutelliums.com:80/update2/update.xml");
+	m_autUpdate->AddServer("http://www.gnucleus.net/update2/update.xml");
+	m_autUpdate->Check();
+
 
 	// Load Chat
 	m_pChat  = new CChatControl(this);
@@ -153,7 +162,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 		m_pChat->GetConnect();
 	
 
-	//m_pDiagEvolve = NULL;
+	m_pDiagEvolve = NULL;
 	m_nLastPref	  = PREF_LOCAL;
 }
 
@@ -163,6 +172,19 @@ void CGnucleusDoc::ConnectCore()
 	if(!m_autCore->CreateDispatch("GnucDNA.Core"))
 	{
 		AfxMessageBox("Could not load GnucleusDNA");
+		return;
+	}
+
+	// Make sure version of core is same or newer than what we built with
+	CString CoreVersion = m_autCore->GetCoreVersion();
+	CoreVersion.Remove('.');
+
+	CString BuildVersion = BUILD_CORE_VERSION;
+	BuildVersion.Remove('.');
+
+	if(atoi(CoreVersion) < atoi(BuildVersion))
+	{
+		AfxMessageBox("GnucleusDNA " + CString(BUILD_CORE_VERSION) + " or higher needed, please update");
 		return;
 	}
 
@@ -194,6 +216,9 @@ void CGnucleusDoc::ConnectCore()
 	m_autUpload = new CAutUpload;
 	m_autUpload->AttachDispatch( m_autCore->GetIUpload(), false );
 
+	// Attach update object
+	m_autUpdate = new CAutUpdate;
+	m_autUpdate->AttachDispatch( m_autCore->GetIUpdate(), false );
 
 	// Network event object and establish a connection between source and sink.
 	m_autNetworkSink = new CAutNetworkSink(this);
@@ -215,10 +240,18 @@ void CGnucleusDoc::ConnectCore()
 	m_autUploadSink = new CAutUploadSink(this);
 	AfxConnectionAdvise(m_autUpload->m_lpDispatch, IID_IUploadEvent, m_autUploadSink->GetIDispatch(false), false, &m_UploadEventCookie);
 
+	// Update event object and establish a connection between source and sink.
+	m_autUpdateSink = new CAutUpdateSink(this);
+	AfxConnectionAdvise(m_autUpdate->m_lpDispatch, IID_IUpdateEvent, m_autUpdateSink->GetIDispatch(false), false, &m_UpdateEventCookie);
+
 }
 
 void CGnucleusDoc::DisconnectCore()
 {
+	AfxConnectionUnadvise(m_autUpdate->m_lpDispatch, IID_IUpdateEvent, m_autUpdateSink->GetIDispatch(false), false, m_UpdateEventCookie);
+	delete m_autUpdateSink;
+	m_autUpdateSink = NULL;
+
 	AfxConnectionUnadvise(m_autUpload->m_lpDispatch, IID_IUploadEvent, m_autUploadSink->GetIDispatch(false), false, m_UploadEventCookie);
 	delete m_autUploadSink;
 	m_autUploadSink = NULL;
@@ -239,6 +272,9 @@ void CGnucleusDoc::DisconnectCore()
 	delete m_autNetworkSink;
 	m_autNetworkSink = NULL;
 
+
+	delete m_autUpdate;
+	m_autUpdate = NULL;
 
 	delete m_autUpload;
 	m_autUpload = NULL;
@@ -372,23 +408,18 @@ FullIcon CGnucleusDoc::GetIconIndex(const CString& file)
 	return Icon;
 }
 
-void CGnucleusDoc::CheckVersion(bool Silent)
+void CGnucleusDoc::DisplayEvolver()
 {
-	//if(m_pDiagEvolve == NULL)
-	//{
-	//	m_pDiagEvolve = new CEvolve(AfxGetApp()->GetMainWnd(), this);
-	//	m_pDiagEvolve->m_Silent = Silent;
+	if(m_pDiagEvolve == NULL)
+	{
+		m_pDiagEvolve = new CEvolverDlg(AfxGetApp()->GetMainWnd());
+		m_pDiagEvolve->m_pDoc = this;
+		m_pDiagEvolve->m_autUpdate = m_autUpdate;
 
-	//	m_pDiagEvolve->Create(IDD_EVOLVE_MAIN, AfxGetApp()->m_pMainWnd);
+		m_pDiagEvolve->Create(IDD_EVOLVE_MAIN, AfxGetApp()->m_pMainWnd);
+	}
 
-	//	if(!Silent)
-	//		m_pDiagEvolve->ShowWindow(SW_SHOW);
-	//}
-	//else
-	//{
-	//	m_pDiagEvolve->m_Silent = false;
-	//	m_pDiagEvolve->ShowWindow(SW_SHOW);
-	//	m_pDiagEvolve->BringWindowToTop();
-	//}
+	m_pDiagEvolve->ShowWindow(SW_SHOW);
+	m_pDiagEvolve->BringWindowToTop();
 }
 

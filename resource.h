@@ -2,7 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by Gnucleus.rc
 //
-
 #define IDD_ABOUTBOX                    100
 #define IDD_GNUCLEUS_FORM               101
 #define IDD_CONNECT                     102
@@ -10,6 +9,7 @@
 #define IDD_VIEW_CONNECT                104
 #define IDP_SOCKETS_INIT_FAILED         105
 #define IDR_FRAMESHARE_TMPL             106
+#define IDD_AAA                         108
 #define IDR_MAINFRAME                   127
 #define IDR_GNUTYPE                     128
 #define IDR_CONNECT                     129
@@ -560,6 +560,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        279
 #define _APS_NEXT_COMMAND_VALUE         32932
 #define _APS_NEXT_CONTROL_VALUE         1272
-#define _APS_NEXT_SYMED_VALUE           106
+#define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

@@ -107,7 +107,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 	m_lstDownloads.InsertColumn( 3, "Client", LVCFMT_LEFT,
 		(rect.Width() - offSet) * 3/20, 3);
 
-	m_lstDownloads.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstDownloads.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 	m_lstDownloads.SetImageList(GetSharedImageList(), LVSIL_SMALL);
 
 

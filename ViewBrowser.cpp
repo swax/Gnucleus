@@ -189,7 +189,7 @@ void CViewBrowser::CommandSent()
 
 BOOL CViewBrowser::PreCreateWindow(CREATESTRUCT& cs)
 {
-	BOOL nRet = CFormView::PreCreateWindow(cs);
+	BOOL nRet = CHtmlView::PreCreateWindow(cs);
 
 	cs.lpszClass = AfxRegisterWndClass(CS_SAVEBITS, 0, 0, 0);
 

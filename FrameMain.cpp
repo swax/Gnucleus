@@ -36,6 +36,7 @@
 #include "AutCache.h"
 #include "AutNetwork.h"
 #include "AutShare.h"
+#include "AutUpdate.h"
 
 #include "ChatControl.h"
 #include "ChatServer.h"
@@ -684,7 +685,8 @@ BOOL CFrameMain::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CFrameMain::OnHelpVersioncheck()
 {
-	 m_pDoc->CheckVersion(false);
+	m_pDoc->m_autUpdate->Check();
+	m_pDoc->DisplayEvolver();
 }
 
 void CFrameMain::OnHelpChangelog()

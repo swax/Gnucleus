@@ -66,7 +66,6 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-
 IDR_MAINFRAME           ICON                    "res\\Gnucleus.ico"
 IDR_CONNECT             ICON                    "res\\Connect.ico"
 IDR_DISCONNECT          ICON                    "res\\Disconnect.ico"
@@ -606,10 +605,10 @@ BEGIN
     GROUPBOX        "Local Node Properties",IDC_STATIC,10,10,255,75
     CONTROL         "Set local IP to",IDC_CHECK_IP,"Button",BS_AUTOCHECKBOX | 
                     BS_LEFT | WS_TABSTOP,20,28,60,10
-    EDITTEXT        IDC_EDIT_IP,90,25,65,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_IP,90,25,90,12,ES_AUTOHSCROLL
     CONTROL         "Set incoming port to",IDC_CHECK_PORT,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,48,80,10
-    EDITTEXT        IDC_EDIT_PORT,100,45,46,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_PORT,100,45,80,12,ES_AUTOHSCROLL | ES_NUMBER
     CONTROL         "Set connect speed to",IDC_CHECK_SPEED,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,67,85,10
     COMBOBOX        IDC_COMBO_SPEED,107,65,73,65,CBS_DROPDOWN | CBS_SORT | 
@@ -1352,6 +1351,15 @@ BEGIN
                     WS_BORDER | WS_TABSTOP,11,16,273,159
 END
 
+IDD_AAA DIALOG  0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,16
+    PUSHBUTTON      "Cancel",IDCANCEL,129,26,50,16
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1786,6 +1794,14 @@ BEGIN
         RIGHTMARGIN, 285
         TOPMARGIN, 7
         BOTTOMMARGIN, 214
+    END
+
+    IDD_AAA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
     END
 END
 #endif    // APSTUDIO_INVOKED

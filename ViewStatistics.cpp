@@ -167,7 +167,7 @@ void CViewStatistics::OnInitialUpdate()
 	m_lstNodes.InsertColumn( 0, "Node", LVCFMT_LEFT,  rect.Width() - offSet, 0);
 	m_lstNodes.InsertColumn( 1, "Type", LVCFMT_LEFT, (rect.Width() - offSet) * 0.5, 1);
 
-	m_lstNodes.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstNodes.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 	
 	// Size all the controls in proportion to the size
 	RECT rWin;

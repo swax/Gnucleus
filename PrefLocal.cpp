@@ -29,6 +29,7 @@
 
 #include "AutPrefs.h"
 #include "AutNetwork.h"
+#include "AutUpdate.h"
 #include "PrefsEx.h"
 
 #include "PrefLocal.h"
@@ -131,7 +132,7 @@ BOOL CPrefLocal::OnInitDialog()
 	{
 		m_chkPort.SetCheck(false);
 		m_ebPort.EnableWindow(FALSE);
-		m_ebPort.SetWindowText("Random");
+		m_ebPort.SetWindowText("Random (" + DWrdtoStr(m_autNetwork->GetLocalPort()) + ")");
 	}
 
 	// Speed check box
@@ -163,14 +164,14 @@ BOOL CPrefLocal::OnInitDialog()
 	m_cmbEvolveMode.InsertString(1, "Beta");
 
 
-	if(m_pDoc->m_pPrefsEx->m_Update == UPDATE_RELEASE)
+	if(m_autPrefs->GetUpdate() == UPDATE_RELEASE)
 		m_cmbEvolveMode.SelectString(-1, "Release");
-	else if(m_pDoc->m_pPrefsEx->m_Update == UPDATE_BETA)
+	else if(m_autPrefs->GetUpdate() == UPDATE_BETA)
 		m_cmbEvolveMode.SelectString(-1, "Beta");
 	else
 		m_cmbEvolveMode.SelectString(-1, "Release");
 
-	if(m_pDoc->m_pPrefsEx->m_Update == UPDATE_NONE)
+	if(m_autPrefs->GetUpdate() == UPDATE_NONE)
 		m_cmbEvolveMode.EnableWindow(false);
 	else
 		m_chkEvolve.SetCheck(true);
@@ -320,20 +321,20 @@ BOOL CPrefLocal::OnApply()
 	{
 		m_cmbEvolveMode.GetWindowText(store);
 
-		int OldPref = m_pDoc->m_pPrefsEx->m_Update;
+		int OldPref = m_autPrefs->GetUpdate();
 
 		if(store == "Release")
-			m_pDoc->m_pPrefsEx->m_Update = UPDATE_RELEASE;
+			m_autPrefs->SetUpdate(UPDATE_RELEASE);
 		else if(store == "Beta")
-			m_pDoc->m_pPrefsEx->m_Update = UPDATE_BETA;
+			m_autPrefs->SetUpdate(UPDATE_BETA);
 		else
-			m_pDoc->m_pPrefsEx->m_Update = UPDATE_RELEASE;
+			m_autPrefs->SetUpdate(UPDATE_RELEASE);
 
-		if(OldPref != m_pDoc->m_pPrefsEx->m_Update)
-			m_pDoc->CheckVersion();
+		if(OldPref != m_autPrefs->GetUpdate())
+			m_pDoc->m_autUpdate->Check();
 	}
 	else
-		m_pDoc->m_pPrefsEx->m_Update = UPDATE_NONE;
+		m_autPrefs->SetUpdate(UPDATE_NONE);
 
 
 	// Tray stuff

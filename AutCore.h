@@ -110,6 +110,12 @@ public:
 		InvokeHelper(0x14, DISPATCH_METHOD, VT_BSTR, (void*)&result, NULL);
 		return result;
 	}
+	LPDISPATCH GetIUpdate()
+	{
+		LPDISPATCH result;
+		InvokeHelper(0x15, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
+		return result;
+	}
 
 	// ICore properties
 public:
@@ -142,6 +148,16 @@ public:
 	void SetClientVersion(CString propVal)
 	{
 		SetProperty(0x11, VT_BSTR, propVal);
+	}
+	CString GetClientCode()
+	{
+		CString result;
+		GetProperty(0x16, VT_BSTR, (void*)&result);
+		return result;
+	}
+	void SetClientCode(CString propVal)
+	{
+		SetProperty(0x16, VT_BSTR, propVal);
 	}
 
 };

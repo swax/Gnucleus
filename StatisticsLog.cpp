@@ -113,7 +113,7 @@ BOOL CStatisticsLog::OnInitDialog()
 	m_lstLog.InsertColumn( 4, "GUID", LVCFMT_LEFT,
 		(rect.Width() - offSet) * 4/10, 4);
 
-	m_lstLog.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstLog.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
 	m_DlgResizer.InitResizer(this);
 	m_DlgResizer.ListCtrlItem(IDC_LIST_LOG);

@@ -9,9 +9,6 @@ public:
 	void LoadPrefsEx(CString);
 	void SavePrefsEx(CString);
 
-	// Auto-update
-	int   m_Update;
-
 	// Tray
 	bool  m_TrayOnMin;			
 	bool  m_TrayOnClose;

@@ -86,8 +86,12 @@ BOOL CShareExDlg::OnInitDialog()
 	m_lstKeywords.InsertColumn( 0, "Word", LVCFMT_LEFT, (rect.Width() - offSet) * 4/5, 0);
 	m_lstKeywords.InsertColumn( 1, "Hash", LVCFMT_RIGHT, (rect.Width() - offSet) * 1/5, 1);
 
+	m_lstKeywords.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
+
+
 	m_lstAltLocs.InsertColumn( 0, "Alt Location",  LVCFMT_LEFT, (rect.Width() - offSet) * 10/10, 0);
 
+	m_lstAltLocs.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
 	
 	m_ebName.SetWindowText( m_autShare->GetFileName(m_FileID) );

@@ -124,7 +124,7 @@ BOOL CConnectAdvanced::OnInitDialog()
 	m_lstConnected.InsertColumn( 2, "Bandwidth",  LVCFMT_RIGHT, nWidth * 3/16, 2);
 	m_lstConnected.InsertColumn( 3, "Efficiency", LVCFMT_RIGHT, nWidth * 3/16, 3);
 
-	m_lstConnected.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstConnected.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
 	
 	// Host Cache Listbox
@@ -135,7 +135,7 @@ BOOL CConnectAdvanced::OnInitDialog()
 	m_lstCached.InsertColumn(0, "Node",	 LVCFMT_LEFT, nWidth * 5/10, 0);
 	m_lstCached.InsertColumn(1, "Status", LVCFMT_LEFT, nWidth * 5/10, 1);
 
-	m_lstCached.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstCached.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
 	DWORD CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
 	

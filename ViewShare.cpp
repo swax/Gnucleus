@@ -135,7 +135,8 @@ void CViewShare::OnInitialUpdate()
 	m_lstShared.InsertColumn( 5, "Hashed",         LVCFMT_LEFT,  nWidth * 2/25, 5);
 
 
-	m_lstShared.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstShared.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
+	
 
 	m_lstShared.SetImageList(GetSharedImageList(), LVSIL_SMALL);
 

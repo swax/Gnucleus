@@ -1,9 +1,12 @@
 <html>
 <body>
 
-<li><b>Gnucleus 1.9</b></li>
+<li><b>Gnucleus 2.0</b></li>
 <ul>	
 	<li>Complete core seperated into library (GnucDNA)</li>
+	<li>Download Queuing</li>
+	<li>Partial file sharing</li>
+	<li>Download hash verification</li>
 </ul>
 <br>
 

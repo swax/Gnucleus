@@ -179,34 +179,16 @@
 				Name="Common .cpp"
 				Filter="">
 				<File
-					RelativePath=".\ColumnClickMixIn.cpp">
-				</File>
-				<File
 					RelativePath=".\Common.cpp">
 				</File>
 				<File
 					RelativePath=".\Conversions.cpp">
 				</File>
 				<File
-					RelativePath=".\DlgResizer.cpp">
-				</File>
-				<File
 					RelativePath=".\FileTypes.cpp">
 				</File>
 				<File
-					RelativePath=".\ListCtrlEx.cpp">
-				</File>
-				<File
-					RelativePath=".\MruComboBox.cpp">
-				</File>
-				<File
-					RelativePath=".\MruStorage.cpp">
-				</File>
-				<File
 					RelativePath=".\Packet.cpp">
-				</File>
-				<File
-					RelativePath=".\SortedHeaderCtrl.cpp">
 				</File>
 				<File
 					RelativePath=".\StdAfx.cpp">
@@ -225,9 +207,31 @@
 							PrecompiledHeaderThrough="stdafx.h"/>
 					</FileConfiguration>
 				</File>
-				<File
-					RelativePath=".\Subclass.cpp">
-				</File>
+				<Filter
+					Name="View .cpp"
+					Filter="">
+					<File
+						RelativePath=".\ColumnClickMixIn.cpp">
+					</File>
+					<File
+						RelativePath=".\DlgResizer.cpp">
+					</File>
+					<File
+						RelativePath=".\ListCtrlEx.cpp">
+					</File>
+					<File
+						RelativePath=".\MruComboBox.cpp">
+					</File>
+					<File
+						RelativePath=".\MruStorage.cpp">
+					</File>
+					<File
+						RelativePath=".\SortedHeaderCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\Subclass.cpp">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Connect .cpp"
@@ -386,6 +390,9 @@
 					RelativePath=".\BuildMap.cpp">
 				</File>
 				<File
+					RelativePath="EvolverDlg.cpp">
+				</File>
+				<File
 					RelativePath=".\SchedulerDlg.cpp">
 				</File>
 				<File
@@ -428,7 +435,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Com"
+				Name="Com .cpp"
 				Filter="">
 				<File
 					RelativePath="AutDownloadSink.cpp">
@@ -441,6 +448,9 @@
 				</File>
 				<File
 					RelativePath="AutShareSink.cpp">
+				</File>
+				<File
+					RelativePath="AutUpdateSink.cpp">
 				</File>
 				<File
 					RelativePath="AutUploadSink.cpp">
@@ -501,34 +511,16 @@
 				Name="Common .h"
 				Filter="">
 				<File
-					RelativePath=".\ColumnClickMixIn.h">
-				</File>
-				<File
 					RelativePath=".\Common.h">
 				</File>
 				<File
 					RelativePath=".\Conversions.h">
 				</File>
 				<File
-					RelativePath=".\DlgResizer.h">
-				</File>
-				<File
 					RelativePath=".\FileTypes.h">
 				</File>
 				<File
-					RelativePath=".\ListCtrlEx.h">
-				</File>
-				<File
-					RelativePath=".\MruComboBox.h">
-				</File>
-				<File
-					RelativePath=".\MruStorage.h">
-				</File>
-				<File
 					RelativePath=".\Packet.h">
-				</File>
-				<File
-					RelativePath=".\SortedHeaderCtrl.h">
 				</File>
 				<File
 					RelativePath=".\StdAfx.h">
@@ -536,9 +528,31 @@
 				<File
 					RelativePath=".\StlUtilities.h">
 				</File>
-				<File
-					RelativePath=".\Subclass.h">
-				</File>
+				<Filter
+					Name="View .h"
+					Filter="">
+					<File
+						RelativePath=".\ColumnClickMixIn.h">
+					</File>
+					<File
+						RelativePath=".\DlgResizer.h">
+					</File>
+					<File
+						RelativePath=".\ListCtrlEx.h">
+					</File>
+					<File
+						RelativePath=".\MruComboBox.h">
+					</File>
+					<File
+						RelativePath=".\MruStorage.h">
+					</File>
+					<File
+						RelativePath=".\SortedHeaderCtrl.h">
+					</File>
+					<File
+						RelativePath=".\Subclass.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="Connect .h"
@@ -716,7 +730,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Com"
+				Name="Com .h"
 				Filter="">
 				<File
 					RelativePath="AutCache.h">
@@ -752,6 +766,12 @@
 					RelativePath="AutShareSink.h">
 				</File>
 				<File
+					RelativePath="AutUpdate.h">
+				</File>
+				<File
+					RelativePath="AutUpdateSink.h">
+				</File>
+				<File
 					RelativePath="AutUpload.h">
 				</File>
 				<File
@@ -763,6 +783,9 @@
 				Filter="">
 				<File
 					RelativePath=".\BuildMap.h">
+				</File>
+				<File
+					RelativePath="EvolverDlg.h">
 				</File>
 				<File
 					RelativePath="GdiUtil.h">

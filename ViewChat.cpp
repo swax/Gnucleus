@@ -136,7 +136,8 @@ void CViewChat::OnInitialUpdate()
 	CRect rect;
 	m_lstUsers.GetWindowRect(&rect);
 	m_lstUsers.InsertColumn( 0, "Users", LVCFMT_LEFT, (rect.Width() - offSet), 0);
-	m_lstUsers.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstUsers.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
+	
 	
 	// Resize stuff
 	GetParentFrame()->GetClientRect(&rect);
@@ -814,10 +815,17 @@ void CViewChat::OnButtonConfigure()
 
 void CViewChat::OnRclickTreeConnects(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	HTREEITEM nItem = m_treeConnections.GetSelectedItem();
-	
-	if(!nItem)
+	CPoint point;
+    GetCursorPos(&point);
+
+	CPoint ClientPoint = point;
+	m_treeConnections.ScreenToClient(&ClientPoint);
+
+	HTREEITEM nItem = m_treeConnections.HitTest(ClientPoint);
+
+	if (!nItem)
 		return;
+
 
     CMenu menu;
     menu.LoadMenu(IDR_CHAT_CONNECT_RCLICK);
@@ -825,9 +833,6 @@ void CViewChat::OnRclickTreeConnects(NMHDR* pNMHDR, LRESULT* pResult)
     ASSERT(pMenu != NULL);
 
     // Display and track the popup menu
-    CPoint point;
-    GetCursorPos(&point);
-
 	int res = pMenu->TrackPopupMenu( (TPM_LEFTALIGN | TPM_LEFTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD),
                  point.x, point.y, this);
 	

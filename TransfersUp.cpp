@@ -122,7 +122,7 @@ BOOL CTransfersUp::OnInitDialog()
 	m_lstUploads.InsertColumn( 4, "Speed", LVCFMT_RIGHT,
 		nWidth * 8/40, 4);
 
-	m_lstUploads.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstUploads.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 	m_lstUploads.SetImageList(GetSharedImageList(), LVSIL_SMALL);
 
 	m_DlgResizer.InitResizer(this);

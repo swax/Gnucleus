@@ -28,8 +28,6 @@
 
 CPrefsEx::CPrefsEx(void)
 {
-	m_Update			= UPDATE_RELEASE;
-
 	m_TrayOnMin			= true;
 	m_TrayOnClose		= false;
 
@@ -46,10 +44,6 @@ CPrefsEx::~CPrefsEx(void)
 void CPrefsEx::LoadPrefsEx(CString ConfigFile)
 {
 	char buffer[256];
-
-	GetPrivateProfileString("Local",  "UpdateMode",		"1",		buffer, 256, ConfigFile);
-	m_Update = atoi(buffer);
-
 
 	GetPrivateProfileString("Local", "TrayOnMin", "1", buffer, 256, ConfigFile);
 	m_TrayOnMin = (0 != atoi(buffer));
@@ -73,9 +67,6 @@ void CPrefsEx::LoadPrefsEx(CString ConfigFile)
 
 void CPrefsEx::SavePrefsEx(CString ConfigFile)
 {
-	WritePrivateProfileString("Local", "UpdateMode",	  DWrdtoStr(m_Update),				ConfigFile);
-	
-	
 	WritePrivateProfileString("Local", "TrayOnMin",		  DWrdtoStr(m_TrayOnMin),			ConfigFile);
 	WritePrivateProfileString("Local", "TrayOnClose",     DWrdtoStr(m_TrayOnClose),			ConfigFile);
 

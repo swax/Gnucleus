@@ -198,11 +198,6 @@ BOOL CGnucleusApp::InitInstance()
 		SendMessage(m_pMainWnd->m_hWnd, WM_COMMAND, ID_WINDOW_CASCADE, NULL);
 
 
-	// Check for update
-	// if(m_pDoc->m_pPrefs->m_Update == UPDATE_RELEASE || m_pDoc->m_pPrefs->m_Update == UPDATE_BETA)
-	//	m_pDoc->CheckVersion();
-
-
 	// Display Start Page for LAN
 	if(m_pDoc->m_autPrefs->GetNetworkModel() == NETWORK_PRIVATE && !m_Min)
 	{

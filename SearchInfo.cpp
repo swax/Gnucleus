@@ -105,7 +105,8 @@ BOOL CSearchInfo::OnInitDialog()
 	m_lstResults.InsertColumn( 5, "Extended Info",  LVCFMT_LEFT,  (rect.Width() - offSet) * 10/10, 5);
 
 
-	m_lstResults.SetExtendedStyle(LVS_EX_FULLROWSELECT);
+	m_lstResults.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
+
 	m_lstResults.SetImageList(GetSharedImageList(), LVSIL_SMALL);
 
 	m_DlgResizer.InitResizer(this);
