@@ -124,7 +124,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	
 
 	// Load web caches
-	m_autCache->LoadWebCache(m_RunPath + "Data\\WebCache.net");
+	//m_autCache->LoadWebCache(m_RunPath + "Data\\WebCache.net");
 	
 	if(!m_autCache->GetWebCacheSize())
 	{
@@ -361,7 +361,7 @@ CGnucleusDoc::~CGnucleusDoc()
 
 
 	// Save web caches
-	if(m_autPrefs->GetLanMode())
+	/*if(m_autPrefs->GetLanMode())
 		m_autCache->SaveWebCache(m_RunPath + "Data\\LanWebCache.net");
 	else
 	{	
@@ -373,7 +373,7 @@ CGnucleusDoc::~CGnucleusDoc()
 		}
 		
 		m_autCache->SaveWebCache(m_RunPath + "Data\\WebCache.net");
-	}
+	}*/
 
 	delete m_pPrefsEx;
 	m_pPrefsEx = NULL;
