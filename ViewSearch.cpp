@@ -78,14 +78,14 @@ void CViewSearch::OnDestroy()
 {
 	CFormView::OnDestroy();
 
-	 m_autSearch->EndSearch(m_SearchID);
-
 	std::vector<HWND>::iterator itView;
 	for(itView = m_pDoc->m_pViewSearch.begin(); itView != m_pDoc->m_pViewSearch.end(); itView++)
 		if(*itView == GetSafeHwnd())
 			break;
 
 	m_pDoc->m_pViewSearch.erase(itView);
+	
+	m_autSearch->EndSearch(m_SearchID);
 }
 
 void CViewSearch::DoDataExchange(CDataExchange* pDX)

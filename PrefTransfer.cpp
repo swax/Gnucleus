@@ -231,10 +231,10 @@ BOOL CPrefTransfer::OnApply()
 
 	// Download path
 	m_ebPath.GetWindowText(store);
-
 	m_autPrefs->SetDownloadPath(store);
 	CreateDirectory(m_autPrefs->GetDownloadPath(), NULL);
 
+	m_ebPartialPath.GetWindowText(store);
 	m_autPrefs->SetPartialsDir(store);
 	CreateDirectory(m_autPrefs->GetPartialsDir(), NULL);
 
