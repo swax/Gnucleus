@@ -845,7 +845,7 @@ void CFrameMain::OnUpdateViewWindowlist(CCmdUI* pCmdUI)
 
 void CFrameMain::OnViewBrowser() 
 {
-	OpenBrowser("http://www.gnucleus.net");
+	OpenBrowser("http://www.gnucleus.com");
 }
 
 void CFrameMain::OnToolsBrowsenetwork() 

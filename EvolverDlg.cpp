@@ -137,7 +137,7 @@ void CEvolverDlg::OnTimer(UINT nIDEvent)
 		{
 			// Show changelog
 			CFrameMain* pFrame = (CFrameMain*) AfxGetApp()->GetMainWnd();
-			pFrame->OpenBrowser("http://www.gnucleus.net/update2/ChangeLog.htm");
+			pFrame->OpenBrowser("http://www.gnucleus.com/update2/ChangeLog.htm");
 		}
 
 		m_Counter++;
@@ -256,7 +256,7 @@ void CEvolverDlg::Restart()
 	
 	m_pDoc->m_ShutDown = true;
 
-	AfxGetApp()->m_pMainWnd->SendMessage(WM_CLOSE);
+	AfxGetApp()->m_pMainWnd->PostMessage(WM_CLOSE);
 	return;
 }
 

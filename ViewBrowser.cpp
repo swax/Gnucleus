@@ -139,9 +139,9 @@ void CViewBrowser::OnSurfForward()
 
 void CViewBrowser::OnSurfHome() 
 {
-	Navigate("http://www.gnucleus.net");
+	Navigate("http://www.gnucleus.com");
 
-	m_AddressBar.GetDlgItem(IDC_EDIT_URL)->SetWindowText("http://www.gnucleus.net");
+	m_AddressBar.GetDlgItem(IDC_EDIT_URL)->SetWindowText("http://www.gnucleus.com");
 }
 
 void CViewBrowser::OnSurfRefresh() 
