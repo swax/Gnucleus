@@ -95,11 +95,11 @@ public:
 		InvokeHelper(0x10, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, NodeID);
 		return result;
 	}
-	unsigned __int64 GetNodeConnectTime(long NodeID)
+	DATE GetNodeConnectTime(long NodeID)
 	{
-		unsigned __int64 result;
+		DATE result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x11, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, NodeID);
+		InvokeHelper(0x11, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, NodeID);
 		return result;
 	}
 	unsigned long GetLocalIP()

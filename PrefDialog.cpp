@@ -30,6 +30,7 @@
 #include "AutPrefs.h"
 #include "AutCache.h"
 
+#include "PrefsEx.h"
 #include "PrefLocal.h"
 #include "PrefLocalNetwork.h"
 #include "PrefLocalFirewall.h"
@@ -339,6 +340,8 @@ afx_msg void CPrefDialog::OnApplyNow()
 	GetActivePage()->MoveWindow(m_rectPage);
 
 	// Save config
+	m_pDoc->m_pPrefsEx->SavePrefsEx(m_pDoc->m_RunPath + "GnuConfigEx.ini");
+
 	m_pDoc->m_autPrefs->SaveConfig(m_pDoc->m_RunPath  + "GnuConfig.ini");
 	m_pDoc->m_autPrefs->SaveBlocked(m_pDoc->m_RunPath  + "GnuBlocked.net");
 

@@ -2,7 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by Gnucleus.rc
 //
-#define IDR_TRAY_ALERT                  5
+
 #define IDD_ABOUTBOX                    100
 #define IDD_GNUCLEUS_FORM               101
 #define IDD_CONNECT                     102
@@ -29,6 +29,7 @@
 #define IDD_PREF_SHARE                  144
 #define IDD_PREF_CONNECT                145
 #define IDR_TRAY_RCLICK                 146
+#define IDR_TRAY_ALERT                  148
 #define IDR_TRAYON                      149
 #define IDR_TRAYOFF                     150
 #define IDD_PREF_LOCAL                  151

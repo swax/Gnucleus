@@ -267,6 +267,8 @@ void CGnucleusDoc::DisconnectCore()
 
 CGnucleusDoc::~CGnucleusDoc()
 {
+	m_pPrefsEx->SavePrefsEx(m_RunPath + "GnuConfigEx.ini");
+
 	// Save preferences
 	m_autPrefs->SaveConfig( m_RunPath + "GnuConfig.ini");
 	m_autPrefs->SaveBlocked(m_RunPath  + "GnuBlocked.net");

@@ -321,7 +321,7 @@ void CTransfersUp::OnUpdate(int UploadID)
  		
  
  		// Set time column
-		m_lstUploads.SetItemText(row, 1, CTime( m_autUpload->GetChangeTime(UploadID) ).Format("%I:%M %p"));
+		m_lstUploads.SetItemText(row, 1, COleDateTime( m_autUpload->GetChangeTime(UploadID) ).Format("%I:%M %p"));
  
  		// Set status column
  		m_lstUploads.SetItemText(row, 2, GetStatus(UploadID));
@@ -480,7 +480,7 @@ void CTransfersUp::UpdateView()
 			m_lstUploads.SetItem(pos, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, m_autUpload->GetName(UploadID), FileIcon.Index, 0, LVIS_SELECTED, NULL);
 	
 
-		m_lstUploads.SetItemText(pos, 1, CTime(m_autUpload->GetChangeTime(UploadID)).Format("%I:%M %p"));
+		m_lstUploads.SetItemText(pos, 1, COleDateTime(m_autUpload->GetChangeTime(UploadID)).Format("%I:%M %p"));
 		m_lstUploads.SetItemText(pos, 2, GetStatus(UploadID));
 		m_lstUploads.SetItemData(pos, UploadID);
 

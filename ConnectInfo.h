@@ -17,7 +17,7 @@ public:
 
 	CString m_Host;
 	UINT	m_Port;
-	CTime   m_Time;
+	COleDateTime   m_Time;
 	CString m_Handshake;
 
 	//Makslane: asynchronous host name resolving

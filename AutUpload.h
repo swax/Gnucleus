@@ -32,11 +32,11 @@ public:
 		InvokeHelper(0x2, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, UploadID);
 		return result;
 	}
-	unsigned __int64 GetChangeTime(long UploadID)
+	DATE GetChangeTime(long UploadID)
 	{
-		unsigned __int64 result;
+		DATE result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x3, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, UploadID);
+		InvokeHelper(0x3, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, UploadID);
 		return result;
 	}
 	long GetBytesCompleted(long UploadID)

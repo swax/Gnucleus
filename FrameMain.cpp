@@ -474,7 +474,7 @@ void CFrameMain::OnTimer(UINT nIDEvent)
 		//	m_pDoc->CheckVersion();
 
 		
-		if(CTime::GetCurrentTime() - CTime(m_autCore->GetUptime()) > CTimeSpan(0, 0, 50, 0))
+		if(COleDateTime::GetCurrentTime() - COleDateTimeSpan(m_autCore->GetUptime()) > COleDateTimeSpan(0, 0, 50, 0))
 		{
 			// Check if IRC Cache needs more help
 			if(m_autNetwork->ClientMode() == CLIENT_ULTRAPEER)

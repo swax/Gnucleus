@@ -74,10 +74,10 @@ public:
 		InvokeHelper(0xc, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
 		return result;
 	}
-	unsigned __int64 GetUptime()
+	DATE GetUptime()
 	{
-		unsigned __int64 result;
-		InvokeHelper(0xd, DISPATCH_METHOD, VT_UI8, (void*)&result, NULL);
+		DATE result;
+		InvokeHelper(0xd, DISPATCH_METHOD, VT_DATE, (void*)&result, NULL);
 		return result;
 	}
 	long GetBytesPerSecDown()
