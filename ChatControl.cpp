@@ -65,6 +65,8 @@ CChatControl::CChatControl(CGnucleusDoc* pDoc)
 
 	m_SecsRequest = 0;
 
+	m_NickAlert = false;
+
 	// Load chat prefs
 	m_pPrefs->LoadServers(m_pDoc->m_RunPath + "ChatServers.ini");
 	m_pPrefs->LoadChatAliases(m_pDoc->m_RunPath + "ChatAliases.ini");

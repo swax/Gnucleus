@@ -134,7 +134,6 @@ CFrameMain::CFrameMain(CGnucleusDoc* pDoc)
 	m_pPrefsEx  = m_pDoc->m_pPrefsEx;
 	m_pBuildDlg = NULL;
 
-	m_TrayGreen   = false;
 	m_GnucInTray  = false;
 
 	memset(&m_tnd, 0, sizeof(m_tnd));
@@ -499,24 +498,25 @@ void CFrameMain::OnTimer(UINT nIDEvent)
 		int Connected = m_autNetwork->GetNormalConnectedCount();
 
 		// Update tray and search controls accordingly
-		if(Connected && !m_TrayGreen)
+		if(Connected)
 		{
 			m_SearchToolbar.EnableSearch(true);
-
 			m_tnd.hIcon = AfxGetApp()->LoadIcon(m_TrayIconOn);
-			Shell_NotifyIcon(NIM_MODIFY, &m_tnd);
-
-			m_TrayGreen = true;
 		}
-		else if(!Connected && m_TrayGreen)
+		else
 		{
 			m_SearchToolbar.EnableSearch(false);
-
 			m_tnd.hIcon = AfxGetApp()->LoadIcon(m_TrayIconOff);
-			Shell_NotifyIcon(NIM_MODIFY, &m_tnd);
-
-			m_TrayGreen = false;
 		}
+
+		// If tray is in alter mode, alternate icon
+		if(m_pChat->m_NickAlert && m_AlertSignal)
+			m_tnd.hIcon = AfxGetApp()->LoadIcon(IDR_TRAY_ALERT);
+
+		m_AlertSignal = !m_AlertSignal;
+
+		
+		Shell_NotifyIcon(NIM_MODIFY, &m_tnd);
 	}
 	
 	if(nIDEvent == m_ChatTimerID)
@@ -605,6 +605,7 @@ LRESULT CFrameMain::OnTrayNotification(WPARAM wParam, LPARAM lParam)
 		//{
 			ShowWindow(SW_RESTORE);
 
+			m_pChat->m_NickAlert  = false;
 			m_GnucInTray = false;
 		//}
 
@@ -710,7 +711,6 @@ void CFrameMain::OnClose()
 		return;
 	}
 
-	m_pDoc->m_StopPost = true;
 	CMDIFrameWnd::OnClose();
 }
 
@@ -779,11 +779,7 @@ void CFrameMain::OnFileMap()
 LRESULT CFrameMain::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	if (message == m_suTaskbarRestart)
-	{
 		VERIFY(CreateTrayIcon(this, WM_TRAYICON_NOTIFY, _T("Gnucleus"), AfxGetApp()->LoadIcon(m_TrayIconOff), IDR_TRAY_RCLICK));
-	
-		m_TrayGreen = false;
-	}
 
 	return CMDIFrameWnd::WindowProc(message, wParam, lParam);
 }

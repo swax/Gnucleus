@@ -894,6 +894,9 @@
 				RelativePath=".\res\Trashed.ico">
 			</File>
 			<File
+				RelativePath="res\TrayAlert.ico">
+			</File>
+			<File
 				RelativePath=".\res\TrayLanOff.ico">
 			</File>
 			<File

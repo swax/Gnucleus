@@ -1165,6 +1165,11 @@ void CChatServer::Receive_PrivMsg(CString Message)
 	Message.Remove('\n');
 	Message.Remove('\r');
 
+	if(Message.Find(m_Nick) != -1)
+		if(m_pChat->m_pDoc->m_pViewChat)
+			if( !CWnd::FromHandle(m_pChat->m_pDoc->m_pViewChat)->IsWindowVisible() )
+				m_pChat->m_NickAlert = true;
+
 	CChatRoom* pRoom = GetChannel(Target);
 	
 	CString CTCP = (char) 0x01;

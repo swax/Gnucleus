@@ -84,8 +84,9 @@ protected:
 	NOTIFYICONDATA    m_tnd;
 	int				  m_TrayIconOn;
 	int				  m_TrayIconOff;
-	bool		      m_TrayGreen;
-	bool			  m_GnucInTray;
+
+	bool	m_GnucInTray;
+	bool	m_AlertSignal;
 
 	UINT              m_suTaskbarRestart; // Registered message ID for "TaskbarCreated"
 	

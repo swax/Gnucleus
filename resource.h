@@ -2,6 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by Gnucleus.rc
 //
+#define IDR_TRAY_ALERT                  5
 #define IDD_ABOUTBOX                    100
 #define IDD_GNUCLEUS_FORM               101
 #define IDD_CONNECT                     102
@@ -553,7 +554,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        277
+#define _APS_NEXT_RESOURCE_VALUE        279
 #define _APS_NEXT_COMMAND_VALUE         32924
 #define _APS_NEXT_CONTROL_VALUE         1271
 #define _APS_NEXT_SYMED_VALUE           106

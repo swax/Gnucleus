@@ -83,10 +83,8 @@ public:
 
 
 	bool	MultiInstances;
-	
 
 	bool	m_ShutDown;			   // Signal to update
-	bool	m_StopPost;			   // Signal to stop posting messages
 
 	int		m_nLastPref;		   // Last preference selected
 	CString m_CurrentSite;		   // Tells browser where to go

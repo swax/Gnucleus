@@ -66,6 +66,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
+IDR_TRAY_ALERT          ICON                    "res\\TrayAlert.ico"
 IDR_MAINFRAME           ICON                    "res\\Gnucleus.ico"
 IDR_CONNECT             ICON                    "res\\Connect.ico"
 IDR_DISCONNECT          ICON                    "res\\Disconnect.ico"

@@ -57,6 +57,7 @@ public:
 	CMapStringToString	m_AliasMap;
 	CStringArray		m_RemoteScript;
 
+	bool m_NickAlert;
 
 	//{{AFX_VIRTUAL(CChatControl)
 	public:
