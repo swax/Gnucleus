@@ -1,0 +1,44 @@
+
+These are things that need do'n, if you would like to take on one of these
+list items please email me at swabby@c0re.net and I can give you some more
+insight on the problem and advice.	
+
+
+frame main timer
+
+todo	
+	Share view update without deleting all items
+	
+Interface
+	quick keys accesiblity support
+	use btnST
+	stat banner
+	fix media player
+	
+
+Pending Patches
+	MP3 Extended Info
+	Improved HTTP headers
+	DCC / Buddylist
+	Webserver
+
+
+Network
+	Figure out how to avoid CLOSE_WAIT and FIN_WAIT states
+
+
+Evolver
+	Put hash of updates files on server and then search by hash over gnutella
+
+
+Chat 
+	Text colors
+
+
+Features
+	Setup wizard
+	Web based remote gnucleus interface
+	Unicode support, export string tables
+	
+	
+

@@ -1,0 +1,2004 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Gnucleus.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Gnucleus.ico"
+IDR_CONNECT             ICON                    "res\\Connect.ico"
+IDR_DISCONNECT          ICON                    "res\\Disconnect.ico"
+IDR_STATISTICS          ICON                    "res\\Statistics.ico"
+IDR_TRASHED             ICON                    "res\\Trashed.ico"
+IDR_ROUTED              ICON                    "res\\Routed.ico"
+IDR_BROADCASTED         ICON                    "res\\Broadcasted.ico"
+IDR_INCOMING            ICON                    "res\\Incoming.ico"
+IDR_SETTINGS            ICON                    "res\\settings.ico"
+IDR_TRAYON              ICON                    "res\\TrayOn.ico"
+IDR_TRAYOFF             ICON                    "res\\TrayOff.ico"
+IDR_SHARE               ICON                    "res\\Share.ico"
+IDR_TRANSFERS           ICON                    "res\\Transfers.ico"
+IDR_SEARCH              ICON                    "res\\Search.ico"
+IDR_CHAT                ICON                    "res\\Chat.ico"
+IDR_BROWSER             ICON                    "res\\Browser.ico"
+IDR_TRANSFERS_UP        ICON                    "res\\Transfers_Up.ico"
+IDR_TRANSFERS_DOWN      ICON                    "res\\Transfers_Down.ico"
+IDR_SEARCH_RESULTS      ICON                    "res\\Search_Results.ico"
+IDR_SEARCH_ADVANCED     ICON                    "res\\Search_Advanced.ico"
+IDR_CONNECT_ADVANCED    ICON                    "res\\Connect_Advanced.ico"
+IDR_CONNECT_BASIC       ICON                    "res\\Connect_Basic.ico"
+IDR_TRAYOFF_LAN         ICON                    "res\\TrayLanOff.ico"
+IDR_TRAYON_LAN          ICON                    "res\\TrayLanOn.ico"
+IDR_RESULT_COMPLETED    ICON                    "res\\ResultCompleted.ico"
+IDR_RESULT_DOWNLOADING  ICON                    "res\\ResultDownloading.ico"
+IDR_RESULT_NOHOSTS      ICON                    "res\\ResultNoHosts.ico"
+IDR_RESULT_TRYING       ICON                    "res\\ResultTrying.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_SEARCH_BUTTON       BITMAP                  "res\\search_button.bmp"
+IDB_LOGO_BLACK          BITMAP                  "res\\logo_black.bmp"
+IDB_SHARE               BITMAP                  "res\\share.bmp"
+IDB_SEARCH              BITMAP                  "res\\search.bmp"
+IDB_CHAT                BITMAP                  "res\\chat.bmp"
+IDR_SURF                BITMAP                  "res\\SurfBar.bmp"
+IDR_TOOLBAR_CHAT        BITMAP                  "res\\ChatBar.bmp"
+IDB_TRANSFERS           BITMAP                  "res\\transfers.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  20, 20
+BEGIN
+    BUTTON      ID_FILE_AUTOCONNECT
+    BUTTON      ID_FILE_DISCONNECT
+    BUTTON      ID_VIEW_PREFERENCES
+    SEPARATOR
+    BUTTON      ID_VIEW_TRANSFERS
+    BUTTON      ID_VIEW_SHARE
+    BUTTON      ID_VIEW_CHAT
+    BUTTON      ID_VIEW_BROWSER
+    SEPARATOR
+    BUTTON      ID_WINDOW_LIST
+    BUTTON      ID_WINDOW_CASCADE
+    BUTTON      ID_BUTTON32858
+END
+
+IDR_SURF TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_SURF_BACK
+    BUTTON      ID_SURF_FORWARD
+    BUTTON      ID_SURF_STOP
+    BUTTON      ID_SURF_REFRESH
+    BUTTON      ID_SURF_HOME
+END
+
+IDR_TOOLBAR_CHAT TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_CHAT_CONNECT
+    BUTTON      ID_CHAT_DISCONNECT
+    BUTTON      ID_CHAT_PREFS
+    SEPARATOR
+    BUTTON      ID_CHAT_COLORS
+    BUTTON      ID_CHAT_ALIAS
+    BUTTON      ID_CHAT_REMOTE
+    SEPARATOR
+    BUTTON      ID_CHAT_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Auto-&Connect",               ID_FILE_AUTOCONNECT
+        MENUITEM "&Disconnect",                 ID_FILE_DISCONNECT
+        MENUITEM SEPARATOR
+        MENUITEM "Load Con&fig...",             ID_FILE_LOAD_CONFIG
+        MENUITEM "Load &Nodes...",              ID_FILE_LOAD_NODES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl + X",              ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl + C",             ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl + V",            ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "P&references...",             ID_VIEW_PREFERENCES
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Connections\tCtrl+Alt+1",    ID_VIEW_CONNECTIONS
+        MENUITEM "&Transfers\tAlt+2",           ID_VIEW_TRANSFERS
+        MENUITEM "&Shared Files",               ID_VIEW_SHARE
+        MENUITEM "C&hat",                       ID_VIEW_CHAT
+        MENUITEM "Browser",                     ID_VIEW_BROWSER
+        MENUITEM SEPARATOR
+        MENUITEM "Too&lbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "Stat&us Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Window List",                ID_VIEW_WINDOWLIST
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Statistics",                 ID_VIEW_STATISTICS
+        MENUITEM "Scheduler",                   ID_TOOLS_SCHEDULER
+        MENUITEM "Browse Network",              ID_TOOLS_BROWSENETWORK
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
+        MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
+        MENUITEM SEPARATOR
+        MENUITEM "Close &All",                  ID_WINDOW_CLOSEALL
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Version Check",               ID_HELP_VERSIONCHECK
+        MENUITEM "Change Log",                  ID_HELP_CHANGELOG
+        MENUITEM SEPARATOR
+        MENUITEM "Report Bug",                  ID_HELP_BUG
+        MENUITEM "Report GWebCache",            ID_HELP_REPORTGNUCACHE
+        MENUITEM SEPARATOR
+        MENUITEM "&About Gnucleus...",          ID_APP_ABOUT
+    END
+END
+
+IDR_CONNECT_RCLICK MENU 
+BEGIN
+    POPUP "Connected Nodes"
+    BEGIN
+        MENUITEM "&Refresh",                    ID_LSTCONNECT_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "&Statistics",                 ID_LSTCONNECT_LOG
+        MENUITEM "E&xtended Info",              ID_LSTCONNECT_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "&Disconnect",                 ID_LSTCONNECT_DISCONNECT
+    END
+END
+
+IDR_STATISTICS_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Refresh",                     ID_LSTNODES_REFRESH
+        MENUITEM "Extended Info",               ID_LSTNODES_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "Disconnect",                  ID_LSTNODES_DISCONNECT
+    END
+END
+
+IDR_TRAY_RCLICK MENU 
+BEGIN
+    POPUP "Tray Icon"
+    BEGIN
+        MENUITEM "Auto-Connect",                ID_FILE_AUTOCONNECT
+        MENUITEM "&Disconnect",                 ID_FILE_DISCONNECT
+        MENUITEM "&Preferences...",             ID_VIEW_PREFERENCES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+END
+
+IDR_SHARE_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Run File",                    ID_LSTSHARED_RUN
+        MENUITEM "Extended Info",               ID_LSTSHARED_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "Stop Sharing",                ID_LSTSHARED_STOP
+    END
+END
+
+IDR_UPLOAD_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "&Run File",                   ID_LSTUPLOADS_RUN
+        MENUITEM "E&xtended Info",              ID_LSTUPLOADS_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "&Remove",                     ID_LSTUPLOADS_REMOVE
+    END
+END
+
+IDR_SCREENCONN_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Remove",                      ID_SCREENCONN_REMOVE
+    END
+END
+
+IDR_SEARCH_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Download",                    ID_LSTSEARCH_DOWNLOAD
+        MENUITEM "Cancel Download",             ID_LSTSEARCH_CANCEL
+        MENUITEM SEPARATOR
+        MENUITEM "Extended Info",               ID_LSTSEARCH_INFO
+    END
+END
+
+IDR_DOWNLOAD_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "&Run File",                   ID_LSTDOWNLOADS_RUN
+        MENUITEM "Re-&Search",                  ID_LSTDOWNLOADS_RESEARCH
+        MENUITEM "E&xtended Info",              ID_LSTDOWNLOADS_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "S&tart Transfer",             ID_LSTDOWNLOADS_START
+        MENUITEM "St&op Transfer",              ID_LSTDOWNLOADS_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "Re&move",                     ID_LSTDOWNLOADS_REMOVE
+    END
+END
+
+IDR_SERVERCONN_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Remove",                      ID_SERVERCONN_REMOVE
+    END
+END
+
+IDR_CHAT_CONNECT_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Close",                       ID_CHAT_LSTCONNECTED_CLOSE
+    END
+END
+
+IDR_PREFCHAT_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Remove",                      ID_PREFCHAT_REMOVE
+    END
+END
+
+IDR_CHAT_USERS_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Whois",                       ID_CHAT_WHOIS
+        MENUITEM "Private Chat",                ID_CHAT_PRIVATE
+        MENUITEM SEPARATOR
+        POPUP "Control"
+        BEGIN
+            MENUITEM "Op",                          ID_CHAT_CONTROL_OP
+            MENUITEM "De-Op",                       ID_CHAT_CONTROL_DEOP
+            MENUITEM "Kick",                        ID_CHAT_CONTROL_KICK
+            MENUITEM "Ban",                         ID_CHAT_CONTROL_BAN
+        END
+        MENUITEM "Version",                     ID_CHAT_VERSION
+    END
+END
+
+IDR_PARTIAL_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "&Run File",                   ID_OPTIONS_PARTIAL_RUN
+        MENUITEM "Download",                    ID_OPTIONS_PARTIAL_RESEARCH
+        MENUITEM "Edit &Keywords",              ID_OPTIONS_PARTIAL_EDITKEYWORD
+
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     ID_OPTIONS_PARTIAL_DELETE
+    END
+END
+
+IDR_WNDLIST_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "&Close",                      ID_WNDLIST_CLOSE
+        MENUITEM "Mi&nimize",                   ID_WNDLIST_MIN
+        MENUITEM "Ma&ximize",                   ID_WNDLIST_MAX
+        MENUITEM "&Show",                       ID_WNDLIST_SHOW
+    END
+END
+
+IDR_SEARCHEX_RCLICK MENU 
+BEGIN
+    POPUP "Options"
+    BEGIN
+        MENUITEM "Block",                       ID_LSTSEARCHEX_BLOCK
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "D",            ID_GOTO_SEARCH,         VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_GOTO_SEARCH,         VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_GOTO_SEARCH,         VIRTKEY, ALT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 312, 305
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Gnucleus"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,138,282,50,14,WS_GROUP
+    LTEXT           "Gnucleus created by John Marshall",IDC_STATIC,48,23,177,
+                    8
+    LTEXT           "Gnucleus comes with ABSOLUTELY NO WARRANTY.  This is free software, and you are welcome to redistribute it under certain conditions.  Read GPL.txt in the application directory for further information concerning licensing.",
+                    IDC_STATIC,51,194,245,30
+    LTEXT           "Copyright (C) 2002 John Marshall",IDC_STATIC,51,183,245,
+                    10
+    GROUPBOX        "Licenses",IDC_STATIC,36,167,270,104
+    GROUPBOX        "Resources",IDC_STATIC,36,108,270,50
+    LTEXT           "Homepage:  http://www.gnucleus.net",IDC_STATIC_CONTACT1,
+                    51,124,250,8,SS_NOTIFY
+    LTEXT           "Development: http://gnucleus.sf.net",
+                    IDC_STATIC_CONTACT2,51,132,250,8,SS_NOTIFY
+    LTEXT           "IRC: #gnutella on EFNet",IDC_STATIC,51,143,250,8
+    GROUPBOX        "Credits",IDC_STATIC_VERSION,35,10,270,86
+    LTEXT           "Mark Dennehy, Aaron Putnam, Scott Kirkwood, Heiner Eichman, Makslane Rodrigues, Nathan Brown, Nigel Heath, Justin Marrese",
+                    IDC_STATIC,100,48,155,27
+    LTEXT           "Development:  ",IDC_STATIC,48,48,52,10
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,20,20,20
+    LTEXT           "Gnutella created by Justin Frankel and Tom Pepper",
+                    IDC_STATIC,48,33,185,10
+    LTEXT           "GnucDNA Version",IDC_STATIC_GNUCDNA,48,78,246,8
+    LTEXT           "GnucDNA License",IDC_STATIC_DNALICENSE,49,230,246,32
+END
+
+IDD_VIEW_CONNECT DIALOG  0, 0, 372, 135
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Connect"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PSHEET_CONNECT,"Static",SS_GRAYFRAME,0,0,91,29
+END
+
+IDR_MAINFRAME DIALOG  0, 0, 263, 16
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Search:",IDC_STATIC_SEARCH,3,3,35,10
+    COMBOBOX        IDC_COMBO_SEARCH,46,2,166,99,CBS_DROPDOWN | WS_TABSTOP
+    PUSHBUTTON      "Search",IDC_BUTTON_SEARCH,216,2,46,13,BS_BITMAP | 
+                    BS_FLAT
+END
+
+IDD_VIEW_STATISTICS DIALOGEX 0, 0, 132, 66
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Select to Monitor:",IDC_STATIC,10,15,70,10
+    CONTROL         "List2",IDC_LIST_NODES,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,10,25,70,15
+    CONTROL         "",IDC_PSHEET_AREA,"Static",SS_GRAYFRAME,84,5,40,35
+    PUSHBUTTON      "Pause",IDC_BUTTON_PAUSEGO,20,45,50,15
+END
+
+IDD_STAT_LOG DIALOGEX 0, 0, 406, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Log"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Packet Types",IDC_STATIC,185,6,150,35
+    CONTROL         "Pings",IDC_CHECK_PINGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,17,40,10
+    CONTROL         "Pongs",IDC_CHECK_PONGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,26,40,10
+    CONTROL         "Queries",IDC_CHECK_QUERIES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,241,17,50,10
+    CONTROL         "Query Hits",IDC_CHECK_QUERYHITS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,241,26,50,10
+    CONTROL         "Pushes",IDC_CHECK_PUSHES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,295,17,35,10
+    RTEXT           "Buffer (lines):",IDC_STATIC_BUFFSIZE,354,7,50,10
+    EDITTEXT        IDC_EDIT_BUFFSIZE,354,17,50,12,ES_RIGHT | ES_WANTRETURN | 
+                    ES_NUMBER
+    PUSHBUTTON      "Flush",IDC_BUTTON_FLUSH,354,32,50,14
+    CONTROL         "List1",IDC_LIST_LOG,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHAREIMAGELISTS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,6,48,395,135
+    GROUPBOX        "Show",IDC_STATIC,6,6,78,35
+    CONTROL         "Good Packets",IDC_CHECK_GOOD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,17,60,10
+    CONTROL         "Bad Packets",IDC_CHECK_BAD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,19,26,60,10
+    GROUPBOX        "Direction",IDC_STATIC,96,6,78,35
+    CONTROL         "Incoming",IDC_CHECK_IN,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,109,17,60,10
+    CONTROL         "Outgoing",IDC_CHECK_OUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,109,26,60,10
+END
+
+IDD_STAT_MAIN DIALOGEX 0, 0, 398, 261
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Main"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Gnucleus version x",IDC_STATIC_VERSION,5,10,188,10
+    GROUPBOX        "Statistics Summary",IDC_STATIC,7,30,173,125
+    CONTROL         "List1",IDC_LIST_SUMMARY,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,20,46,150,99
+END
+
+IDD_PREF_BANDWIDTH DIALOGEX 0, 0, 274, 181
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Bandwidth Limits",IDC_STATIC,10,10,255,60
+    CONTROL         "Limit download bandwidth to",IDC_CHECK_LIMIT_DOWN,
+                    "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,28,
+                    105,10
+    EDITTEXT        IDC_EDIT_LIMIT_DOWN,135,25,30,12,ES_AUTOHSCROLL
+    LTEXT           "KB/s",IDC_STATIC,170,28,35,10
+    CONTROL         "Limit upload bandwidth to",IDC_CHECK_LIMIT_UP,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,48,105,10
+    EDITTEXT        IDC_EDIT_LIMIT_UP,135,45,30,12,ES_AUTOHSCROLL
+    LTEXT           "KB/s",IDC_STATIC,170,48,35,10
+    GROUPBOX        "Transfer Limits",IDC_STATIC,10,80,255,60
+    CONTROL         "Drop downloads transfering under",IDC_CHECK_DROP_DL,
+                    "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,97,
+                    120,10
+    EDITTEXT        IDC_EDIT_DROP_DL,151,95,30,12,ES_AUTOHSCROLL
+    LTEXT           "KB/s",IDC_STATIC,185,97,25,10
+    CONTROL         "Drop uploads transfering under",IDC_CHECK_DROP_UL,
+                    "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,119,
+                    110,10
+    EDITTEXT        IDC_EDIT_DROP_UL,141,115,30,12,ES_AUTOHSCROLL
+    LTEXT           "KB/s",IDC_STATIC,175,119,25,10
+END
+
+IDD_PREF_SHARE DIALOGEX 0, 0, 274, 196
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Shared Directories",IDC_STATIC,10,10,255,115
+    CONTROL         "List2",IDC_LIST_SHARED,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,20,25,236,60,
+                    WS_EX_ACCEPTFILES
+    EDITTEXT        IDC_EDIT_SHARED,20,90,125,14,ES_AUTOHSCROLL,
+                    WS_EX_ACCEPTFILES
+    DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,150,90,50,14
+    PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,205,90,50,14
+    CONTROL         "Sub-Directories",IDC_CHECK_RECURSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,25,110,65,10
+    CONTROL         "Set a max of",IDC_CHECK_REPLYMAX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,143,55,10
+    EDITTEXT        IDC_EDIT_REPLY,71,140,25,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "replies to a query",IDC_STATIC,103,143,70,10
+    CONTROL         "Only send results when there are upload slots available",
+                    IDC_CHECK_SENDRESULTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,159,188,10
+    CONTROL         "Include path following root of shared directory in reply to query",
+                    IDC_CHECK_PATH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
+                    175,210,10
+END
+
+IDD_PREF_CONNECT DIALOGEX 0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Node Management",IDC_STATIC,10,10,255,122
+    CONTROL         "Auto-Connect on startup",IDC_CHECK_AUTOCONNECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,18,30,165,10
+    CONTROL         "Keep at Least",IDC_CHECK_MIN_CONNECTS,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,30,110,60,10
+    EDITTEXT        IDC_EDIT_MIN_CONNECTS,90,108,19,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CONTROL         "and a Max of",IDC_CHECK_MAX_CONNECTS,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,120,110,55,10
+    EDITTEXT        IDC_EDIT_MAX_CONNECTS,180,108,19,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Connects",IDC_STATIC,204,110,41,10
+    LTEXT           "When in Child Mode",IDC_STATIC,18,54,138,8
+    LTEXT           "When in Ultrapeer Mode",IDC_STATIC,18,96,138,8
+    EDITTEXT        IDC_EDIT_LEAF_CONNECTS,90,66,19,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Connects",IDC_STATIC,113,68,41,10
+    LTEXT           "Keep at Least",IDC_STATIC,36,69,54,11
+END
+
+IDD_PREF_LOCAL DIALOGEX 0, 0, 295, 226
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Local Node Properties",IDC_STATIC,10,10,255,75
+    CONTROL         "Set local IP to",IDC_CHECK_IP,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | WS_TABSTOP,20,28,60,10
+    EDITTEXT        IDC_EDIT_IP,90,25,65,12,ES_AUTOHSCROLL
+    CONTROL         "Set incoming port to",IDC_CHECK_PORT,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,48,80,10
+    EDITTEXT        IDC_EDIT_PORT,100,45,46,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Set connect speed to",IDC_CHECK_SPEED,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,67,85,10
+    COMBOBOX        IDC_COMBO_SPEED,107,65,73,65,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Display Window",IDC_STATIC,10,100,255,45
+    CONTROL         "Send Gnucleus to tray when minimized",IDC_CHECK_TRAYMIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,116,200,8
+    CONTROL         "Send Gnucleus to tray when closed",IDC_CHECK_TRAYCLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,130,200,10
+    CONTROL         "Auto-Evolve Gnucleus when a",IDC_CHECK_EVOLVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,164,110,10
+    COMBOBOX        IDC_COMBO_EVOLVE,125,161,60,47,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "is detected",IDC_STATIC_EVOLVE,190,164,40,8
+END
+
+IDD_PREF_SEARCH DIALOGEX 0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Search Options",IDC_STATIC,10,10,252,56
+    CONTROL         "Double-check results with original search",
+                    IDC_CHECK_DOUBLECHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,23,30,165,10
+    CONTROL         "Don't display results from filtered nodes",
+                    IDC_CHECK_DISPLAY_SCREENED,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFT | WS_TABSTOP,23,45,150,10
+    PUSHBUTTON      "Clear Search History",IDC_BUTTON_CLEARHISTORY,7,74,80,
+                    14
+END
+
+IDD_PREF_TRANSFER DIALOGEX 0, 0, 274, 190
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "d"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    RTEXT           "Save Downloads to:",IDC_STATIC,15,10,65,10
+    EDITTEXT        IDC_EDIT_PATH,15,20,195,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE,217,20,50,14
+    GROUPBOX        "User limits",IDC_STATIC,10,75,255,55
+    CONTROL         "Maximum simultaneous downloads",IDC_CHECK_MAX_DL,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,94,125,10
+    EDITTEXT        IDC_EDIT_MAX_DL,145,90,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Maximum simultaneous uploads",IDC_CHECK_MAX_UL,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,112,115,10
+    EDITTEXT        IDC_EDIT_MAX_UL,135,111,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Disable Multi-Source downloading (for modem users)",
+                    IDC_CHECK_MULTISOURCE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,145,210,10
+    LTEXT           "Save Partials to:",IDC_STATIC,15,41,65,10
+    EDITTEXT        IDC_EDIT_PARTIALS,15,52,195,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE_PARTIALS,217,52,50,14
+END
+
+IDD_PREF_LOCAL_FIREWALL DIALOG  0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Firewall Options",IDC_STATIC,10,10,255,60
+    CONTROL         "I am behind a firewall",IDC_CHECK_FIREWALL,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,25,180,10
+    LTEXT           "Even if you are behind a firewall you can still share files without forcing an IP or port.",
+                    IDC_STATIC,20,45,227,17
+END
+
+IDD_PREF_CONNECT_SCREEN DIALOG  0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Filter Nodes",IDC_STATIC,10,10,255,160
+    LTEXT           "Nodes that match will not be cached or connected to by Gnucleus. ",
+                    IDC_STATIC,25,25,220,10
+    RTEXT           "Host :",IDC_STATIC,21,47,19,10
+    EDITTEXT        IDC_EDIT_HOST,45,45,60,12,ES_AUTOHSCROLL
+    RTEXT           "Rule :",IDC_STATIC,20,61,20,10
+    COMBOBOX        IDC_COMBO_RULE,45,59,60,35,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,50,80,50,15
+    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,100,50,15
+    LTEXT           "To create a private network, deny *.*.*.* and allow selected IPs, e.g. 10.*.*.*",
+                    IDC_STATIC,20,155,240,10
+    CONTROL         "List2",IDC_LIST_SCREEN,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,120,40,135,
+                    110
+END
+
+IDD_PREF_SEARCH_SCREEN DIALOG  0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Filter Results",IDC_STATIC,10,10,255,160
+    LTEXT           "Screen out file types by entering .mp3, .mov, etc...",
+                    IDC_STATIC,25,25,160,10
+    RTEXT           "Word:",IDC_STATIC,15,47,23,10
+    EDITTEXT        IDC_EDIT_FILE,45,45,60,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,51,65,50,15
+    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,85,50,15
+    CONTROL         "List2",IDC_LIST_SCREEN,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,120,40,135,120
+END
+
+IDD_VIEW_SHARE DIALOGEX 0, 0, 367, 69
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Shared Files"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LIST_SHARED,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,7,353,39
+    PUSHBUTTON      "Run Selected",IDC_BUTTON_RUNSELECTED,10,50,80,14
+    PUSHBUTTON      "Stop Sharing Selected",IDC_BUTTON_STOPSHARING,95,50,95,
+                    14
+    PUSHBUTTON      "Configure Sharing",IDC_BUTTON_STARTSHARING,195,50,80,14
+    CONTROL         "Stop Hashing",IDC_CHECK_STOPHASHING,"Button",
+                    BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,280,50,80,15
+END
+
+IDD_TRANSFER_DOWN DIALOGEX 0, 0, 307, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Downloads"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Show",IDC_STATIC,5,5,220,25
+    CONTROL         "Active",IDC_CHECK_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,15,40,10
+    CONTROL         "Pending",IDC_CHECK_PENDING,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,60,15,50,10
+    CONTROL         "Completed",IDC_CHECK_COMPLETE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,15,55,10
+    CONTROL         "Stopped",IDC_CHECK_ERROR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,170,15,43,10
+    CONTROL         "List1",IDC_LIST_DOWNLOADS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,5,35,295,20
+    PUSHBUTTON      "Remove Selected",IDC_BUTTON_REMOVE,5,60,70,14
+    PUSHBUTTON      "Clear Completed",IDC_BUTTON_CLEAR,80,60,70,14
+    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIGURE,155,60,70,14
+    PUSHBUTTON      "View Downloads",IDC_BUTTON_OPENDOWNLOADS,230,60,70,14
+END
+
+IDD_TRANSFER_UP DIALOG  0, 0, 300, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Uploads"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Show",IDC_STATIC,5,5,165,25
+    CONTROL         "Active",IDC_CHECK_ACTIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,15,40,10
+    CONTROL         "Completed",IDC_CHECK_COMPLETE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,60,15,50,10
+    CONTROL         "Failed",IDC_CHECK_ERROR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,120,15,35,10
+    CONTROL         "List1",IDC_LIST_UPLOADS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,5,35,290,20
+    PUSHBUTTON      "Remove Selected",IDC_BUTTON_REMOVE,5,60,70,14
+    PUSHBUTTON      "Clear All",IDC_BUTTON_CLEAR,80,60,70,14
+    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIGURE,155,60,70,14
+END
+
+IDD_VIEW_TRANSFER DIALOG  0, 0, 111, 49
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Transfers"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PSHEET_TRANSFER,"Static",SS_GRAYFRAME,0,0,91,29
+END
+
+IDD_VIEW_SEARCH DIALOG  0, 0, 83, 42
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Search"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_PSHEET_SEARCH,"Static",SS_GRAYFRAME,0,0,71,31
+END
+
+IDD_SEARCH_RESULTS DIALOGEX 0, 0, 407, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Results"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "List1",IDC_LIST_RESULTS,"SysListView32",LVS_REPORT | 
+                    LVS_OWNERDRAWFIXED | LVS_OWNERDATA | WS_BORDER | 
+                    WS_TABSTOP,5,25,395,30
+    DEFPUSHBUTTON   "Download Selected",IDC_BUTTON_DOWNLOAD,5,60,80,15
+    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIG,175,60,80,15
+    LTEXT           "Refine Search",IDC_STATIC,5,13,50,8
+    EDITTEXT        IDC_EDIT_REFINE,55,10,100,12,ES_AUTOHSCROLL
+    CONTROL         "Filter Results",IDC_CHECKS_SCREEN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,181,11,75,8
+    PUSHBUTTON      "Stop Search",IDC_BUTTON_STOPSEARCH,325,60,75,15
+    PUSHBUTTON      "View Transfers",IDC_BUTTON_VIEWTRANSFERS,90,60,80,15
+    LTEXT           "* - Result Hash Verified",IDC_STATIC_STARNOTE,294,14,
+                    104,10,0,WS_EX_RIGHT
+END
+
+IDD_SEARCH_ADVANCED DIALOGEX 0, 0, 329, 114
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Configure Searching",IDC_BUTTON_CONFIG_SEARCH,10,15,85,
+                    15
+    PUSHBUTTON      "Filter Hosts",IDC_BUTTON_SCREENHOSTS,10,35,85,14
+    PUSHBUTTON      "Filter Keywords",IDC_BUTTON_SCREENWORDS,10,55,85,14
+    GROUPBOX        "Screen",IDC_STATIC,105,10,200,60
+    LTEXT           "Sizes",IDC_STATIC,118,28,22,10
+    COMBOBOX        IDC_COMBO_SIZE,145,25,60,81,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SIZE,215,25,50,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "KB",IDC_STATIC,269,27,25,10
+    LTEXT           "Speeds",IDC_STATIC,115,47,25,10
+    COMBOBOX        IDC_COMBO_SPEED,145,45,60,144,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SPEED,215,45,50,12,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "KB/s",IDC_STATIC,270,46,25,10
+    DEFPUSHBUTTON   "Refresh List",IDC_BUTTON_REFRESH,10,85,85,14
+    LTEXT           "Screen needs to be checked in Results tab for settings to take place.",
+                    IDC_STATIC,105,80,130,20
+END
+
+IDD_TRANSFER_UP_INFO DIALOGEX 0, 0, 347, 226
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extended Info"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "File",IDC_STATIC,5,5,335,45
+    LTEXT           "Name:",IDC_STATIC,15,20,25,10
+    CONTROL         "Static",IDC_STATIC_NAME,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,40,20,295,15
+    LTEXT           "Index:",IDC_STATIC,15,35,25,10
+    CONTROL         "Static",IDC_STATIC_INDEX,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,40,35,295,10
+    GROUPBOX        "Connection",IDC_STATIC,5,60,335,140
+    LTEXT           "Host:",IDC_STATIC,15,75,20,10
+    CONTROL         "Static",IDC_STATIC_HOST,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,40,75,290,10
+    LTEXT           "Attempts: ",IDC_STATIC,15,85,30,10
+    LTEXT           "0",IDC_STATIC_ATTEMPTS,45,85,175,10
+    LTEXT           "Handshake:",IDC_STATIC,15,100,55,10
+    EDITTEXT        IDC_EDIT_HANDSHAKE,15,110,315,85,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,150,205,50,14
+END
+
+IDD_CONNECT_INFO DIALOGEX 0, 0, 192, 221
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extended Info"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "IP :",IDC_STATIC,10,10,20,10
+    EDITTEXT        IDC_EDIT_HOST,35,10,150,10,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    LTEXT           "Host :",IDC_STATIC,10,20,20,10
+    EDITTEXT        IDC_EDIT_HOSTNAME,35,20,150,15,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | NOT 
+                    WS_BORDER
+    LTEXT           "Time Connected:",IDC_STATIC,10,35,55,10
+    LTEXT           "Static",IDC_STATIC_TIME,70,35,89,10
+    LTEXT           "Handshake:",IDC_STATIC,10,55,55,10
+    EDITTEXT        IDC_EDIT_HANDSHAKE,10,65,175,125,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,70,200,50,14
+END
+
+IDD_PREF_CONNECT_SERVERS DIALOG  0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Host Servers",IDC_STATIC,10,10,255,160
+    LTEXT           "Addresses of permanent Gnutella nodes, used to find more connections",
+                    IDC_STATIC,20,25,235,10
+    RTEXT           "Host :",IDC_STATIC,21,47,19,10
+    EDITTEXT        IDC_EDIT_HOST,45,45,60,12,ES_AUTOHSCROLL
+    RTEXT           "Port :",IDC_STATIC,20,61,20,10
+    EDITTEXT        IDC_EDIT_PORT,45,60,60,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,50,80,50,15
+    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,100,50,15
+    CONTROL         "List2",IDC_LIST_SERVERS,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,120,40,135,
+                    120
+END
+
+IDD_EVOLVE_MAIN DIALOGEX 0, 0, 247, 71
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Evolution"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Checking for a new version of Gnucleus",
+                    IDC_STATIC_STATUS,7,7,130,10
+    LTEXT           "Connecting to Gnucleus.net...",IDC_STATIC_PROGRESS,7,23,
+                    140,10
+    RTEXT           "",IDC_STATIC_LABEL,165,23,75,10
+    CONTROL         "Progress1",IDC_PROGRESS_UPDATE,"msctls_progress32",
+                    WS_BORDER | 0x1,7,33,233,10
+    PUSHBUTTON      "Cancel",IDC_BUTTON_CANCEL,55,50,60,14
+    DEFPUSHBUTTON   "Evolve",IDC_BUTTON_EVOLVE,125,50,60,14
+END
+
+IDD_STAT_DISTRIBUTION DIALOGEX 0, 0, 357, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Distribution"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Gnutella Network",IDC_STATIC,7,7,185,158
+    LTEXT           "Distribution for localhost:",IDC_STATIC,23,27,101,10
+    CONTROL         "List1",IDC_LIST_DIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,23,37,155,95
+    RTEXT           "Nodes Sharing:",IDC_STATIC,27,147,50,8
+    LTEXT           "",IDC_STATIC_SHARE,83,147,30,8
+    PUSHBUTTON      "Refresh",IDC_BUTTON_REFRESH,123,142,50,14
+END
+
+IDD_STAT_PACKETS DIALOG  0, 0, 357, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Packets"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Gnutella Packet Flow",IDC_STATIC,7,7,195,137
+    LTEXT           "Data Stream into localhost:",IDC_STATIC,22,27,121,10
+    CONTROL         "List2",IDC_LIST_DATA,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,22,37,165,95
+END
+
+IDD_STAT_BANDWIDTH DIALOG  0, 0, 357, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Bandwidth"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Client Bandwidth Usage",IDC_STATIC,7,7,143,133
+    LTEXT           "Amount in transit:",IDC_STATIC,22,27,75,10
+    CONTROL         "List2",IDC_LIST_BANDWIDTH,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,22,37,118,93
+END
+
+IDD_STAT_MEMORY DIALOGEX 0, 0, 497, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Memory"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Local Diagnostics",IDC_STATIC,7,10,238,150
+    LTEXT           "Memory Used",IDC_STATIC,20,25,95,10
+    CONTROL         "List1",IDC_LIST_MEMORYZ,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,20,35,215,115
+    LTEXT           "Routing Table Refresh",IDC_STATIC,10,169,80,10
+    GROUPBOX        "Share Table Diagnostics",IDC_STATIC,260,10,175,150
+    LTEXT           "",IDC_STATIC_TEMP1,270,35,155,10
+    LTEXT           "",IDC_STATIC_TEMP2,270,45,160,10
+    LTEXT           "",IDC_STATIC_TEMP3,270,55,160,10
+    LTEXT           "",IDC_STATIC_TEMP4,270,65,160,10
+    LTEXT           "",IDC_STATIC_TEMP5,270,75,160,10
+    LTEXT           "",IDC_STATIC_TEMP6,270,86,160,10
+    LTEXT           "",IDC_STATIC_TEMP7,270,95,160,10
+    LTEXT           "",IDC_STATIC_TEMP8,270,105,160,10
+    LTEXT           "",IDC_STATIC_TEMP9,270,115,160,10
+    EDITTEXT        IDC_EDIT_HASH,90,165,60,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_SEARCH_INFO DIALOGEX 0, 0, 362, 180
+STYLE DS_SETFONT | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Expanded Results"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Name: ",IDC_STATIC_NAME,"Static",SS_LEFTNOWORDWRAP | 
+                    WS_GROUP,10,10,345,10
+    LTEXT           "Size:",IDC_STATIC_SIZE,10,20,345,10
+    LTEXT           "SHA1 Hash:",IDC_STATIC_SHA1HASH,10,35,345,10
+    LTEXT           "Bitprint Hash:",IDC_STATIC_BITPRINTHASH,10,45,345,10
+    LTEXT           "Hosts:",IDC_STATIC_HOSTS,10,60,313,10
+    CONTROL         "List1",IDC_LIST_RESULTS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,10,70,345,70
+    LTEXT           "Average Speed:",IDC_STATIC_SPEED,10,145,345,10
+    PUSHBUTTON      "OK",IDC_BUTTON_OK,155,160,50,14
+END
+
+IDD_TRANSFER_DOWN_INFO DIALOGEX 0, 0, 547, 306
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Extended Info"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Name: ",IDC_STATIC_NAME,10,10,355,10
+    LTEXT           "Size:",IDC_STATIC_SIZE,10,20,355,10
+    LTEXT           "SHA1 Hash:",IDC_STATIC_SHA1HASH,10,35,360,10
+    LTEXT           "Bitprint Hash: ",IDC_STATIC_BITPRINTHASH,10,45,355,10
+    LTEXT           "Hosts:",IDC_STATIC_HOSTS,11,60,175,10
+    CONTROL         "List1",IDC_LIST_DOWNLOADS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,10,70,355,80
+    CONTROL         "",IDC_STATIC_PROGRESS,"Static",SS_BLACKFRAME,10,155,355,
+                    10
+    DEFPUSHBUTTON   "OK",IDOK,151,170,50,14
+    PUSHBUTTON      "More >>",IDC_BUTTON_EXPAND,311,170,50,14
+    LTEXT           "Handshake:",IDC_STATIC_HAND,11,190,110,10
+    EDITTEXT        IDC_EDIT_HANDSHAKE,10,200,355,100,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_VSCROLL
+    CONTROL         "List1",IDC_LIST_CHUNKS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,375,70,165,230
+END
+
+IDD_VIEW_CHAT DIALOGEX 0, 0, 282, 77
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Chat"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Connections:",IDC_STATIC_CONNECT,5,5,75,10
+    CONTROL         "Tree1",IDC_TREE_CONNECTS,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,5,15,90,35
+    LTEXT           "Current Channel",IDC_STATIC_CHANNEL,105,5,85,10
+    CONTROL         "",IDC_RICHEDIT_CHAT,"RICHEDIT",TCS_HOTTRACK | 
+                    TCS_VERTICAL | TCS_RAGGEDRIGHT | TCS_MULTISELECT | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP,105,15,85,35
+    LTEXT           "Users:",IDC_STATIC_USER,201,5,70,10
+    CONTROL         "List1",IDC_LIST_USERS,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | LVS_AUTOARRANGE | LVS_NOCOLUMNHEADER | 
+                    WS_BORDER | WS_TABSTOP,201,15,75,35
+    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIGURE,15,55,55,14
+    EDITTEXT        IDC_EDIT_INPUT,105,55,85,12,ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    PUSHBUTTON      "Help",IDC_BUTTON_HELP,211,55,55,14
+END
+
+IDD_PREF_CHAT DIALOGEX 0, 0, 274, 174
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Chat"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Chat Setup",IDC_STATIC,10,10,255,128
+    LTEXT           "Network :",IDC_STATIC,20,33,32,10
+    COMBOBOX        IDC_COMBO_NETWORK,54,30,65,62,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Default Network",IDC_CHECK_DEFNETWORK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,54,45,65,10
+    RTEXT           "Name:",IDC_STATIC,20,87,30,10
+    EDITTEXT        IDC_EDIT_NICK,55,85,60,12,ES_AUTOHSCROLL
+    RTEXT           "Alt. Name:",IDC_STATIC,17,102,33,10
+    EDITTEXT        IDC_EDIT_ALTNICK,55,100,60,12,ES_AUTOHSCROLL
+    LTEXT           "Servers:",IDC_STATIC_SERVERS,130,25,60,10
+    CONTROL         "List1",IDC_LIST_SERVERS,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | LVS_AUTOARRANGE | LVS_NOCOLUMNHEADER | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,130,35,125,60
+    EDITTEXT        IDC_EDIT_SERVER,132,100,93,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add",IDC_BUTTON_ADD,230,100,25,12
+    GROUPBOX        "Node Preferencing",IDC_STATIC,6,162,255,9,NOT 
+                    WS_VISIBLE
+    CONTROL         "Prefer nodes in channel #",IDC_CHECK_PREFCHAN,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,21,146,96,
+                    10
+    EDITTEXT        IDC_EDIT_PREFCHAN,117,144,83,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    CONTROL         "Disable Ident server",IDC_CHECK_IDENT_DISABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,42,120,84,12
+END
+
+IDD_BUILD_MAP DIALOGEX 0, 0, 142, 271
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Build Network Map"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Scan Network",IDC_STATIC,10,10,120,50
+    LTEXT           "Nodes Found:",IDC_STATIC,20,25,50,10
+    LTEXT           "0",IDC_STATIC_NODES,70,25,55,10
+    PUSHBUTTON      "Refresh",IDC_BUTTON_REFRESH,45,40,50,14
+    GROUPBOX        "Options",IDC_STATIC,10,65,120,105
+    LTEXT           "Map",IDC_STATIC,20,82,16,10
+    EDITTEXT        IDC_EDIT_HOPS,39,80,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "hops out",IDC_STATIC,63,82,60,10
+    CONTROL         "Size nodes by shared files",IDC_CHECK_SIZENODES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,100,100,10
+    CONTROL         "Shape nodes by client",IDC_CHECK_SHAPENODES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,115,100,10
+    RTEXT           "Height:",IDC_STATIC,19,137,25,10
+    EDITTEXT        IDC_EDIT_HEIGHT,49,135,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "inches",IDC_STATIC,75,137,48,10
+    RTEXT           "Width:",IDC_STATIC,19,151,25,10
+    EDITTEXT        IDC_EDIT_WIDTH,49,150,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "inches",IDC_STATIC,75,151,48,10
+    PUSHBUTTON      "Build Map",IDC_BUTTON_BUILD,45,180,50,14
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,5,200,135,1
+    LTEXT           "Maps are made using GraphViz, created and copyrighted by AT&&T Research Labs.  Using this program you agree to the license specified by them.",
+                    IDC_STATIC,15,207,120,41
+    PUSHBUTTON      "Read It!",IDC_BUTTON_READ,35,252,73,13
+END
+
+IDD_WINDOW_LIST DIALOGEX 0, 0, 419, 16
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tab1",IDC_WINDOW_TABS,"SysTabControl32",TCS_BUTTONS | 
+                    TCS_RAGGEDRIGHT | TCS_TOOLTIPS,1,2,418,14,
+                    WS_EX_TRANSPARENT
+END
+
+IDD_PREF_PLUGINS DIALOGEX 0, 0, 274, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Files in the /Plugins directory",IDC_STATIC,10,10,170,
+                    10
+    CONTROL         "List1",IDC_LIST_PLUGINS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_AUTOARRANGE | 
+                    WS_BORDER | WS_TABSTOP,10,20,255,75
+    GROUPBOX        "Run Plug-in",IDC_STATIC,10,105,145,65
+    PUSHBUTTON      "Start",IDC_BUTTON_START,30,125,50,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP,90,125,50,14,WS_DISABLED
+    LTEXT           "Startup type:",IDC_STATIC,20,152,45,10
+    COMBOBOX        IDC_COMBO_STARTUP,69,150,71,45,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Setup Plug-in",IDC_STATIC,165,105,100,65
+    PUSHBUTTON      "Configure...",IDC_BUTTON_CONFIG,185,125,50,14
+    PUSHBUTTON      "About...",IDC_BUTTON_ABOUT,185,145,50,14
+END
+
+IDD_PREF_LOCAL_NETWORK DIALOGEX 0, 0, 274, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "My Network Model",IDC_STATIC,10,10,255,75
+    CONTROL         "Regular node on the internet",IDC_RADIO_MODEL_INTERNET,
+                    "Button",BS_AUTORADIOBUTTON,20,30,170,10
+    CONTROL         "Node in a college or LAN",IDC_RADIO_MODEL_PRIVATE,
+                    "Button",BS_AUTORADIOBUTTON,20,45,170,10
+    CONTROL         "Internal IRC Server",IDC_CHECK_IRCSERVER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,35,63,90,10
+    EDITTEXT        IDC_EDIT_IRCSERVER,128,60,110,12,ES_AUTOHSCROLL
+    GROUPBOX        "Ultrapeer Settings",IDC_STATIC,10,95,255,55
+    CONTROL         "Able to become Ultrapeer",IDC_CHECK_SUPERNODE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,114,155,10
+    LTEXT           "Host a max of",IDC_STATIC,35,130,50,10
+    EDITTEXT        IDC_EDIT_MAXLEAF,85,128,40,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "leaf nodes (1500 limit)",IDC_STATIC,130,130,94,10
+    LTEXT           "Max Processor Usage, 10%",IDC_STATIC_USAGE,10,160,100,
+                    10,NOT WS_VISIBLE
+    CONTROL         "Slider1",IDC_SLIDER_USAGE,"msctls_trackbar32",TBS_TOP | 
+                    TBS_NOTICKS | NOT WS_VISIBLE | WS_TABSTOP,10,171,95,10
+    CONTROL         "Dedicated Ultrapeer",IDC_CHECK_DEDICATED,"Button",
+                    BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,115,165,
+                    140,10
+END
+
+IDD_CONNECT_BASIC DIALOGEX 0, 0, 312, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Basic"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Quick Start",IDC_STATIC,15,15,285,155
+    CONTROL         223,IDC_STATIC_LOGO,"Static",SS_BITMAP | SS_CENTERIMAGE | 
+                    WS_BORDER,25,30,267,57
+    LTEXT           "Connecting...",IDC_STATIC_CONNECT,25,89,267,10,0,
+                    WS_EX_STATICEDGE
+    CONTROL         "Progress1",IDC_PROGRESS_CONNECT,"msctls_progress32",
+                    WS_BORDER,25,102,267,8
+    PUSHBUTTON      "Search",IDC_BUTTON_SEARCH,40,120,15,15,BS_BITMAP | 
+                    BS_CENTER | BS_VCENTER | BS_FLAT | WS_DISABLED
+    LTEXT           "Search",IDC_STATIC_SEARCH,64,124,61,10,WS_DISABLED
+    PUSHBUTTON      "Shared Files",IDC_BUTTON_SHARED,40,145,15,15,BS_BITMAP | 
+                    BS_CENTER | BS_VCENTER | BS_FLAT
+    LTEXT           "Shared Files",IDC_STATIC_SHARED,64,149,100,10,SS_NOTIFY
+    PUSHBUTTON      "Transfers",IDC_BUTTON_TRANSFERS,180,120,15,15,BS_BITMAP | 
+                    BS_CENTER | BS_VCENTER | BS_FLAT
+    LTEXT           "Transfers",IDC_STATIC_TRANSFERS,204,124,61,10
+    PUSHBUTTON      "Chat",IDC_BUTTON_CHAT,180,145,15,15,BS_BITMAP | 
+                    BS_CENTER | BS_VCENTER | BS_FLAT
+    LTEXT           "Chat",IDC_STATIC_CHAT,203,149,47,10
+END
+
+IDD_CONNECT_ADVANCED DIALOGEX 0, 0, 382, 135
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Known Nodes:",IDC_STATIC_EXIST,5,5,55,8
+    LTEXT           "Connected Nodes:",IDC_STATIC_CONNECT,195,5,65,8
+    CONTROL         "List2",IDC_LST_KNOWN,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,5,15,180,25
+    CONTROL         "List1",IDC_LST_CONNECTED,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,195,15,180,90
+    GROUPBOX        "Add Node:",IDC_STATIC_ADD,5,50,180,55
+    RTEXT           "Address:",IDC_STATIC_HOST,15,66,35,10
+    EDITTEXT        IDC_EDIT_HOST,55,65,120,12,ES_AUTOHSCROLL
+    RTEXT           "Port:",IDC_STATIC_PORT,20,84,30,10
+    EDITTEXT        IDC_EDIT_PORT,55,84,50,12,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,70,115,50,14
+    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,265,115,50,15
+END
+
+IDD_STAT_ERROR DIALOG  0, 0, 367, 201
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Errors"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_LIST_ERROR,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHAREIMAGELISTS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,17,20,343,173
+END
+
+IDD_LAN_SETUP DIALOG  0, 0, 157, 170
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "LAN / Campus Setup"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Active LAN Networks:",IDC_STATIC,10,10,125,10
+    CONTROL         "List2",IDC_LIST_LAN,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,10,20,140,75
+    DEFPUSHBUTTON   "Join",IDC_BUTTON_JOIN,25,105,50,14
+    PUSHBUTTON      "Create",IDC_BUTTON_NEW,80,105,50,14
+    GROUPBOX        "Help",IDC_STATIC,10,130,140,30
+    LTEXT           "Select a network from above and Join it or create your own network.",
+                    IDC_STATIC,20,140,120,15
+END
+
+IDD_LAN_NEW DIALOGEX 0, 0, 157, 81
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Create Network"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Name:",IDC_STATIC,17,17,26,10
+    EDITTEXT        IDC_EDIT_NAME,50,15,99,12,ES_AUTOHSCROLL
+    LTEXT           "Chat Server:",IDC_STATIC,5,38,41,10
+    EDITTEXT        IDC_EDIT_IRC,50,35,99,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cancel",IDCANCEL,30,60,50,14
+    DEFPUSHBUTTON   "OK",IDOK,90,60,50,14
+END
+
+IDD_BROWSER_URL DIALOGEX 0, 0, 206, 16
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Address:",IDC_STATIC,8,4,28,8
+    EDITTEXT        IDC_EDIT_URL,41,1,104,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Go",IDC_BUTTON_GO,154,2,46,13,BS_FLAT
+END
+
+IDD_TOOL_SCHEDULER DIALOGEX 0, 0, 197, 170
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "24hr Scheduler"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Use Scheduler if you want Gnucleus connected to Gnutella  only at certain times during the day.  Uploads and Downloads are not affected.",
+                    IDC_STATIC,25,10,160,25
+    CONTROL         "Activate Scheduler",IDC_CHECK_SCHED_ACTIVATED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,50,150,10
+    GROUPBOX        "Schedule",IDC_STATIC_SCHED_FRAME,15,65,170,70
+    LTEXT           "Connect at",IDC_STATIC_SCHED_CONNECT,45,90,50,10
+    CONTROL         "DateTimePicker2",IDC_SCHED_ACTIVE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,100,85,55,15
+    LTEXT           "Disconnect at",IDC_STATIC_SCHED_DISCONNECT,45,115,50,10
+    CONTROL         "DateTimePicker1",IDC_SCHED_INACTIVE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
+                    WS_TABSTOP,100,110,55,15
+    DEFPUSHBUTTON   "OK",IDOK,40,145,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,105,145,50,14
+END
+
+IDD_TOOL_ADDWEBCACHE DIALOGEX 0, 0, 247, 201
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add GnuCache"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Use this tool to report the location of a GWebCache on the web.",
+                    IDC_STATIC,15,15,231,9
+    GROUPBOX        "About",IDC_STATIC,15,30,225,55
+    LTEXT           "GWebCache is a PHP script produced by the Gnucleus team that acts as a cache for nodes running on the Gnutella network.  The more GWebCache scripts running out there,  the more fail-safe gnutella becomes.",
+                    IDC_STATIC,35,40,170,40
+    LTEXT           "Creating a new GWebCache site is easy, just go to http://www.gnucleus.net, download the script, put it on your site and report its location here.  No other maintenence is required",
+                    IDC_STATIC,15,95,230,25
+    LTEXT           "Example: http://www.myisp.com/myhomepage/gcache.php",
+                    IDC_STATIC,15,130,210,10
+    EDITTEXT        IDC_EDIT_NEWCACHE,15,140,210,12,ES_AUTOHSCROLL
+    CONTROL         "Progress1",IDC_PROGRESS_ADD,"msctls_progress32",
+                    WS_BORDER,15,155,210,10
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,40,175,50,14
+    PUSHBUTTON      "Close",IDC_BUTTON_CLOSE,95,175,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,150,175,50,14
+END
+
+IDD_SHARE_INFO DIALOG  0, 0, 237, 246
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,90,225,50,14
+    LTEXT           "Name:",IDC_STATIC,10,10,30,10
+    LTEXT           "Size:",IDC_STATIC,10,20,30,10
+    LTEXT           "SHA1 Hash:",IDC_STATIC,10,50,50,10
+    LTEXT           "Index:",IDC_STATIC,10,35,25,10
+    EDITTEXT        IDC_EDIT_NAME,40,10,190,10,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    EDITTEXT        IDC_EDIT_SIZE,40,20,190,10,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    EDITTEXT        IDC_EDIT_INDEX,40,35,180,10,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    EDITTEXT        IDC_EDIT_SHA1HASH,60,50,170,10,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    CONTROL         "List1",IDC_LIST_KEYWORDS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,10,90,220,55
+    LTEXT           "Keywords:",IDC_STATIC,10,80,55,10
+    LTEXT           "Bitprint Hash:",IDC_STATIC,10,60,50,10
+    EDITTEXT        IDC_EDIT_BITPRINTHASH,60,60,170,10,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    CONTROL         "List1",IDC_LIST_ALTLOCS,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,10,165,220,55
+    LTEXT           "Alternate Locations:",IDC_STATIC,10,155,115,10
+END
+
+IDD_PREF_SEARCH_BLOCK DIALOGEX 0, 0, 292, 221
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Block"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Blocked Hosts:",IDC_STATIC,12,6,84,8
+    LTEXT           "Host Range:",IDC_STATIC,6,180,42,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_HOST,54,180,174,12,ES_AUTOHSCROLL
+    LTEXT           "Reason:",IDC_STATIC,12,198,36,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_EDIT_REASON,54,198,174,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,234,180,50,14
+    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,234,198,50,14
+    CONTROL         "List2",IDC_LIST_BLOCKED,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,11,16,273,159
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "gnucleus.exe.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,8,4,0
+ PRODUCTVERSION 1,8,4,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Node application for the gnutella network."
+            VALUE "CompanyName", "John Marshall"
+            VALUE "FileDescription", "Gnucleus"
+            VALUE "FileVersion", "1.8.4.0"
+            VALUE "InternalName", "Gnucleus"
+            VALUE "LegalCopyright", "Copyright (C) 2002"
+            VALUE "OriginalFilename", "Gnucleus.exe"
+            VALUE "ProductName", "Gnucleus"
+            VALUE "ProductVersion", "1.8.4.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 305
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 299
+    END
+
+    IDD_VIEW_CONNECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        TOPMARGIN, 7
+    END
+
+    IDR_MAINFRAME, DIALOG
+    BEGIN
+        RIGHTMARGIN, 262
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_VIEW_STATISTICS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 124
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_STAT_LOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 399
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_STAT_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 391
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 254
+    END
+
+    IDD_PREF_BANDWIDTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 174
+    END
+
+    IDD_PREF_SHARE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+
+    IDD_PREF_CONNECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_PREF_LOCAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 288
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+
+    IDD_PREF_SEARCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_PREF_TRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 183
+    END
+
+    IDD_PREF_LOCAL_FIREWALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_PREF_CONNECT_SCREEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_PREF_SEARCH_SCREEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_VIEW_SHARE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 360
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_TRANSFER_DOWN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 300
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_TRANSFER_UP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_VIEW_TRANSFER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 104
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_VIEW_SEARCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 76
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 35
+    END
+
+    IDD_SEARCH_RESULTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 400
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_SEARCH_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 322
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+    END
+
+    IDD_TRANSFER_UP_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 340
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+
+    IDD_CONNECT_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 10
+        RIGHTMARGIN, 185
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 213
+    END
+
+    IDD_PREF_CONNECT_SERVERS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_EVOLVE_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_STAT_DISTRIBUTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_STAT_PACKETS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_STAT_BANDWIDTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 350
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_STAT_MEMORY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 490
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    IDD_SEARCH_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 355
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_TRANSFER_DOWN_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 539
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 299
+    END
+
+    IDD_VIEW_CHAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 275
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_PREF_CHAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_BUILD_MAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 135
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 264
+    END
+
+    IDD_WINDOW_LIST, DIALOG
+    BEGIN
+        RIGHTMARGIN, 418
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_PREF_PLUGINS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_PREF_LOCAL_NETWORK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_CONNECT_BASIC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 305
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+    END
+
+    IDD_CONNECT_ADVANCED, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 375
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_STAT_ERROR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 360
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_LAN_SETUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 150
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 159
+    END
+
+    IDD_LAN_NEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 150
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_BROWSER_URL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 9
+    END
+
+    IDD_TOOL_SCHEDULER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 190
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+    END
+
+    IDD_TOOL_ADDWEBCACHE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_SHARE_INFO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 230
+        VERTGUIDE, 170
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_PREF_SEARCH_BLOCK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 285
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 214
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+    IDR_FRAMESHARE_TMPL     "\nFrameShare\nFrameS\nFrameS Files (*.fra)\n.fra\nFrameShare.Document\nFrameS Document"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Gnucleus"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_GNUTYPE             "\nGnu\nGnu\n\n\nGnucleus.Document\nGnu Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Gnucleus"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_CHAT            "Chat on IRC\nChat"
+    ID_VIEW_MEDIA_TOOLBAR   "Show or hide the media toolbar\nToggle MediaBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_CONFIG          "Modify Gnucleus's configuration\nSettings"
+    ID_VIEW_STATISTICS      "View network statistics\nStatistics"
+    ID_VIEW_CONNECTIONS     "View current Gnucleus connections\nConnections"
+    ID_VIEW_TRANSFERS       "View current file transfers\nTransfers"
+    ID_FILE_AUTOCONNECT     "Connect to the network automatically\nAuto-Connect"
+    ID_WINDOW_CLOSEALL      "Close all open windows\nClose All"
+    ID_FILE_LOAD_CONFIG     "Load a Gnucleus configuration file \nLoad Config"
+    ID_CONNECT_CLOSE        "Close connect window"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_NODEHUNTER      "View Gnucleus hunting for nodes\nNode Hunter"
+    ID_FILE_LOAD_NODES      "Load a Gnucleus hosts file \nLoad Nodes"
+    ID_FILE_DISCONNECT      "Close connections to all nodes\nDisconnect"
+    ID_VIEW_SETTINGS        "Modify existing Gnucleus settings\nPreferences"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_RECV       "Receive Rate: "
+    ID_INDICATOR_SEND       "Send Rate: "
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_PREFERENCES     "Modify existing Gnucleus settings\nPreferences"
+    ID_VIEW_SHARE           "View the files you are sharing\nShared Files"
+END
+
+STRINGTABLE 
+BEGIN
+    D_APP_SUPPORT           "Brings you to the support page on SourceForge\nSupport"
+    D_APP_BUG               "Brings you to the bug tracker at SourceForge\nReport Bug"
+    ID_APP_VERSIONCHECK     "Check for a new version on SourceForge\nVersion Check"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_WINDOWLIST      "Show or hide the list of open windows\nToggle window List"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_BROWSER         "Open Browser\nWeb"
+    ID_CHAT_CONNECT         "Connect to IRC\nConnect"
+    ID_CHAT_DISCONNECT      "Disconnect from IRC\nDisconnect"
+    ID_CHAT_PREFS           "Chat Preferences\nChat Preferences"
+    ID_CHAT_COLORS          "Change default chat colors\nChange Colors"
+    ID_CHAT_HELP            "Chat Help\nChat Help"
+    ID_CHAT_REMOTE          "Write IRC Remote Scripts\nRemote Scripting"
+    ID_CHAT_ALIAS           "Write command aliases\nAliases"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SERVER_NAME         "HTTP Server/1.0"
+    IDS_STATUS_FORBIDDEN    "403 Forbidden"
+    IDS_STATUS_OK           "200 OK"
+    IDS_STATUS_NOTMODIFIED  "304 Not Modified"
+    IDS_STATUS_SVCUNAVAIL   "503 Service Unavailable"
+    IDS_DIRMASK             "*.*"
+    IDS_CONTENTS_PRE        "<html><h1>"
+    IDS_CONTENTS_POST       "</h1><p>\n"
+    IDS_CONTENTS_DESC       "The URL specified is a folder that does not contain a default document or application. The following is a listing of what documents and subfolders it does have; please select one:<p>\n"
+    IDS_ICON_BLANK          "<img src=""/SvrAdmin/Blank.gif"" align=bottom alt=""     "" border=0 width=16 height=16>"
+    IDS_CONTENTS_HEADING    "<pre> Last Modified       Size %sName\n<hr>\n"
+    IDS_CONTENTS_EMPTY      "<strong>empty</strong>\n"
+    IDS_CONTENTS_FOOTER     "</pre>\n"
+    IDS_ICON_PARENT         "<img src=""/SvrAdmin/Prev.gif"" align=bottom alt=""     "" border=0 width=16 height=16>"
+    IDS_CONTENTS_PARENT     "<hr><h3><a href=""."">%s Parent Folder</a></h3>\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CONTENTS_NOTE       "<hr><em>Do your part to beautify the web! Turn <strong>off</strong> link underlining!</em>\n"
+    IDS_ICON_FOLDER         "<img src=""/SvrAdmin/Folder.gif"" align=bottom alt=""     "" border=0 width=16 height=16>"
+    IDS_ICON_FILE           "<img src=""/SvrAdmin/File.gif"" align=bottom alt=""     "" border=0 width=16 height=16>"
+    IDS_CONTENTS_FORMAT     " %-15s %s <a href=""%s"">%s%-1s</a>\n"
+    IDS_FILETIMEFMT         "%m/%d/%y %H:%M"
+    IDS_HTTPTIME            "%a, %d %b %Y %H:%M:%S GMT"
+    IDS_APP_CGI             "bat\nexe"
+    IDS_APP_ISAPI           "dll"
+    IDS_STATUS_MOVEDTEMP    "302 Redirection"
+    IDS_CONFIG              "Settings"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\Gnucleus.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

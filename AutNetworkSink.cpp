@@ -1,0 +1,138 @@
+/********************************************************************************
+
+	Gnucleus - An Application for the Gnutella Network
+    Copyright (C) 2000-2002 John Marshall
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+	For support, questions, comments, etc...
+	E-Mail:
+		swabby@c0re.net
+
+********************************************************************************/
+
+
+#include "stdafx.h"
+#include "Gnucleus.h"
+#include "GnucleusDoc.h"
+
+#include "ViewConnect.h"
+#include "ViewStatistics.h"
+
+#include "AutNetworkSink.h"
+
+
+IMPLEMENT_DYNAMIC(CAutNetworkSink, CCmdTarget)
+CAutNetworkSink::CAutNetworkSink(CGnucleusDoc* pDoc)
+{
+	m_pDoc = pDoc;
+
+	EnableAutomation();
+}
+
+CAutNetworkSink::~CAutNetworkSink()
+{
+}
+
+
+void CAutNetworkSink::OnFinalRelease()
+{
+	// When the last reference for an automation object is released
+	// OnFinalRelease is called.  The base class will automatically
+	// deletes the object.  Add additional cleanup required for your
+	// object before calling the base class.
+
+	CCmdTarget::OnFinalRelease();
+}
+
+
+BEGIN_MESSAGE_MAP(CAutNetworkSink, CCmdTarget)
+END_MESSAGE_MAP()
+
+
+BEGIN_DISPATCH_MAP(CAutNetworkSink, CCmdTarget)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnChange", 1, OnChange, VT_EMPTY, VTS_I4)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketIncoming", 2, OnPacketIncoming, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_I4 VTS_BOOL)
+	DISP_FUNCTION_ID(CAutNetworkSink, "OnPacketOutgoing", 3, OnPacketOutgoing, VT_EMPTY, VTS_I4 VTS_PVARIANT VTS_I4 VTS_BOOL)
+END_DISPATCH_MAP() 
+
+
+BEGIN_INTERFACE_MAP(CAutNetworkSink, CCmdTarget)
+	INTERFACE_PART(CAutNetworkSink, IID_INetworkEvent, Dispatch)
+END_INTERFACE_MAP()
+
+
+// CAutNetworkSink message handlers
+
+void CAutNetworkSink::OnChange(int NodeID)
+{
+	if(m_pDoc->m_pViewConnect)
+		((CViewConnect*) CWnd::FromHandle(m_pDoc->m_pViewConnect))->OnSockUpdate();
+
+	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnSockUpdate();
+}
+
+void CAutNetworkSink::OnPacketIncoming(int NodeID, VARIANT* packet, int size, int ErrorCode, bool Local)
+{
+	if((packet->vt & VT_ARRAY) == 0)
+		return;
+
+	if((packet->vt & VT_UI1) == 0)
+		return;
+
+	SAFEARRAY* psa = packet->parray;
+
+	byte* bArray;
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
+
+	byte* bPacket = new byte[size];
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+		 bPacket[i] = bArray[i];
+
+	SafeArrayUnaccessData(psa);
+
+	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketIncoming(NodeID, (packet_Header*) bPacket, size, ErrorCode, Local);
+
+	delete [] bPacket;
+}
+
+void CAutNetworkSink::OnPacketOutgoing(int NodeID, VARIANT* packet, int size, bool Local)
+{
+	
+	if((packet->vt & VT_ARRAY) == 0)
+		return;
+
+	if((packet->vt & VT_UI1) == 0)
+		return;
+
+	SAFEARRAY* psa = packet->parray;
+
+	byte* bArray;
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&bArray));
+
+	byte* bPacket = new byte[size];
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+		 bPacket[i] = bArray[i];
+
+	SafeArrayUnaccessData(psa);
+
+	for(int i = 0; i < m_pDoc->m_pViewStatistics.size(); i++)
+		((CViewStatistics*) CWnd::FromHandle(m_pDoc->m_pViewStatistics[i]))->OnPacketOutgoing(NodeID, (packet_Header*) bPacket, size, Local);
+
+	delete [] bPacket;
+}
+
+

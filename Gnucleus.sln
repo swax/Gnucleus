@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gnucleus", "Gnucleus.vcproj", "{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GnucDNA", "..\GnucDNA\GnucDNA.vcproj", "{B41712E7-6E7A-4707-9D65-DAB07A52F26C}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+		{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}.0 = {B41712E7-6E7A-4707-9D65-DAB07A52F26C}
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}.Debug.ActiveCfg = Debug|Win32
+		{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}.Debug.Build.0 = Debug|Win32
+		{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}.Release.ActiveCfg = Release|Win32
+		{F60B89EC-3793-45DC-A41D-0DEFFAAC24F6}.Release.Build.0 = Release|Win32
+		{B41712E7-6E7A-4707-9D65-DAB07A52F26C}.Debug.ActiveCfg = Debug|Win32
+		{B41712E7-6E7A-4707-9D65-DAB07A52F26C}.Debug.Build.0 = Debug|Win32
+		{B41712E7-6E7A-4707-9D65-DAB07A52F26C}.Release.ActiveCfg = Release|Win32
+		{B41712E7-6E7A-4707-9D65-DAB07A52F26C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

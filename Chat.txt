@@ -1,0 +1,31 @@
+
+
+Welcome to IRC based chat in Gnucleus.  
+
+The default network you connect to is EFNet, at any time EFNet has
+around 50,000 people online to talk to.  They are scattered around
+in different rooms.  Click the Configure button to change your 
+default chat settings.
+
+Basic Commands:
+
+	To change your name type '/nick newname'
+
+	To join another room type '/join #newroom'
+
+	To leave a room type '/part #newroom'
+
+	To send a private message type '/msg username hi'
+
+	To connect to a server type '/server irc.coolserver.net'
+
+Popular rooms:
+	#gnutella
+	#mp3
+	#movies
+
+If you are familiar to IRC already then have fun, most of 
+the commands you're used to are available in Gnucleus.  To send raw
+commands select (raw irc) from the server tree and type them
+in there.
+
