@@ -137,7 +137,7 @@ void CEvolverDlg::OnTimer(UINT nIDEvent)
 		{
 			// Show changelog
 			CFrameMain* pFrame = (CFrameMain*) AfxGetApp()->GetMainWnd();
-			pFrame->OpenBrowser("http://gnucleus.gnutelliums.com/update2/ChangeLog.htm");
+			pFrame->OpenBrowser("http://www.gnucleus.net/update2/ChangeLog.htm");
 		}
 
 		m_Counter++;
@@ -180,7 +180,10 @@ void CEvolverDlg::OnTimer(UINT nIDEvent)
 		m_stcProgress.SetWindowText("Restarting in " + DWrdtoStr((150 - m_Counter) / 10) + " seconds...");
 	
 		if(m_Counter == 150)
+		{
 			Restart();
+			return;
+		}
 	}
 
 	CDialog::OnTimer(nIDEvent);
@@ -197,6 +200,7 @@ void CEvolverDlg::OnBnClickedButtonEvolve()
 	else
 	{
 		Restart();
+		return;
 	}
 }
 

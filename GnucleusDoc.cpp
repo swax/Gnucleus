@@ -132,8 +132,8 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 	
 	// Load update servers and check for update
-	m_autUpdate->AddServer("http://gnucleus.gnutelliums.com:80/update2/update.xml");
-	m_autUpdate->AddServer("http://www.gnucleus.net/update2/update.xml");
+	//m_autUpdate->AddServer("http://gnucleus.gnutelliums.com:80/update2/update.xml");
+	m_autUpdate->AddServer("http://www.gnucleus.com/update2/update.xml");
 	m_autUpdate->Check();
 
 
