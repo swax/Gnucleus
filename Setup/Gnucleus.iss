@@ -37,6 +37,7 @@ Source: GnuCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
 Source: Gnucleus Forums.url.txt; DestDir: {app}; Flags: ignoreversion; DestName: Gnucleus Forums.url
 Source: Gnucleus Home Page.url.txt; DestDir: {app}; Flags: ignoreversion; DestName: Gnucleus Home Page.url
 Source: WebCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
+Source: ..\ChangeLog.txt; DestDir: {app}\Docs
 
 [Icons]
 Name: {group}\{#AppName}; Filename: {app}\Gnucleus.exe
@@ -51,6 +52,7 @@ Filename: {app}\Gnucleus.exe; Description: Launch {#AppName}; Flags: nowait post
 
 [Dirs]
 Name: {app}\Data
+Name: {app}\Docs
 
 [_ISTool]
 Use7zip=false

@@ -54,8 +54,7 @@
 //#include <crtdbg.h>
 
 
-// Master Version
-#define GNUCLEUS_VERSION    "2.0.0.5"
+// Minimum Required GnucDNA version
 #define BUILD_CORE_VERSION  "1.0.0.0"
 
 // Threading

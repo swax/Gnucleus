@@ -370,9 +370,11 @@ void CGnucleusApp::OnAppAbout()
 BOOL CAboutDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-	
+
+	CGnucleusDoc* pDoc = (CGnucleusDoc*) ((CGnucleusApp*)AfxGetApp())->m_pDoc;
+
 	CString Title = "Gnucleus ";
-	Title += GNUCLEUS_VERSION;
+	Title += pDoc->m_GnuVersion;
 
 	m_stcVersionFrame.SetWindowText(Title);
 	

@@ -705,7 +705,7 @@ void CFrameMain::OnHelpVersioncheck()
 
 void CFrameMain::OnHelpChangelog()
 {
-	OpenBrowser(m_pDoc->m_RunPath + "Docs\\ChangeLog.htm");
+	OpenBrowser(m_pDoc->m_RunPath + "Docs\\ChangeLog.txt");
 }
 
 void CFrameMain::OnHelpBug()

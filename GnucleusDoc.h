@@ -42,6 +42,7 @@ public:
 	
 	void ConnectCore();
 	void DisconnectCore();
+	CString GetVersionInfo(void);
 
 	void DisplayEvolver();
 	CEvolverDlg* m_pDiagEvolve;
@@ -95,6 +96,7 @@ public:
 	bool	m_ShutDown;			   // Signal to update
 	int		m_nLastPref;		   // Last preference selected
 	CString m_CurrentSite;		   // Tells browser where to go
+	CString m_GnuVersion;		   // Gnucleus version info
 
 	//{{AFX_VIRTUAL(CGnucleusDoc)
 	public:
@@ -119,5 +121,6 @@ protected:
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
 };
 

@@ -94,12 +94,14 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	// Load main core
 	ConnectCore();
 
+	// Get Gnucleus version info from resource file
+	m_GnuVersion = GetVersionInfo();
+
 	m_autCore->SetClientName("Gnucleus");
-	m_autCore->SetClientVersion(GNUCLEUS_VERSION); 
+	m_autCore->SetClientVersion(m_GnuVersion); 
 	m_autCore->SetClientCode("GNUC");
 
 	m_RunPath = m_autCore->GetRunPath();
-
 
 	// Load Meta data schemas
 	m_autMeta->LoadSchemaDir(m_RunPath + "\\Schemas");
@@ -438,3 +440,34 @@ void CGnucleusDoc::DisplayEvolver()
 	m_pDiagEvolve->BringWindowToTop();
 }
 
+
+/////////////////////////////////////////////////////////////////////////////
+// CGnucleusDoc GetVersionInfo
+
+CString CGnucleusDoc::GetVersionInfo(void)
+{
+	char szAppName[_MAX_PATH];
+	DWORD dwHandle, dwSize;
+	CString version = "9.9.9.9";
+
+	if( GetModuleFileName(AfxGetInstanceHandle(), szAppName, sizeof(szAppName)) )
+	{
+		dwHandle = 0;
+		dwSize = GetFileVersionInfoSize(szAppName, &dwHandle);
+		if( dwSize != 0L )
+		{
+			UINT uVerInfoSize;
+			LPVOID lpStr;
+			LPVOID lpVerInfo = new BYTE[dwSize];
+			if( GetFileVersionInfo(szAppName, NULL, dwSize, lpVerInfo) )
+			{
+				if( VerQueryValue(lpVerInfo, "\\StringFileInfo\\040904B0\\ProductVersion", &lpStr, &uVerInfoSize) )
+					version = reinterpret_cast<char *>(lpStr);
+			}
+			delete[] lpVerInfo;
+		}
+	}
+
+	return version;
+
+}

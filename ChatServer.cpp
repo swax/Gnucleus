@@ -1189,7 +1189,7 @@ void CChatServer::Receive_PrivMsg(CString Message)
 	if(Message == CTCP)
 	{
 		CTCP = "NOTICE " + Sender + " :" + (char) 0x01 + "VERSION Gnucleus ";
-		CTCP = CTCP + GNUCLEUS_VERSION + (char) 0x01 + "\r\n";
+		CTCP = CTCP + m_pChat->m_pDoc->m_GnuVersion + (char) 0x01 + "\r\n";
 
 		Send(CTCP, CTCP.GetLength());
 		return;
