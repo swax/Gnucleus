@@ -256,6 +256,13 @@ public:
 		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x24, DISPATCH_METHOD, VT_EMPTY, NULL, parms, SearchID);
 	}
+	unsigned __int64 GetResultSize2(long SearchID, long ResultID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x25, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, SearchID, ResultID);
+		return result;
+	}
 
 	// ISearch properties
 public:

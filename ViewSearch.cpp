@@ -399,7 +399,7 @@ SearchResult* CViewSearch::AddResult(UINT ResultID)
 	Result.NameLower.MakeLower();
 
 	Result.Sha1Hash  = m_autSearch->GetResultHash(m_SearchID, ResultID, HASH_SHA1);
-	Result.Size		 = m_autSearch->GetResultSize(m_SearchID, ResultID);
+	Result.Size		 = m_autSearch->GetResultSize2(m_SearchID, ResultID);
 	Result.AvgSpeed	 = m_autSearch->GetResultSpeed(m_SearchID, ResultID);
 	Result.HostCount = m_autSearch->GetResultHostCount(m_SearchID, ResultID);
 

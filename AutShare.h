@@ -181,18 +181,36 @@ public:
 		InvokeHelper(0x1a, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
 		return result;
 	}
+	void SetFileMetaID(long FileID, long MetaID)
+	{
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x1c, DISPATCH_METHOD, VT_EMPTY, NULL, parms, FileID, MetaID);
+	}
+	unsigned __int64 GetFileSize2(long FileID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x1d, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, FileID);
+		return result;
+	}
+	unsigned __int64 GetTotalFileSize2()
+	{
+		unsigned __int64 result;
+		InvokeHelper(0x1e, DISPATCH_METHOD, VT_UI8, (void*)&result, NULL);
+		return result;
+	}
 
 	// IShare properties
 public:
-	long GetHashSpeed()
-	{
-		long result;
-		GetProperty(0x1b, VT_I4, (void*)&result);
-		return result;
-	}
-	void SetHashSpeed(long propVal)
-	{
-		SetProperty(0x1b, VT_I4, propVal);
-	}
+long GetHashSpeed()
+{
+	long result;
+	GetProperty(0x1b, VT_I4, (void*)&result);
+	return result;
+}
+void SetHashSpeed(long propVal)
+{
+	SetProperty(0x1b, VT_I4, propVal);
+}
 
 };

@@ -280,6 +280,63 @@ public:
 		static BYTE parms[] = VTS_I4 VTS_BOOL VTS_BSTR ;
 		InvokeHelper(0x28, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, Enabled, Default);
 	}
+	long GetMetaID(long DownloadID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x29, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID);
+		return result;
+	}
+	CString GetAttributeValue(long DownloadID, long AttributeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x2a, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DownloadID, AttributeID);
+		return result;
+	}
+	void SetAttributeValue(long DownloadID, long AttributeID, LPCTSTR Value)
+	{
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x2b, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, AttributeID, Value);
+	}
+	void SetMetaID(long DownloadID, long MetaID)
+	{
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x2c, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, MetaID);
+	}
+	void OverrideDownloadPath(long DownloadID, LPCTSTR Dir)
+	{
+		static BYTE parms[] = VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x2d, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, Dir);
+	}
+	unsigned __int64 GetFileLength2(long DownloadID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2e, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, DownloadID);
+		return result;
+	}
+	unsigned __int64 GetBytesCompleted2(long DownloadID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2f, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, DownloadID);
+		return result;
+	}
+	unsigned __int64 GetChunkStart2(long DownloadID, long ChunkID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x30, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, DownloadID, ChunkID);
+		return result;
+	}
+	long DownloadFile2(LPCTSTR Name, unsigned __int64 size, long HashID, LPCTSTR Hash)
+	{
+		long result;
+		static BYTE parms[] = VTS_BSTR VTS_UI8 VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x31, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Name, size, HashID, Hash);
+		return result;
+	}
 
 	// IDownload properties
 public:

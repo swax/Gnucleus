@@ -238,8 +238,8 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			return 5.5;
 		
 		case TRANSFER_RECEIVING: // Receiving
-			if(autDownload->GetFileLength(DownloadID))
-				return 6.0 + (double) autDownload->GetBytesCompleted(DownloadID) / (double) autDownload->GetFileLength(DownloadID);
+			if(autDownload->GetFileLength2(DownloadID))
+				return 6.0 + (long double) autDownload->GetBytesCompleted2(DownloadID) / (long double) autDownload->GetFileLength2(DownloadID);
 			else
 				return 6.0;
 		
@@ -323,8 +323,8 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			// FALL THROUGH!!!
 			case COL_COMPLETED:
 			{
-				int cbX = autDownload->GetBytesCompleted(x);
-				int cbY = autDownload->GetBytesCompleted(y);
+				uint64 cbX = autDownload->GetBytesCompleted2(x);
+				uint64 cbY = autDownload->GetBytesCompleted2(y);
 				if (cbX != cbY)
 				{
 					fResult = cbX > cbY;
@@ -333,7 +333,7 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			}
 			// FALL THROUGH!!!
 			case COL_SIZE:
-				fResult = autDownload->GetFileLength(x) < autDownload->GetFileLength(y);
+				fResult = autDownload->GetFileLength2(x) < autDownload->GetFileLength2(y);
 				break;
 		}
 		if (fReverse)
@@ -472,8 +472,8 @@ void CTransfersDown::UpdateColumns (int row, int DownloadID)
 
 
 	// Set Completed column
-	int cbCompleted = m_autDownload->GetBytesCompleted(DownloadID);
-	int cbTotal = m_autDownload->GetFileLength(DownloadID);
+	uint64 cbCompleted = m_autDownload->GetBytesCompleted2(DownloadID);
+	uint64 cbTotal = m_autDownload->GetFileLength2(DownloadID);
 	CString Completed  = CommaIze( DWrdtoStr(cbCompleted / 1024)) + " KB";
 	m_lstDownloads.SetItemText(row, COL_COMPLETED, Completed);
 
@@ -693,11 +693,11 @@ CString CTransfersDown::GetStatus(int DownloadID)
 		break;
 
 	case TRANSFER_RECEIVING:
-		if(m_autDownload->GetFileLength(DownloadID))
+		if(m_autDownload->GetFileLength2(DownloadID))
 		{
 			int Sources = m_autDownload->GetActiveSourceCount(DownloadID);
 
-			Status = "Receiving, " + DWrdtoStr( (double) m_autDownload->GetBytesCompleted(DownloadID) / (double) m_autDownload->GetFileLength(DownloadID) * 100) + "%";
+			Status = "Receiving, " + DWrdtoStr( 100 * m_autDownload->GetBytesCompleted2(DownloadID) / m_autDownload->GetFileLength2(DownloadID)) + "%";
 
 			if(Sources > 1)
 				Status += " from " + DWrdtoStr(Sources) + " Hosts";
@@ -1090,10 +1090,10 @@ int CTransfersDown::GetFirstSelectedItem()
 
 float CTransfersDown::GetPercentComplete (int idDownload)
 {
-	int cbTotal = m_autDownload->GetFileLength(idDownload);
+	uint64 cbTotal = m_autDownload->GetFileLength2(idDownload);
 	if (cbTotal == 0)
 		return 100.0;
 
-	int cbCompleted = m_autDownload->GetBytesCompleted(idDownload);
-	return 100.0 * cbCompleted / (float) cbTotal;
+	uint64 cbCompleted = m_autDownload->GetBytesCompleted2(idDownload);
+	return 100.0 * cbCompleted / cbTotal;
 }

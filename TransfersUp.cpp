@@ -161,14 +161,14 @@ struct UpOrder : public std::binary_function<int, int, bool>
 	{		
 		if(autUpload->GetStatus(UploadID) == TRANSFER_SENDING)
 		{
-			int    BytesLeft   = autUpload->GetFileLength(UploadID) - autUpload->GetBytesCompleted(UploadID);
-			double BytesPerSec = autUpload->GetBytesPerSec(UploadID);
+			uint64 BytesLeft   = autUpload->GetFileLength2(UploadID) - autUpload->GetBytesCompleted2(UploadID);
+			long double BytesPerSec = autUpload->GetBytesPerSec(UploadID);
 
 			
 			if (BytesPerSec == 0)
 				return 0.0;
 			
-			return BytesLeft / BytesPerSec;
+			return (long double) BytesLeft / BytesPerSec;
 		}
 		else
 			return -1.0;
@@ -195,7 +195,7 @@ struct UpOrder : public std::binary_function<int, int, bool>
 				break;
 
 			case TRANSFER_SENDING:
-				if(autUpload->GetFileLength(UploadID) == 0)
+				if(autUpload->GetFileLength2(UploadID) == 0)
 					return 5.0;
 				else
 					return 6.0;
@@ -226,10 +226,10 @@ struct UpOrder : public std::binary_function<int, int, bool>
 			case 3:
 				switch (This->m_UpSortOrder)
 				{
-					case 0:  return autUpload->GetBytesCompleted(x) < autUpload->GetBytesCompleted(y);
-					case 1:  return autUpload->GetBytesCompleted(x) > autUpload->GetBytesCompleted(y);
-					case 2:  return autUpload->GetFileLength(x) < autUpload->GetFileLength(y);
-					default: return autUpload->GetFileLength(x) > autUpload->GetFileLength(y);
+					case 0:  return autUpload->GetBytesCompleted2(x) < autUpload->GetBytesCompleted2(y);
+					case 1:  return autUpload->GetBytesCompleted2(x) > autUpload->GetBytesCompleted2(y);
+					case 2:  return autUpload->GetFileLength2(x) < autUpload->GetFileLength2(y);
+					default: return autUpload->GetFileLength2(x) > autUpload->GetFileLength2(y);
 				}
 			case 4:
 				return This->m_UpSortOrder != 0 ? (GetSpeed(x) < GetSpeed(y)) : (GetSpeed(x) > GetSpeed(y));
@@ -337,8 +337,8 @@ void CTransfersUp::OnUpdate(int UploadID)
  		m_lstUploads.SetItemText(row, 2, GetStatus(UploadID));
  		
 		// Set Completed colum
-		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted(UploadID) / 1024)) + " / ";
-				Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength(UploadID) / 1024)) + " KB";
+		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted2(UploadID) / 1024)) + " / ";
+				Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength2(UploadID) / 1024)) + " KB";
 
 		m_lstUploads.SetItemText(row, 3, Completed);
 	
@@ -496,8 +496,8 @@ void CTransfersUp::UpdateView()
 		m_lstUploads.SetItemData(pos, UploadID);
 
 		// Set Completed column
-		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted(UploadID) / 1024)) + " KB";// + " / ";
-				//Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength(UploadID) / 1024)) + " KB";
+		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted2(UploadID) / 1024)) + " KB";// + " / ";
+				//Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength2(UploadID) / 1024)) + " KB";
 
 		m_lstUploads.SetItemText(pos, 3, Completed);
 	
@@ -564,8 +564,8 @@ CString CTransfersUp::GetStatus(int UploadID)
 
 	case TRANSFER_SENDING:
 		Status = "Sending";
-		//if(m_autUpload->GetFileLength(UploadID))
-		//	Status = "Sending, " + DWrdtoStr( (double) m_autUpload->GetBytesCompleted(UploadID) / (double) m_autUpload->GetFileLength(UploadID) * 100) + "% Complete";
+		//if(m_autUpload->GetFileLength2(UploadID))
+		//	Status = "Sending, " + DWrdtoStr( (double) m_autUpload->GetBytesCompleted2(UploadID) / (double) m_autUpload->GetFileLength2(UploadID) * 100) + "% Complete";
 		//else
 		//	Status = "Sending, 0% Complete";
 		break;

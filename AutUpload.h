@@ -132,6 +132,27 @@ public:
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_I4, (void*)&result, parms, UploadID);
 		return result;
 	}
+	CString GetFilePath(long UploadID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x12, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, UploadID);
+		return result;
+	}
+	unsigned __int64 GetBytesCompleted2(long UploadID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x13, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, UploadID);
+		return result;
+	}
+	unsigned __int64 GetFileLength2(long UploadID)
+	{
+		unsigned __int64 result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x14, DISPATCH_METHOD, VT_UI8, (void*)&result, parms, UploadID);
+		return result;
+	}
 
 	// IUpload properties
 public:

@@ -130,8 +130,8 @@ void CSearchResultsCtrl::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)
 		return;
 	}
 
-	UINT ByteSize;
-	UINT KbSize;
+	uint64 ByteSize;
+	uint64 KbSize;
 
 	SearchResult* Result = m_data[pItem->iItem - 2];
 	

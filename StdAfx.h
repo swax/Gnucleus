@@ -40,6 +40,10 @@
 #include <map>
 #include <deque>
 
+typedef unsigned char    uint8;
+typedef unsigned short   uint16;
+typedef unsigned int     uint32;
+typedef unsigned __int64 uint64;
 
 // Custom includes
 #include "Conversions.h"
@@ -145,12 +149,6 @@
 #define LIMIT_LESS			1
 #define LIMIT_EXACTLY		2
 #define LIMIT_MORE			3
-
-
-typedef unsigned char    uint8;
-typedef unsigned short   uint16;
-typedef unsigned int     uint32;
-typedef unsigned __int64 uint64;
 
 
 // Windows Custom Messages

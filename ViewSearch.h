@@ -17,7 +17,7 @@ struct SearchResult
 	CString NameLower;
 
 	CString Sha1Hash;
-	int Size;
+	uint64 Size;
 	int AvgSpeed;
 	int HostCount;
 

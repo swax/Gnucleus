@@ -795,7 +795,7 @@
 					RelativePath="AutSearchSink.h">
 				</File>
 				<File
-					RelativePath="AutShare.h">
+					RelativePath=".\AutShare.h">
 				</File>
 				<File
 					RelativePath="AutShareSink.h">
@@ -807,7 +807,7 @@
 					RelativePath="AutUpdateSink.h">
 				</File>
 				<File
-					RelativePath="AutUpload.h">
+					RelativePath=".\AutUpload.h">
 				</File>
 				<File
 					RelativePath="AutUploadSink.h">

@@ -123,7 +123,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 
 
 	m_stcName.SetWindowText("Name:  " + m_autDownload->GetName(m_DownloadID));
-	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(m_autDownload->GetFileLength(m_DownloadID))) + " bytes");
+	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(m_autDownload->GetFileLength2(m_DownloadID))) + " bytes");
 	
 	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autDownload->GetHash(m_DownloadID, HASH_SHA1));
 	
@@ -270,9 +270,9 @@ void CTransfersDownEx::UpdateInfo()
 		int ChunkID = ChunkList[i];
 
 		if (itemCount <= i)
-			m_lstChunks.InsertItem(itemCount++, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart(m_DownloadID, ChunkID))));
+			m_lstChunks.InsertItem(itemCount++, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID))));
 		else
-			m_lstChunks.SetItemText(i, 0, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart(m_DownloadID, ChunkID))));
+			m_lstChunks.SetItemText(i, 0, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID))));
 	
 		m_lstChunks.SetItemText(i, 1, CommaIze(DWrdtoStr(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID))));
 		m_lstChunks.SetItemText(i, 2, CommaIze(DWrdtoStr(m_autDownload->GetChunkSize(m_DownloadID, ChunkID))));

@@ -128,12 +128,12 @@ void CTransfersDownBar::OnPaint()
 		Brush.CreateSolidBrush( m_autDownload->GetChunkFamily(m_DownloadID, ChunkID) /*RGB(0, 255, 0)*/ ); 
 		pOldBrush = (CBrush *) BarDC.SelectObject(&Brush); 
 
-		int offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength(m_DownloadID))); 
+		int offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
 
 		ColorBar.top = 0; 
 		ColorBar.left = offset; 
 		ColorBar.bottom = BarSize.bottom; 
-		ColorBar.right = offset + BarSize.right * (float(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength(m_DownloadID))); 
+		ColorBar.right = offset + BarSize.right * (float(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
 
 		BarDC.FillRect(&ColorBar, &Brush); 
 
@@ -147,14 +147,14 @@ void CTransfersDownBar::OnPaint()
 		ChunkID = ChunkList[i];
 
 		// Start Pos dividers
-		offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength(m_DownloadID))); 
+		offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
 
 		BarDC.MoveTo(offset, 0); 
 		BarDC.LineTo(offset, BarSize.bottom / 2); 
 		BarDC.MoveTo(0, 0); 
 
 		// End Pos dividers
-		offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart(m_DownloadID, ChunkID) + m_autDownload->GetChunkSize(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength(m_DownloadID))); 
+		offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID) + m_autDownload->GetChunkSize(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
 
 		BarDC.MoveTo(offset, BarSize.bottom / 2); 
 		BarDC.LineTo(offset, BarSize.bottom); 

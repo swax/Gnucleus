@@ -24,7 +24,7 @@ struct FileItem
 	CString NameLower;
 
 	CString Hash;
-	DWORD   Size;
+	uint64  Size;
 	CString Type;
 	int		Matches;
 	int		Uploads;

@@ -33,12 +33,10 @@
 // Get rid of ugly warnings
 #pragma warning (disable : 4786)
 
-CString DWrdtoStr(UINT in)
+CString DWrdtoStr(uint64 in)
 {
-	char buff[16];
-
-	::sprintf (buff, "%u", in);
-
+	char buff[24];
+	::sprintf (buff, "%I64d", in);
 	return buff;
 }
 

@@ -10,7 +10,7 @@
 #endif 
 
 
-CString DWrdtoStr(UINT);     // Convert DWORD to a CString
+CString DWrdtoStr(uint64 in);
 
 CString IPtoStr(IP);		   // Convert IP to CString
 IP      StrtoIP(CString in);   // Convert CString to an IP
