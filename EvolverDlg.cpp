@@ -153,7 +153,7 @@ void CEvolverDlg::OnTimer(UINT nIDEvent)
 		// Get File IDs
 		std::vector<int> FileIDs;
 
-		_variant_t var = m_autUpdate->GetFileIDs();
+		VARIANT var = m_autUpdate->GetFileIDs();
 		SAFEARRAY* psa = var.parray;
 
 		int* nArray;
@@ -163,6 +163,7 @@ void CEvolverDlg::OnTimer(UINT nIDEvent)
 			FileIDs.push_back(nArray[i]);
 
 		SafeArrayUnaccessData(psa);
+		VariantClear(&var);
 
 		// Update status
 		if(m_autUpdate->GetTotalCompleted())

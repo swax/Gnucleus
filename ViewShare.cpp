@@ -211,7 +211,7 @@ void CViewShare::LoadSharedList()
 
 
 	// Get current file IDs and put them into a vector
-	_variant_t var = m_autShare->GetFileIDs();
+	VARIANT var = m_autShare->GetFileIDs();
 	SAFEARRAY* psa = var.parray;
 
 	UINT* nArray;
@@ -222,6 +222,7 @@ void CViewShare::LoadSharedList()
 		 FileIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	for(int i = 0; i < FileIDs.size(); i++)

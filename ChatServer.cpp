@@ -559,6 +559,7 @@ void CChatServer::Receive_ErrorCode(CString Error, int code)
 {
 	// While logging in, nick may conflict
 	if(code == ERR_NICKNAMEINUSE)
+	{
 		if(!m_LoggedIn)
 		{
 			if(Error.Find("*") == 0 && Error.Find(m_pPrefs->m_Nick) != -1)
@@ -584,7 +585,15 @@ void CChatServer::Receive_ErrorCode(CString Error, int code)
 		else
 			m_Nick = Error.Left(Error.Find(' '));
 
-	Error.Replace(m_Nick + " ", "");
+		Error.Replace(m_Nick + " ", "");
+	}
+
+	if(code == ERR_NONICKNAMEGIVEN)
+	{
+		m_Console->WriteToDisplay("\n\nPlease Set Nickname in Preferences!\n", COLOR_BROWN);
+		m_pChat->ChatMessage(CHAT_NOTICE, (DWORD) m_Console);
+		return;
+	}
 
 
 	// If unable to join cache channel, join the next cache channel  up

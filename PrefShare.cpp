@@ -111,7 +111,7 @@ BOOL CPrefShare::OnInitDialog()
 	m_lstShared.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
 	// Copy vector to alt loc list array
-	_variant_t var = m_autShare->GetSharedDirIDs();
+	VARIANT var = m_autShare->GetSharedDirIDs();
 	SAFEARRAY* psa = var.parray;
 
 	UINT* nArray;
@@ -122,6 +122,7 @@ BOOL CPrefShare::OnInitDialog()
 		 DirIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	// Load up the listbox

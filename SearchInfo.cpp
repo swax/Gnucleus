@@ -183,7 +183,7 @@ void CSearchInfo::UpdateInfo()
 	}
 
 	// Get new Host ID list
-	_variant_t var = m_autSearch->GetHostIDs(m_SearchID, m_ResultID);
+	VARIANT var = m_autSearch->GetHostIDs(m_SearchID, m_ResultID);
 	SAFEARRAY* psa = var.parray;
 
 	UINT* nArray;
@@ -216,7 +216,7 @@ void CSearchInfo::UpdateInfo()
 			pHost->Icon	    = m_pDoc->GetIconIndex(m_autSearch->GetResultName(m_SearchID, m_ResultID));
 
 			// Get extended host info
-			_variant_t var2 = m_autSearch->GetHostExtended(m_SearchID, m_ResultID, HostID);
+			VARIANT var2 = m_autSearch->GetHostExtended(m_SearchID, m_ResultID, HostID);
 			SAFEARRAY* psa2 = var2.parray;
 
 			BSTR* strArray;
@@ -231,7 +231,8 @@ void CSearchInfo::UpdateInfo()
 			}
 
 			SafeArrayUnaccessData(psa2);
-			
+			VariantClear(&var2);
+
 
 			m_HostMap[HostID] = pHost;
 			m_HostList.push_back(pHost);
@@ -239,6 +240,7 @@ void CSearchInfo::UpdateInfo()
 	}
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	SearchExOrder o(this);

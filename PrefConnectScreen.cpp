@@ -95,7 +95,7 @@ BOOL CPrefConnectScreen::OnInitDialog()
 	m_lstScreen.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
 	// Get screen node vector
-	_variant_t var = m_autPrefs->GetScreenedNodes();
+	VARIANT var = m_autPrefs->GetScreenedNodes();
 	SAFEARRAY* psa = var.parray;
 
 	BSTR* strArray;
@@ -106,7 +106,7 @@ BOOL CPrefConnectScreen::OnInitDialog()
 		 ScreenedNodes.push_back(strArray[i]);
 
 	SafeArrayUnaccessData(psa);
-
+	VariantClear(&var);
 
 	// Load list box
 	for(int i = 0; i < ScreenedNodes.size(); i++)

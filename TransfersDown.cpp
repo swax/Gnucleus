@@ -514,7 +514,7 @@ void CTransfersDown::ReloadLists()
 	m_ErroredList.clear();   
 
 	// Get new download ID list
-	_variant_t var = m_autDownload->GetDownloadIDs();
+	VARIANT var = m_autDownload->GetDownloadIDs();
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -547,7 +547,7 @@ void CTransfersDown::ReloadLists()
 	}
 
 	SafeArrayUnaccessData(psa);
-
+	VariantClear(&var);
 
 	UpdateView();
 }

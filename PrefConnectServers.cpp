@@ -98,7 +98,7 @@ BOOL CPrefConnectServers::OnInitDialog()
 	m_lstServers.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
 	// Copy vector to host servers array
-	_variant_t var = m_autPrefs->GetHostServers();
+	VARIANT var = m_autPrefs->GetHostServers();
 	SAFEARRAY* psa = var.parray;
 
 	BSTR* strArray;
@@ -109,6 +109,8 @@ BOOL CPrefConnectServers::OnInitDialog()
 		 HostServers.push_back(strArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
+
 
 	// Load list box
 	for(int i = 0; i < HostServers.size(); i++)

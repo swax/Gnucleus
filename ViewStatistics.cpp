@@ -204,7 +204,7 @@ void CViewStatistics::OnSockUpdate()
 
 
 	// Get current node IDs and put them into a vector
-	_variant_t var = m_autNetwork->GetNodeIDs();
+	VARIANT var = m_autNetwork->GetNodeIDs();
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -215,10 +215,11 @@ void CViewStatistics::OnSockUpdate()
 		 NodeIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	// Get child IDs and put them into a vector
-	var.Clear();
+	VariantClear(&var);
 	var = m_autNetwork->GetChildNodeIDs();
 	psa = var.parray;
 

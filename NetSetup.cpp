@@ -112,7 +112,7 @@ BOOL CNetSetup::OnInitDialog()
 void CNetSetup::OnTimer(UINT nIDEvent) 
 {
 	// Get current node IDs and put them into a vector
-	_variant_t var = m_autNetwork->GetLanNodeIDs();
+	VARIANT var = m_autNetwork->GetLanNodeIDs();
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -123,7 +123,7 @@ void CNetSetup::OnTimer(UINT nIDEvent)
 		 LanNodeIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
-
+	VariantClear(&var);
 
 	if(!LanNodeIDs.size())
 		return;

@@ -80,7 +80,7 @@ BOOL CSearchMeta::OnInitDialog()
 	m_cmbType.SelectString(-1, "Unspecified");
 	m_cmbType.SetItemData(0, 0);
 
-	_variant_t var = m_autMeta->GetMetaIDs();
+	VARIANT var = m_autMeta->GetMetaIDs();
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -99,6 +99,7 @@ BOOL CSearchMeta::OnInitDialog()
 	}
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	// Meta-Data listbox
@@ -121,7 +122,7 @@ void CSearchMeta::OnCbnSelchangeComboMeta()
 
 	m_lstAttributes.DeleteAllItems();
 
-	_variant_t var = m_autMeta->GetAttributeIDs(m_MetaID);
+	VARIANT var = m_autMeta->GetAttributeIDs(m_MetaID);
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -132,6 +133,8 @@ void CSearchMeta::OnCbnSelchangeComboMeta()
 		 AtrributeIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
+
 
 	for(i = 0; i < AtrributeIDs.size(); i++)
 	{
@@ -173,7 +176,7 @@ void CSearchMeta::OnLvnItemchangedListAttributes(NMHDR *pNMHDR, LRESULT *pResult
 		{
 			m_cmbSpecify.InsertString(0, "");
 
-			_variant_t var = m_autMeta->GetAttributeEnums(m_MetaID, AttributeID);
+			VARIANT var = m_autMeta->GetAttributeEnums(m_MetaID, AttributeID);
 			SAFEARRAY* psa = var.parray;
 
 			BSTR* strArray;
@@ -184,6 +187,7 @@ void CSearchMeta::OnLvnItemchangedListAttributes(NMHDR *pNMHDR, LRESULT *pResult
 				m_cmbSpecify.InsertString(i + 1, CString(strArray[i]));
 
 			SafeArrayUnaccessData(psa);
+			VariantClear(&var);
 		}	
 	}
 
@@ -242,7 +246,7 @@ void CSearchMeta::OnOK()
 		strArray[i] = AttributeList[i].AllocSysString();
 
 	SafeArrayUnaccessData(psa);
-	
+
 	VARIANT vaAttr;
 	VariantInit(&vaAttr);
 

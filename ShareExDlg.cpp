@@ -138,7 +138,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 
 	// Set MetaData listbox
-	_variant_t var = m_autMeta->GetAttributeIDs(m_MetaID);
+	VARIANT var = m_autMeta->GetAttributeIDs(m_MetaID);
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -149,6 +149,7 @@ BOOL CShareExDlg::OnInitDialog()
 		 AtrributeIDs.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 	for(i = 0; i < AtrributeIDs.size(); i++)
 	{
@@ -164,7 +165,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 
 	// Set Keyword listbox
-	var.Clear();
+	VariantClear(&var);
 	var = m_autShare->GetFileKeywords(m_FileID);
 	psa = var.parray;
 
@@ -187,7 +188,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 
 	// Set AltLoc Listbox
-	var.Clear();
+	VariantClear(&var);
 	var = m_autShare->GetFileAltLocs(m_FileID);
 	psa = var.parray;
 
@@ -198,6 +199,7 @@ BOOL CShareExDlg::OnInitDialog()
 		 AltLocList.push_back(strArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 	// Fill AltLoc info
 	for(i = 0; i < AltLocList.size(); i++)
@@ -239,7 +241,7 @@ void CShareExDlg::OnLvnItemchangedListMetadata(NMHDR *pNMHDR, LRESULT *pResult)
 		{
 			m_cmbModify.InsertString(0, "");
 
-			_variant_t var = m_autMeta->GetAttributeEnums(m_MetaID, AttributeID);
+			VARIANT var = m_autMeta->GetAttributeEnums(m_MetaID, AttributeID);
 			SAFEARRAY* psa = var.parray;
 
 			BSTR* strArray;
@@ -250,6 +252,7 @@ void CShareExDlg::OnLvnItemchangedListMetadata(NMHDR *pNMHDR, LRESULT *pResult)
 				m_cmbModify.InsertString(i + 1, CString(strArray[i]));
 
 			SafeArrayUnaccessData(psa);
+			VariantClear(&var);
 		}
 	}
 	

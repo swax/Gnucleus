@@ -188,7 +188,7 @@ void CTransfersDownEx::UpdateInfo()
 	std::vector<int> ListItems;
 
 	// Get new Source IDs
-	_variant_t var = m_autDownload->GetSourceIDs(m_DownloadID);
+	VARIANT var = m_autDownload->GetSourceIDs(m_DownloadID);
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -198,6 +198,7 @@ void CTransfersDownEx::UpdateInfo()
 		ListItems.push_back(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	DownExOrder o(this);
@@ -243,7 +244,7 @@ void CTransfersDownEx::UpdateInfo()
 	std::vector<int> ChunkList;
 
 	// Get new Source IDs
-	var.Clear();
+	VariantClear(&var);
 	var = m_autDownload->GetChunkIDs(m_DownloadID);
 	psa = var.parray;
 

@@ -89,7 +89,7 @@ BOOL CPrefSearchScreen::OnInitDialog()
 	m_lstScreen.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
 	// Copy vector to word array
-	_variant_t var = m_autPrefs->GetScreenedWords();
+	VARIANT var = m_autPrefs->GetScreenedWords();
 	SAFEARRAY* psa = var.parray;
 
 	BSTR* strArray;
@@ -100,6 +100,7 @@ BOOL CPrefSearchScreen::OnInitDialog()
 		 BadWords.push_back(strArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	// Load list box

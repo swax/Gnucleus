@@ -368,7 +368,7 @@ void CViewSearch::OnRefresh()
 	m_ResultList.clear();
 
 	// Get new result ID list
-	_variant_t var = m_autSearch->GetResultIDs(m_SearchID);
+	VARIANT var = m_autSearch->GetResultIDs(m_SearchID);
 	SAFEARRAY* psa = var.parray;
 
 	UINT* nArray;
@@ -378,6 +378,7 @@ void CViewSearch::OnRefresh()
 		 AddResult(nArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 	// Update view
 	m_tabResults->OnRefresh();

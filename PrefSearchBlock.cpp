@@ -100,7 +100,7 @@ BOOL CPrefSearchBlock::OnInitDialog()
 	m_lstBlocked.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
 	// Copy vector to host servers array
-	_variant_t var = m_autPrefs->GetBlockList();
+	VARIANT var = m_autPrefs->GetBlockList();
 	SAFEARRAY* psa = var.parray;
 
 	BSTR* strArray;
@@ -111,6 +111,7 @@ BOOL CPrefSearchBlock::OnInitDialog()
 		 BlockList.push_back(strArray[i]);
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 
 	for(int i = 0; i < BlockList.size(); i++)

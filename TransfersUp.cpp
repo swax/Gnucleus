@@ -378,7 +378,7 @@ void CTransfersUp::ReloadLists()
 
 	
 	// Get new download ID list
-	_variant_t var = m_autUpload->GetUploadIDs();
+	VARIANT var = m_autUpload->GetUploadIDs();
 	SAFEARRAY* psa = var.parray;
 
 	int* nArray;
@@ -410,6 +410,7 @@ void CTransfersUp::ReloadLists()
 	}
 
 	SafeArrayUnaccessData(psa);
+	VariantClear(&var);
 
 	UpdateView();
 }
