@@ -158,7 +158,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	//DELETE THIS
-	m_autNetwork->ForceUltrapeer(true);
+	//m_autNetwork->ForceUltrapeer(true);
 
 
 	// Start connecting
@@ -358,10 +358,6 @@ CGnucleusDoc::~CGnucleusDoc()
 	DisconnectCore();
 
 	TRACE0("*** CGnucleusDoc Deconstructing\n");
-
-
-	if(m_ShutDown)
-		ShellExecute(NULL, "open", m_RunPath + "Evolver.exe", NULL, NULL, SW_SHOW);
 }
 
 

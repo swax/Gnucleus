@@ -110,7 +110,7 @@ BOOL CPrefBandwidth::OnInitDialog()
 
 
 	// Drop slow downloads
-	if(m_autPrefs->GetMinDownSpeed() != -1)
+	if(m_autPrefs->GetMinDownSpeed())
 	{
 		m_chkDropDL.SetCheck(true);
 		m_ebDropDL.SetWindowText( InsertDecimal( (double) m_autPrefs->GetMinDownSpeed()));
@@ -120,7 +120,7 @@ BOOL CPrefBandwidth::OnInitDialog()
 
 
 	// Drop slow uploads
-	if(m_autPrefs->GetMinUpSpeed() != -1)
+	if(m_autPrefs->GetMinUpSpeed())
 	{
 		m_chkDropUL.SetCheck(true);
 		m_ebDropUL.SetWindowText( InsertDecimal( (double) m_autPrefs->GetMinUpSpeed()) );
@@ -227,7 +227,7 @@ BOOL CPrefBandwidth::OnApply()
 		m_autPrefs->SetMinDownSpeed(atof(store));
 	}
 	else
-		m_autPrefs->SetMinDownSpeed(-1);	
+		m_autPrefs->SetMinDownSpeed(0);	
 
 		// Min upload speed
 	if(m_chkDropUL.GetCheck())
@@ -237,7 +237,7 @@ BOOL CPrefBandwidth::OnApply()
 		m_autPrefs->SetMinUpSpeed(atof(store));
 	}
 	else
-		m_autPrefs->SetMinUpSpeed(-1);
+		m_autPrefs->SetMinUpSpeed(0);
 
 	return CPropertyPage::OnApply();
 }

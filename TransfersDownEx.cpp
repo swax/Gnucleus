@@ -243,6 +243,7 @@ void CTransfersDownEx::UpdateInfo()
 	std::vector<int> ChunkList;
 
 	// Get new Source IDs
+	var.Clear();
 	var = m_autDownload->GetChunkIDs(m_DownloadID);
 	psa = var.parray;
 

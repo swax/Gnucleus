@@ -7,6 +7,7 @@
 	<li>Download Queuing</li>
 	<li>Partial file sharing</li>
 	<li>Download hash verification</li>
+	<li>Meta-Data support</li>
 </ul>
 <br>
 

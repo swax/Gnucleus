@@ -157,6 +157,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 
 	// Set Keyword listbox
+	var.Clear();
 	var = m_autShare->GetFileKeywords(m_FileID);
 	psa = var.parray;
 
@@ -179,6 +180,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 
 	// Set AltLoc Listbox
+	var.Clear();
 	var = m_autShare->GetFileAltLocs(m_FileID);
 	psa = var.parray;
 

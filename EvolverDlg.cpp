@@ -248,6 +248,8 @@ void CEvolverDlg::Restart()
 	m_CloseTimer = 0;
 
 	m_autUpdate->LaunchUpdate();
+	
+	m_pDoc->m_ShutDown = true;
 
 	AfxGetApp()->m_pMainWnd->SendMessage(WM_CLOSE);
 	return;

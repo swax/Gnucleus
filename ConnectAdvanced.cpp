@@ -220,8 +220,8 @@ void CConnectAdvanced::UpdateConnectView()
 
 
 	// Get current node IDs and put them into a vector
-	_variant_t var = m_autNetwork->GetNodeIDs();
-	SAFEARRAY* psa = var.parray;
+	_variant_t varNode = m_autNetwork->GetNodeIDs();
+	SAFEARRAY* psa = varNode.parray;
 
 	int* nArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
@@ -234,9 +234,8 @@ void CConnectAdvanced::UpdateConnectView()
 
 
 	// Get child IDs and put them into a vector
-	var.Clear();
-	var = m_autNetwork->GetChildNodeIDs();
-	psa = var.parray;
+	_variant_t varChild = m_autNetwork->GetChildNodeIDs();
+	psa = varChild.parray;
 
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
 
@@ -388,8 +387,8 @@ void CConnectAdvanced::UpdateCacheView()
 
 
 	// Get current node IDs and put them into a vector
-	_variant_t var = m_autNetwork->GetNodeIDs();
-	SAFEARRAY* psa = var.parray;
+	_variant_t varNode = m_autNetwork->GetNodeIDs();
+	SAFEARRAY* psa = varNode.parray;
 
 	int* nArray;
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
@@ -401,9 +400,8 @@ void CConnectAdvanced::UpdateCacheView()
 	SafeArrayUnaccessData(psa);
 
 	// Get child IDs and put them into a vector
-	var.Clear();
-	var = m_autNetwork->GetChildNodeIDs();
-	psa = var.parray;
+	_variant_t varChild = m_autNetwork->GetChildNodeIDs();
+	psa = varChild.parray;
 
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
 
