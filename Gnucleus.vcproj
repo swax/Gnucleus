@@ -759,7 +759,7 @@
 				Name="Com"
 				Filter="">
 				<File
-					RelativePath="AutCache.h">
+					RelativePath=".\AutCache.h">
 				</File>
 				<File
 					RelativePath=".\AutChat.h">
@@ -786,7 +786,7 @@
 					RelativePath="AutNetworkSink.h">
 				</File>
 				<File
-					RelativePath="AutPrefs.h">
+					RelativePath=".\AutPrefs.h">
 				</File>
 				<File
 					RelativePath=".\AutSearch.h">

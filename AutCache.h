@@ -94,6 +94,11 @@ public:
 		static BYTE parms[] = VTS_BSTR VTS_BOOL ;
 		InvokeHelper(0xe, DISPATCH_METHOD, VT_EMPTY, NULL, parms, HostPort, SuperNode);
 	}
+	void SeedWebCache(LPCTSTR WebAddress)
+	{
+		static BYTE parms[] = VTS_BSTR ;
+		InvokeHelper(0xf, DISPATCH_METHOD, VT_EMPTY, NULL, parms, WebAddress);
+	}
 
 	// ICache properties
 public:

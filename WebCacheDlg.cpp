@@ -114,7 +114,7 @@ void CWebCacheDlg::OnButtonAdd()
 
 	if(!NewSite.IsEmpty())
 	{
-		m_pDoc->m_autCache->AddWebCache(NewSite);
+		m_pDoc->m_autCache->SeedWebCache(NewSite);
 		m_btnAdd.EnableWindow(false);
 	}
 }
