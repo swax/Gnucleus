@@ -479,32 +479,32 @@ CAPTION "Log"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Packet Types",IDC_STATIC,185,6,150,35
-    CONTROL         "Pings",IDC_CHECK_PINGS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,195,17,40,10
-    CONTROL         "Pongs",IDC_CHECK_PONGS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,195,26,40,10
-    CONTROL         "Queries",IDC_CHECK_QUERIES,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Pings",IDC_CHECK_PINGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,17,33,10
+    CONTROL         "Po&ngs",IDC_CHECK_PONGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,26,36,10
+    CONTROL         "&Queries",IDC_CHECK_QUERIES,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,241,17,50,10
-    CONTROL         "Query Hits",IDC_CHECK_QUERYHITS,"Button",
+    CONTROL         "Q&uery Hits",IDC_CHECK_QUERYHITS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,241,26,50,10
-    CONTROL         "Pushes",IDC_CHECK_PUSHES,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pus&hes",IDC_CHECK_PUSHES,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,295,17,35,10
-    RTEXT           "Buffer (lines):",IDC_STATIC_BUFFSIZE,354,7,50,10
+    RTEXT           "&Buffer (lines):",IDC_STATIC_BUFFSIZE,354,7,50,10
     EDITTEXT        IDC_EDIT_BUFFSIZE,354,17,50,12,ES_RIGHT | ES_WANTRETURN | 
                     ES_NUMBER
-    PUSHBUTTON      "Flush",IDC_BUTTON_FLUSH,354,32,50,14
+    PUSHBUTTON      "&Flush",IDC_BUTTON_FLUSH,354,32,50,14
     CONTROL         "List1",IDC_LIST_LOG,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHAREIMAGELISTS | LVS_NOSORTHEADER | 
                     WS_BORDER | WS_TABSTOP,6,48,395,135
     GROUPBOX        "Show",IDC_STATIC,6,6,78,35
-    CONTROL         "Good Packets",IDC_CHECK_GOOD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Good Packets",IDC_CHECK_GOOD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,19,17,60,10
-    CONTROL         "Bad Packets",IDC_CHECK_BAD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Bad Packets",IDC_CHECK_BAD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,19,26,60,10
     GROUPBOX        "Direction",IDC_STATIC,96,6,78,35
-    CONTROL         "Incoming",IDC_CHECK_IN,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Incoming",IDC_CHECK_IN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,109,17,60,10
-    CONTROL         "Outgoing",IDC_CHECK_OUT,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Outgoing",IDC_CHECK_OUT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,109,26,60,10
 END
 
@@ -525,22 +525,22 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Bandwidth Limits",IDC_STATIC,10,10,255,60
-    CONTROL         "Limit download bandwidth to",IDC_CHECK_LIMIT_DOWN,
+    CONTROL         "&Limit download bandwidth to",IDC_CHECK_LIMIT_DOWN,
                     "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,28,
                     105,10
     EDITTEXT        IDC_EDIT_LIMIT_DOWN,135,25,30,12,ES_AUTOHSCROLL
     LTEXT           "KB/s",IDC_STATIC,170,28,35,10
-    CONTROL         "Limit upload bandwidth to",IDC_CHECK_LIMIT_UP,"Button",
+    CONTROL         "L&imit upload bandwidth to",IDC_CHECK_LIMIT_UP,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,48,105,10
     EDITTEXT        IDC_EDIT_LIMIT_UP,135,45,30,12,ES_AUTOHSCROLL
     LTEXT           "KB/s",IDC_STATIC,170,48,35,10
     GROUPBOX        "Transfer Limits",IDC_STATIC,10,80,255,60
-    CONTROL         "Drop downloads transfering under",IDC_CHECK_DROP_DL,
+    CONTROL         "Drop &downloads transfering under",IDC_CHECK_DROP_DL,
                     "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,97,
                     120,10
     EDITTEXT        IDC_EDIT_DROP_DL,151,95,30,12,ES_AUTOHSCROLL
     LTEXT           "KB/s",IDC_STATIC,185,97,25,10
-    CONTROL         "Drop uploads transfering under",IDC_CHECK_DROP_UL,
+    CONTROL         "Drop &uploads transfering under",IDC_CHECK_DROP_UL,
                     "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,25,119,
                     110,10
     EDITTEXT        IDC_EDIT_DROP_UL,141,115,30,12,ES_AUTOHSCROLL
@@ -560,16 +560,16 @@ BEGIN
                     WS_EX_ACCEPTFILES
     DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,150,90,50,14
     PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,205,90,50,14
-    CONTROL         "Sub-Directories",IDC_CHECK_RECURSE,"Button",
+    CONTROL         "&Sub-Directories",IDC_CHECK_RECURSE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,25,110,65,10
-    CONTROL         "Set a max of",IDC_CHECK_REPLYMAX,"Button",
+    CONTROL         "Set a &max of",IDC_CHECK_REPLYMAX,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,15,143,55,10
     EDITTEXT        IDC_EDIT_REPLY,71,140,25,12,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "replies to a query",IDC_STATIC,103,143,70,10
-    CONTROL         "Only send results when there are upload slots available",
+    CONTROL         "&Only send results when there are upload slots available",
                     IDC_CHECK_SENDRESULTS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,15,159,188,10
-    CONTROL         "Include path following root of shared directory in reply to query",
+    CONTROL         "&Include path following root of shared directory in reply to query",
                     IDC_CHECK_PATH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
                     175,210,10
 END
@@ -580,13 +580,13 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Node Management",IDC_STATIC,10,10,255,122
-    CONTROL         "Auto-Connect on startup",IDC_CHECK_AUTOCONNECT,"Button",
+    CONTROL         "&Auto-Connect on startup",IDC_CHECK_AUTOCONNECT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,30,165,10
-    CONTROL         "Keep at Least",IDC_CHECK_MIN_CONNECTS,"Button",
+    CONTROL         "Keep at &Least",IDC_CHECK_MIN_CONNECTS,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,30,110,60,10
     EDITTEXT        IDC_EDIT_MIN_CONNECTS,90,108,19,12,ES_AUTOHSCROLL | 
                     ES_NUMBER
-    CONTROL         "and a Max of",IDC_CHECK_MAX_CONNECTS,"Button",
+    CONTROL         "and a &Max of",IDC_CHECK_MAX_CONNECTS,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,120,110,55,10
     EDITTEXT        IDC_EDIT_MAX_CONNECTS,180,108,19,12,ES_AUTOHSCROLL | 
                     ES_NUMBER
@@ -596,7 +596,7 @@ BEGIN
     EDITTEXT        IDC_EDIT_LEAF_CONNECTS,90,66,19,12,ES_AUTOHSCROLL | 
                     ES_NUMBER
     LTEXT           "Connects",IDC_STATIC,113,68,41,10
-    LTEXT           "Keep at Least",IDC_STATIC,36,69,54,11
+    LTEXT           "&Keep at Least",IDC_STATIC,36,69,54,11
 END
 
 IDD_PREF_LOCAL DIALOGEX 0, 0, 295, 226
@@ -605,22 +605,23 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Local Node Properties",IDC_STATIC,10,10,255,75
-    CONTROL         "Set local IP to",IDC_CHECK_IP,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Set local &IP to",IDC_CHECK_IP,"Button",BS_AUTOCHECKBOX | 
                     BS_LEFT | WS_TABSTOP,20,28,60,10
     EDITTEXT        IDC_EDIT_IP,90,25,90,12,ES_AUTOHSCROLL
-    CONTROL         "Set incoming port to",IDC_CHECK_PORT,"Button",
+    CONTROL         "Set incoming &port to",IDC_CHECK_PORT,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,48,80,10
     EDITTEXT        IDC_EDIT_PORT,100,45,80,12,ES_AUTOHSCROLL | ES_NUMBER
-    CONTROL         "Set connect speed to",IDC_CHECK_SPEED,"Button",
+    CONTROL         "Set connect &speed to",IDC_CHECK_SPEED,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,67,85,10
     COMBOBOX        IDC_COMBO_SPEED,107,65,73,65,CBS_DROPDOWN | CBS_SORT | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Display Window",IDC_STATIC,10,100,255,45
-    CONTROL         "Send Gnucleus to tray when minimized",IDC_CHECK_TRAYMIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,116,200,8
-    CONTROL         "Send Gnucleus to tray when closed",IDC_CHECK_TRAYCLOSE,
+    CONTROL         "Send Gnucleus to tray when &minimized",
+                    IDC_CHECK_TRAYMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    20,116,200,8
+    CONTROL         "Send Gnucleus to tray when &closed",IDC_CHECK_TRAYCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,130,200,10
-    CONTROL         "Auto-Evolve Gnucleus when a",IDC_CHECK_EVOLVE,"Button",
+    CONTROL         "Auto-&Evolve Gnucleus when a",IDC_CHECK_EVOLVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,164,110,10
     COMBOBOX        IDC_COMBO_EVOLVE,125,161,60,47,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
@@ -633,13 +634,13 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Search Options",IDC_STATIC,10,10,252,56
-    CONTROL         "Double-check results with original search",
+    CONTROL         "&Double-check results with original search",
                     IDC_CHECK_DOUBLECHECK,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,23,30,165,10
-    CONTROL         "Don't display results from filtered nodes",
+    CONTROL         "D&on't display results from filtered nodes",
                     IDC_CHECK_DISPLAY_SCREENED,"Button",BS_AUTOCHECKBOX | 
                     BS_LEFT | WS_TABSTOP,23,45,150,10
-    PUSHBUTTON      "Clear Search History",IDC_BUTTON_CLEARHISTORY,7,74,80,
+    PUSHBUTTON      "&Clear Search History",IDC_BUTTON_CLEARHISTORY,7,74,80,
                     14
 END
 
@@ -648,51 +649,52 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "d"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    RTEXT           "Save Downloads to:",IDC_STATIC,15,10,65,10
+    RTEXT           "&Save Downloads to:",IDC_STATIC,15,10,65,10
     EDITTEXT        IDC_EDIT_PATH,15,20,195,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE,217,20,50,14
+    PUSHBUTTON      "&Browse...",IDC_BUTTON_BROWSE,217,20,50,14
     GROUPBOX        "User limits",IDC_STATIC,10,75,255,55
-    CONTROL         "Maximum simultaneous downloads",IDC_CHECK_MAX_DL,"Button",
-                    BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,94,125,10
+    CONTROL         "Maximum simultaneous &downloads",IDC_CHECK_MAX_DL,
+                    "Button",BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,94,
+                    125,10
     EDITTEXT        IDC_EDIT_MAX_DL,145,90,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    CONTROL         "Maximum simultaneous uploads",IDC_CHECK_MAX_UL,"Button",
+    CONTROL         "Maximum simultaneous &uploads",IDC_CHECK_MAX_UL,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,112,115,10
     EDITTEXT        IDC_EDIT_MAX_UL,135,111,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    CONTROL         "Disable Multi-Source downloading (for modem users)",
+    CONTROL         "Disable &Multi-Source downloading (for modem users)",
                     IDC_CHECK_MULTISOURCE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,15,145,210,10
-    LTEXT           "Save Partials to:",IDC_STATIC,15,41,65,10
+    LTEXT           "Save &Partials to:",IDC_STATIC,15,41,65,10
     EDITTEXT        IDC_EDIT_PARTIALS,15,52,195,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE_PARTIALS,217,52,50,14
+    PUSHBUTTON      "B&rowse...",IDC_BUTTON_BROWSE_PARTIALS,217,52,50,14
 END
 
-IDD_PREF_LOCAL_FIREWALL DIALOG  0, 0, 274, 175
+IDD_PREF_LOCAL_FIREWALL DIALOGEX 0, 0, 274, 175
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Firewall Options",IDC_STATIC,10,10,255,60
-    CONTROL         "I am behind a firewall",IDC_CHECK_FIREWALL,"Button",
+    CONTROL         "I am behind a &firewall",IDC_CHECK_FIREWALL,"Button",
                     BS_AUTOCHECKBOX | BS_LEFT | WS_TABSTOP,20,25,180,10
     LTEXT           "Even if you are behind a firewall you can still share files without forcing an IP or port.",
                     IDC_STATIC,20,45,227,17
 END
 
-IDD_PREF_CONNECT_SCREEN DIALOG  0, 0, 274, 175
+IDD_PREF_CONNECT_SCREEN DIALOGEX 0, 0, 274, 175
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Filter Nodes",IDC_STATIC,10,10,255,160
     LTEXT           "Nodes that match will not be cached or connected to by Gnucleus. ",
                     IDC_STATIC,25,25,220,10
-    RTEXT           "Host :",IDC_STATIC,21,47,19,10
+    RTEXT           "&Host :",IDC_STATIC,21,47,19,10
     EDITTEXT        IDC_EDIT_HOST,45,45,60,12,ES_AUTOHSCROLL
-    RTEXT           "Rule :",IDC_STATIC,20,61,20,10
+    RTEXT           "R&ule :",IDC_STATIC,20,61,20,10
     COMBOBOX        IDC_COMBO_RULE,45,59,60,35,CBS_DROPDOWNLIST | CBS_SORT | 
                     WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,50,80,50,15
-    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,100,50,15
+    DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,50,80,50,15
+    PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,50,100,50,15
     LTEXT           "To create a private network, deny *.*.*.* and allow selected IPs, e.g. 10.*.*.*",
                     IDC_STATIC,20,155,240,10
     CONTROL         "List2",IDC_LIST_SCREEN,"SysListView32",LVS_REPORT | 
@@ -700,18 +702,18 @@ BEGIN
                     110
 END
 
-IDD_PREF_SEARCH_SCREEN DIALOG  0, 0, 274, 175
+IDD_PREF_SEARCH_SCREEN DIALOGEX 0, 0, 274, 175
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Filter Results",IDC_STATIC,10,10,255,160
     LTEXT           "Screen out file types by entering .mp3, .mov, etc...",
                     IDC_STATIC,25,25,160,10
-    RTEXT           "Word:",IDC_STATIC,15,47,23,10
+    RTEXT           "&Word:",IDC_STATIC,15,47,23,10
     EDITTEXT        IDC_EDIT_FILE,45,45,60,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,51,65,50,15
-    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,85,50,15
+    DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,51,65,50,15
+    PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,50,85,50,15
     CONTROL         "List2",IDC_LIST_SCREEN,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
                     WS_TABSTOP,120,40,135,120
@@ -803,14 +805,14 @@ BEGIN
     CONTROL         "List1",IDC_LIST_RESULTS,"SysListView32",LVS_REPORT | 
                     LVS_OWNERDRAWFIXED | LVS_OWNERDATA | WS_BORDER | 
                     WS_TABSTOP,5,25,395,30
-    DEFPUSHBUTTON   "Download Selected",IDC_BUTTON_DOWNLOAD,5,60,80,15
-    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIG,175,60,80,15
-    LTEXT           "Refine Search",IDC_STATIC,5,13,50,8
+    DEFPUSHBUTTON   "&Download Selected",IDC_BUTTON_DOWNLOAD,5,60,80,15
+    PUSHBUTTON      "&Configure",IDC_BUTTON_CONFIG,175,60,80,15
+    LTEXT           "&Refine Search",IDC_STATIC,5,13,50,8
     EDITTEXT        IDC_EDIT_REFINE,55,10,100,12,ES_AUTOHSCROLL
-    CONTROL         "Filter Results",IDC_CHECKS_SCREEN,"Button",
+    CONTROL         "&Filter Results",IDC_CHECKS_SCREEN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,181,11,75,8
-    PUSHBUTTON      "Stop Search",IDC_BUTTON_STOPSEARCH,325,60,75,15
-    PUSHBUTTON      "View Transfers",IDC_BUTTON_VIEWTRANSFERS,90,60,80,15
+    PUSHBUTTON      "&Stop Search",IDC_BUTTON_STOPSEARCH,325,60,75,15
+    PUSHBUTTON      "View &Transfers",IDC_BUTTON_VIEWTRANSFERS,90,60,80,15
     LTEXT           "* - Result Hash Verified",IDC_STATIC_STARNOTE,294,14,
                     104,10,0,WS_EX_RIGHT
 END
@@ -820,22 +822,22 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Advanced"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Configure Searching",IDC_BUTTON_CONFIG_SEARCH,10,15,85,
-                    15
-    PUSHBUTTON      "Filter Hosts",IDC_BUTTON_SCREENHOSTS,10,35,85,14
-    PUSHBUTTON      "Filter Keywords",IDC_BUTTON_SCREENWORDS,10,55,85,14
+    PUSHBUTTON      "Configure &Searching...",IDC_BUTTON_CONFIG_SEARCH,10,15,
+                    85,15
+    PUSHBUTTON      "Filter &Hosts...",IDC_BUTTON_SCREENHOSTS,10,35,85,14
+    PUSHBUTTON      "Filter &Keywords...",IDC_BUTTON_SCREENWORDS,10,55,85,14
     GROUPBOX        "Screen",IDC_STATIC,105,10,200,60
-    LTEXT           "Sizes",IDC_STATIC,118,28,22,10
+    LTEXT           "Si&zes",IDC_STATIC,118,28,22,10
     COMBOBOX        IDC_COMBO_SIZE,145,25,60,81,CBS_DROPDOWNLIST | CBS_SORT | 
                     WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_EDIT_SIZE,215,25,50,12,ES_RIGHT | ES_AUTOHSCROLL
     LTEXT           "KB",IDC_STATIC,269,27,25,10
-    LTEXT           "Speeds",IDC_STATIC,115,47,25,10
+    LTEXT           "S&peeds",IDC_STATIC,115,47,25,10
     COMBOBOX        IDC_COMBO_SPEED,145,45,60,144,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_EDIT_SPEED,215,45,50,12,ES_RIGHT | ES_AUTOHSCROLL
     LTEXT           "KB/s",IDC_STATIC,270,46,25,10
-    DEFPUSHBUTTON   "Refresh List",IDC_BUTTON_REFRESH,10,85,85,14
+    DEFPUSHBUTTON   "&Refresh List",IDC_BUTTON_REFRESH,10,85,85,14
     LTEXT           "Screen needs to be checked in Results tab for settings to take place.",
                     IDC_STATIC,105,80,130,20
 END
@@ -886,20 +888,20 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,70,200,50,14
 END
 
-IDD_PREF_CONNECT_SERVERS DIALOG  0, 0, 274, 175
+IDD_PREF_CONNECT_SERVERS DIALOGEX 0, 0, 274, 175
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "Host Servers",IDC_STATIC,10,10,255,160
     LTEXT           "Addresses of permanent Gnutella nodes, used to find more connections",
                     IDC_STATIC,20,25,235,10
-    RTEXT           "Host :",IDC_STATIC,21,47,19,10
+    RTEXT           "&Host :",IDC_STATIC,21,47,19,10
     EDITTEXT        IDC_EDIT_HOST,45,45,60,12,ES_AUTOHSCROLL
-    RTEXT           "Port :",IDC_STATIC,20,61,20,10
+    RTEXT           "&Port :",IDC_STATIC,20,61,20,10
     EDITTEXT        IDC_EDIT_PORT,45,60,60,12,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,50,80,50,15
-    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,50,100,50,15
+    DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,50,80,50,15
+    PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,50,100,50,15
     CONTROL         "List2",IDC_LIST_SERVERS,"SysListView32",LVS_REPORT | 
                     LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,120,40,135,
                     120
@@ -918,7 +920,7 @@ BEGIN
     CONTROL         "Progress1",IDC_PROGRESS_UPDATE,"msctls_progress32",
                     WS_BORDER | 0x1,7,33,233,10
     PUSHBUTTON      "Cancel",IDC_BUTTON_CANCEL,55,50,60,14
-    DEFPUSHBUTTON   "Evolve",IDC_BUTTON_EVOLVE,125,50,60,14
+    DEFPUSHBUTTON   "&Evolve",IDC_BUTTON_EVOLVE,125,50,60,14
 END
 
 IDD_STAT_DISTRIBUTION DIALOGEX 0, 0, 357, 191
@@ -933,7 +935,7 @@ BEGIN
                     WS_TABSTOP,23,37,155,95
     RTEXT           "Nodes Sharing:",IDC_STATIC,27,147,50,8
     LTEXT           "",IDC_STATIC_SHARE,83,147,30,8
-    PUSHBUTTON      "Refresh",IDC_BUTTON_REFRESH,123,142,50,14
+    PUSHBUTTON      "&Refresh",IDC_BUTTON_REFRESH,123,142,50,14
 END
 
 IDD_STAT_PACKETS DIALOG  0, 0, 357, 191
@@ -999,7 +1001,7 @@ BEGIN
     CONTROL         "List1",IDC_LIST_RESULTS,"SysListView32",LVS_REPORT | 
                     WS_BORDER | WS_TABSTOP,10,70,345,70
     LTEXT           "Average Speed:",IDC_STATIC_SPEED,10,145,345,10
-    PUSHBUTTON      "OK",IDC_BUTTON_OK,155,160,50,14
+    DEFPUSHBUTTON   "OK",IDC_BUTTON_OK,155,160,50,14
 END
 
 IDD_TRANSFER_DOWN_INFO DIALOGEX 0, 0, 547, 306
@@ -1057,29 +1059,29 @@ CAPTION "Chat"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Chat Setup",IDC_STATIC,10,10,255,128
-    LTEXT           "Network :",IDC_STATIC,20,33,32,10
+    LTEXT           "&Network :",IDC_STATIC,20,33,32,10
     COMBOBOX        IDC_COMBO_NETWORK,54,30,65,62,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Default Network",IDC_CHECK_DEFNETWORK,"Button",
+    CONTROL         "&Default Network",IDC_CHECK_DEFNETWORK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,54,45,65,10
-    RTEXT           "Name:",IDC_STATIC,20,87,30,10
+    RTEXT           "Na&me:",IDC_STATIC,20,87,30,10
     EDITTEXT        IDC_EDIT_NICK,55,85,60,12,ES_AUTOHSCROLL
-    RTEXT           "Alt. Name:",IDC_STATIC,17,102,33,10
+    RTEXT           "Al&t. Name:",IDC_STATIC,17,102,33,10
     EDITTEXT        IDC_EDIT_ALTNICK,55,100,60,12,ES_AUTOHSCROLL
-    LTEXT           "Servers:",IDC_STATIC_SERVERS,130,25,60,10
+    LTEXT           "&Servers:",IDC_STATIC_SERVERS,130,25,60,10
     CONTROL         "List1",IDC_LIST_SERVERS,"SysListView32",LVS_REPORT | 
                     LVS_SORTASCENDING | LVS_AUTOARRANGE | LVS_NOCOLUMNHEADER | 
                     LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,130,35,125,60
     EDITTEXT        IDC_EDIT_SERVER,132,100,93,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Add",IDC_BUTTON_ADD,230,100,25,12
+    PUSHBUTTON      "&Add",IDC_BUTTON_ADD,230,100,25,12
     GROUPBOX        "Node Preferencing",IDC_STATIC,6,162,255,9,NOT 
                     WS_VISIBLE
-    CONTROL         "Prefer nodes in channel #",IDC_CHECK_PREFCHAN,"Button",
+    CONTROL         "&Prefer nodes in channel #",IDC_CHECK_PREFCHAN,"Button",
                     BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,21,146,96,
                     10
     EDITTEXT        IDC_EDIT_PREFCHAN,117,144,83,12,ES_AUTOHSCROLL | NOT 
                     WS_VISIBLE
-    CONTROL         "Disable Ident server",IDC_CHECK_IDENT_DISABLE,"Button",
+    CONTROL         "Disable &Ident server",IDC_CHECK_IDENT_DISABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,42,120,84,12
 END
 
@@ -1149,17 +1151,17 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     GROUPBOX        "My Network Model",IDC_STATIC,10,10,255,75
-    CONTROL         "Regular node on the internet",IDC_RADIO_MODEL_INTERNET,
+    CONTROL         "&Regular node on the internet",IDC_RADIO_MODEL_INTERNET,
                     "Button",BS_AUTORADIOBUTTON,20,30,170,10
-    CONTROL         "Node in a college or LAN",IDC_RADIO_MODEL_PRIVATE,
+    CONTROL         "Node in a college or &LAN",IDC_RADIO_MODEL_PRIVATE,
                     "Button",BS_AUTORADIOBUTTON,20,45,170,10
-    CONTROL         "Internal IRC Server",IDC_CHECK_IRCSERVER,"Button",
+    CONTROL         "Internal &IRC Server",IDC_CHECK_IRCSERVER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,35,63,90,10
     EDITTEXT        IDC_EDIT_IRCSERVER,128,60,110,12,ES_AUTOHSCROLL
     GROUPBOX        "Ultrapeer Settings",IDC_STATIC,10,95,255,55
-    CONTROL         "Able to become Ultrapeer",IDC_CHECK_SUPERNODE,"Button",
+    CONTROL         "Able to become &Ultrapeer",IDC_CHECK_SUPERNODE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,20,114,155,10
-    LTEXT           "Host a max of",IDC_STATIC,35,130,50,10
+    LTEXT           "Host a &max of",IDC_STATIC,35,130,50,10
     EDITTEXT        IDC_EDIT_MAXLEAF,85,128,40,12,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_NUMBER
     LTEXT           "leaf nodes (1500 limit)",IDC_STATIC,130,130,94,10
@@ -1231,8 +1233,8 @@ BEGIN
     LTEXT           "Active LAN Networks:",IDC_STATIC,10,10,125,10
     CONTROL         "List2",IDC_LIST_LAN,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,10,20,140,75
-    DEFPUSHBUTTON   "Join",IDC_BUTTON_JOIN,25,105,50,14,WS_DISABLED
-    PUSHBUTTON      "Create",IDC_BUTTON_NEW,80,105,50,14
+    DEFPUSHBUTTON   "&Join",IDC_BUTTON_JOIN,25,105,50,14,WS_DISABLED
+    PUSHBUTTON      "&Create",IDC_BUTTON_NEW,80,105,50,14
     GROUPBOX        "Help",IDC_STATIC,10,130,140,30
     LTEXT           "Select a network from above and Join it or create your own network.",
                     IDC_STATIC,20,140,120,15
@@ -1243,9 +1245,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Create Network"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LTEXT           "Name:",IDC_STATIC,17,17,26,10
+    LTEXT           "&Name:",IDC_STATIC,17,17,26,10
     EDITTEXT        IDC_EDIT_NAME,50,15,99,12,ES_AUTOHSCROLL
-    LTEXT           "Chat Server:",IDC_STATIC,5,38,41,10
+    LTEXT           "&Chat Server:",IDC_STATIC,5,38,41,10
     EDITTEXT        IDC_EDIT_IRC,50,35,99,12,ES_AUTOHSCROLL
     PUSHBUTTON      "Cancel",IDCANCEL,30,60,50,14
     DEFPUSHBUTTON   "OK",IDOK,90,60,50,14
@@ -1267,14 +1269,15 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "Use Scheduler if you want Gnucleus connected to Gnutella  only at certain times during the day.  Uploads and Downloads are not affected.",
                     IDC_STATIC,25,10,160,25
-    CONTROL         "Activate Scheduler",IDC_CHECK_SCHED_ACTIVATED,"Button",
+    CONTROL         "&Activate Scheduler",IDC_CHECK_SCHED_ACTIVATED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,15,50,150,10
     GROUPBOX        "Schedule",IDC_STATIC_SCHED_FRAME,15,65,170,70
-    LTEXT           "Connect at",IDC_STATIC_SCHED_CONNECT,45,90,50,10
+    LTEXT           "&Connect at",IDC_STATIC_SCHED_CONNECT,45,90,50,10
     CONTROL         "DateTimePicker2",IDC_SCHED_ACTIVE,"SysDateTimePick32",
                     DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
                     WS_TABSTOP,100,85,55,15
-    LTEXT           "Disconnect at",IDC_STATIC_SCHED_DISCONNECT,45,115,50,10
+    LTEXT           "&Disconnect at",IDC_STATIC_SCHED_DISCONNECT,45,115,50,
+                    10
     CONTROL         "DateTimePicker1",IDC_SCHED_INACTIVE,"SysDateTimePick32",
                     DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | 
                     WS_TABSTOP,100,110,55,15
@@ -1332,8 +1335,8 @@ BEGIN
                     LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,12,138,150,
                     114
     LTEXT           "Meta-Data:",IDC_STATIC_METADATA,12,126,150,10
-    DEFPUSHBUTTON   "Set",IDC_BUTTON_SET,126,258,36,13
-    LTEXT           "Modify:",IDC_STATIC,12,261,30,11
+    DEFPUSHBUTTON   "&Set",IDC_BUTTON_SET,126,258,36,13
+    LTEXT           "&Modify:",IDC_STATIC,12,261,30,11
     COMBOBOX        IDC_COMBO1,42,258,78,66,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Cancel",ID_BUTTON_CANCEL,174,282,50,14
@@ -1357,13 +1360,13 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Block"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Blocked Hosts:",IDC_STATIC,12,6,84,8
-    LTEXT           "Host Range:",IDC_STATIC,6,180,42,8,0,WS_EX_RIGHT
+    LTEXT           "&Blocked Hosts:",IDC_STATIC,12,6,84,8
+    LTEXT           "&Host Range:",IDC_STATIC,6,180,42,8,0,WS_EX_RIGHT
     EDITTEXT        IDC_EDIT_HOST,54,180,174,12,ES_AUTOHSCROLL
-    LTEXT           "Reason:",IDC_STATIC,12,198,36,8,0,WS_EX_RIGHT
+    LTEXT           "R&eason:",IDC_STATIC,12,198,36,8,0,WS_EX_RIGHT
     EDITTEXT        IDC_EDIT_REASON,54,198,174,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Remove",IDC_BUTTON_REMOVE,234,180,50,14
-    DEFPUSHBUTTON   "Add",IDC_BUTTON_ADD,234,198,50,14
+    PUSHBUTTON      "&Remove",IDC_BUTTON_REMOVE,234,180,50,14
+    DEFPUSHBUTTON   "&Add",IDC_BUTTON_ADD,234,198,50,14
     CONTROL         "List2",IDC_LIST_BLOCKED,"SysListView32",LVS_REPORT | 
                     WS_BORDER | WS_TABSTOP,11,16,273,159
 END
@@ -1376,15 +1379,15 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,24,174,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,84,174,50,14
-    LTEXT           "Query Text:",IDC_STATIC,12,15,48,8
+    LTEXT           "&Query Text:",IDC_STATIC,12,15,48,8
     EDITTEXT        IDC_EDIT_QUERY,60,12,90,12,ES_AUTOHSCROLL
-    LTEXT           "Meta Type:",IDC_STATIC,12,38,48,8
+    LTEXT           "&Meta Type:",IDC_STATIC,12,38,48,8
     COMBOBOX        IDC_COMBO_META,60,36,90,61,CBS_DROPDOWNLIST | CBS_SORT | 
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "",IDC_LIST_ATTRIBUTES,"SysListView32",LVS_REPORT | 
                     LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | 
                     WS_TABSTOP,12,60,138,84
-    LTEXT           "Specify:",IDC_STATIC,12,153,36,8
+    LTEXT           "&Specify:",IDC_STATIC,12,153,36,8
     COMBOBOX        IDC_COMBO_SPECIFY,48,150,102,102,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
 END

@@ -1,3 +1,6 @@
+2002-11-22	Piers Haken <piersh@friskit.com>
+
+	* Gnucleus.rc: added key shortcuts to dialogs
 
 Gnucleus 2.0
 	swabby: Complete core seperated into library (GnucDNA)
