@@ -431,8 +431,8 @@ BEGIN
                     IDC_STATIC_CONTACT2,51,132,250,8,SS_NOTIFY
     LTEXT           "IRC: #gnutella on EFNet",IDC_STATIC,51,143,250,8
     GROUPBOX        "Credits",IDC_STATIC_VERSION,35,10,270,86
-    LTEXT           "Mark Dennehy, Aaron Putnam, Scott Kirkwood, Heiner Eichman, Makslane Rodrigues, Nathan Brown, Nigel Heath, Justin Marrese",
-                    IDC_STATIC,100,48,155,27
+    LTEXT           "Mark Dennehy, Aaron Putnam, Scott Kirkwood, Tor Klingberg, Heiner Eichman, Makslane Rodrigues, Nathan Brown, Nigel Heath, Justin Marrese",
+                    IDC_STATIC,100,48,198,27
     LTEXT           "Development:  ",IDC_STATIC,48,48,52,10
     ICON            IDR_MAINFRAME,IDC_STATIC,10,20,20,20
     LTEXT           "Gnutella created by Justin Frankel and Tom Pepper",
