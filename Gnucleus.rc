@@ -426,7 +426,7 @@ BEGIN
                     10
     GROUPBOX        "Licenses",IDC_STATIC,36,167,270,104
     GROUPBOX        "Resources",IDC_STATIC,36,108,270,50
-    LTEXT           "Homepage:  http://www.gnucleus.net",IDC_STATIC_CONTACT1,
+    LTEXT           "Homepage:  http://www.gnucleus.com",IDC_STATIC_CONTACT1,
                     51,124,250,8,SS_NOTIFY
     LTEXT           "Development: http://gnucleus.sf.net",
                     IDC_STATIC_CONTACT2,51,132,250,8,SS_NOTIFY
@@ -909,8 +909,8 @@ FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     LTEXT           "Checking for a new version of Gnucleus",
                     IDC_STATIC_STATUS,7,7,130,10
-    LTEXT           "Connecting to Gnucleus.net...",IDC_STATIC_PROGRESS,7,23,
-                    140,10
+    LTEXT           "Connecting to update server...",IDC_STATIC_PROGRESS,7,
+                    23,140,10
     RTEXT           "",IDC_STATIC_LABEL,165,23,75,10
     CONTROL         "Progress1",IDC_PROGRESS_UPDATE,"msctls_progress32",
                     WS_BORDER | 0x1,7,33,233,10
@@ -1295,9 +1295,9 @@ BEGIN
     GROUPBOX        "About",IDC_STATIC,15,30,225,55
     LTEXT           "GWebCache is a PHP script produced by the Gnucleus team that acts as a cache for nodes running on the Gnutella network.  The more GWebCache scripts running out there,  the more fail-safe gnutella becomes.",
                     IDC_STATIC,35,40,170,40
-    LTEXT           "Creating a new GWebCache site is easy, just go to http://www.gnucleus.net, download the script, put it on your site and report its location here.  No other maintenence is required",
+    LTEXT           "Creating a new GWebCache site is easy, just go to http://www.gnucleus.com, download the script, put it on your site and report its location here.  No other maintenence is required",
                     IDC_STATIC,15,95,230,25
-    LTEXT           "Example: http://www.myisp.com/myhomepage/gcache.php",
+    LTEXT           "Example: http://www.myisp.com/myhomepage/gcache.cgi",
                     IDC_STATIC,15,130,210,10
     EDITTEXT        IDC_EDIT_NEWCACHE,15,140,210,12,ES_AUTOHSCROLL
     CONTROL         "Progress1",IDC_PROGRESS_ADD,"msctls_progress32",
@@ -1419,8 +1419,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,0,4
- PRODUCTVERSION 2,0,0,4
+ FILEVERSION 2,0,0,5
+ PRODUCTVERSION 2,0,0,5
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1438,12 +1438,12 @@ BEGIN
             VALUE "Comments", "Client Application for Gnutella"
             VALUE "CompanyName", "John Marshall"
             VALUE "FileDescription", "Gnucleus"
-            VALUE "FileVersion", "2.0.0.4"
+            VALUE "FileVersion", "2.0.0.5"
             VALUE "InternalName", "Gnucleus"
             VALUE "LegalCopyright", "Copyright (C) 2000-2003"
             VALUE "OriginalFilename", "Gnucleus.exe"
             VALUE "ProductName", "Gnucleus"
-            VALUE "ProductVersion", "2.0.0.4"
+            VALUE "ProductVersion", "2.0.0.5"
         END
     END
     BLOCK "VarFileInfo"

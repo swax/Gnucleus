@@ -1,3 +1,8 @@
+Gnucleus 2.0.0.5
+	swabby: Fixed evolver bug
+	jthomps: Changed gnucleus url from gnucleus.net to gnucleus.com
+	jthomps: Changed update server to working location to enable auto updates
+	jthomps: Changed to PostMessage WM_QUIT instead of SendMessage when evolving
 
 Gnucleus 2.0.0.4
 	swabby: G2 packet logging
