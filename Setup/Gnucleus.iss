@@ -30,8 +30,8 @@ Name: desktopicon; Description: Create a &desktop icon; GroupDescription: Additi
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: {#Gnucleus_exe}; DestDir: {app}; Flags: comparetimestamp
-Source: {#GnucDNA_dll}; DestDir: {sys}; Flags: regserver sharedfile comparetimestamp
+Source: {#Gnucleus_exe}; DestDir: {app}; Flags: comparetimestamp replacesameversion
+Source: {#GnucDNA_dll}; DestDir: {sys}; Flags: regserver sharedfile comparetimestamp replacesameversion
 Source: GnuBlocked.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
 Source: GnuCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
 Source: Gnucleus Forums.url.txt; DestDir: {app}; Flags: comparetimestamp; DestName: Gnucleus Forums.url
