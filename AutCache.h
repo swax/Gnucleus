@@ -99,6 +99,11 @@ public:
 		static BYTE parms[] = VTS_BSTR ;
 		InvokeHelper(0xf, DISPATCH_METHOD, VT_EMPTY, NULL, parms, WebAddress);
 	}
+	void TryWebCache(LPCTSTR Network)
+	{
+		static BYTE parms[] = VTS_BSTR ;
+		InvokeHelper(0x10, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Network);
+	}
 
 	// ICache properties
 public:

@@ -1,3 +1,9 @@
+Gnucleus 2.0.4.0
+	swabby: Updated with version that offers more results, faster connection
+
+Gnucleus 2.0.3.0
+	swabby: Point release with DNA version 1.1.1.0
+
 Gnucleus 2.0.2.1
 	swabby: TigerTree shown in download
 

@@ -33,10 +33,10 @@ Name: desktopicon; Description: Create a &desktop icon; GroupDescription: Additi
 Source: {#Gnucleus_exe}; DestDir: {app}; Flags: comparetimestamp replacesameversion
 Source: {#GnucCOM_dll}; DestDir: {sys}; Flags: regserver sharedfile comparetimestamp replacesameversion
 Source: GnuBlocked.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
-Source: GnuCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
+Source: GnuCache.net; DestDir: {app}\Data
 Source: Gnucleus Forums.url.txt; DestDir: {app}; Flags: comparetimestamp; DestName: Gnucleus Forums.url
 Source: Gnucleus Home Page.url.txt; DestDir: {app}; Flags: comparetimestamp; DestName: Gnucleus Home Page.url
-Source: WebCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
+Source: WebCache.net; DestDir: {app}\Data
 Source: ..\ChangeLog.txt; DestDir: {app}\Docs
 
 [Icons]

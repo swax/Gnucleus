@@ -177,6 +177,8 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	if(m_pPrefsEx->m_ForceG2Hub)
 		m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
 
+	// this tries the centralized cache for gnucleus
+	m_autCache->TryWebCache("gnutella");
 
 	// Connect to chat
 	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)
