@@ -70,6 +70,8 @@ public:
 protected:
 	CString GetStatus(int DownloadID);
 	CString GetHostPos(int DownloadID);
+	void UpdateColumns (int row, int DownloadID);
+	float GetPercentComplete (int idDownload);
 
 	int m_DownSortColumn, m_DownSortOrder;
 	friend struct DownOrder;

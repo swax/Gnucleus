@@ -50,6 +50,19 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
+enum COLUMNS
+{
+	COL_NAME = 0,
+	COL_STATUS,
+	COL_SIZE,
+	COL_COMPLETED,
+	COL_PERCENT,
+	COL_SPEED,
+	COL_ETA,
+	COL_COUNT_COLUMNS	// keep this last
+};
+
+
 IMPLEMENT_DYNCREATE(CTransfersDown, CPropertyPage)
 
 CTransfersDown::CTransfersDown() : CPropertyPage(CTransfersDown::IDD)
@@ -129,14 +142,33 @@ BOOL CTransfersDown::OnInitDialog()
 
 	int nWidth = rect.Width() - offSet;
 
-	m_lstDownloads.InsertColumn( 0, "File", LVCFMT_LEFT,
-		nWidth * 14./40, 0);
-	m_lstDownloads.InsertColumn( 1, "Status", LVCFMT_LEFT,
-		nWidth * 9/40, 1);
-	m_lstDownloads.InsertColumn( 2, "Completed", LVCFMT_RIGHT,
-		nWidth * 8./40, 2);
-	m_lstDownloads.InsertColumn( 3, "Speed", LVCFMT_RIGHT,
-		nWidth * 9./40, 3);
+	for (int iCol = 0; iCol < COL_COUNT_COLUMNS; iCol ++)
+	{
+		switch (iCol)
+		{
+		case COL_NAME:
+			m_lstDownloads.InsertColumn( COL_NAME, "File", LVCFMT_LEFT, nWidth * 15./40, COL_NAME);
+			break;
+		case COL_STATUS:
+			m_lstDownloads.InsertColumn( COL_STATUS, "Status", LVCFMT_LEFT, nWidth * 11/40, COL_STATUS);
+			break;
+		case COL_COMPLETED:
+			m_lstDownloads.InsertColumn( COL_COMPLETED, "Completed", LVCFMT_RIGHT, nWidth * 6./40, COL_COMPLETED);
+			break;
+		case COL_PERCENT:
+			m_lstDownloads.InsertColumn( COL_PERCENT, "%", LVCFMT_RIGHT, nWidth * 4./40, COL_PERCENT);
+			break;
+		case COL_SPEED:
+			m_lstDownloads.InsertColumn( COL_SPEED, "Speed", LVCFMT_RIGHT, nWidth * 6./40, COL_SPEED);
+			break;
+		case COL_SIZE:
+			m_lstDownloads.InsertColumn (COL_SIZE, "Size", LVCFMT_RIGHT, nWidth * 6./40, COL_SIZE);
+			break;
+		case COL_ETA:
+			m_lstDownloads.InsertColumn (COL_ETA, "ETA", LVCFMT_RIGHT, nWidth * 6./40, COL_ETA);
+			break;
+		}
+	}
 
 	m_lstDownloads.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
@@ -172,7 +204,7 @@ struct DownOrder : public std::binary_function<int, int, bool>
 	double GetSpeed(int DownloadID)
 	{	
 		if(TRANSFER_RECEIVING == autDownload->GetStatus(DownloadID))
-			return autDownload->GetSecETA(DownloadID);
+			return autDownload->GetBytesPerSec(DownloadID);
 		else
 			return -1.0;
 	}
@@ -217,25 +249,94 @@ struct DownOrder : public std::binary_function<int, int, bool>
 
 	bool operator () (int x, int y)
 	{
+		bool fResult = false;
+		bool fReverse = This->m_DownSortOrder & 1;
 		switch (This->m_DownSortColumn)
 		{
-			case 0:
-				return stricmp(CString(autDownload->GetName(x)), CString(autDownload->GetName(y))) * (1-2 * This->m_DownSortOrder) > 0;
-			case 1:
-				return This->m_DownSortOrder ? (GetStatus(x) < GetStatus(y)) : (GetStatus(x) > GetStatus(y));
-			case 2:
-				switch (This->m_DownSortOrder)
+			case COL_NAME:
+				fResult = stricmp(CString(autDownload->GetName(x)), CString(autDownload->GetName(y))) < 0;
+				break;
+			case COL_STATUS:
+				fResult = GetStatus(x) > GetStatus(y);
+				break;
+			case COL_ETA:
+			{
+				DWORD statusX = autDownload->GetStatus(x);
+				DWORD statusY = autDownload->GetStatus(y);
+				bool fReceivingX = (TRANSFER_RECEIVING == statusX);
+				bool fReceivingY = (TRANSFER_RECEIVING == statusY);
+				bool fCompletedX = (TRANSFER_COMPLETED == statusX);
+				bool fCompletedY = (TRANSFER_COMPLETED == statusY);
+				if (fReceivingX || fReceivingY)
 				{
-					case 0:  return autDownload->GetBytesCompleted(x) < autDownload->GetBytesCompleted(y);
-					case 1:  return autDownload->GetBytesCompleted(x) > autDownload->GetBytesCompleted(y);
-					case 2:  return autDownload->GetFileLength(x) < autDownload->GetFileLength(y);
-					default: return autDownload->GetFileLength(x) > autDownload->GetFileLength(y);
+					if (fReceivingX && fReceivingY)
+					{
+						long lEtaX = autDownload->GetSecETA(x);
+						long lEtaY = autDownload->GetSecETA(y);
+						if (lEtaX != lEtaY)
+						{
+							fResult = lEtaX < lEtaY;
+							break;
+						}
+					}
+					else if (fCompletedX || fCompletedY)
+					{
+						if (fCompletedX != fCompletedY)
+						{
+							fResult = fCompletedX;
+							break;
+						}
+					}
+					else
+					{
+						fResult = fReceivingX;
+						break;
+					}
 				}
-			case 3:
-				return This->m_DownSortOrder ? (GetSpeed(x) < GetSpeed(y)) : (GetSpeed(x) > GetSpeed(y));
-		}
+			}
+			// FALL THROUGH!!!
+			case COL_SPEED:
+			{
+				float fSpeedX = GetSpeed (x);
+				float fSpeedY = GetSpeed (y);
+				if (fSpeedX != fSpeedY)
+				{
+					fResult = fSpeedX > fSpeedY;
+					break;
+				}
+			}
+			// FALL THROUGH!!!
+			case COL_PERCENT:
+			{
+				float dPercentCompleteX = This->GetPercentComplete (x);
+				float dPercentCompleteY = This->GetPercentComplete (y);
 
-		return true;
+				if (dPercentCompleteX != dPercentCompleteY)
+				{
+					fResult = dPercentCompleteX > dPercentCompleteY;
+					break;
+				}
+			}
+			// FALL THROUGH!!!
+			case COL_COMPLETED:
+			{
+				int cbX = autDownload->GetBytesCompleted(x);
+				int cbY = autDownload->GetBytesCompleted(y);
+				if (cbX != cbY)
+				{
+					fResult = cbX > cbY;
+					break;
+				}
+			}
+			// FALL THROUGH!!!
+			case COL_SIZE:
+				fResult = autDownload->GetFileLength(x) < autDownload->GetFileLength(y);
+				break;
+		}
+		if (fReverse)
+			fResult = !fResult;
+
+		return fResult;
 	}
 };
 
@@ -327,39 +428,14 @@ void CTransfersDown::OnUpdate(int DownloadID)
  			ItemTotal += (i == 1) ? " File" : " Files";
  
  			m_lstDownloads.SetItem(0, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, ItemTotal, -1, 0, LVIS_SELECTED, NULL);
- 			m_lstDownloads.SetItemText(0, 1, "");
- 			m_lstDownloads.SetItemText(0, 2, "");
- 			m_lstDownloads.SetItemText(0, 3, "");
+			for (int iCol = 1; iCol < COL_COUNT_COLUMNS; iCol++)
+ 				m_lstDownloads.SetItemText(0, iCol, "");
  			m_lstDownloads.SetItem(1, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, "", -1, 0, LVIS_SELECTED, NULL);
- 			m_lstDownloads.SetItemText(1, 1, "");
- 			m_lstDownloads.SetItemText(1, 2, "");
- 			m_lstDownloads.SetItemText(1, 3, "");
+			for (iCol = 1; iCol < COL_COUNT_COLUMNS; iCol++)
+ 				m_lstDownloads.SetItemText(0, iCol, "");
  		}
  		
- 
- 		// Set status column
- 		m_lstDownloads.SetItemText(row, 1, GetStatus(DownloadID));
- 
-
-		// Set Completed column
-		CString Completed  = CommaIze( DWrdtoStr(m_autDownload->GetBytesCompleted(DownloadID) / 1024)) + " / ";
-				Completed += CommaIze( DWrdtoStr(m_autDownload->GetFileLength(DownloadID) / 1024)) + " KB";
-
-		m_lstDownloads.SetItemText(row, 2, Completed);
-
-
-		// Set speed column
-		if(TRANSFER_RECEIVING == m_autDownload->GetStatus(DownloadID))
-		{
-			
-			double BytesPerSec = m_autDownload->GetBytesPerSec(DownloadID);
-
-			CString EstTime = BytesPerSec ? GetEstTime(m_autDownload->GetSecETA(DownloadID)) : "Undetermined";
-			
-			m_lstDownloads.SetItemText(row, 3, EstTime + " at " + InsertDecimal(BytesPerSec / (double) 1024) + " KB/s");
-		}
-		else
-			m_lstDownloads.SetItemText(row, 3, "");
+		UpdateColumns (row, DownloadID);
  	} 
 
 	// Handle if not shouldshow and line exists
@@ -384,6 +460,50 @@ void CTransfersDown::OnUpdate(int DownloadID)
  	}
  
 	m_lstDownloads.SetRedraw(true);
+}
+
+void CTransfersDown::UpdateColumns (int row, int DownloadID)
+{
+ 	// Set status column
+ 	m_lstDownloads.SetItemText(row, COL_STATUS, GetStatus(DownloadID));
+
+
+	// Set Completed column
+	int cbCompleted = m_autDownload->GetBytesCompleted(DownloadID);
+	int cbTotal = m_autDownload->GetFileLength(DownloadID);
+	CString Completed  = CommaIze( DWrdtoStr(cbCompleted / 1024)) + " KB";
+	m_lstDownloads.SetItemText(row, COL_COMPLETED, Completed);
+
+	CString strSize = CommaIze( DWrdtoStr( cbTotal / 1024)) + " KB";
+	m_lstDownloads.SetItemText (row, COL_SIZE, strSize);
+
+	float dPercentComplete = GetPercentComplete (DownloadID);
+	if (dPercentComplete == 100.0)
+	{
+		m_lstDownloads.SetItemText(row, COL_PERCENT, "100%");
+	}
+	else
+	{
+		char rgch[16];
+		::sprintf (rgch, "%.1f%%", dPercentComplete);
+		m_lstDownloads.SetItemText(row, COL_PERCENT, rgch);
+	}
+
+	// Set speed column
+	if(TRANSFER_RECEIVING == m_autDownload->GetStatus(DownloadID))
+	{
+		double BytesPerSec = m_autDownload->GetBytesPerSec(DownloadID);
+		CString EstTime = BytesPerSec ? GetEstTime(m_autDownload->GetSecETA(DownloadID)) : "Undetermined";
+
+		m_lstDownloads.SetItemText(row, COL_SPEED, InsertDecimal(BytesPerSec / (double) 1024) + " KB/s");
+		m_lstDownloads.SetItemText(row, COL_ETA, EstTime);
+	}
+	else
+	{
+		m_lstDownloads.SetItemText(row, COL_SPEED, "");
+		m_lstDownloads.SetItemText(row, COL_ETA, "");
+	}
+
 }
 
 void CTransfersDown::ReloadLists()
@@ -499,30 +619,8 @@ void CTransfersDown::UpdateView()
 		else
 			m_lstDownloads.SetItem(pos, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, FileName, FileIcon.Index, 0, LVIS_SELECTED, NULL);
 	
-		m_lstDownloads.SetItemText(pos, 1, GetStatus(DownloadID));
 		m_lstDownloads.SetItemData(pos, DownloadID);
-		
-
-		// Set Completed column
-		CString Completed  = CommaIze( DWrdtoStr(m_autDownload->GetBytesCompleted(DownloadID) / 1024)) + " / ";
-				Completed += CommaIze( DWrdtoStr(m_autDownload->GetFileLength(DownloadID) / 1024)) + " KB";
-
-		m_lstDownloads.SetItemText(pos, 2, Completed);
-
-
-		// Set speed column
-		if(TRANSFER_RECEIVING == m_autDownload->GetStatus(DownloadID))
-		{
-			
-			int BytesPerSec = m_autDownload->GetBytesPerSec(DownloadID);
-
-			CString EstTime = BytesPerSec ? GetEstTime(m_autDownload->GetSecETA(DownloadID)) : "Undetermined";
-			
-			m_lstDownloads.SetItemText(pos, 3, EstTime + " at " + InsertDecimal(BytesPerSec / 1024) + " KB/s");
-		}
-		else
-			m_lstDownloads.SetItemText(pos, 3, "");
-
+		UpdateColumns (pos, DownloadID);
 
 		// Reselect previously selected item
 		for (int j = 0; j < ListSelected.size(); j++)
@@ -538,13 +636,11 @@ void CTransfersDown::UpdateView()
 	ItemTotal += (i == 1) ? " File" : " Files";
 
 	m_lstDownloads.SetItem(0, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, ItemTotal, -1, 0, LVIS_SELECTED, NULL);
-	m_lstDownloads.SetItemText(0, 1, "");
-	m_lstDownloads.SetItemText(0, 2, "");
-	m_lstDownloads.SetItemText(0, 3, "");
+	for (int iCol = 1; iCol < COL_COUNT_COLUMNS; iCol++)
+ 		m_lstDownloads.SetItemText(0, iCol, "");
 	m_lstDownloads.SetItem(1, 0, LVIF_TEXT | LVIF_IMAGE | LVIF_STATE, "", -1, 0, LVIS_SELECTED, NULL);
-	m_lstDownloads.SetItemText(1, 1, "");
-	m_lstDownloads.SetItemText(1, 2, "");
-	m_lstDownloads.SetItemText(1, 3, "");
+	for (iCol = 1; iCol < COL_COUNT_COLUMNS; iCol++)
+ 		m_lstDownloads.SetItemText(0, iCol, "");
 
 	m_lstDownloads.SetRedraw(true);
 }
@@ -722,15 +818,22 @@ void CTransfersDown::OnRclickListDownloads(NMHDR* pNMHDR, LRESULT* pResult)
 		}
 		break;
 	case ID_LSTDOWNLOADS_RESEARCH:
-		// get the selection again, it may have changed because of sorting.
-		nItem = m_lstDownloads.GetNextSelectedItem(pos);
-
-		if(nItem > 1 && nItem < m_lstDownloads.GetItemCount())
+		m_lstDownloads.SetRedraw(false);
+		while (pos)
 		{
-			// TODO: here we need to check for a specific hash to research for
-			// if the file has a hash associated with it
-			ReSearch(m_lstDownloads.GetItemData(nItem));
+			// get the selection again, it may have changed because of sorting.
+			nItem = m_lstDownloads.GetNextSelectedItem(pos);
+
+			if(nItem > 1 && nItem < m_lstDownloads.GetItemCount())
+			{
+				// TODO: here we need to check for a specific hash to research for
+				// if the file has a hash associated with it
+				//ReSearch(m_lstDownloads.GetItemData(nItem));
+				m_autDownload->ReSearch(m_lstDownloads.GetItemData(nItem));
+			}
 		}
+		ReloadLists();
+		m_lstDownloads.SetRedraw(true);
 
 		break;
 	case ID_LSTDOWNLOADS_INFO:
@@ -933,9 +1036,6 @@ void CTransfersDown::OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult)
     if (m_DownSortColumn == sortColumn)
     {
         m_DownSortOrder++;
-
-        if (m_DownSortOrder > 3 || (m_DownSortOrder > 1 && m_DownSortColumn != 2))
-        	m_DownSortOrder = 0;
     }
     else
     {
@@ -985,3 +1085,12 @@ int CTransfersDown::GetFirstSelectedItem()
 	return NULL;
 }
 
+float CTransfersDown::GetPercentComplete (int idDownload)
+{
+	int cbTotal = m_autDownload->GetFileLength(idDownload);
+	if (cbTotal == 0)
+		return 100.0;
+
+	int cbCompleted = m_autDownload->GetBytesCompleted(idDownload);
+	return 100.0 * cbCompleted / (float) cbTotal;
+}
