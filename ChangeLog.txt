@@ -1,3 +1,8 @@
+Gnucleus 2.0.2.0
+	swabby: New GnucDNA 1.1:
+			Updated with the latest Gnutella Protocol
+			Many fixes, stable for days, no memory leaks
+
 Gnucleus 2.0.1.1
 	swabby: Added additional network settings
 

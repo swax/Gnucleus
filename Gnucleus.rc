@@ -1429,8 +1429,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,0,1,1
- PRODUCTVERSION 2,0,1,1
+ FILEVERSION 2,0,2,0
+ PRODUCTVERSION 2,0,2,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1448,12 +1448,12 @@ BEGIN
             VALUE "Comments", "Client Application for Gnutella"
             VALUE "CompanyName", "John Marshall Group"
             VALUE "FileDescription", "Gnucleus"
-            VALUE "FileVersion", "2.0.1.1"
+            VALUE "FileVersion", "2.0.2.0"
             VALUE "InternalName", "Gnucleus"
             VALUE "LegalCopyright", "Copyright (C) 2000-2004"
             VALUE "OriginalFilename", "Gnucleus.exe"
             VALUE "ProductName", "Gnucleus"
-            VALUE "ProductVersion", "2.0.1.1"
+            VALUE "ProductVersion", "2.0.2.0"
         END
     END
     BLOCK "VarFileInfo"

@@ -182,7 +182,6 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)
 		m_pChat->GetConnect();
 
-
 	m_pDiagEvolve = NULL;
 	m_nLastPref	  = PREF_LOCAL;
 }
