@@ -172,7 +172,7 @@ BOOL CShareExDlg::OnInitDialog()
 	for(i = 0; i < KeywordList.size(); i++)
 		if(KeywordList[i].Find(":") > 0)
 		{
-			int pos = KeywordList[i].Find(":");
+			int pos = KeywordList[i].ReverseFind(':');
 			m_lstKeywords.InsertItem(i, KeywordList[i].Left(pos), -1);
 			m_lstKeywords.SetItemText(i, 1, CommaIze(KeywordList[i].Mid(pos + 1)));
 		}
