@@ -8,7 +8,7 @@
 #define public AppVersion GetFileVersion(Gnucleus_exe)
 
 [Setup]
-AppCopyright=Copyright © 2000-2003 John Marshall
+AppCopyright=Copyright © 2000-2004 John Marshall
 AppID={#AppName}
 ;AppMutex={#AppName}_Mutex
 AppName={#AppName}
@@ -34,8 +34,8 @@ Source: {#Gnucleus_exe}; DestDir: {app}; Flags: comparetimestamp
 Source: {#GnucDNA_dll}; DestDir: {sys}; Flags: regserver sharedfile comparetimestamp
 Source: GnuBlocked.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
 Source: GnuCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
-Source: Gnucleus Forums.url.txt; DestDir: {app}; Flags: ignoreversion; DestName: Gnucleus Forums.url
-Source: Gnucleus Home Page.url.txt; DestDir: {app}; Flags: ignoreversion; DestName: Gnucleus Home Page.url
+Source: Gnucleus Forums.url.txt; DestDir: {app}; Flags: comparetimestamp; DestName: Gnucleus Forums.url
+Source: Gnucleus Home Page.url.txt; DestDir: {app}; Flags: comparetimestamp; DestName: Gnucleus Home Page.url
 Source: WebCache.net; DestDir: {app}\Data; Flags: onlyifdoesntexist
 Source: ..\ChangeLog.txt; DestDir: {app}\Docs
 
@@ -75,41 +75,46 @@ function InitializeSetup: Boolean;
 		AppRunning: Boolean;
 		i: Integer;
 		rc: Integer;
-		
+		appname: string;
+		mutex: string;
+
 begin
-  Result := True;
+	Result := True;
 	SilentInstall := WizardSilent;
 
-  if SilentInstall then
-    begin
-      AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-      i := 0;
-      while AppRunning and ( i < 5 ) do
-        begin
-          Sleep(1000);
-          AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-          i := i + 1;
-        end;
-      AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-      rc := IDOK;
-      while AppRunning and ( rc = IDOK ) do
-        begin
-          rc := MsgBox('Setup has detected that '+ExpandConstant('{#AppName}')+' is currently running.' + #10#10 + 'Please close all instances of it now, then press OK to continue, or Cancel to exit', mbError, MB_OKCANCEL);
-          if rc = IDCANCEL then
-            Result := False;
-          AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-        end;
-    end
-    else
-      begin
-      	AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-        rc := IDOK;
-        while AppRunning and ( rc = IDOK ) do
-          begin
-            rc := MsgBox('Setup has detected that '+ExpandConstant('{#AppName}')+' is currently running.' + #10#10 + 'Please close all instances of it now, then press OK to continue, or Cancel to exit', mbError, MB_OKCANCEL);
-            if rc = IDCANCEL then
-              Result := False;
-            AppRunning := CheckForMutexes(ExpandConstant('{#AppName}')+'_Mutex');
-          end;
-      end;
+	appname := ExpandConstant('{#AppName}');
+	mutex := appname + '_Mutex';
+
+	if SilentInstall then
+		begin
+			AppRunning := CheckForMutexes(mutex);
+			i := 0;
+			while AppRunning and ( i < 5 ) do
+				begin
+					Sleep(1000);
+					AppRunning := CheckForMutexes(mutex);
+					i := i + 1;
+				end;
+			AppRunning := CheckForMutexes(mutex);
+			rc := IDOK;
+			while AppRunning and ( rc = IDOK ) do
+				begin
+					rc := MsgBox('Setup has detected that '+appname+' is currently running.' + #10#10 + 'Please close all instances of it now, then press OK to continue, or Cancel to exit', mbError, MB_OKCANCEL);
+					if rc = IDCANCEL then
+						Result := False;
+					AppRunning := CheckForMutexes(mutex);
+				end;
+		end
+	else
+		begin
+			AppRunning := CheckForMutexes(mutex);
+			rc := IDOK;
+			while AppRunning and ( rc = IDOK ) do
+				begin
+					rc := MsgBox('Setup has detected that '+appname+' is currently running.' + #10#10 + 'Please close all instances of it now, then press OK to continue, or Cancel to exit', mbError, MB_OKCANCEL);
+					if rc = IDCANCEL then
+						Result := False;
+					AppRunning := CheckForMutexes(mutex);
+				end;
+		end;
 end;
