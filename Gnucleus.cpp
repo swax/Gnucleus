@@ -27,6 +27,7 @@
 #include "GnucleusDoc.h"
 #include "AutPrefs.h"
 #include "AutCore.h"
+#include "AutDownload.h"
 
 #include "FrameMain.h"
 #include "FrameConnect.h"
@@ -355,6 +356,12 @@ void CGnucleusApp::OnAppAbout()
 
 	aboutDlg.m_AboutDNA   = "Gnucleus uses GnucDNA version " + m_pDoc->m_autCore->GetCoreVersion();
 	aboutDlg.m_LicenseDNA = m_pDoc->m_autCore->GetCoreLicense();
+
+	
+	// Test download from web
+	//int DownloadID = m_pDoc->m_autDownload->DownloadFile("Picture2.jpg", 282152, HASH_SHA1, "3IM67PAFGVWTQZEAGTWKAEM3SYBVG4OF");
+	//m_pDoc->m_autDownload->AddSource(DownloadID, NETWORK_WEB, "http://www.gnucleus.com/GnucDNA/picture2.jpg");
+	//m_pDoc->m_autDownload->Proxy(DownloadID, true, "66.123.218.124:80");
 
 	aboutDlg.DoModal();
 }

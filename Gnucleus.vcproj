@@ -760,7 +760,7 @@
 					RelativePath=".\AutCore.h">
 				</File>
 				<File
-					RelativePath="AutDownload.h">
+					RelativePath=".\AutDownload.h">
 				</File>
 				<File
 					RelativePath="AutDownloadSink.h">

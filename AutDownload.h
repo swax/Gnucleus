@@ -256,6 +256,30 @@ public:
 		InvokeHelper(0x24, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, SourceID);
 		return result;
 	}
+	long DownloadFile(LPCTSTR Name, long size, long HashID, LPCTSTR Hash)
+	{
+		long result;
+		static BYTE parms[] = VTS_BSTR VTS_I4 VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x25, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Name, size, HashID, Hash);
+		return result;
+	}
+	CString GetFilePath(long DownloadID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x26, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DownloadID);
+		return result;
+	}
+	void AddSource(long DownloadID, long NetworkID, LPCTSTR URL)
+	{
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x27, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, NetworkID, URL);
+	}
+	void Proxy(long DownloadID, BOOL Enabled, LPCTSTR Default)
+	{
+		static BYTE parms[] = VTS_I4 VTS_BOOL VTS_BSTR ;
+		InvokeHelper(0x28, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID, Enabled, Default);
+	}
 
 	// IDownload properties
 public:

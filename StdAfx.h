@@ -68,6 +68,7 @@
 // Hardcoded Enums
 #define NETWORK_GNUTELLA	1
 #define NETWORK_G2			2
+#define NETWORK_WEB			3
 
 #define CLIENT_NORMAL		1
 #define CLIENT_ULTRAPEER	2
