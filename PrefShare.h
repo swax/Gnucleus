@@ -62,6 +62,8 @@ protected:
 	afx_msg void OnCheckSendresults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual BOOL OnWizardFinish();
 };
 
 //{{AFX_INSERT_LOCATION}}

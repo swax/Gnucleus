@@ -60,6 +60,10 @@ public:
 	CButton m_btnSet;
 	afx_msg void OnBnClickedButtonSet();
 	afx_msg void OnBnClickedButtonOk();
+	CEdit m_ebMd5Hash;
+	CEdit m_ebMd4Hash;
+	CEdit m_ebTigerHash;
+	CEdit m_ebBitprintHash;
 };
 
 

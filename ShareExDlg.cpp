@@ -66,6 +66,10 @@ void CShareExDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LIST_METADATA, m_lstMetaData);
 	DDX_Control(pDX, IDC_COMBO1, m_cmbModify);
 	DDX_Control(pDX, IDC_BUTTON_SET, m_btnSet);
+	DDX_Control(pDX, IDC_EDIT_MD5HASH, m_ebMd5Hash);
+	DDX_Control(pDX, IDC_EDIT_MD4HASH, m_ebMd4Hash);
+	DDX_Control(pDX, IDC_EDIT_TIGERHASH, m_ebTigerHash);
+	DDX_Control(pDX, IDC_EDIT_BITPRINTHASH, m_ebBitprintHash);
 }
 
 
@@ -91,8 +95,11 @@ BOOL CShareExDlg::OnInitDialog()
 	m_ebIndex.SetWindowText( DWrdtoStr(m_autShare->GetFileIndex(m_FileID)));
 	m_ebSize.SetWindowText( CommaIze( DWrdtoStr(m_autShare->GetFileSize(m_FileID))) + " Bytes");
 
-	m_ebSha1Hash.SetWindowText( m_autShare->GetFileHash(m_FileID) );
-
+	m_ebSha1Hash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_SHA1) );
+	m_ebMd5Hash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_MD5) );
+	m_ebMd4Hash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_MD4_ED2K) );
+	m_ebTigerHash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_TIGER) );
+	m_ebBitprintHash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_BITPRINT) );
 	
 	int i = 0;
 	int offSet = ::GetSystemMetrics(SM_CXVSCROLL) + 3;

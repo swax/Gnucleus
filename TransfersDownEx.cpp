@@ -122,7 +122,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 	m_stcName.SetWindowText("Name:  " + m_autDownload->GetName(m_DownloadID));
 	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(m_autDownload->GetFileLength(m_DownloadID))) + " bytes");
 	
-	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autDownload->GetHash(m_DownloadID));
+	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autDownload->GetHash(m_DownloadID, HASH_SHA1));
 
 	Expand();
 	UpdateInfo();

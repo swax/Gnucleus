@@ -36,6 +36,7 @@
 #include "AutCache.h"
 #include "AutNetwork.h"
 #include "AutShare.h"
+#include "AutSearch.h"
 #include "AutUpdate.h"
 
 #include "ChatControl.h"
@@ -65,6 +66,7 @@
 #include "SchedulerDlg.h"
 #include "WebCacheDlg.h"
 #include "SearchMeta.h"
+#include "BrowseHostDlg.h"
 
 #include "FrameMain.h"
 
@@ -112,6 +114,7 @@ BEGIN_MESSAGE_MAP(CFrameMain, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_REPORTGNUCACHE, OnHelpReportgnucache)
 	ON_COMMAND(ID_TOOLS_METASEARCH, OnToolsMetaSearch)
 	//}}AFX_MSG_MAP
+	ON_COMMAND(ID_TOOLS_BROWSEHOST, OnToolsBrowsehost)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -867,4 +870,36 @@ void CFrameMain::OnToolsMetaSearch()
 	CSearchMeta SearchDlg(NULL, this);
 
 	SearchDlg.DoModal();
+}
+
+void CFrameMain::OnToolsBrowsehost()
+{
+	CBrowseHostDlg BrowseDlg;
+	BrowseDlg.DoModal();
+
+	if(!BrowseDlg.m_HostPort.IsEmpty())
+	{
+		int ColonPos = BrowseDlg.m_HostPort.Find(":");
+
+		if(ColonPos != -1)
+		{
+			CString Host = BrowseDlg.m_HostPort.Left(ColonPos);
+			int     Port = atoi(BrowseDlg.m_HostPort.Mid(ColonPos + 1));
+			
+			BrowseHost(Host, Port);
+		}
+	}
+}
+
+
+
+void CFrameMain::BrowseHost(CString Host, int Port)
+{
+	CViewSearch* pSearch = CreateSearchWindow();
+
+	pSearch->m_Search = Host + ":" + DWrdtoStr(Port);
+	pSearch->m_Browsing = true;
+	pSearch->UpdateTitle();
+
+	pSearch->m_SearchID = m_pDoc->m_autSearch->SendBrowseRequest(Host, Port);
 }

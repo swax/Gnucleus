@@ -151,11 +151,11 @@ public:
 		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x15, DISPATCH_METHOD, VT_EMPTY, NULL, parms, DownloadID);
 	}
-	CString GetHash(long DownloadID)
+	CString GetHash(long DownloadID, long HashID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x16, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DownloadID);
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x16, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DownloadID, HashID);
 		return result;
 	}
 	VARIANT GetSourceIDs(long DownloadID)

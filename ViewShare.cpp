@@ -236,7 +236,7 @@ void CViewShare::LoadSharedList()
 		File.Size	   = m_autShare->GetFileSize(FileIDs[i]);	
 		File.Matches   = m_autShare->GetFileMatches(FileIDs[i]);
 		File.Uploads   = m_autShare->GetFileUploads(FileIDs[i]);
-		File.Hash	   = m_autShare->GetFileHash(FileIDs[i]);
+		File.Hash	   = m_autShare->GetFileHash(FileIDs[i], HASH_SHA1);
 
 
 		File.NameLower = File.Name;
@@ -469,7 +469,7 @@ void CViewShare::OnShareUpdate(UINT FileID)
 				m_lstShared.SetItemText(0, 4, CommaIze( DWrdtoStr(++TotalUploaded)));
 			}
 
-			CString NewHash = m_autShare->GetFileHash(FileID);
+			CString NewHash = m_autShare->GetFileHash(FileID, HASH_SHA1);
 
 			if(NewHash == "")
 				m_lstShared.SetItemText(row, 5, "No");

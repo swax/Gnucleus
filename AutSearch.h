@@ -97,11 +97,11 @@ public:
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	CString GetResultHash(long SearchID, long ResultID)
+	CString GetResultHash(long SearchID, long ResultID, long HashID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_I4 ;
-		InvokeHelper(0xe, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID);
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
+		InvokeHelper(0xe, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HashID);
 		return result;
 	}
 	VARIANT GetResultIDs(long SearchID)
@@ -202,11 +202,11 @@ public:
 		InvokeHelper(0x1c, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, MetaID, AttributeList);
 		return result;
 	}
-	long StartHashSearch(LPCTSTR Query, LPCTSTR Hash)
+	long StartHashSearch(LPCTSTR Query, long HashID, LPCTSTR Hash)
 	{
 		long result;
-		static BYTE parms[] = VTS_BSTR VTS_BSTR ;
-		InvokeHelper(0x1d, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, Hash);
+		static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR ;
+		InvokeHelper(0x1d, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, HashID, Hash);
 		return result;
 	}
 	long GetResultMetaID(long SearchID, long ResultID)
@@ -235,6 +235,13 @@ public:
 		CString result;
 		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x21, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HostID, AttributeID);
+		return result;
+	}
+	long SendBrowseRequest(LPCTSTR Host, long Port)
+	{
+		long result;
+		static BYTE parms[] = VTS_BSTR VTS_I4 ;
+		InvokeHelper(0x22, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Host, Port);
 		return result;
 	}
 

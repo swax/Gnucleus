@@ -56,7 +56,7 @@
 
 // Master Version
 #define GNUCLEUS_VERSION    "1.9.9.4"
-#define BUILD_CORE_VERSION  "0.9.0.4"
+#define BUILD_CORE_VERSION  "0.9.0.5"
 
 // Threading
 #define CPU_0	0x0001
@@ -117,6 +117,12 @@
 #define RESULT_DOWNLOADING	3
 #define RESULT_COMPLETED	4
 #define RESULT_NOSOURCES	5
+
+#define HASH_SHA1			0
+#define HASH_MD5			1
+#define HASH_MD4_ED2K		2
+#define HASH_TIGER			3
+#define HASH_BITPRINT		4
 
 #define ROOM_SERVER			1
 #define ROOM_RAW			2

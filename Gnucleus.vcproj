@@ -391,6 +391,9 @@
 				Name="Tools .cpp"
 				Filter="">
 				<File
+					RelativePath="BrowseHostDlg.cpp">
+				</File>
+				<File
 					RelativePath=".\BuildMap.cpp">
 				</File>
 				<File
@@ -792,6 +795,9 @@
 				Name="Tools .h"
 				Filter="">
 				<File
+					RelativePath="BrowseHostDlg.h">
+				</File>
+				<File
 					RelativePath=".\BuildMap.h">
 				</File>
 				<File
@@ -1015,9 +1021,6 @@
 			RelativePath="ChangeLog.txt">
 		</File>
 		<File
-			RelativePath=".\Chat.txt">
-		</File>
-		<File
 			RelativePath="GPL.txt">
 		</File>
 		<File
@@ -1025,9 +1028,6 @@
 		</File>
 		<File
 			RelativePath=".\ToDo.txt">
-		</File>
-		<File
-			RelativePath=".\gnucleus.exe.manifest">
 		</File>
 	</Files>
 	<Globals>

@@ -11,7 +11,6 @@
 #define IDD_VIEW_CONNECT                104
 #define IDP_SOCKETS_INIT_FAILED         105
 #define IDR_FRAMESHARE_TMPL             106
-#define IDD_AAA                         108
 #define IDR_MAINFRAME                   127
 #define IDR_GNUTYPE                     128
 #define IDR_CONNECT                     129
@@ -117,6 +116,9 @@
 #define IDR_SEARCHEX_RCLICK             276
 #define IDD_SEARCH_META                 279
 #define ID_TOOLS_METASEARCH             280
+#define IDD_DIALOG2                     281
+#define IDD_TOOL_BROWSEHOST             281
+#define ID_TOOLS_BROWSEHOST             282
 #define IDC_STATIC_AUTHOR               1000
 #define IDC_EDIT_HOST                   1001
 #define IDC_EDIT_PORT                   1002
@@ -407,8 +409,11 @@
 #define IDC_BUTTON_OPENPARTIALS         1250
 #define IDC_EDIT_MAXLEAF                1251
 #define IDC_MEDIA                       1252
+#define IDC_EDIT_MD5HASH                1252
 #define IDC_STOP                        1253
+#define IDC_EDIT_MD4HASH                1253
 #define IDC_PAUSE                       1254
+#define IDC_EDIT_TIGERHASH              1254
 #define IDC_REW                         1255
 #define IDC_FF                          1256
 #define IDC_SLIDER_POS                  1257
@@ -432,10 +437,10 @@
 #define IDC_COMBO_META                  1279
 #define IDC_COMBO3                      1281
 #define IDC_COMBO_SPECIFY               1281
-#define IDC_SLIDER1                     1282
 #define IDC_SLIDER_CPU                  1282
 #define IDC_STATIC_HASHSPEED            1283
 #define IDC_STATIC_CPU                  1284
+#define IDC_EDIT1                       1285
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -575,9 +580,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        281
+#define _APS_NEXT_RESOURCE_VALUE        283
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1285
+#define _APS_NEXT_CONTROL_VALUE         1286
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

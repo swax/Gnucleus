@@ -160,7 +160,7 @@ void CSearchInfo::UpdateInfo()
 	m_stcName.SetWindowText("Name:  " + m_autSearch->GetResultName(m_SearchID, m_ResultID));
 	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr( m_autSearch->GetResultSize(m_SearchID, m_ResultID) )) + " Bytes");
 
-	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autSearch->GetResultHash(m_SearchID, m_ResultID));
+	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autSearch->GetResultHash(m_SearchID, m_ResultID, HASH_SHA1));
 	
 	m_stcSpeed.SetWindowText("Average Speed: " + CommaIze(DWrdtoStr( m_autSearch->GetResultSpeed(m_SearchID, m_ResultID))) + " KB/s");
 	

@@ -57,6 +57,9 @@ CViewSearch::CViewSearch()
 
 	m_tabResults = NULL;
 	m_tabAdvanced = NULL;
+
+	m_Browsing = false;
+	m_BrowseStatus = "Connecting...";
 }
 
 CViewSearch::~CViewSearch()
@@ -281,7 +284,14 @@ void CViewSearch::OnActivateView(BOOL bActivate, CView* pActivateView, CView* pD
 
 void CViewSearch::UpdateTitle()
 {
-	CString Title =  "Finding - " + m_Search;
+	CString Title;
+	
+	if(m_Browsing)
+		Title = "Browsing: ";
+	else
+		Title =  "Finding: ";
+	
+	Title += m_Search;
 	GetParentFrame()->SetWindowText(Title);
 
 	CFrameMain* pMain = (CFrameMain*) AfxGetMainWnd();
@@ -382,7 +392,7 @@ SearchResult* CViewSearch::AddResult(UINT ResultID)
 	Result.NameLower = Result.Name;
 	Result.NameLower.MakeLower();
 
-	Result.Sha1Hash  = m_autSearch->GetResultHash(m_SearchID, ResultID);
+	Result.Sha1Hash  = m_autSearch->GetResultHash(m_SearchID, ResultID, HASH_SHA1);
 	Result.Size		 = m_autSearch->GetResultSize(m_SearchID, ResultID);
 	Result.AvgSpeed	 = m_autSearch->GetResultSpeed(m_SearchID, ResultID);
 	Result.HostCount = m_autSearch->GetResultHostCount(m_SearchID, ResultID);
@@ -408,4 +418,18 @@ BOOL CViewSearch::PreCreateWindow(CREATESTRUCT& cs)
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
 	return nRet;
+}
+
+void CViewSearch::OnBrowseUpdate(int State, int Progress)
+{
+	if(State == SOCK_CONNECTING)
+		m_BrowseStatus = "Connecting...";
+	
+	else if(State == SOCK_CLOSED && Progress == 0)
+		m_BrowseStatus = "Browse Failed";
+
+	else
+		m_BrowseStatus = DWrdtoStr(Progress) + "% Received";
+
+	m_tabResults->UpdateTotals();
 }

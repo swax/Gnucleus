@@ -34,6 +34,7 @@ public:
 	void SearchFromConnect();
 	CViewSearch* CreateSearchWindow();
 
+	void BrowseHost(CString Host, int Port);
 
 	CGnucleusApp* m_pApp;
 	CGnucleusDoc* m_pDoc;
@@ -119,5 +120,7 @@ protected:
 	afx_msg void OnToolsMetaSearch();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnToolsBrowsehost();
 };
 

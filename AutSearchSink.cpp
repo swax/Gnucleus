@@ -64,6 +64,7 @@ BEGIN_DISPATCH_MAP(CAutSearchSink, CCmdTarget)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnUpdate", 1, OnUpdate, VT_EMPTY, VTS_I4 VTS_I4)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnResult", 2, OnResult, VT_EMPTY, VTS_I4 VTS_I4)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnRefresh", 3, OnRefresh, VT_EMPTY, VTS_I4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnBrowseUpdate", 4, OnBrowseUpdate, VT_EMPTY, VTS_I4 VTS_I4 VTS_I4)
 END_DISPATCH_MAP()
 
 
@@ -96,4 +97,12 @@ void CAutSearchSink::OnRefresh(int SearchID)
 	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
 		if( SearchID == ((CViewSearch*) CWnd::FromHandle(*itSearch))->m_SearchID)
 			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnRefresh();
+}
+
+void CAutSearchSink::OnBrowseUpdate(int SearchID, int State, int Progress)
+{
+	std::vector<HWND>::iterator itSearch;
+	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
+		if( SearchID == ((CViewSearch*) CWnd::FromHandle(*itSearch))->m_SearchID)
+			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnBrowseUpdate(State, Progress);
 }

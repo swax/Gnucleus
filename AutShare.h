@@ -86,11 +86,11 @@ public:
 		InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
 		return result;
 	}
-	CString GetFileHash(long FileID)
+	CString GetFileHash(long FileID, long HashID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xc, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID);
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0xc, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID, HashID);
 		return result;
 	}
 	void StopSharingFile(long FileID)

@@ -48,6 +48,7 @@ public:
 	void OnUpdate(UINT ResultID);
 	void OnResult(UINT ResultID);
 	void OnRefresh();
+	void OnBrowseUpdate(int State, int Progress);
 
 	SearchResult* AddResult(UINT ResultID);
 
@@ -58,7 +59,9 @@ public:
 	std::list<SearchResult> m_ResultList;
 	std::map<UINT, SearchResult*> m_ResultMap;
 	
-	
+	bool m_Browsing;
+	CString m_BrowseStatus;
+
 	CAutSearch*   m_autSearch;
 	CGnucleusDoc* m_pDoc;
 	

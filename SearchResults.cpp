@@ -321,10 +321,26 @@ void CSearchResults::OnTimer(UINT nIDEvent)
 
 	m_lstResults.m_SyncTotals = true;
 
-	CString Message;
 
-	Message.Format("Finding - %s, %s Results", (LPCTSTR) m_pView->m_Search, (LPCTSTR) CommaIze( DWrdtoStr( m_autSearch->CountGoodResults(m_pView->m_SearchID))));
-	GetParentFrame()->SetWindowText(Message);
+	
+	
+	CString Title;
+	
+	// Browsing: 11.123.44.32 - 35 Results / 23% Received
+	if(m_pView->m_Browsing)
+		Title = "Browsing: ";
+	
+	// Finding: divx - 35 Results
+	else
+		Title = "Finding: ";
+	
+	Title += m_pView->m_Search + " - " + CommaIze( DWrdtoStr( m_autSearch->CountGoodResults(m_pView->m_SearchID))) + " Results";
+
+	if(m_pView->m_Browsing)
+		Title += " / " +  m_pView->m_BrowseStatus;
+
+
+	GetParentFrame()->SetWindowText(Title);
 }
 
 void CSearchResults::OnButtonStopsearch() 
