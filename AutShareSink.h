@@ -18,7 +18,7 @@ public:
 
 	virtual void OnFinalRelease();
 
-	void OnUpdate(ULONG FileID);
+	void OnUpdate(int FileID);
 	void OnReload();
 
 	CGnucleusDoc* m_pDoc;

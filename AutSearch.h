@@ -55,52 +55,52 @@ public:
 		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x7, DISPATCH_METHOD, VT_EMPTY, NULL, parms, SearchID);
 	}
-	unsigned long CountGoodResults(long SearchID)
+	long CountGoodResults(long SearchID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x8, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID);
+		InvokeHelper(0x8, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID);
 		return result;
 	}
-	unsigned long CountTotalResults(long SearchID)
+	long CountTotalResults(long SearchID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x9, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID);
+		InvokeHelper(0x9, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID);
 		return result;
 	}
-	CString GetResultName(long SearchID, unsigned long ResultID)
+	CString GetResultName(long SearchID, long ResultID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0xa, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	unsigned long GetResultSize(long SearchID, unsigned long ResultID)
-	{
-		unsigned long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
-		InvokeHelper(0xb, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID, ResultID);
-		return result;
-	}
-	unsigned long GetResultSpeed(long SearchID, unsigned long ResultID)
-	{
-		unsigned long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
-		InvokeHelper(0xc, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID, ResultID);
-		return result;
-	}
-	long GetResultHostCount(long SearchID, unsigned long ResultID)
+	long GetResultSize(long SearchID, long ResultID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0xb, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
+		return result;
+	}
+	long GetResultSpeed(long SearchID, long ResultID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0xc, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
+		return result;
+	}
+	long GetResultHostCount(long SearchID, long ResultID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	CString GetResultHash(long SearchID, unsigned long ResultID)
+	CString GetResultHash(long SearchID, long ResultID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0xe, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
@@ -111,87 +111,87 @@ public:
 		InvokeHelper(0xf, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, SearchID);
 		return result;
 	}
-	long DownloadResult(long SearchID, unsigned long ResultID)
+	long DownloadResult(long SearchID, long ResultID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0x10, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	VARIANT GetHostIDs(long SearchID, unsigned long ResultID)
+	VARIANT GetHostIDs(long SearchID, long ResultID)
 	{
 		VARIANT result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	unsigned long GetHostIP(long SearchID, unsigned long ResultID, unsigned long HostID)
-	{
-		unsigned long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
-		InvokeHelper(0x12, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID, ResultID, HostID);
-		return result;
-	}
-	long GetHostPort(long SearchID, unsigned long ResultID, unsigned long HostID)
+	long GetHostIP(long SearchID, long ResultID, long HostID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
+		InvokeHelper(0x12, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
+		return result;
+	}
+	long GetHostPort(long SearchID, long ResultID, long HostID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x13, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	long GetHostSpeed(long SearchID, unsigned long ResultID, unsigned long HostID)
+	long GetHostSpeed(long SearchID, long ResultID, long HostID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x14, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	long GetHostDistance(long SearchID, unsigned long ResultID, unsigned long HostID)
+	long GetHostDistance(long SearchID, long ResultID, long HostID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x15, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	BOOL GetHostFirewall(long SearchID, unsigned long ResultID, unsigned long HostID)
+	BOOL GetHostFirewall(long SearchID, long ResultID, long HostID)
 	{
 		BOOL result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x16, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	BOOL GetHostStable(long SearchID, unsigned long ResultID, unsigned long HostID)
+	BOOL GetHostStable(long SearchID, long ResultID, long HostID)
 	{
 		BOOL result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x17, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	BOOL GetHostBusy(long SearchID, unsigned long ResultID, unsigned long HostID)
+	BOOL GetHostBusy(long SearchID, long ResultID, long HostID)
 	{
 		BOOL result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x18, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	CString GetHostVendor(long SearchID, unsigned long ResultID, unsigned long HostID)
+	CString GetHostVendor(long SearchID, long ResultID, long HostID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x19, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	VARIANT GetHostExtended(long SearchID, unsigned long ResultID, unsigned long HostID)
+	VARIANT GetHostExtended(long SearchID, long ResultID, long HostID)
 	{
 		VARIANT result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x1a, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	long GetResultState(long SearchID, unsigned long ResultID)
+	long GetResultState(long SearchID, long ResultID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0x1b, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
@@ -209,31 +209,31 @@ public:
 		InvokeHelper(0x1d, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Query, Hash);
 		return result;
 	}
-	long GetResultMetaID(long SearchID, unsigned long ResultID)
+	long GetResultMetaID(long SearchID, long ResultID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
 		InvokeHelper(0x1e, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	CString GetResultAttributeValue(long SearchID, unsigned long ResultID, long AttributeID)
+	CString GetResultAttributeValue(long SearchID, long ResultID, long AttributeID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_I4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x1f, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, AttributeID);
 		return result;
 	}
-	long GetHostMetaID(long SearchID, unsigned long ResultID, unsigned long HostID)
+	long GetHostMetaID(long SearchID, long ResultID, long HostID)
 	{
 		long result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x20, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
-	CString GetHostAttributeValue(long SearchID, unsigned long ResultID, unsigned long HostID, long AttributeID)
+	CString GetHostAttributeValue(long SearchID, long ResultID, long HostID, long AttributeID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_I4 VTS_UI4 VTS_UI4 VTS_I4 ;
+		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 VTS_I4 ;
 		InvokeHelper(0x21, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, SearchID, ResultID, HostID, AttributeID);
 		return result;
 	}

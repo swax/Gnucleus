@@ -24,46 +24,46 @@ public:
 		InvokeHelper(0x1, DISPATCH_METHOD, VT_VARIANT, (void*)&result, NULL);
 		return result;
 	}
-	unsigned long GetFileIndex(unsigned long FileID)
+	long GetFileIndex(long FileID)
 	{
-		unsigned long result;
-		static BYTE parms[] = VTS_UI4 ;
-		InvokeHelper(0x2, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, FileID);
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2, DISPATCH_METHOD, VT_I4, (void*)&result, parms, FileID);
 		return result;
 	}
-	CString GetFileDir(unsigned long FileID)
+	CString GetFileDir(long FileID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x3, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID);
 		return result;
 	}
-	CString GetFileName(unsigned long FileID)
+	CString GetFileName(long FileID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x4, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID);
 		return result;
 	}
-	unsigned long GetFileSize(unsigned long FileID)
+	long GetFileSize(long FileID)
 	{
-		unsigned long result;
-		static BYTE parms[] = VTS_UI4 ;
-		InvokeHelper(0x5, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, FileID);
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms, FileID);
 		return result;
 	}
-	unsigned long GetFileMatches(unsigned long FileID)
+	long GetFileMatches(long FileID)
 	{
-		unsigned long result;
-		static BYTE parms[] = VTS_UI4 ;
-		InvokeHelper(0x6, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, FileID);
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x6, DISPATCH_METHOD, VT_I4, (void*)&result, parms, FileID);
 		return result;
 	}
-	unsigned long GetFileUploads(unsigned long FileID)
+	long GetFileUploads(long FileID)
 	{
-		unsigned long result;
-		static BYTE parms[] = VTS_UI4 ;
-		InvokeHelper(0x7, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, FileID);
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x7, DISPATCH_METHOD, VT_I4, (void*)&result, parms, FileID);
 		return result;
 	}
 	void StartHashing()
@@ -86,29 +86,29 @@ public:
 		InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
 		return result;
 	}
-	CString GetFileHash(unsigned long FileID)
+	CString GetFileHash(long FileID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0xc, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, FileID);
 		return result;
 	}
-	void StopSharingFile(unsigned long FileID)
+	void StopSharingFile(long FileID)
 	{
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_EMPTY, NULL, parms, FileID);
 	}
-	VARIANT GetFileKeywords(unsigned long FileID)
+	VARIANT GetFileKeywords(long FileID)
 	{
 		VARIANT result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0xe, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, FileID);
 		return result;
 	}
-	VARIANT GetFileAltLocs(unsigned long FileID)
+	VARIANT GetFileAltLocs(long FileID)
 	{
 		VARIANT result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0xf, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, FileID);
 		return result;
 	}
@@ -118,25 +118,25 @@ public:
 		InvokeHelper(0x10, DISPATCH_METHOD, VT_VARIANT, (void*)&result, NULL);
 		return result;
 	}
-	CString GetDirName(unsigned long DirID)
+	CString GetDirName(long DirID)
 	{
 		CString result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DirID);
 		return result;
 	}
-	BOOL GetDirRecursive(unsigned long DirID)
+	BOOL GetDirRecursive(long DirID)
 	{
 		BOOL result;
-		static BYTE parms[] = VTS_UI4 ;
+		static BYTE parms[] = VTS_I4 ;
 		InvokeHelper(0x12, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms, DirID);
 		return result;
 	}
-	unsigned long GetDirFileCount(unsigned long DirID)
+	long GetDirFileCount(long DirID)
 	{
-		unsigned long result;
-		static BYTE parms[] = VTS_UI4 ;
-		InvokeHelper(0x13, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DirID);
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x13, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DirID);
 		return result;
 	}
 	void SetSharedDirs(VARIANT * pDirPaths)
@@ -150,10 +150,10 @@ public:
 		InvokeHelper(0x15, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
 		return result;
 	}
-	unsigned long GetFileCount()
+	long GetFileCount()
 	{
-		unsigned long result;
-		InvokeHelper(0x16, DISPATCH_METHOD, VT_UI4, (void*)&result, NULL);
+		long result;
+		InvokeHelper(0x16, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
 		return result;
 	}
 	long GetFileMetaID(long FileID)
@@ -174,6 +174,12 @@ public:
 	{
 		static BYTE parms[] = VTS_I4 VTS_I4 VTS_BSTR ;
 		InvokeHelper(0x19, DISPATCH_METHOD, VT_EMPTY, NULL, parms, FileID, AttributeID, Value);
+	}
+	long GetTotalFileSize()
+	{
+		long result;
+		InvokeHelper(0x1a, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
+		return result;
 	}
 
 	// IShare properties

@@ -61,9 +61,9 @@ END_MESSAGE_MAP()
 
 
 BEGIN_DISPATCH_MAP(CAutSearchSink, CCmdTarget)
-		DISP_FUNCTION_ID(CAutSearchSink, "OnUpdate", 1, OnUpdate, VT_EMPTY, VTS_I4 VTS_UI4)
-		DISP_FUNCTION_ID(CAutSearchSink, "OnResult", 2, OnResult, VT_EMPTY, VTS_I4 VTS_UI4)
-		DISP_FUNCTION_ID(CAutSearchSink, "OnRefresh", 3, OnRefresh, VT_EMPTY, VTS_UI4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnUpdate", 1, OnUpdate, VT_EMPTY, VTS_I4 VTS_I4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnResult", 2, OnResult, VT_EMPTY, VTS_I4 VTS_I4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnRefresh", 3, OnRefresh, VT_EMPTY, VTS_I4)
 END_DISPATCH_MAP()
 
 
@@ -74,7 +74,7 @@ END_INTERFACE_MAP()
 
 // CAutSearchSink message handlers
 
-void CAutSearchSink::OnUpdate(LONG SearchID, ULONG ResultID)
+void CAutSearchSink::OnUpdate(int SearchID, int ResultID)
 {
 	std::vector<HWND>::iterator itSearch;
 	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
@@ -82,7 +82,7 @@ void CAutSearchSink::OnUpdate(LONG SearchID, ULONG ResultID)
 			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnUpdate(ResultID);
 }
 
-void CAutSearchSink::OnResult(LONG SearchID, ULONG ResultID)
+void CAutSearchSink::OnResult(int SearchID, int ResultID)
 {
 	std::vector<HWND>::iterator itSearch;
 	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
@@ -90,7 +90,7 @@ void CAutSearchSink::OnResult(LONG SearchID, ULONG ResultID)
 			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnResult(ResultID);
 }
 
-void CAutSearchSink::OnRefresh(LONG SearchID)
+void CAutSearchSink::OnRefresh(int SearchID)
 {
 	std::vector<HWND>::iterator itSearch;
 	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)

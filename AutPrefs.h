@@ -96,35 +96,35 @@ public:
 
 	// IPrefs properties
 public:
-	unsigned long GetForcedHost()
+	long GetForcedHost()
 	{
-		unsigned long result;
-		GetProperty(0x6, VT_UI4, (void*)&result);
+		long result;
+		GetProperty(0x6, VT_I4, (void*)&result);
 		return result;
 	}
-	void SetForcedHost(unsigned long propVal)
+	void SetForcedHost(long propVal)
 	{
-		SetProperty(0x6, VT_UI4, propVal);
+		SetProperty(0x6, VT_I4, propVal);
 	}
-	unsigned long GetForcedPort()
+	long GetForcedPort()
 	{
-		unsigned long result;
-		GetProperty(0x8, VT_UI4, (void*)&result);
+		long result;
+		GetProperty(0x8, VT_I4, (void*)&result);
 		return result;
 	}
-	void SetForcedPort(unsigned long propVal)
+	void SetForcedPort(long propVal)
 	{
-		SetProperty(0x8, VT_UI4, propVal);
+		SetProperty(0x8, VT_I4, propVal);
 	}
-	unsigned long GetSpeedStat()
+	long GetSpeedStat()
 	{
-		unsigned long result;
-		GetProperty(0x9, VT_UI4, (void*)&result);
+		long result;
+		GetProperty(0x9, VT_I4, (void*)&result);
 		return result;
 	}
-	void SetSpeedStat(unsigned long propVal)
+	void SetSpeedStat(long propVal)
 	{
-		SetProperty(0x9, VT_UI4, propVal);
+		SetProperty(0x9, VT_I4, propVal);
 	}
 	long GetUpdate()
 	{
@@ -146,15 +146,15 @@ public:
 	{
 		SetProperty(0x11, VT_BOOL, propVal);
 	}
-	unsigned long GetMaxLeaves()
+	long GetMaxLeaves()
 	{
-		unsigned long result;
-		GetProperty(0x13, VT_UI4, (void*)&result);
+		long result;
+		GetProperty(0x13, VT_I4, (void*)&result);
 		return result;
 	}
-	void SetMaxLeaves(unsigned long propVal)
+	void SetMaxLeaves(long propVal)
 	{
-		SetProperty(0x13, VT_UI4, propVal);
+		SetProperty(0x13, VT_I4, propVal);
 	}
 	BOOL GetLanMode()
 	{

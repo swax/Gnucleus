@@ -17,9 +17,9 @@ public:
 
 	virtual void OnFinalRelease();
 
-	void OnUpdate(LONG SearchID, ULONG ResultID);
-	void OnResult(LONG SearchID, ULONG ResultID);
-	void OnRefresh(LONG SearchID);
+	void OnUpdate(int SearchID, int ResultID);
+	void OnResult(int SearchID, int ResultID);
+	void OnRefresh(int SearchID);
 
 	CGnucleusDoc* m_pDoc;
 

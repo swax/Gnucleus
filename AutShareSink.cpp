@@ -61,7 +61,7 @@ END_MESSAGE_MAP()
 
 
 BEGIN_DISPATCH_MAP(CAutShareSink, CCmdTarget)
-	DISP_FUNCTION_ID(CAutShareSink, "OnUpdate", 1, OnUpdate, VT_EMPTY, VTS_UI4)
+	DISP_FUNCTION_ID(CAutShareSink, "OnUpdate", 1, OnUpdate, VT_EMPTY, VTS_I4)
 	DISP_FUNCTION_ID(CAutShareSink, "OnReload", 2, OnReload, VT_EMPTY, NULL)
 END_DISPATCH_MAP()
 
@@ -73,7 +73,7 @@ END_INTERFACE_MAP()
 
 // CAutShareSink message handlers
 
-void CAutShareSink::OnUpdate(ULONG FileID)
+void CAutShareSink::OnUpdate(int FileID)
 {
 	if(m_pDoc->m_pViewShare)
 		((CViewShare*) CWnd::FromHandle(m_pDoc->m_pViewShare))->OnShareUpdate(FileID);

@@ -97,11 +97,11 @@ public:
 		InvokeHelper(0xc, DISPATCH_METHOD, VT_I4, (void*)&result, parms, UploadID);
 		return result;
 	}
-	unsigned long GetIP(long UploadID)
+	long GetIP(long UploadID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xd, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, UploadID);
+		InvokeHelper(0xd, DISPATCH_METHOD, VT_I4, (void*)&result, parms, UploadID);
 		return result;
 	}
 	long GetPort(long UploadID)

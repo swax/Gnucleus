@@ -44,11 +44,11 @@ public:
 		InvokeHelper(0x4, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
-	unsigned long GetNodeIP(long NodeID)
+	long GetNodeIP(long NodeID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x5, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, NodeID);
+		InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
 	long GetNodePort(long NodeID)
@@ -58,23 +58,23 @@ public:
 		InvokeHelper(0x6, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
-	unsigned long GetNodeBytesUp(long NodeID)
+	long GetNodeBytesUp(long NodeID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x9, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, NodeID);
+		InvokeHelper(0x9, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
-	unsigned long GetNodeBytesDown(long NodeID)
+	long GetNodeBytesDown(long NodeID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xa, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, NodeID);
+		InvokeHelper(0xa, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
-	void ConnectNode(LPCTSTR Host, unsigned long Port)
+	void ConnectNode(LPCTSTR Host, long Port)
 	{
-		static BYTE parms[] = VTS_BSTR VTS_UI4 ;
+		static BYTE parms[] = VTS_BSTR VTS_I4 ;
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Host, Port);
 	}
 	void RemoveNode(long NodeID)
@@ -102,16 +102,16 @@ public:
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, NodeID);
 		return result;
 	}
-	unsigned long GetLocalIP()
+	long GetLocalIP()
 	{
-		unsigned long result;
-		InvokeHelper(0x12, DISPATCH_METHOD, VT_UI4, (void*)&result, NULL);
+		long result;
+		InvokeHelper(0x12, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
 		return result;
 	}
-	unsigned long GetLocalPort()
+	long GetLocalPort()
 	{
-		unsigned long result;
-		InvokeHelper(0x13, DISPATCH_METHOD, VT_UI4, (void*)&result, NULL);
+		long result;
+		InvokeHelper(0x13, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
 		return result;
 	}
 	VARIANT GetLanNodeIDs()
@@ -172,11 +172,11 @@ public:
 		static BYTE parms[] = VTS_I4 VTS_PI4 VTS_PI4 ;
 		InvokeHelper(0x1e, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NodeID, Good, Total);
 	}
-	unsigned long GetNodeBytesDropped(long NodeID)
+	long GetNodeBytesDropped(long NodeID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x1f, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, NodeID);
+		InvokeHelper(0x1f, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
 	double GetNodePacketsDown(long NodeID)

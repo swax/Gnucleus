@@ -45,18 +45,18 @@ public:
 		InvokeHelper(0x4, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, DownloadID);
 		return result;
 	}
-	unsigned long GetBytesCompleted(long DownloadID)
+	long GetBytesCompleted(long DownloadID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x5, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID);
+		InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID);
 		return result;
 	}
-	unsigned long GetFileLength(long DownloadID)
+	long GetFileLength(long DownloadID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x6, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID);
+		InvokeHelper(0x6, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID);
 		return result;
 	}
 	long GetSourceCount(long DownloadID)
@@ -108,11 +108,11 @@ public:
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID);
 		return result;
 	}
-	unsigned long GetSecETA(long DownloadID)
+	long GetSecETA(long DownloadID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0xe, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID);
+		InvokeHelper(0xe, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID);
 		return result;
 	}
 	long GetSourcePos(long DownloadID)
@@ -165,11 +165,11 @@ public:
 		InvokeHelper(0x17, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, DownloadID);
 		return result;
 	}
-	unsigned long GetSourceIP(long DownloadID, long SourceID)
+	long GetSourceIP(long DownloadID, long SourceID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 VTS_I4 ;
-		InvokeHelper(0x18, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID, SourceID);
+		InvokeHelper(0x18, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, SourceID);
 		return result;
 	}
 	long GetSourcePort(long DownloadID, long SourceID)
@@ -242,11 +242,18 @@ public:
 		InvokeHelper(0x22, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, ChunkID);
 		return result;
 	}
-	unsigned long GetChunkFamily(long DownloadID, long ChunkID)
+	long GetChunkFamily(long DownloadID, long ChunkID)
 	{
-		unsigned long result;
+		long result;
 		static BYTE parms[] = VTS_I4 VTS_I4 ;
-		InvokeHelper(0x23, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID, ChunkID);
+		InvokeHelper(0x23, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, ChunkID);
+		return result;
+	}
+	long GetSourceBytesPerSec(long DownloadID, long SourceID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 VTS_I4 ;
+		InvokeHelper(0x24, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, SourceID);
 		return result;
 	}
 
