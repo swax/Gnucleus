@@ -1,3 +1,5 @@
+Gnucleus 2.0.0.7
+	jthomps: Update copyright statements to include 2004
 
 Gnucleus 2.0.0.6
 	jthomps: Removed GNUCLEUS_VERSION define and use FileVersion info
