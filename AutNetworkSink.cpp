@@ -154,3 +154,4 @@ void CAutNetworkSink::OnChallenge(int NodeID, LPCTSTR Challenge)
 
 	m_pDoc->m_autNetwork->AnswerChallenge(NodeID, DWrdtoStr(nAnswer) );*/
 }
+

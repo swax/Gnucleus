@@ -3,6 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.00"
 	Name="Gnucleus"
+	ProjectGUID="{800EA0DA-7F8D-4881-9011-FC1F7EC80479}"
 	SccProjectName=""
 	SccLocalPath=""
 	Keyword="MFCProj">
