@@ -12,6 +12,7 @@ class CAutSearch;
 class CAutDownload;
 class CAutUpload;
 class CAutUpdate;
+class CAutChat;
 
 class CAutNetworkSink;
 class CAutShareSink;
@@ -19,6 +20,7 @@ class CAutSearchSink;
 class CAutDownloadSink;
 class CAutUploadSink;
 class CAutUpdateSink;
+class CAutChatSink;
 
 class CGnucleusApp;
 class CPrefsEx;
@@ -59,6 +61,7 @@ public:
 	CAutDownload* m_autDownload;
 	CAutUpload*   m_autUpload;
 	CAutUpdate*   m_autUpdate;
+	CAutChat*     m_autChat;
 
 	CAutNetworkSink*   m_autNetworkSink;
 	CAutShareSink*     m_autShareSink;
@@ -66,6 +69,7 @@ public:
 	CAutDownloadSink*  m_autDownloadSink;
 	CAutUploadSink*    m_autUploadSink;
 	CAutUpdateSink*	   m_autUpdateSink;
+	CAutChatSink*	   m_autChatSink;
 
 	DWORD m_NetEventCookie;
 	DWORD m_ShareEventCookie;
@@ -73,6 +77,7 @@ public:
 	DWORD m_DownloadEventCookie;
 	DWORD m_UploadEventCookie;
 	DWORD m_UpdateEventCookie;
+	DWORD m_ChatEventCookie;
 
 	CPrefsEx*	  m_pPrefsEx;
 	CGnucleusApp* m_pApp;

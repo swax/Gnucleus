@@ -38,6 +38,7 @@
 #include "AutDownload.h"
 #include "AutUpload.h"
 #include "AutUpdate.h"
+#include "AutChat.h"
 
 #include "AutNetworkSink.h"
 #include "AutShareSink.h"
@@ -45,6 +46,7 @@
 #include "AutDownloadSink.h"
 #include "AutUploadSink.h"
 #include "AutUpdateSink.h"
+#include "AutChatSink.h"
 
 #include "ChatControl.h"
 #include "ChatServer.h"
@@ -161,7 +163,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	if(m_pPrefsEx->m_AutoConnect)
 	{
 		m_autCore->Connect2(NETWORK_GNUTELLA);
-		m_autCore->Connect2(NETWORK_G2);
+	    m_autCore->Connect2(NETWORK_G2);
 		
 		m_autNetwork->ClientMode();
 		m_pChat->m_AutoConnect = true;
@@ -239,6 +241,11 @@ void CGnucleusDoc::ConnectCore()
 	m_autUpdate = new CAutUpdate;
 	m_autUpdate->AttachDispatch( m_autCore->GetIUpdate(), false );
 
+	// Attach chat object
+	m_autChat = new CAutChat;
+	m_autChat->AttachDispatch( m_autCore->GetIChat(), false );
+
+
 	// Network event object and establish a connection between source and sink.
 	m_autNetworkSink = new CAutNetworkSink(this);
 	AfxConnectionAdvise(m_autNetwork->m_lpDispatch, IID_INetworkEvent, m_autNetworkSink->GetIDispatch(false), false, &m_NetEventCookie);
@@ -263,10 +270,18 @@ void CGnucleusDoc::ConnectCore()
 	m_autUpdateSink = new CAutUpdateSink(this);
 	AfxConnectionAdvise(m_autUpdate->m_lpDispatch, IID_IUpdateEvent, m_autUpdateSink->GetIDispatch(false), false, &m_UpdateEventCookie);
 
+	// Chat event object and establish a connection between source and sink.
+	m_autChatSink = new CAutChatSink(this);
+	AfxConnectionAdvise(m_autChat->m_lpDispatch, IID_IChatEvent, m_autChatSink->GetIDispatch(false), false, &m_ChatEventCookie);
+
 }
 
 void CGnucleusDoc::DisconnectCore()
 {
+	AfxConnectionUnadvise(m_autChat->m_lpDispatch, IID_IChatEvent, m_autChatSink->GetIDispatch(false), false, m_ChatEventCookie);
+	delete m_autChatSink;
+	m_autChatSink = NULL;
+
 	AfxConnectionUnadvise(m_autUpdate->m_lpDispatch, IID_IUpdateEvent, m_autUpdateSink->GetIDispatch(false), false, m_UpdateEventCookie);
 	delete m_autUpdateSink;
 	m_autUpdateSink = NULL;
@@ -291,6 +306,9 @@ void CGnucleusDoc::DisconnectCore()
 	delete m_autNetworkSink;
 	m_autNetworkSink = NULL;
 
+
+	delete m_autChat;
+	m_autChat = NULL;
 
 	delete m_autUpdate;
 	m_autUpdate = NULL;

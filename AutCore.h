@@ -146,6 +146,12 @@ public:
 		InvokeHelper(0x1b, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, NetworkID);
 		return result;
 	}
+	LPDISPATCH GetIChat()
+	{
+		LPDISPATCH result;
+		InvokeHelper(0x1c, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
+		return result;
+	}
 
 	// ICore properties
 public:

@@ -38,6 +38,7 @@
 #include "AutShare.h"
 #include "AutSearch.h"
 #include "AutUpdate.h"
+#include "AutChat.h"
 
 #include "ChatControl.h"
 #include "ChatServer.h"

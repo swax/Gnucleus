@@ -158,7 +158,7 @@
 				RelativePath=".\GnucleusDoc.cpp">
 			</File>
 			<Filter
-				Name="Browser .cpp"
+				Name="Browser"
 				Filter="">
 				<File
 					RelativePath=".\FrameBrowser.cpp">
@@ -168,7 +168,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Chat .cpp"
+				Name="Chat"
 				Filter="">
 				<File
 					RelativePath=".\ChatControl.cpp">
@@ -193,7 +193,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Common .cpp"
+				Name="Common"
 				Filter="">
 				<File
 					RelativePath=".\Common.cpp">
@@ -251,7 +251,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="Connect .cpp"
+				Name="Connect"
 				Filter="">
 				<File
 					RelativePath=".\ConnectAdvanced.cpp">
@@ -276,7 +276,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Preferences .cpp"
+				Name="Preferences"
 				Filter="">
 				<File
 					RelativePath="PrefsEx.cpp">
@@ -332,7 +332,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="Search .cpp"
+				Name="Search"
 				Filter="">
 				<File
 					RelativePath=".\FrameSearch.cpp">
@@ -360,7 +360,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Share .cpp"
+				Name="Share"
 				Filter="">
 				<File
 					RelativePath=".\FrameShare.cpp">
@@ -373,7 +373,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Statistics .cpp"
+				Name="Statistics"
 				Filter="">
 				<File
 					RelativePath=".\FrameStatistics.cpp">
@@ -404,7 +404,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Tools .cpp"
+				Name="Tools"
 				Filter="">
 				<File
 					RelativePath="BrowseHostDlg.cpp">
@@ -433,7 +433,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="Transfers .cpp"
+				Name="Transfers"
 				Filter="">
 				<File
 					RelativePath=".\FrameTransfers.cpp">
@@ -458,8 +458,11 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Com .cpp"
+				Name="Com"
 				Filter="">
+				<File
+					RelativePath=".\AutChatSink.cpp">
+				</File>
 				<File
 					RelativePath="AutDownloadSink.cpp">
 				</File>
@@ -496,7 +499,7 @@
 				RelativePath=".\Resource.h">
 			</File>
 			<Filter
-				Name="Browser .h"
+				Name="Browser"
 				Filter="">
 				<File
 					RelativePath=".\FrameBrowser.h">
@@ -506,7 +509,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Chat .h"
+				Name="Chat"
 				Filter="">
 				<File
 					RelativePath=".\ChatControl.h">
@@ -531,7 +534,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Common .h"
+				Name="Common"
 				Filter="">
 				<File
 					RelativePath=".\Common.h">
@@ -575,7 +578,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="Connect .h"
+				Name="Connect"
 				Filter="">
 				<File
 					RelativePath=".\ConnectAdvanced.h">
@@ -600,7 +603,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Preferences .h"
+				Name="Preferences"
 				Filter="">
 				<File
 					RelativePath="PrefsEx.h">
@@ -656,7 +659,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="Search .h"
+				Name="Search"
 				Filter="">
 				<File
 					RelativePath=".\FrameSearch.h">
@@ -684,7 +687,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Share .h"
+				Name="Share"
 				Filter="">
 				<File
 					RelativePath=".\FrameShare.h">
@@ -697,7 +700,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Statistics .h"
+				Name="Statistics"
 				Filter="">
 				<File
 					RelativePath=".\FrameStatistics.h">
@@ -728,7 +731,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Transfers .h"
+				Name="Transfers"
 				Filter="">
 				<File
 					RelativePath=".\FrameTransfers.h">
@@ -753,10 +756,16 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Com .h"
+				Name="Com"
 				Filter="">
 				<File
 					RelativePath="AutCache.h">
+				</File>
+				<File
+					RelativePath=".\AutChat.h">
+				</File>
+				<File
+					RelativePath=".\AutChatSink.h">
 				</File>
 				<File
 					RelativePath=".\AutCore.h">
@@ -805,7 +814,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Tools .h"
+				Name="Tools"
 				Filter="">
 				<File
 					RelativePath="BrowseHostDlg.h">

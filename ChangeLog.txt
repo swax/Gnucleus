@@ -1,8 +1,10 @@
+
 Gnucleus 2.0.0.6
 	jthomps: Removed GNUCLEUS_VERSION define and use FileVersion info
 	jthomps: Include ChangeLog.txt in setup
 	jthomps: View ChangeLog.txt when Help->Change Log menu item is clicked
 	jthomps: Added Version.lib to Gnucleus.vcproj for FileVersion functions
+	swabby: Hooks to IChat interface added
 
 Gnucleus 2.0.0.5
 	swabby: Fixed evolver bug
