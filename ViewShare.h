@@ -11,6 +11,8 @@
 
 
 #include "DlgResizer.h"
+#include "afxwin.h"
+#include "afxcmn.h"
 
 
 struct FileItem
@@ -161,6 +163,12 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+public:
+	CStatic m_stcHashSpeed;
+	CSliderCtrl m_sldrCpu;
+	CStatic m_stcCpu;
+	afx_msg void OnNMReleasedcaptureSliderCpu(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnNMCustomdrawSliderCpu(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 /////////////////////////////////////////////////////////////////////////////

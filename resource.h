@@ -432,6 +432,10 @@
 #define IDC_COMBO_META                  1279
 #define IDC_COMBO3                      1281
 #define IDC_COMBO_SPECIFY               1281
+#define IDC_SLIDER1                     1282
+#define IDC_SLIDER_CPU                  1282
+#define IDC_STATIC_HASHSPEED            1283
+#define IDC_STATIC_CPU                  1284
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -573,7 +577,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        281
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1282
+#define _APS_NEXT_CONTROL_VALUE         1285
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

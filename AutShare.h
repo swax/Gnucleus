@@ -184,5 +184,15 @@ public:
 
 	// IShare properties
 public:
+	long GetHashSpeed()
+	{
+		long result;
+		GetProperty(0x1b, VT_I4, (void*)&result);
+		return result;
+	}
+	void SetHashSpeed(long propVal)
+	{
+		SetProperty(0x1b, VT_I4, propVal);
+	}
 
 };

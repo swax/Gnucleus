@@ -79,6 +79,9 @@ void CViewShare::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON_STOPSHARING, m_btnStop);
 	DDX_Control(pDX, IDC_LIST_SHARED, m_lstShared);
 	//}}AFX_DATA_MAP
+	DDX_Control(pDX, IDC_STATIC_HASHSPEED, m_stcHashSpeed);
+	DDX_Control(pDX, IDC_SLIDER_CPU, m_sldrCpu);
+	DDX_Control(pDX, IDC_STATIC_CPU, m_stcCpu);
 }
 
 
@@ -96,6 +99,8 @@ BEGIN_MESSAGE_MAP(CViewShare, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON_RUNSELECTED, OnButtonRunSelected)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_SHARED, OnItemchangedListShared)
 	//}}AFX_MSG_MAP
+	ON_NOTIFY(NM_RELEASEDCAPTURE, IDC_SLIDER_CPU, OnNMReleasedcaptureSliderCpu)
+	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER_CPU, OnNMCustomdrawSliderCpu)
 END_MESSAGE_MAP()
 
 
@@ -147,9 +152,15 @@ void CViewShare::OnInitialUpdate()
 	m_DlgResizer.MoveItem(IDC_BUTTON_RUNSELECTED,   CDlgResizer::Down);
 	m_DlgResizer.MoveItem(IDC_BUTTON_STOPSHARING,  CDlgResizer::Down);
 	m_DlgResizer.MoveItem(IDC_BUTTON_STARTSHARING, CDlgResizer::Down);
+	
 	m_DlgResizer.MoveItem(IDC_CHECK_STOPHASHING,   CDlgResizer::DownAndRight);
+	
+	m_DlgResizer.MoveItem(IDC_STATIC_HASHSPEED, CDlgResizer::DownAndRight);
+	m_DlgResizer.MoveItem(IDC_SLIDER_CPU,		CDlgResizer::DownAndRight);
+	m_DlgResizer.MoveItem(IDC_STATIC_CPU,		CDlgResizer::DownAndRight);
 
 	m_DlgResizer.Done();
+
 
 	// Add to view list	
 	m_pDoc->m_pViewShare = GetSafeHwnd();
@@ -165,6 +176,14 @@ void CViewShare::OnInitialUpdate()
 
 	GetParentFrame()->GetClientRect(&rect);
 	PostMessage(WM_SIZE, SIZE_RESTORED, MAKELONG(rect.right - 4, rect.bottom - 4));
+
+	
+	// Setup slider
+	m_sldrCpu.SetRange(0, 100);
+	m_sldrCpu.SetPos( m_autShare->GetHashSpeed() );
+
+	m_stcCpu.SetWindowText( DWrdtoStr(m_autShare->GetHashSpeed()) + "% cpu");
+
 
 	SetTimer(1, 1000, NULL);
 }
@@ -614,4 +633,20 @@ BOOL CViewShare::PreCreateWindow(CREATESTRUCT& cs)
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
 	return nRet;
+}
+
+void CViewShare::OnNMReleasedcaptureSliderCpu(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	m_autShare->SetHashSpeed( m_sldrCpu.GetPos() );
+
+	m_stcCpu.SetWindowText( DWrdtoStr(m_sldrCpu.GetPos()) + "% cpu" );
+
+	*pResult = 0;
+}
+
+void CViewShare::OnNMCustomdrawSliderCpu(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	m_stcCpu.SetWindowText(DWrdtoStr(m_sldrCpu.GetPos()) + "% cpu");
+
+	*pResult = 0;
 }
