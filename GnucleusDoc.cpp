@@ -158,7 +158,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	//DELETE THIS
-	//m_autNetwork->ForceUltrapeer(true);
+	m_autNetwork->ForceUltrapeer(true);
 
 
 	// Start connecting

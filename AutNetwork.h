@@ -216,6 +216,12 @@ public:
 		static BYTE parms[] = VTS_BSTR ;
 		InvokeHelper(0x25, DISPATCH_METHOD, VT_EMPTY, NULL, parms, LanName);
 	}
+	VARIANT GetChildNodeIDs()
+	{
+		VARIANT result;
+		InvokeHelper(0x26, DISPATCH_METHOD, VT_VARIANT, (void*)&result, NULL);
+		return result;
+	}
 
 	// INetwork properties
 public:

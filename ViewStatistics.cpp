@@ -217,38 +217,49 @@ void CViewStatistics::OnSockUpdate()
 	SafeArrayUnaccessData(psa);
 
 
+	// Get child IDs and put them into a vector
+	var.Clear();
+	var = m_autNetwork->GetChildNodeIDs();
+	psa = var.parray;
+
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
+
+	std::vector<int> ChildIDs;
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+		 ChildIDs.push_back(nArray[i]);
+
+	SafeArrayUnaccessData(psa);
+
+
 	// Mode 0 - Normal nodes
 	// Mode 1 - Child nodes
 	for(int Mode = 0; Mode < 2; Mode++)
 	{
-		for(i = 0; i < NodeIDs.size(); i++)
+		std::vector<int>* NodeList = NULL;
+
+		if(Mode == 0)
+			NodeList = &NodeIDs;
+		else
+			NodeList = &ChildIDs;
+
+
+		for(i = 0; i < NodeList->size(); i++)
 		{
-			if(m_autNetwork->GetNodeState(NodeIDs[i]) != SOCK_CONNECTED)
+			int NodeID = NodeList->at(i);
+
+			if(m_autNetwork->GetNodeState(NodeID) != SOCK_CONNECTED)
 				continue;
 			
-			// Adding normal nodes
-			if(Mode == 0)
-			{
-				if(m_autNetwork->ClientMode() == CLIENT_ULTRAPEER)
-					if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_LEAF)
-						continue;
-			}
-
-			// Adding children
-			else
-			{
-				if(m_autNetwork->GetNodeMode(NodeIDs[i]) != CLIENT_LEAF)
-					continue;
-
-				Children++;
-			}
-
+			// Count Hosts
 			Hosts++;
 			
+			if(Mode == 1)
+				Children++;
+			
 			IP NodeIP;
-			NodeIP.S_addr = m_autNetwork->GetNodeIP(NodeIDs[i]);
+			NodeIP.S_addr = m_autNetwork->GetNodeIP(NodeID);
 
-			HostPort = IPtoStr(NodeIP) + ":" + DWrdtoStr(m_autNetwork->GetNodePort(NodeIDs[i]));
+			HostPort = IPtoStr(NodeIP) + ":" + DWrdtoStr(m_autNetwork->GetNodePort(NodeID));
 
 			if(itemCount <= pos)
 				m_lstNodes.InsertItem(pos, HostPort);
@@ -259,10 +270,10 @@ void CViewStatistics::OnSockUpdate()
 			if(Mode == 1)
 				NodeType = "Local Child";
 
-			else if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_ULTRAPEER)
+			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_ULTRAPEER)
 				NodeType = "Ultrapeer";
 
-			else if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_LEAF)
+			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_LEAF)
 				NodeType = "Child Node";
 
 			else
@@ -270,12 +281,12 @@ void CViewStatistics::OnSockUpdate()
 
 			m_lstNodes.SetItemText(pos, 1, NodeType);
 
-			m_lstNodes.SetItemData(pos, (DWORD) NodeIDs[i]);
+			m_lstNodes.SetItemData(pos, (DWORD) NodeID);
 			
 
 			// Re-select previously selected item
 			for (int sel = 0; sel < ListSelected.size(); sel++)
-				if(ListSelected[sel] == NodeIDs[i])
+				if(ListSelected[sel] == NodeID)
 					m_lstNodes.SetItem(pos, 0, LVIF_STATE, NULL, 0, LVIS_SELECTED, LVIS_SELECTED, 0);
 		
 			pos++;

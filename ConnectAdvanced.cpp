@@ -233,38 +233,52 @@ void CConnectAdvanced::UpdateConnectView()
 	SafeArrayUnaccessData(psa);
 
 
+	// Get child IDs and put them into a vector
+	var.Clear();
+	var = m_autNetwork->GetChildNodeIDs();
+	psa = var.parray;
+
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
+
+	std::vector<int> ChildIDs;
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+		 ChildIDs.push_back(nArray[i]);
+
+	SafeArrayUnaccessData(psa);
+
+
 	// Mode 0 - Normal nodes
 	// Mode 1 - Child nodes
 	for(int Mode = 0; Mode < 2; Mode++)
 	{
-		for(i = 0; i < NodeIDs.size(); i++)
+		std::vector<int>* NodeList = NULL;
+
+		if(Mode == 0)
+			NodeList = &NodeIDs;
+		else
+			NodeList = &ChildIDs;
+
+
+		for(i = 0; i < NodeList->size(); i++)
 		{
-			if(m_autNetwork->GetNodeState(NodeIDs[i]) != SOCK_CONNECTED)
+			int NodeID = NodeList->at(i);
+
+
+			if(m_autNetwork->GetNodeState(NodeID) != SOCK_CONNECTED)
 				continue;
 			
-			// Adding normal nodes
-			if(Mode == 0)
-			{
-				if(m_autNetwork->ClientMode() == CLIENT_ULTRAPEER)
-					if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_LEAF)
-						continue;
-			}
 
-			// Adding children
-			else
-			{
-				if(m_autNetwork->GetNodeMode(NodeIDs[i]) != CLIENT_LEAF || m_autNetwork->ClientMode() != CLIENT_ULTRAPEER)
-					continue;
-
-				Children++;
-			}
-
+			// Count Hosts
 			Hosts++;
 			
+			if(Mode == 1)
+				Children++;
+			
+			
 			IP NodeIP;
-			NodeIP.S_addr = m_autNetwork->GetNodeIP(NodeIDs[i]);
+			NodeIP.S_addr = m_autNetwork->GetNodeIP(NodeID);
 
-			HostPort = IPtoStr(NodeIP) + ":" + DWrdtoStr(m_autNetwork->GetNodePort(NodeIDs[i]));
+			HostPort = IPtoStr(NodeIP) + ":" + DWrdtoStr(m_autNetwork->GetNodePort(NodeID));
 
 			if(itemCount <= pos)
 				m_lstConnected.InsertItem(pos, HostPort);
@@ -275,10 +289,10 @@ void CConnectAdvanced::UpdateConnectView()
 			if(Mode == 1)
 				NodeType = "Local Child";
 
-			else if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_ULTRAPEER)
+			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_ULTRAPEER)
 				NodeType = "Ultrapeer";
 
-			else if(m_autNetwork->GetNodeMode(NodeIDs[i]) == CLIENT_LEAF)
+			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_LEAF)
 				NodeType = "Child Node";
 
 			else
@@ -287,17 +301,17 @@ void CConnectAdvanced::UpdateConnectView()
 			m_lstConnected.SetItemText(pos, 1, NodeType);
 
 			// Bandwidth
-			m_lstConnected.SetItemText(pos, 2, GetBandwidth(NodeIDs[i]) + " KB/s");
+			m_lstConnected.SetItemText(pos, 2, GetBandwidth(NodeID) + " KB/s");
 			
 			//Efficiency
-			m_lstConnected.SetItemText(pos, 3, GetEfficiency(NodeIDs[i]));
+			m_lstConnected.SetItemText(pos, 3, GetEfficiency(NodeID));
 
-			m_lstConnected.SetItemData(pos, (DWORD) NodeIDs[i]);
+			m_lstConnected.SetItemData(pos, (DWORD) NodeID);
 			
 
 			// Re-select previously selected item
 			for (int sel = 0; sel < ListSelected.size(); sel++)
-				if(ListSelected[sel] == NodeIDs[i])
+				if(ListSelected[sel] == NodeID)
 					m_lstConnected.SetItem(pos, 0, LVIF_STATE, NULL, 0, LVIS_SELECTED, LVIS_SELECTED, 0);
 		
 			pos++;
@@ -351,6 +365,12 @@ void CConnectAdvanced::UpdateConnectView()
 
 void CConnectAdvanced::UpdateCacheView()
 {
+	if(!m_lstConnected.IsWindowVisible() && !m_SetActive)
+		return;
+
+	m_SetActive = false;
+
+
 	// Save selected nodes
 	std::vector<int> ListSelected;
 	POSITION lstPos = m_lstCached.GetFirstSelectedItemPosition();
@@ -375,6 +395,18 @@ void CConnectAdvanced::UpdateCacheView()
 	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
 
 	std::vector<int> NodeIDs;
+	for(int i = 0; i < psa->rgsabound->cElements; i++)
+		 NodeIDs.push_back(nArray[i]);
+
+	SafeArrayUnaccessData(psa);
+
+	// Get child IDs and put them into a vector
+	var.Clear();
+	var = m_autNetwork->GetChildNodeIDs();
+	psa = var.parray;
+
+	SafeArrayAccessData(psa, reinterpret_cast<void**> (&nArray));
+
 	for(int i = 0; i < psa->rgsabound->cElements; i++)
 		 NodeIDs.push_back(nArray[i]);
 
