@@ -189,7 +189,7 @@ struct DownOrder : public std::binary_function<int, int, bool>
 		case TRANSFER_NOSOURCES:
 			return 2.0;
 
-		case TRANSFER_QUEUED:
+		case TRANSFER_PENDING:
 			return 3.0;		// Pending
 
 		case TRANSFER_COOLDOWN:
@@ -197,6 +197,9 @@ struct DownOrder : public std::binary_function<int, int, bool>
 
 		case TRANSFER_CONNECTING:
 			return 5.0;
+
+		case TRANSFER_QUEUED:
+			return 5.5;
 		
 		case TRANSFER_RECEIVING: // Receiving
 			if(autDownload->GetFileLength(DownloadID))
@@ -264,7 +267,8 @@ void CTransfersDown::OnUpdate(int DownloadID)
  
 	case TRANSFER_NOSOURCES:
  	case TRANSFER_COOLDOWN:
- 	case TRANSFER_QUEUED:
+ 	case TRANSFER_PENDING:
+	case TRANSFER_QUEUED:
  		shouldshow = m_chkPending.GetCheck();
  		break;
  
@@ -400,8 +404,9 @@ void CTransfersDown::ReloadLists()
 		switch(m_autDownload->GetStatus(nArray[i]))
 		{
 		case TRANSFER_NOSOURCES:
-		case TRANSFER_QUEUED:
+		case TRANSFER_PENDING:
 		case TRANSFER_COOLDOWN:	
+		case TRANSFER_QUEUED:
 			m_PendingList.push_back(nArray[i]);
 			break;
 
@@ -554,7 +559,7 @@ CString CTransfersDown::GetStatus(int DownloadID)
 		Status = "Waiting, more hosts needed";
 		break;
 
-	case TRANSFER_QUEUED:
+	case TRANSFER_PENDING:
 		
         QueueSize = m_autDownload->GetSourceCount(DownloadID);
         Status = "Pending, " + DWrdtoStr(QueueSize) + " Host";
@@ -583,6 +588,10 @@ CString CTransfersDown::GetStatus(int DownloadID)
 		Status = "Waiting to Retry in " + DWrdtoStr(m_autDownload->GetCoolingCount(DownloadID));
 		break;
 	
+	case TRANSFER_QUEUED:
+		Status = "Remotely Queued...";
+		break;
+
 	case TRANSFER_RECEIVING:
 		if(m_autDownload->GetFileLength(DownloadID))
 		{

@@ -181,6 +181,10 @@ struct UpOrder : public std::binary_function<int, int, bool>
 				return 4.0;
 				break;
 
+			case TRANSFER_QUEUED:
+				return 4.5;
+				break;
+
 			case TRANSFER_SENDING:
 				if(autUpload->GetFileLength(UploadID) == 0)
 					return 5.0;
@@ -241,6 +245,7 @@ void CTransfersUp::OnUpdate(int UploadID)
 	case TRANSFER_PUSH:
 	case TRANSFER_CONNECTED:
 	case TRANSFER_SENDING:
+	case TRANSFER_QUEUED:
 		shouldshow = m_chkActive.GetCheck();
 		break;
 		
@@ -381,6 +386,7 @@ void CTransfersUp::ReloadLists()
 		case TRANSFER_PUSH:
 		case TRANSFER_CONNECTED:
 		case TRANSFER_SENDING:
+		case TRANSFER_QUEUED:
 			m_ActiveList.push_back(nArray[i]);
 			break;
 
@@ -526,6 +532,9 @@ CString CTransfersUp::GetStatus(int UploadID)
 	case TRANSFER_CONNECTED:
 		Status = "Connected";
 		break;
+
+	case TRANSFER_QUEUED:
+		Status = "Queued...";
 
 	case TRANSFER_SENDING:
 		if(m_autUpload->GetFileLength(UploadID))
