@@ -582,8 +582,55 @@ void CConnectAdvanced::OnButtonRemove()
 
 void CConnectAdvanced::OnRclickLstKnown(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	// TODO: Add your control notification handler code here
+	LPNMHDR Control = (LPNMHDR) pNMHDR;		// stay compatable with IE 3.0!
 	
+	int nItem = m_lstCached.GetSelectionMark();
+	if (nItem < 0 || nItem > m_lstCached.GetItemCount() - 3)
+		return;
+
+    CMenu menu;
+    menu.LoadMenu(IDR_CONNECT_RCLICK);
+    CMenu *pMenu = menu.GetSubMenu(0);
+    ASSERT(pMenu != NULL);
+
+    // Display and track the popup menu
+    CPoint point;
+    GetCursorPos(&point);
+
+	int res = pMenu->TrackPopupMenu( (TPM_LEFTALIGN | TPM_LEFTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD),
+                 point.x, point.y, this);
+
+	POSITION pos = m_lstCached.GetFirstSelectedItemPosition();
+	
+	switch(res)
+	{
+	case ID_LSTCONNECT_INFO:
+		nItem = m_lstCached.GetNextSelectedItem(pos);
+		if (nItem >= 0 && nItem < m_lstCached.GetItemCount() - 2)
+			ExtendedInfo( m_lstCached.GetItemData(nItem));
+
+		break;
+	case ID_LSTCONNECT_LOG:
+		if(pos)
+		{
+			CGnucleusApp* App = (CGnucleusApp*) AfxGetApp();
+	
+			CFrameStatistics* m_pWindowStatistics = (CFrameStatistics*) App->m_pStatisticsTemplate->CreateNewFrame(m_pDoc, NULL);
+			App->m_pStatisticsTemplate->InitialUpdateFrame(m_pWindowStatistics,m_pDoc);	
+
+			while(pos)
+			{
+				int nItem = m_lstCached.GetNextSelectedItem(pos);
+			
+				CViewStatistics* ViewStat = (CViewStatistics*) m_pWindowStatistics->GetActiveView();
+				
+				if(nItem >= 0)
+					ViewStat->SelectNode( m_lstCached.GetItemData(nItem) );
+			}
+		}
+		break;
+	}
+
 	*pResult = 0;
 }
 
