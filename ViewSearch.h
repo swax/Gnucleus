@@ -49,12 +49,16 @@ public:
 	void OnResult(UINT ResultID);
 	void OnRefresh();
 	void OnBrowseUpdate(int State, int Progress);
+	void OnProgress();
+	void OnPaused();
 
 	SearchResult* AddResult(UINT ResultID);
 
 
 	CString m_Search;
 	int     m_SearchID;
+
+	bool m_SearchPaused;
 	
 	std::list<SearchResult> m_ResultList;
 	std::map<UINT, SearchResult*> m_ResultMap;

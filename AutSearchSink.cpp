@@ -65,6 +65,8 @@ BEGIN_DISPATCH_MAP(CAutSearchSink, CCmdTarget)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnResult", 2, OnResult, VT_EMPTY, VTS_I4 VTS_I4)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnRefresh", 3, OnRefresh, VT_EMPTY, VTS_I4)
 		DISP_FUNCTION_ID(CAutSearchSink, "OnBrowseUpdate", 4, OnBrowseUpdate, VT_EMPTY, VTS_I4 VTS_I4 VTS_I4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnProgress", 5, OnProgress, VT_EMPTY, VTS_I4)
+		DISP_FUNCTION_ID(CAutSearchSink, "OnPaused", 6, OnPaused, VT_EMPTY, VTS_I4)
 END_DISPATCH_MAP()
 
 
@@ -105,4 +107,20 @@ void CAutSearchSink::OnBrowseUpdate(int SearchID, int State, int Progress)
 	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
 		if( SearchID == ((CViewSearch*) CWnd::FromHandle(*itSearch))->m_SearchID)
 			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnBrowseUpdate(State, Progress);
+}
+
+void CAutSearchSink::OnProgress(int SearchID)
+{
+	std::vector<HWND>::iterator itSearch;
+	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
+		if( SearchID == ((CViewSearch*) CWnd::FromHandle(*itSearch))->m_SearchID)
+			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnProgress();
+}
+
+void CAutSearchSink::OnPaused(int SearchID)
+{
+	std::vector<HWND>::iterator itSearch;
+	for(itSearch = m_pDoc->m_pViewSearch.begin(); itSearch != m_pDoc->m_pViewSearch.end(); itSearch++)
+		if( SearchID == ((CViewSearch*) CWnd::FromHandle(*itSearch))->m_SearchID)
+			((CViewSearch*) CWnd::FromHandle(*itSearch))->OnPaused();
 }

@@ -44,10 +44,10 @@ public:
 
 	//{{AFX_DATA(CSearchResults)
 	enum { IDD = IDD_SEARCH_RESULTS };
-	CButton	m_btnStopSearch;
+	CStatic m_stcNodesSearched;
+	CButton	m_btnPauseContinue;
 	CButton	m_chkScreen;
 	CEdit	m_ebRefine;
-	CButton	m_btnConfig;
 	CSearchResultsCtrl	m_lstResults;
 	CButton	m_btnDownload;
 	//}}AFX_DATA
@@ -67,16 +67,16 @@ protected:
 	//{{AFX_MSG(CSearchResults)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnButtonDownload();
-	afx_msg void OnButtonConfig();
 	afx_msg void OnChangeEditRefine();
 	afx_msg void OnDblclkListResults(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnRclickListResults(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTimer(UINT nIDEvent);
-	afx_msg void OnButtonStopsearch();
 	afx_msg void OnKeydownListResults(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnButtonViewTransfers();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButtonPauseContinue();
 };
 
 

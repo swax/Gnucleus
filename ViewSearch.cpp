@@ -53,6 +53,8 @@ CViewSearch::CViewSearch()
 	m_Search      = "Unknown";
 	m_SearchID    = 0;
 
+	m_SearchPaused = false;
+
 	m_OverflowTriggered = false;
 
 	m_tabResults = NULL;
@@ -433,4 +435,16 @@ void CViewSearch::OnBrowseUpdate(int State, int Progress)
 		m_BrowseStatus = DWrdtoStr(Progress) + "% Received";
 
 	m_tabResults->UpdateTotals();
+}
+
+void CViewSearch::OnProgress()
+{
+	m_tabResults->m_stcNodesSearched.SetWindowText( CommaIze(DWrdtoStr(m_autSearch->CountHostsSearched(m_SearchID))) + " G2 Nodes Searched, Gnutella Unknown");
+}
+
+void CViewSearch::OnPaused()
+{
+	m_SearchPaused = true;
+
+	m_tabResults->m_btnPauseContinue.SetWindowText("Search More");
 }

@@ -36,6 +36,7 @@
 #include "SearchAdvanced.h"
 
 #include "SearchResults.h"
+#include ".\searchresults.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -72,10 +73,10 @@ void CSearchResults::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSearchResults)
-	DDX_Control(pDX, IDC_BUTTON_STOPSEARCH, m_btnStopSearch);
+	DDX_Control(pDX, IDC_STATIC_NODES_SEARCHED, m_stcNodesSearched);
+	DDX_Control(pDX, IDC_BUTTON_PAUSE_CONTINUE, m_btnPauseContinue);
 	DDX_Control(pDX, IDC_CHECKS_SCREEN, m_chkScreen);
 	DDX_Control(pDX, IDC_EDIT_REFINE, m_ebRefine);
-	DDX_Control(pDX, IDC_BUTTON_CONFIG, m_btnConfig);
 	DDX_Control(pDX, IDC_LIST_RESULTS, m_lstResults);
 	DDX_Control(pDX, IDC_BUTTON_DOWNLOAD, m_btnDownload);
 	//}}AFX_DATA_MAP
@@ -84,18 +85,17 @@ void CSearchResults::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CSearchResults, CPropertyPage)
 	//{{AFX_MSG_MAP(CSearchResults)
-	ON_BN_CLICKED(IDC_BUTTON_CONFIG, OnButtonConfig)
 	ON_EN_CHANGE(IDC_EDIT_REFINE, OnChangeEditRefine)
 	ON_BN_CLICKED(IDC_BUTTON_DOWNLOAD, OnButtonDownload)
 	ON_NOTIFY(NM_DBLCLK, IDC_LIST_RESULTS, OnDblclkListResults)
 	ON_NOTIFY(NM_RCLICK, IDC_LIST_RESULTS, OnRclickListResults)
 	ON_WM_TIMER()
-	ON_BN_CLICKED(IDC_BUTTON_STOPSEARCH, OnButtonStopsearch)
 	ON_NOTIFY(LVN_KEYDOWN, IDC_LIST_RESULTS, OnKeydownListResults)
 	ON_BN_CLICKED(IDC_CHECKS_SCREEN, OnChecksScreen)
 	ON_BN_CLICKED(IDC_BUTTON_VIEWTRANSFERS, OnButtonViewTransfers)
 	//}}AFX_MSG_MAP
 //	ON_NOTIFY(LVN_COLUMNCLICK, IDC_LIST_RESULTS, OnColumnclickListResults)
+ON_BN_CLICKED(IDC_BUTTON_PAUSE_CONTINUE, OnBnClickedButtonPauseContinue)
 END_MESSAGE_MAP()
 
 
@@ -110,11 +110,11 @@ BOOL CSearchResults::OnInitDialog()
 	m_DlgResizer.InitResizer(this);
 	m_DlgResizer.ListCtrlItem(IDC_LIST_RESULTS);
 	m_DlgResizer.SizeItem(IDC_LIST_RESULTS, CDlgResizer::DownAndRight);
-	m_DlgResizer.MoveItem(IDC_STATIC_STARNOTE, CDlgResizer::Right);
 	m_DlgResizer.MoveItem(IDC_BUTTON_DOWNLOAD, CDlgResizer::Down);
 	m_DlgResizer.MoveItem(IDC_BUTTON_VIEWTRANSFERS, CDlgResizer::Down);
-	m_DlgResizer.MoveItem(IDC_BUTTON_CONFIG, CDlgResizer::Down);
-	m_DlgResizer.MoveItem(IDC_BUTTON_STOPSEARCH, CDlgResizer::DownAndRight);
+	m_DlgResizer.MoveItem(IDC_STATIC_REFINE, CDlgResizer::DownAndRight);
+	m_DlgResizer.MoveItem(IDC_EDIT_REFINE, CDlgResizer::DownAndRight);
+	m_DlgResizer.MoveItem(IDC_CHECKS_SCREEN, CDlgResizer::DownAndRight);
 	m_DlgResizer.Done();
 
 	//m_DlgResizer.DialogIsMinSize(); // Means don't size smaller than original dialog
@@ -191,13 +191,6 @@ int CSearchResults::GetFilterMode(CString Mode)
 		return LIMIT_LESS;
 	
 	return LIMIT_NONE;
-}
-
-void CSearchResults::OnButtonConfig() 
-{
-	// Dispaly Preferences, sharing tab
-	m_pDoc->m_nLastPref = PREF_SEARCH;
-	AfxGetApp()->m_pMainWnd->SendMessage(WM_COMMAND, ID_VIEW_PREFERENCES, NULL);
 }
 
 void CSearchResults::OnChangeEditRefine() 
@@ -343,13 +336,13 @@ void CSearchResults::OnTimer(UINT nIDEvent)
 	GetParentFrame()->SetWindowText(Title);
 }
 
-void CSearchResults::OnButtonStopsearch() 
-{
-	m_autSearch->PauseSearch(m_pView->m_SearchID);
-
-	m_btnStopSearch.SetWindowText("Search Stopped");
-	m_btnStopSearch.EnableWindow(false);
-}
+//void CSearchResults::OnButtonStopsearch() 
+//{
+//	m_autSearch->PauseSearch(m_pView->m_SearchID);
+//
+//	m_btnStopSearch.SetWindowText("Search Stopped");
+//	m_btnStopSearch.EnableWindow(false);
+//}
 
 void CSearchResults::OnKeydownListResults(NMHDR* pNMHDR, LRESULT* pResult) 
 {
@@ -389,4 +382,20 @@ void CSearchResults::OnButtonViewTransfers()
 
 	if(m_pDoc->m_pViewTransfers)
 		((CViewTransfers*) CWnd::FromHandle(m_pDoc->m_pViewTransfers))->ActivateDownloadPane();
+}
+
+void CSearchResults::OnBnClickedButtonPauseContinue()
+{
+	if( m_pView->m_SearchPaused )
+	{
+		m_pView->m_SearchPaused = false;
+		m_autSearch->ContinueSearch(m_pView->m_SearchID);
+		m_btnPauseContinue.SetWindowText("Pause Search");
+	}
+	else
+	{
+		m_pView->m_SearchPaused = true;
+		m_autSearch->PauseSearch(m_pView->m_SearchID);
+		m_btnPauseContinue.SetWindowText("Search More");
+	}
 }

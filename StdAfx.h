@@ -55,7 +55,7 @@
 
 
 // Master Version
-#define GNUCLEUS_VERSION    "2.0.0.0"
+#define GNUCLEUS_VERSION    "2.0.0.3"
 #define BUILD_CORE_VERSION  "1.0.0.0"
 
 // Threading

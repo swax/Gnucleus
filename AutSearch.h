@@ -244,6 +244,18 @@ public:
 		InvokeHelper(0x22, DISPATCH_METHOD, VT_I4, (void*)&result, parms, Host, Port);
 		return result;
 	}
+	long CountHostsSearched(long SearchID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x23, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID);
+		return result;
+	}
+	void ContinueSearch(long SearchID)
+	{
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x24, DISPATCH_METHOD, VT_EMPTY, NULL, parms, SearchID);
+	}
 
 	// ISearch properties
 public:

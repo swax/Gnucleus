@@ -21,6 +21,9 @@ public:
 	void OnResult(int SearchID, int ResultID);
 	void OnRefresh(int SearchID);
 	void OnBrowseUpdate(int SearchID, int State, int Progress);
+	void OnProgress(int SearchID);
+	void OnPaused(int SearchID);
+
 
 	CGnucleusDoc* m_pDoc;
 

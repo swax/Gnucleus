@@ -266,6 +266,7 @@
 #define IDC_BUTTON_NEW                  1121
 #define IDC_BUTTON_CLOSE                1121
 #define IDC_BUTTON_SET                  1121
+#define IDC_BUTTON_PAUSE_CONTINUE       1121
 #define IDC_BUTTON_UPDATE               1122
 #define IDC_BUTTON_EVOVLE               1122
 #define IDC_BUTTON_EVOLVE               1122
@@ -445,6 +446,8 @@
 #define IDC_RADIO_GNUTELLA              1287
 #define IDC_RADIO_G2                    1288
 #define IDC_STATIC_DISPLAY              1289
+#define IDC_STATIC_NODES_SEARCHED       1290
+#define IDC_STATIC_REFINE               1291
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -586,7 +589,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        283
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1290
+#define _APS_NEXT_CONTROL_VALUE         1292
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

@@ -236,7 +236,8 @@ int CFrameMain::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 
-	m_SearchToolbar.EnableSearch(false);
+	//m_SearchToolbar.EnableSearch(false);
+	m_SearchToolbar.EnableSearch(true);
 
 	m_GlobalTimerID  = SetTimer(1,    1000, NULL);
 	m_VersionTimerID = SetTimer(2, 3600000, NULL);
@@ -355,7 +356,7 @@ void CFrameMain::OnFileDisconnect()
 	m_pChat->m_AutoConnect		= false;
 
 
-	m_SearchToolbar.EnableSearch(false);
+	//m_SearchToolbar.EnableSearch(false);
 
 	m_tnd.hIcon = AfxGetApp()->LoadIcon(m_TrayIconOff);
 	Shell_NotifyIcon(NIM_MODIFY, &m_tnd);
@@ -507,12 +508,12 @@ void CFrameMain::OnTimer(UINT nIDEvent)
 		// Update tray and search controls accordingly
 		if(Connected)
 		{
-			m_SearchToolbar.EnableSearch(true);
+			//m_SearchToolbar.EnableSearch(true);
 			m_tnd.hIcon = AfxGetApp()->LoadIcon(m_TrayIconOn);
 		}
 		else
 		{
-			m_SearchToolbar.EnableSearch(false);
+			//m_SearchToolbar.EnableSearch(false);
 			m_tnd.hIcon = AfxGetApp()->LoadIcon(m_TrayIconOff);
 		}
 

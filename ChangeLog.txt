@@ -1,4 +1,8 @@
 
+Gnucleus 2.0.0.3
+	swabby: G2 Support in
+	swabby: Node count added to search results
+	
 Gnucleus 2.0.0.2
 	swabby: Cache count fixed
 

@@ -166,9 +166,9 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	}
 
 	//DELETE THIS
-	m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
+	//m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
 	//m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
-
+	//m_autPrefs->SetMaxLeaves(10);
 
 	// Connect to chat
 	if(m_autPrefs->GetLanMode() && m_pChat->m_pPrefs->m_InternalIRC)
