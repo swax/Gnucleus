@@ -33,6 +33,7 @@
 #include "TransfersUpEx.h"
 #include "ViewTransfers.h"
 #include "TransfersUp.h"
+#include ".\transfersup.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -92,6 +93,7 @@ BEGIN_MESSAGE_MAP(CTransfersUp, CPropertyPage)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_UPLOADS, OnItemchangedListUploads)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_CHECK_QUEUED, OnCheckQueued)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 int m_UpSortColumn = -1, m_UpSortOrder = 0;
@@ -117,7 +119,7 @@ BOOL CTransfersUp::OnInitDialog()
 		nWidth * 4/40, 1);
 	m_lstUploads.InsertColumn( 2, "Status", LVCFMT_LEFT,
 		nWidth * 8/40, 2);
-	m_lstUploads.InsertColumn( 3, "Completed", LVCFMT_RIGHT,
+	m_lstUploads.InsertColumn( 3, "Bytes Sent", LVCFMT_RIGHT,
 		nWidth * 8/40, 3);
 	m_lstUploads.InsertColumn( 4, "Speed", LVCFMT_RIGHT,
 		nWidth * 8/40, 4);
@@ -135,6 +137,8 @@ BOOL CTransfersUp::OnInitDialog()
 	m_DlgResizer.Done();
 
 	ReloadLists();
+
+	SetTimer(0, 1000, NULL);
 
 	return TRUE;
 }
@@ -234,6 +238,9 @@ struct UpOrder : public std::binary_function<int, int, bool>
 
 void CTransfersUp::OnUpdate(int UploadID) 
 {
+	// Disable this
+	return;
+
 	if(!m_lstUploads.IsWindowVisible())
 		return;
 
@@ -486,8 +493,8 @@ void CTransfersUp::UpdateView()
 		m_lstUploads.SetItemData(pos, UploadID);
 
 		// Set Completed column
-		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted(UploadID) / 1024)) + " / ";
-				Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength(UploadID) / 1024)) + " KB";
+		CString Completed  = CommaIze( DWrdtoStr(m_autUpload->GetBytesCompleted(UploadID) / 1024)) + " KB";// + " / ";
+				//Completed += CommaIze( DWrdtoStr(m_autUpload->GetFileLength(UploadID) / 1024)) + " KB";
 
 		m_lstUploads.SetItemText(pos, 3, Completed);
 	
@@ -553,10 +560,11 @@ CString CTransfersUp::GetStatus(int UploadID)
 		break;
 
 	case TRANSFER_SENDING:
-		if(m_autUpload->GetFileLength(UploadID))
-			Status = "Sending, " + DWrdtoStr( (double) m_autUpload->GetBytesCompleted(UploadID) / (double) m_autUpload->GetFileLength(UploadID) * 100) + "% Complete";
-		else
-			Status = "Sending, 0% Complete";
+		Status = "Sending";
+		//if(m_autUpload->GetFileLength(UploadID))
+		//	Status = "Sending, " + DWrdtoStr( (double) m_autUpload->GetBytesCompleted(UploadID) / (double) m_autUpload->GetFileLength(UploadID) * 100) + "% Complete";
+		//else
+		//	Status = "Sending, 0% Complete";
 		break;
 
 	case TRANSFER_COMPLETED:
@@ -829,3 +837,13 @@ void CTransfersUp::OnItemchangedListUploads(NMHDR* pNMHDR, LRESULT* pResult)
 //}
 
 
+
+void CTransfersUp::OnTimer(UINT nIDEvent)
+{
+	if(!m_lstUploads.IsWindowVisible())
+		return;
+
+	ReloadLists();
+
+	CPropertyPage::OnTimer(nIDEvent);
+}

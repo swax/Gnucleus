@@ -25,9 +25,10 @@ public:
 
 
 protected:
-	typedef std::vector<int> ColWidthType;
-	ColWidthType m_ColWidths;
-	
+	//typedef std::vector<int> ColWidthType;
+	//ColWidthType m_ColWidths;
+	std::vector<int> m_ColWidths;
+
 	HWND m_hListViewWnd;
 	HWND m_hHeaderCtrlWnd;
 };
@@ -107,12 +108,15 @@ protected:
 
 	void CheckDup(HWND hWnd);
 
-	typedef std::vector<CDlgResizerItem*> ResizerItemType;
-	ResizerItemType m_Items;
+	//typedef std::vector<CDlgResizerItem*> ResizerItemType;
+	//ResizerItemType m_Items;
+	std::vector<CDlgResizerItem*> m_Items;
 
-	typedef std::vector<CListViewResizer*> ListViewItemType;
-	ListViewItemType m_ListViews;
+	//typedef std::vector<CListViewResizer*> ListViewItemType;
+	//ListViewItemType m_ListViews;
+	std::vector<CListViewResizer*> m_ListViews;
 
+public:
 	int m_Cx;
 	int m_Cy;
 	HWND m_hDlg;

@@ -92,6 +92,7 @@ protected:
 public:
 	CButton m_chkQueued;
 	afx_msg void OnCheckQueued();
+	afx_msg void OnTimer(UINT nIDEvent);
 };
 
 //{{AFX_INSERT_LOCATION}}

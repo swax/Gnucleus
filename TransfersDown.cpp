@@ -56,7 +56,7 @@ enum COLUMNS
 	COL_STATUS,
 	COL_SIZE,
 	COL_COMPLETED,
-	COL_PERCENT,
+	//COL_PERCENT,
 	COL_SPEED,
 	COL_ETA,
 	COL_COUNT_COLUMNS	// keep this last
@@ -155,9 +155,9 @@ BOOL CTransfersDown::OnInitDialog()
 		case COL_COMPLETED:
 			m_lstDownloads.InsertColumn( COL_COMPLETED, "Completed", LVCFMT_RIGHT, nWidth * 6./40, COL_COMPLETED);
 			break;
-		case COL_PERCENT:
-			m_lstDownloads.InsertColumn( COL_PERCENT, "%", LVCFMT_RIGHT, nWidth * 4./40, COL_PERCENT);
-			break;
+		//case COL_PERCENT:
+		//	m_lstDownloads.InsertColumn( COL_PERCENT, "%", LVCFMT_RIGHT, nWidth * 4./40, COL_PERCENT);
+		//	break;
 		case COL_SPEED:
 			m_lstDownloads.InsertColumn( COL_SPEED, "Speed", LVCFMT_RIGHT, nWidth * 6./40, COL_SPEED);
 			break;
@@ -306,7 +306,7 @@ struct DownOrder : public std::binary_function<int, int, bool>
 				}
 			}
 			// FALL THROUGH!!!
-			case COL_PERCENT:
+			/*case COL_PERCENT:
 			{
 				float dPercentCompleteX = This->GetPercentComplete (x);
 				float dPercentCompleteY = This->GetPercentComplete (y);
@@ -316,7 +316,7 @@ struct DownOrder : public std::binary_function<int, int, bool>
 					fResult = dPercentCompleteX > dPercentCompleteY;
 					break;
 				}
-			}
+			}*/
 			// FALL THROUGH!!!
 			case COL_COMPLETED:
 			{
@@ -477,7 +477,7 @@ void CTransfersDown::UpdateColumns (int row, int DownloadID)
 	CString strSize = CommaIze( DWrdtoStr( cbTotal / 1024)) + " KB";
 	m_lstDownloads.SetItemText (row, COL_SIZE, strSize);
 
-	float dPercentComplete = GetPercentComplete (DownloadID);
+	/*float dPercentComplete = GetPercentComplete (DownloadID);
 	if (dPercentComplete == 100.0)
 	{
 		m_lstDownloads.SetItemText(row, COL_PERCENT, "100%");
@@ -487,7 +487,7 @@ void CTransfersDown::UpdateColumns (int row, int DownloadID)
 		char rgch[16];
 		::sprintf (rgch, "%.1f%%", dPercentComplete);
 		m_lstDownloads.SetItemText(row, COL_PERCENT, rgch);
-	}
+	}*/
 
 	// Set speed column
 	if(TRANSFER_RECEIVING == m_autDownload->GetStatus(DownloadID))

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "StlUtilities.h"
+//#include "StlUtilities.h"
 #include "Dlgresizer.h"
 #include "WindowsX.h"
 
@@ -157,16 +157,16 @@ void CDlgResizer::OnSizeMessage(int cx, int cy)
 
 	HDWP hdwp = BeginDeferWindowPos(1/*m_Items.size()*/);
 
-	CMyIterator<ResizerItemType> iter(m_Items);
-	for (iter.Begin(); iter; ++iter)
-		iter.Get()->OnSize(hdwp, cx, cy);
+	std::vector<CDlgResizerItem*>::iterator iter = m_Items.begin();
+	for (; iter != m_Items.end(); iter++)
+		(*iter)->OnSize(hdwp, cx, cy);
 
 
 	VERIFY(EndDeferWindowPos(hdwp));
 
-	CMyIterator<ListViewItemType> listIter(m_ListViews);
-	for (listIter.Begin(); listIter; ++listIter)
-		listIter.Get()->HandleSizeEvent(cx);
+	std::vector<CListViewResizer*>::iterator listIter = m_ListViews.begin();
+	for (; listIter != m_ListViews.end(); listIter++)
+		(*listIter)->HandleSizeEvent(cx);
 }
 
 
@@ -227,10 +227,10 @@ void CDlgResizer::CalcMinSize()
 		return;
 	}
 
-	CMyIterator<ResizerItemType> iter(m_Items);
-	for (iter.Begin(); iter; ++iter)
+	std::vector<CDlgResizerItem*>::iterator iter = m_Items.begin();
+	for (; iter != m_Items.end(); iter++)
 	{
-		CDlgResizerItem* pItem = iter.Get();
+		CDlgResizerItem* pItem = *iter;
 		ASSERT(pItem);
 
 		CRect aRect;
@@ -340,11 +340,11 @@ LRESULT CDlgResizer::WindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 			switch (pnmh->code)
 			{
 			case HDN_ENDTRACK:
-				CMyIterator<ListViewItemType> iter(m_ListViews);
+				std::vector<CListViewResizer*>::iterator iter = m_ListViews.begin();
 
-				for (iter.Begin(); iter; ++iter)
+				for (; iter != m_ListViews.end(); iter++)
 				{
-					iter.Get()->HandleEndTrackEvent(pnmh->hwndFrom);
+					(*iter)->HandleEndTrackEvent(pnmh->hwndFrom);
 				}
 				break;
 			}
@@ -463,7 +463,8 @@ void CListViewResizer::HandleSizeEvent(int cx)
 	ColInfo.mask = LVCF_WIDTH;
 
 	int i = 0;
-	for (ColWidthType::iterator iter = m_ColWidths.begin(); iter != m_ColWidths.end(); ++iter)
+	std::vector<int>::iterator iter = m_ColWidths.begin();
+	for (; iter != m_ColWidths.end(); iter++)
 	{
 		int nWidth = (*iter * cx) / m_TotalWidth;
 
@@ -512,10 +513,10 @@ void CListViewResizer::HandleEndTrackEvent(HWND hWnd)
 
 void CDlgResizer::CheckDup(HWND hWnd)
 {
-	CMyIterator<ResizerItemType> iter(m_Items);
-	for (iter.Begin(); iter; ++iter)
+	std::vector<CDlgResizerItem*>::iterator iter = m_Items.begin();
+	for (; iter != m_Items.end(); iter++)
 	{
-		if (iter.Get()->m_hWnd == hWnd)
+		if ((*iter)->m_hWnd == hWnd)
 		{
 			ASSERT(0); // Can't add twice, use MoveSizeItem() for those cases.
 		}
@@ -525,9 +526,9 @@ void CDlgResizer::CheckDup(HWND hWnd)
 
 void CDlgResizer::Done()
 {
-	CMyIterator<ListViewItemType> listIter(m_ListViews);
-	for (listIter.Begin(); listIter; ++listIter)
+	std::vector<CListViewResizer*>::iterator listIter = m_ListViews.begin();
+	for (; listIter != m_ListViews.end(); listIter++)
 	{
-		listIter.Get()->GrabInitialWidths();
+		(*listIter)->GrabInitialWidths();
 	}
 }

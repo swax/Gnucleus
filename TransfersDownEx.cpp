@@ -114,7 +114,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 	m_lstChunks.GetWindowRect(&rect);
 	m_lstChunks.InsertColumn( 0, "Start", LVCFMT_RIGHT,		rect.Width() * 1/3, 0);
 	m_lstChunks.InsertColumn( 1, "Completed", LVCFMT_RIGHT,		rect.Width() * 1/3, 1);
-	m_lstChunks.InsertColumn( 2, "End", LVCFMT_RIGHT, rect.Width() * 1/3, 2);
+	m_lstChunks.InsertColumn( 2, "Size", LVCFMT_RIGHT, rect.Width() * 1/3, 2);
 	
 	m_lstChunks.SetExtendedStyle(LVS_EX_FULLROWSELECT);
 
@@ -269,8 +269,8 @@ void CTransfersDownEx::UpdateInfo()
 		else
 			m_lstChunks.SetItemText(i, 0, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart(m_DownloadID, ChunkID))));
 	
-		m_lstChunks.SetItemText(i, 1, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart(m_DownloadID, ChunkID) + m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID))));
-		m_lstChunks.SetItemText(i, 2, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart(m_DownloadID, ChunkID) + m_autDownload->GetChunkSize(m_DownloadID, ChunkID))));
+		m_lstChunks.SetItemText(i, 1, CommaIze(DWrdtoStr(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID))));
+		m_lstChunks.SetItemText(i, 2, CommaIze(DWrdtoStr(m_autDownload->GetChunkSize(m_DownloadID, ChunkID))));
 	}
 
 	for(int j = i + 1; j < itemCount; j++)

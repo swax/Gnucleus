@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="7.10"
 	Name="Gnucleus"
 	ProjectGUID="{800EA0DA-7F8D-4881-9011-FC1F7EC80479}"
 	SccProjectName=""
@@ -66,7 +66,13 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
@@ -122,9 +128,17 @@
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
 				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
@@ -532,9 +546,6 @@
 				<File
 					RelativePath=".\StdAfx.h">
 				</File>
-				<File
-					RelativePath=".\StlUtilities.h">
-				</File>
 				<Filter
 					Name="View .h"
 					Filter="">
@@ -840,10 +851,16 @@
 				RelativePath=".\res\Browser.ico">
 			</File>
 			<File
+				RelativePath=".\res\chat.bmp">
+			</File>
+			<File
 				RelativePath=".\res\Chat.ico">
 			</File>
 			<File
 				RelativePath=".\res\ChatBar.bmp">
+			</File>
+			<File
+				RelativePath=".\res\connect.bmp">
 			</File>
 			<File
 				RelativePath=".\res\Connect.ico">
@@ -864,10 +881,52 @@
 				RelativePath=".\res\Gnucleus.rc2">
 			</File>
 			<File
+				RelativePath=".\res\help.bmp">
+			</File>
+			<File
+				RelativePath=".\res\idr_gobutton.ico">
+			</File>
+			<File
 				RelativePath=".\res\Incoming.ico">
 			</File>
 			<File
+				RelativePath=".\res\logo_black.bmp">
+			</File>
+			<File
+				RelativePath=".\mdi.ico">
+			</File>
+			<File
 				RelativePath="media\res\MediaToolbar.bmp">
+			</File>
+			<File
+				RelativePath=".\media\res\mfr.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mfrover.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mpause.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mpauseover.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mplay.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mplayover.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mrw.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mrwover.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mstop.ico">
+			</File>
+			<File
+				RelativePath=".\media\res\mstopover.ico">
 			</File>
 			<File
 				RelativePath=".\res\ResultCompleted.ico">
@@ -885,7 +944,19 @@
 				RelativePath=".\res\Routed.ico">
 			</File>
 			<File
+				RelativePath=".\res\search.bmp">
+			</File>
+			<File
 				RelativePath=".\res\Search.ico">
+			</File>
+			<File
+				RelativePath=".\res\Search_Advanced.ico">
+			</File>
+			<File
+				RelativePath=".\res\search_button.bmp">
+			</File>
+			<File
+				RelativePath=".\res\Search_Results.ico">
 			</File>
 			<File
 				RelativePath=".\res\SearchDownload.ico">
@@ -900,10 +971,10 @@
 				RelativePath=".\res\SearchTrying.ico">
 			</File>
 			<File
-				RelativePath=".\res\Search_Advanced.ico">
+				RelativePath=".\res\settings.ico">
 			</File>
 			<File
-				RelativePath=".\res\Search_Results.ico">
+				RelativePath=".\res\share.bmp">
 			</File>
 			<File
 				RelativePath=".\res\Share.ico">
@@ -916,6 +987,12 @@
 			</File>
 			<File
 				RelativePath=".\res\Toolbar.bmp">
+			</File>
+			<File
+				RelativePath=".\res\toolbar1.bmp">
+			</File>
+			<File
+				RelativePath=".\res\transfers.bmp">
 			</File>
 			<File
 				RelativePath=".\res\Transfers.ico">
@@ -950,75 +1027,12 @@
 			<File
 				RelativePath=".\res\WPI Logo.bmp">
 			</File>
-			<File
-				RelativePath=".\res\chat.bmp">
-			</File>
-			<File
-				RelativePath=".\res\connect.bmp">
-			</File>
-			<File
-				RelativePath=".\res\help.bmp">
-			</File>
-			<File
-				RelativePath=".\res\idr_gobutton.ico">
-			</File>
-			<File
-				RelativePath=".\res\logo_black.bmp">
-			</File>
-			<File
-				RelativePath=".\mdi.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mfr.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mfrover.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mpause.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mpauseover.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mplay.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mplayover.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mrw.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mrwover.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mstop.ico">
-			</File>
-			<File
-				RelativePath=".\media\res\mstopover.ico">
-			</File>
-			<File
-				RelativePath=".\res\search.bmp">
-			</File>
-			<File
-				RelativePath=".\res\search_button.bmp">
-			</File>
-			<File
-				RelativePath=".\res\settings.ico">
-			</File>
-			<File
-				RelativePath=".\res\share.bmp">
-			</File>
-			<File
-				RelativePath=".\res\toolbar1.bmp">
-			</File>
-			<File
-				RelativePath=".\res\transfers.bmp">
-			</File>
 		</Filter>
 		<File
 			RelativePath="ChangeLog.txt">
+		</File>
+		<File
+			RelativePath="gnucleus.exe.manifest">
 		</File>
 		<File
 			RelativePath="GPL.txt">
@@ -1029,10 +1043,10 @@
 		<File
 			RelativePath=".\ToDo.txt">
 		</File>
-		<File
-			RelativePath="gnucleus.exe.manifest">
-		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="Gnucleus.rc"/>
 	</Globals>
 </VisualStudioProject>
