@@ -401,6 +401,7 @@ void CTransfersUp::ReloadLists()
 
 		case TRANSFER_COMPLETED:
 			m_CompletedList.push_back(nArray[i]);
+			break;
 
 		case TRANSFER_CLOSED:
 			m_ErroredList.push_back(nArray[i]);
