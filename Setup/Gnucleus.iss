@@ -10,6 +10,7 @@
 [Setup]
 AppCopyright=Copyright © 2000-2003 John Marshall
 AppID={#AppName}
+AppMutex={#AppName}_Mutex
 AppName={#AppName}
 AppVerName={#AppName} version {#AppVersion}
 AppVersion={#AppVersion}
