@@ -60,7 +60,6 @@ void CPrefLocal::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPrefLocal)
-	DDX_Control(pDX, IDC_CHECK_MAPPING, m_chkMapping);
 	DDX_Control(pDX, IDC_CHECK_TRAYMIN, m_chkTrayOnMin);
 	DDX_Control(pDX, IDC_CHECK_TRAYCLOSE, m_chkTrayOnClose);
 	DDX_Control(pDX, IDC_STATIC_EVOLVE, m_stcEvolve);
@@ -88,7 +87,6 @@ BEGIN_MESSAGE_MAP(CPrefLocal, CPropertyPage)
 	ON_CBN_EDITCHANGE(IDC_COMBO_EVOLVE, OnEditchangeComboEvolve)
 	ON_BN_CLICKED(IDC_CHECK_TRAYMIN, OnCheckTraymin)
 	ON_BN_CLICKED(IDC_CHECK_TRAYCLOSE, OnCheckTrayclose)
-	ON_BN_CLICKED(IDC_CHECK_MAPPING, OnCheckMapping)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -275,11 +273,6 @@ void CPrefLocal::OnCheckTraymin()
 }
 
 void CPrefLocal::OnCheckTrayclose() 
-{
-	SetModified();
-}
-
-void CPrefLocal::OnCheckMapping() 
 {
 	SetModified();
 }

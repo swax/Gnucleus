@@ -21,7 +21,6 @@ public:
 
 	//{{AFX_DATA(CPrefLocal)
 	enum { IDD = IDD_PREF_LOCAL };
-	CButton	m_chkMapping;
 	CButton	m_chkTrayOnMin;
 	CButton	m_chkTrayOnClose;
 	CStatic	m_stcEvolve;
@@ -63,7 +62,6 @@ protected:
 	afx_msg void OnCheckClose();
 	afx_msg void OnCheckTraymin();
 	afx_msg void OnCheckTrayclose();
-	afx_msg void OnCheckMapping();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
