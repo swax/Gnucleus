@@ -95,7 +95,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	ConnectCore();
 
 	m_autCore->SetClientName("Gnucleus");
-	m_autCore->SetClientVersion(GNUCLEUS_VERSION); // Chop off beta value
+	m_autCore->SetClientVersion(GNUCLEUS_VERSION); 
 	m_autCore->SetClientCode("GNUC");
 
 	m_RunPath = m_autCore->GetRunPath();

@@ -184,7 +184,7 @@ struct UpOrder : public std::binary_function<int, int, bool>
 				break;
 
 			case TRANSFER_QUEUED:
-				return 4.5;
+				return 4.5 + ( (double) autUpload->GetQueuePos(UploadID) / (double) 100);
 				break;
 
 			case TRANSFER_SENDING:

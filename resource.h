@@ -441,6 +441,7 @@
 #define IDC_STATIC_HASHSPEED            1283
 #define IDC_STATIC_CPU                  1284
 #define IDC_EDIT1                       1285
+#define IDC_BUTTON_DETAILS              1286
 #define IDC_PREF_TREE                   5000
 #define ID_FILE_CONFIG                  32774
 #define ID_VIEW_STATISTICS              32775
@@ -582,7 +583,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        283
 #define _APS_NEXT_COMMAND_VALUE         32932
-#define _APS_NEXT_CONTROL_VALUE         1286
+#define _APS_NEXT_CONTROL_VALUE         1287
 #define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

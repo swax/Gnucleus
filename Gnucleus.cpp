@@ -389,3 +389,4 @@ void CAboutDlg::OnBnClickedOk()
 	// TODO: Add your control notification handler code here
 	OnOK();
 }
+
