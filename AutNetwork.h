@@ -207,6 +207,11 @@ public:
 		InvokeHelper(0x23, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
 		return result;
 	}
+	void ForceUltrapeer(BOOL Enabled)
+	{
+		static BYTE parms[] = VTS_BOOL ;
+		InvokeHelper(0x24, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Enabled);
+	}
 
 	// INetwork properties
 public:

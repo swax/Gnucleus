@@ -1,9 +1,4 @@
 
-These are things that need do'n, if you would like to take on one of these
-list items please email me at swabby@c0re.net and I can give you some more
-insight on the problem and advice.	
-
-
 Fix resource errors during debug run
 
 todo	

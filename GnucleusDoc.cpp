@@ -153,6 +153,8 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 			NetSetup.DoModal();
 		}
 
+	//DELETE THIS
+	//m_autNetwork->ForceUltrapeer(true);
 
 	// Start connecting
 	if(m_pPrefsEx->m_AutoConnect)
