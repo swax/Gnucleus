@@ -96,15 +96,15 @@ public:
 
 	// IPrefs properties
 public:
-	long GetForcedHost()
+	unsigned long GetForcedHost()
 	{
-		long result;
-		GetProperty(0x6, VT_I4, (void*)&result);
+		unsigned long result;
+		GetProperty(0x6, VT_UI4, (void*)&result);
 		return result;
 	}
-	void SetForcedHost(long propVal)
+	void SetForcedHost(unsigned long propVal)
 	{
-		SetProperty(0x6, VT_I4, propVal);
+		SetProperty(0x6, VT_UI4, propVal);
 	}
 	long GetForcedPort()
 	{

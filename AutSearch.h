@@ -125,11 +125,11 @@ public:
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, SearchID, ResultID);
 		return result;
 	}
-	long GetHostIP(long SearchID, long ResultID, long HostID)
+	unsigned long GetHostIP(long SearchID, long ResultID, long HostID)
 	{
-		long result;
+		unsigned long result;
 		static BYTE parms[] = VTS_I4 VTS_I4 VTS_I4 ;
-		InvokeHelper(0x12, DISPATCH_METHOD, VT_I4, (void*)&result, parms, SearchID, ResultID, HostID);
+		InvokeHelper(0x12, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, SearchID, ResultID, HostID);
 		return result;
 	}
 	long GetHostPort(long SearchID, long ResultID, long HostID)

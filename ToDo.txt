@@ -19,7 +19,6 @@ Chat
 
 Features
 	Setup wizard
-	Web based remote gnucleus interface
 	Unicode support, export string tables
 	
 	

@@ -165,11 +165,11 @@ public:
 		InvokeHelper(0x17, DISPATCH_METHOD, VT_VARIANT, (void*)&result, parms, DownloadID);
 		return result;
 	}
-	long GetSourceIP(long DownloadID, long SourceID)
+	unsigned long GetSourceIP(long DownloadID, long SourceID)
 	{
-		long result;
+		unsigned long result;
 		static BYTE parms[] = VTS_I4 VTS_I4 ;
-		InvokeHelper(0x18, DISPATCH_METHOD, VT_I4, (void*)&result, parms, DownloadID, SourceID);
+		InvokeHelper(0x18, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, DownloadID, SourceID);
 		return result;
 	}
 	long GetSourcePort(long DownloadID, long SourceID)

@@ -44,11 +44,11 @@ public:
 		InvokeHelper(0x4, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
 		return result;
 	}
-	long GetNodeIP(long NodeID)
+	unsigned long GetNodeIP(long NodeID)
 	{
-		long result;
+		unsigned long result;
 		static BYTE parms[] = VTS_I4 ;
-		InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NodeID);
+		InvokeHelper(0x5, DISPATCH_METHOD, VT_UI4, (void*)&result, parms, NodeID);
 		return result;
 	}
 	long GetNodePort(long NodeID)
@@ -102,10 +102,10 @@ public:
 		InvokeHelper(0x11, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, NodeID);
 		return result;
 	}
-	long GetLocalIP()
+	unsigned long GetLocalIP()
 	{
-		long result;
-		InvokeHelper(0x12, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
+		unsigned long result;
+		InvokeHelper(0x12, DISPATCH_METHOD, VT_UI4, (void*)&result, NULL);
 		return result;
 	}
 	long GetLocalPort()
@@ -231,6 +231,13 @@ public:
 	{
 		static BYTE parms[] = VTS_I4 VTS_BSTR ;
 		InvokeHelper(0x28, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NodeID, Answer);
+	}
+	CString GetNodeAgent(long NodeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x29, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, NodeID);
+		return result;
 	}
 
 	// INetwork properties
