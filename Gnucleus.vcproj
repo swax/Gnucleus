@@ -769,7 +769,7 @@
 					RelativePath="AutMeta.h">
 				</File>
 				<File
-					RelativePath="AutNetwork.h">
+					RelativePath=".\AutNetwork.h">
 				</File>
 				<File
 					RelativePath="AutNetworkSink.h">

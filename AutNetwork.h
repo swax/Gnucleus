@@ -239,6 +239,19 @@ public:
 		InvokeHelper(0x29, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, NodeID);
 		return result;
 	}
+	long GetChildConnectedCount()
+	{
+		long result;
+		InvokeHelper(0x2a, DISPATCH_METHOD, VT_I4, (void*)&result, NULL);
+		return result;
+	}
+	CString GetNodeStatus(long NodeID)
+	{
+		CString result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2b, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, NodeID);
+		return result;
+	}
 
 	// INetwork properties
 public:

@@ -130,11 +130,6 @@
 #define ROOM_PRIVATE		4
 
 #define MAX_TTL				7
-#define MAX_SHARE			31458312
-
-#define CONNECT_TIMEOUT		4
-#define TRANSFER_TIMEOUT    8
-#define NODECACHE_SIZE		200
 #define MAX_EVENTS			128
 #define CHAT_MAXLINES		2000
 

@@ -1,11 +1,7 @@
 
-todo	
-	Re-implement scheduler
-	Share view update without deleting all items
-	
-Interface
-	quick keys accesiblity support
-	use btnST
+For 2.0
+	New Graphics
+	Interface polishing
 	
 
 Pending Patches

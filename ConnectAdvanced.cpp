@@ -132,14 +132,15 @@ BOOL CConnectAdvanced::OnInitDialog()
 
 	m_lstCached.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
-	DWORD CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
+	int CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
+	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize() + m_pDoc->m_autCache->GetUltraNodeCacheSize();
 	
-	if(CacheSize >= NODECACHE_SIZE)
+	if(CurrentSize >= CacheSize)
 		m_lstCached.InsertItem(0, "Cache Full");
-	else if(CacheSize == 0)
+	else if(CurrentSize == 0)
 		m_lstCached.InsertItem(0, "Cache Empty");
 	else
-		m_lstCached.InsertItem(0, "Cache at " + GetPercentage(NODECACHE_SIZE, CacheSize));
+		m_lstCached.InsertItem(0, "Cache at " + GetPercentage(CacheSize, CurrentSize));
 	m_lstCached.InsertItem(0, "");
 
 	OnSockUpdate();
@@ -428,7 +429,8 @@ void CConnectAdvanced::UpdateCacheView()
 		else
 			m_lstCached.SetItemText(pos, 0, HostPort);
 
-		m_lstCached.SetItemText(pos, 1, "");
+		m_lstCached.SetItemText(pos, 1, m_autNetwork->GetNodeStatus(NodeIDs[i]));
+
 		m_lstCached.SetItemData(pos, NodeIDs[i]);
 
 		// Re-select previously selected item
@@ -451,16 +453,17 @@ void CConnectAdvanced::UpdateCacheView()
 	pos++;
 
 	// Add cache size
-	int CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
-
+	int CacheSize   = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
+	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize() + m_pDoc->m_autCache->GetUltraNodeCacheSize();
+	
 	CString CacheText;
 
-	if(CacheSize >= NODECACHE_SIZE)
+	if(CurrentSize >= CacheSize)
 		CacheText = "Cache Full";
-	else if(CacheSize == 0)
+	else if(CurrentSize == 0)
 		CacheText = "Cache Empty";
 	else
-		CacheText = "Cache at " + GetPercentage(NODECACHE_SIZE * 2, CacheSize);
+		CacheText = "Cache at " + GetPercentage(CacheSize, CurrentSize);
 
 
 	if(itemCount <= pos)

@@ -1,10 +1,16 @@
 
-Gnucleus 2.0
-	swabby: Complete core seperated into library (GnucDNA)
-	swabby: Added remote host file browsing support to the interface
+Gnucleus 2.0.0.2
+	swabby: Cache count fixed
+
+Gnucleus 2.0.0.1
 	swabby: COM leaks fixed
 	piersh: Add '%', size, eta columns
 	piersh: Added key shortcuts to dialogs
+	
+Gnucleus 2.0.0.0
+	swabby: Complete core seperated into library (GnucDNA)
+	swabby: Added remote host file browsing support to the interface
+	swabby: Added MetaSearch capability
 	
 	
 People
