@@ -53,6 +53,8 @@ public:
 	CEdit	m_ebHost;
 	CButton	m_btnRemove;
 	CButton	m_btnAdd;
+	CButton m_radioGnutella;
+	CButton m_radioG2;
 	//}}AFX_DATA
 
 	// ClassWizard generate virtual function overrides
@@ -75,6 +77,9 @@ protected:
 	afx_msg void OnKeydownLstConnected(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedRadioGnutella();
+	afx_msg void OnBnClickedRadioG2();
 };
 
 

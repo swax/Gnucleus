@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (c) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -106,13 +106,11 @@ CPrefDialog::CPrefDialog(LPCTSTR pszCaption, CWnd* pParentWnd, UINT iSelectPage)
 CPrefDialog::~CPrefDialog()
 {
 	// Save Configs
-	m_pDoc->m_autPrefs->SaveConfig(m_pDoc->m_RunPath  + "GnuConfig.ini");
-	m_pDoc->m_autPrefs->SaveBlocked(m_pDoc->m_RunPath  + "GnuBlocked.net");
+	m_pDoc->m_autPrefs->SaveConfig(m_pDoc->m_RunPath  + "Data\\GnuConfig.ini");
+	m_pDoc->m_autPrefs->SaveBlocked(m_pDoc->m_RunPath  + "Data\\GnuBlocked.net");
 
 	// Save node caches
-	m_pDoc->m_autCache->SaveCache(m_pDoc->m_RunPath + "GnuCache.net");
-	m_pDoc->m_autCache->SaveUltraCache(m_pDoc->m_RunPath + "GnuUltraCache.net");
-
+	m_pDoc->m_autCache->SaveCache(m_pDoc->m_RunPath + "Data\\GnuCache.net");
 
 	// Delete tabs
 	delete m_TabLocal;		
@@ -340,12 +338,10 @@ afx_msg void CPrefDialog::OnApplyNow()
 	GetActivePage()->MoveWindow(m_rectPage);
 
 	// Save config
-	m_pDoc->m_pPrefsEx->SavePrefsEx(m_pDoc->m_RunPath + "GnuConfigEx.ini");
+	m_pDoc->m_pPrefsEx->SavePrefsEx(m_pDoc->m_RunPath + "Data\\GnuConfigEx.ini");
 
-	m_pDoc->m_autPrefs->SaveConfig(m_pDoc->m_RunPath  + "GnuConfig.ini");
-	m_pDoc->m_autPrefs->SaveBlocked(m_pDoc->m_RunPath  + "GnuBlocked.net");
+	m_pDoc->m_autPrefs->SaveConfig(m_pDoc->m_RunPath  + "Data\\GnuConfig.ini");
+	m_pDoc->m_autPrefs->SaveBlocked(m_pDoc->m_RunPath  + "Data\\GnuBlocked.net");
 
 	// Save node caches
-	m_pDoc->m_autCache->SaveCache(m_pDoc->m_RunPath + "GnuCache.net");
-	m_pDoc->m_autCache->SaveUltraCache(m_pDoc->m_RunPath + "GnuUltraCache.net");
-}
+	m_pDoc->m_autCache->SaveCache(m_pDoc->m_RunPath + "Data\\GnuCache.net");}

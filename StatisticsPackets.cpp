@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (C) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

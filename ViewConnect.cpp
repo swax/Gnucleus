@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (C) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -239,19 +239,11 @@ CGnucleusDoc* CViewConnect::GetDocument() // non-debug version is inline
 
 void CViewConnect::OnSockUpdate()
 {
-	/* If this timer took more than a second, empty message queue
-	MSG peek;
-	int overdose = 0;
-	while(PeekMessage(&peek, this->m_hWnd, SOCK_UPDATE, SOCK_UPDATE, PM_REMOVE))
-		overdose++;
+	if(m_tabAdvanced)
+		m_tabAdvanced->OnSockUpdate();
 
-	if(overdose)
-		TRACE0("*** Sock Update Overflow in connect view: " + DWrdtoStr(overdose) + " Messages\n");
-	*/
-
-
-	m_tabAdvanced->OnSockUpdate();
-	m_tabBasic->OnSockUpdate();
+	if(m_tabBasic)
+		m_tabBasic->OnSockUpdate();
 }
 
 

@@ -55,8 +55,8 @@
 
 
 // Master Version
-#define GNUCLEUS_VERSION    "1.9.9.7"
-#define BUILD_CORE_VERSION  "0.9.1.4"
+#define GNUCLEUS_VERSION    "2.0.0.0"
+#define BUILD_CORE_VERSION  "1.0.0.0"
 
 // Threading
 #define CPU_0	0x0001
@@ -66,9 +66,14 @@
 
 
 // Hardcoded Enums
+#define NETWORK_GNUTELLA	1
+#define NETWORK_G2			2
+
 #define CLIENT_NORMAL		1
 #define CLIENT_ULTRAPEER	2
 #define CLIENT_LEAF			3
+#define CLIENT_G2_HUB		4
+#define CLIENT_G2_CHILD		5
 
 #define UPDATE_RELEASE		1
 #define UPDATE_BETA			2

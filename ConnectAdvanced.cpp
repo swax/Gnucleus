@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (c) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@
 #include "ViewConnect.h"
 #include "ConnectInfo.h"
 #include "ConnectAdvanced.h"
+#include ".\connectadvanced.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,6 +86,8 @@ void CConnectAdvanced::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_HOST, m_ebHost);
 	DDX_Control(pDX, IDC_BUTTON_REMOVE, m_btnRemove);
 	DDX_Control(pDX, IDC_BUTTON_ADD, m_btnAdd);
+	DDX_Control(pDX, IDC_RADIO_GNUTELLA, m_radioGnutella);
+	DDX_Control(pDX, IDC_RADIO_G2, m_radioG2);
 	//}}AFX_DATA_MAP
 }
 
@@ -99,6 +102,8 @@ BEGIN_MESSAGE_MAP(CConnectAdvanced, CPropertyPage)
 	ON_WM_TIMER()
 	ON_NOTIFY(LVN_KEYDOWN, IDC_LST_CONNECTED, OnKeydownLstConnected)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_RADIO_GNUTELLA, OnBnClickedRadioGnutella)
+	ON_BN_CLICKED(IDC_RADIO_G2, OnBnClickedRadioG2)
 END_MESSAGE_MAP()
 
 
@@ -121,7 +126,8 @@ BOOL CConnectAdvanced::OnInitDialog()
 
 	m_lstConnected.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
-	
+	m_radioGnutella.SetCheck(1);
+
 	// Host Cache Listbox
 	m_lstCached.GetWindowRect(&rect);
 	offSet = m_lstCached.GetScrollLimit(SB_VERT) ? ::GetSystemMetrics(SM_CXVSCROLL) + 3 : 4;
@@ -132,8 +138,8 @@ BOOL CConnectAdvanced::OnInitDialog()
 
 	m_lstCached.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP);
 
-	int CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
-	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize() + m_pDoc->m_autCache->GetUltraNodeCacheSize();
+	int CacheSize = m_pDoc->m_autCache->GetNodeCacheMaxSize();
+	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize();
 	
 	if(CurrentSize >= CacheSize)
 		m_lstCached.InsertItem(0, "Cache Full");
@@ -165,6 +171,11 @@ BOOL CConnectAdvanced::OnInitDialog()
 	// Buttons
 	m_DlgResizer.MoveItem(IDC_BUTTON_ADD, CDlgResizer::Down);
 	m_DlgResizer.MoveItem(IDC_BUTTON_REMOVE, CDlgResizer::Down);
+
+	m_DlgResizer.MoveItem(IDC_STATIC_DISPLAY, CDlgResizer::Down);
+	m_DlgResizer.MoveItem(IDC_RADIO_GNUTELLA, CDlgResizer::Down);
+	m_DlgResizer.MoveItem(IDC_RADIO_G2, CDlgResizer::Down);
+
 	m_DlgResizer.Done();
 
 
@@ -267,6 +278,36 @@ void CConnectAdvanced::UpdateConnectView()
 			if(m_autNetwork->GetNodeState(NodeID) != SOCK_CONNECTED)
 				continue;
 			
+			int NodeMode = m_autNetwork->GetNodeMode(NodeID);
+
+			// Display Gnutella Nodes
+			if( m_radioGnutella.GetCheck() )
+			{
+				if( NodeMode == CLIENT_NORMAL )
+					NodeType = "Node";
+
+				else if( NodeMode == CLIENT_ULTRAPEER )
+					NodeType = "Ultrapeer";
+
+				else if( NodeMode == CLIENT_LEAF )
+					NodeType = "Leaf";
+
+				else
+					continue;
+			}
+
+			// Display G2 Nodes
+			else if( m_radioG2.GetCheck() )
+			{
+				if( NodeMode == CLIENT_G2_HUB )
+					NodeType = "Hub";
+
+				else if( NodeMode == CLIENT_G2_CHILD )
+					NodeType = "Child";
+
+				else
+					continue;
+			}
 
 			// Count Hosts
 			Hosts++;
@@ -284,19 +325,6 @@ void CConnectAdvanced::UpdateConnectView()
 				m_lstConnected.InsertItem(pos, HostPort);
 			else
 				m_lstConnected.SetItemText(pos, 0, HostPort);
-
-			// Type 
-			if(Mode == 1)
-				NodeType = "Local Child";
-
-			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_ULTRAPEER)
-				NodeType = "Ultrapeer";
-
-			else if(m_autNetwork->GetNodeMode(NodeID) == CLIENT_LEAF)
-				NodeType = "Child Node";
-
-			else
-				NodeType = "Normal Node";
 
 			m_lstConnected.SetItemText(pos, 1, NodeType);
 
@@ -453,8 +481,8 @@ void CConnectAdvanced::UpdateCacheView()
 	pos++;
 
 	// Add cache size
-	int CacheSize   = m_pDoc->m_autCache->GetNodeCacheMaxSize() + m_pDoc->m_autCache->GetUltraNodeCacheMaxSize();
-	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize() + m_pDoc->m_autCache->GetUltraNodeCacheSize();
+	int CacheSize   = m_pDoc->m_autCache->GetNodeCacheMaxSize();
+	int CurrentSize = m_pDoc->m_autCache->GetNodeCacheSize();
 	
 	CString CacheText;
 
@@ -514,9 +542,17 @@ void CConnectAdvanced::OnButtonAdd()
 		m_ebPort.SetWindowText(Port);
 	}
 
-	m_autNetwork->ConnectNode(Host, atoi(Port));
-
-	m_pDoc->m_autCore->Connect();
+	if( m_radioGnutella.GetCheck() )
+	{
+		m_autNetwork->ConnectNode2(Host, atoi(Port), NETWORK_GNUTELLA);
+		m_pDoc->m_autCore->Connect2(NETWORK_GNUTELLA);
+	}
+	else if( m_radioG2.GetCheck() )
+	{
+		m_autNetwork->ConnectNode2(Host, atoi(Port), NETWORK_G2);
+		m_pDoc->m_autCore->Connect2(NETWORK_G2);
+	}
+	
 }
 
 void CConnectAdvanced::OnButtonRemove() 
@@ -694,4 +730,14 @@ BOOL CConnectAdvanced::OnSetActive()
 	OnSockUpdate();
 
 	return CPropertyPage::OnSetActive();
+}
+
+void CConnectAdvanced::OnBnClickedRadioGnutella()
+{
+	UpdateConnectView();
+}
+
+void CConnectAdvanced::OnBnClickedRadioG2()
+{
+	UpdateConnectView();
 }

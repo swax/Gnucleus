@@ -757,7 +757,7 @@
 					RelativePath="AutCache.h">
 				</File>
 				<File
-					RelativePath="AutCore.h">
+					RelativePath=".\AutCore.h">
 				</File>
 				<File
 					RelativePath="AutDownload.h">

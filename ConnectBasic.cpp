@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (c) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -151,7 +151,8 @@ void CConnectBasic::OnTimer(UINT nIDEvent)
 {
 	if(m_autCore->IsConnecting())
 	{
-		int NumConnects = m_autNetwork->GetNormalConnectedCount();
+		int NumConnects = m_autNetwork->GetNormalConnectedCount2(NETWORK_GNUTELLA);
+		NumConnects += m_autNetwork->GetNormalConnectedCount2(NETWORK_G2);
 
 		if(NumConnects)
 		{

@@ -122,48 +122,72 @@ public:
 		InvokeHelper(0x17, DISPATCH_METHOD, VT_DISPATCH, (void*)&result, NULL);
 		return result;
 	}
+	void Connect2(long NetworkID)
+	{
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x18, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NetworkID);
+	}
+	void Disconnect2(long NetworkID)
+	{
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x19, DISPATCH_METHOD, VT_EMPTY, NULL, parms, NetworkID);
+	}
+	BOOL IsConnecting2(long NetworkID)
+	{
+		BOOL result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x1a, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms, NetworkID);
+		return result;
+	}
+	DATE GetUptime2(long NetworkID)
+	{
+		DATE result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x1b, DISPATCH_METHOD, VT_DATE, (void*)&result, parms, NetworkID);
+		return result;
+	}
 
 	// ICore properties
 public:
-	CString GetRunPath()
-	{
-		CString result;
-		GetProperty(0x2, VT_BSTR, (void*)&result);
-		return result;
-	}
-	void SetRunPath(CString propVal)
-	{
-		SetProperty(0x2, VT_BSTR, propVal);
-	}
-	CString GetClientName()
-	{
-		CString result;
-		GetProperty(0x10, VT_BSTR, (void*)&result);
-		return result;
-	}
-	void SetClientName(CString propVal)
-	{
-		SetProperty(0x10, VT_BSTR, propVal);
-	}
-	CString GetClientVersion()
-	{
-		CString result;
-		GetProperty(0x11, VT_BSTR, (void*)&result);
-		return result;
-	}
-	void SetClientVersion(CString propVal)
-	{
-		SetProperty(0x11, VT_BSTR, propVal);
-	}
-	CString GetClientCode()
-	{
-		CString result;
-		GetProperty(0x16, VT_BSTR, (void*)&result);
-		return result;
-	}
-	void SetClientCode(CString propVal)
-	{
-		SetProperty(0x16, VT_BSTR, propVal);
-	}
+CString GetRunPath()
+{
+	CString result;
+	GetProperty(0x2, VT_BSTR, (void*)&result);
+	return result;
+}
+void SetRunPath(CString propVal)
+{
+	SetProperty(0x2, VT_BSTR, propVal);
+}
+CString GetClientName()
+{
+	CString result;
+	GetProperty(0x10, VT_BSTR, (void*)&result);
+	return result;
+}
+void SetClientName(CString propVal)
+{
+	SetProperty(0x10, VT_BSTR, propVal);
+}
+CString GetClientVersion()
+{
+	CString result;
+	GetProperty(0x11, VT_BSTR, (void*)&result);
+	return result;
+}
+void SetClientVersion(CString propVal)
+{
+	SetProperty(0x11, VT_BSTR, propVal);
+}
+CString GetClientCode()
+{
+	CString result;
+	GetProperty(0x16, VT_BSTR, (void*)&result);
+	return result;
+}
+void SetClientCode(CString propVal)
+{
+	SetProperty(0x16, VT_BSTR, propVal);
+}
 
 };

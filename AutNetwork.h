@@ -252,6 +252,37 @@ public:
 		InvokeHelper(0x2b, DISPATCH_METHOD, VT_BSTR, (void*)&result, parms, NodeID);
 		return result;
 	}
+	long ClientMode2(long NetworkID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2c, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NetworkID);
+		return result;
+	}
+	void ConnectNode2(LPCTSTR Host, long Port, long NetworkID)
+	{
+		static BYTE parms[] = VTS_BSTR VTS_I4 VTS_I4 ;
+		InvokeHelper(0x2d, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Host, Port, NetworkID);
+	}
+	long GetNormalConnectedCount2(long NetworkID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x2e, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NetworkID);
+		return result;
+	}
+	void ForceUltrapeer2(BOOL Enabled, long NetworkID)
+	{
+		static BYTE parms[] = VTS_BOOL VTS_I4 ;
+		InvokeHelper(0x2f, DISPATCH_METHOD, VT_EMPTY, NULL, parms, Enabled, NetworkID);
+	}
+	long GetChildConnectedCount2(long NetworkID)
+	{
+		long result;
+		static BYTE parms[] = VTS_I4 ;
+		InvokeHelper(0x30, DISPATCH_METHOD, VT_I4, (void*)&result, parms, NetworkID);
+		return result;
+	}
 
 	// INetwork properties
 public:

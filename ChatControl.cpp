@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (c) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,19 +68,19 @@ CChatControl::CChatControl(CGnucleusDoc* pDoc)
 	m_NickAlert = false;
 
 	// Load chat prefs
-	m_pPrefs->LoadServers(m_pDoc->m_RunPath + "ChatServers.ini");
-	m_pPrefs->LoadChatAliases(m_pDoc->m_RunPath + "ChatAliases.ini");
-	m_pPrefs->LoadChatScripts(m_pDoc->m_RunPath + "ChatScripts.ini");
-	m_pPrefs->LoadChatHotlist(m_pDoc->m_RunPath + "ChatHotlist.ini");
+	m_pPrefs->LoadServers(m_pDoc->m_RunPath + "Data\\ChatServers.ini");
+	m_pPrefs->LoadChatAliases(m_pDoc->m_RunPath + "Data\\ChatAliases.ini");
+	m_pPrefs->LoadChatScripts(m_pDoc->m_RunPath + "Data\\ChatScripts.ini");
+	m_pPrefs->LoadChatHotlist(m_pDoc->m_RunPath + "Data\\ChatHotlist.ini");
 }
 
 CChatControl::~CChatControl()
 {	
 	// Save chat prefs
-	m_pPrefs->SaveServers(m_pDoc->m_RunPath  + "ChatServers.ini");
-	m_pPrefs->SaveChatAliases(m_pDoc->m_RunPath + "ChatAliases.ini");
-	m_pPrefs->SaveChatScripts(m_pDoc->m_RunPath + "ChatScripts.ini");
-	m_pPrefs->SaveChatHotlist(m_pDoc->m_RunPath + "ChatHotlist.ini");
+	m_pPrefs->SaveServers(m_pDoc->m_RunPath  + "Data\\ChatServers.ini");
+	m_pPrefs->SaveChatAliases(m_pDoc->m_RunPath + "Data\\ChatAliases.ini");
+	m_pPrefs->SaveChatScripts(m_pDoc->m_RunPath + "Data\\ChatScripts.ini");
+	m_pPrefs->SaveChatHotlist(m_pDoc->m_RunPath + "Data\\ChatHotlist.ini");
 
 	delete m_pPrefs;
 	m_pPrefs = NULL;

@@ -1,7 +1,7 @@
 /********************************************************************************
 
 	Gnucleus - An Application for the Gnutella Network
-    Copyright (C) 2000-2002 John Marshall
+    Copyright (c) 2000-2003 John Marshall
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -106,28 +106,27 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 
 
 	// Load preferences
-	m_autPrefs->LoadConfig( m_RunPath + "GnuConfig.ini");
-	m_autPrefs->LoadBlocked( m_RunPath + "GnuBlocked.net");
+	m_autPrefs->LoadConfig( m_RunPath + "Data\\GnuConfig.ini");
+	m_autPrefs->LoadBlocked( m_RunPath + "Data\\GnuBlocked.net");
 
 
 	// Load Gnuc specific prefs
 	m_pPrefsEx = new CPrefsEx;
-	m_pPrefsEx->LoadPrefsEx( m_RunPath + "GnuConfigEx.ini");
+	m_pPrefsEx->LoadPrefsEx( m_RunPath + "Data\\GnuConfigEx.ini");
 
 
 	// Load node caches
-	m_autCache->LoadCache(m_RunPath + "GnuCache.net");
-	m_autCache->LoadUltraCache(m_RunPath + "GnuUltraCache.net");
+	m_autCache->LoadCache(m_RunPath + "Data\\GnuCache.net");
 	
 
 	// Load web caches
-	m_autCache->LoadWebCache(m_RunPath + "WebCache.net");
+	m_autCache->LoadWebCache(m_RunPath + "Data\\WebCache.net");
 	
 	if(!m_autCache->GetWebCacheSize())
 	{
-		// HARDCODED: a few default caches
-		m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
-		m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
+		// HARDCODED: a few default caches, sites down
+		//m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
+		//m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
 	}
 
 
@@ -147,7 +146,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	{
 		m_autNetwork->LanModeOn();
 
-		m_autCache->LoadWebCache(m_RunPath + "LanWebCache.net");
+		m_autCache->LoadWebCache(m_RunPath + "Data\\LanWebCache.net");
 		
 		if( !(m_pApp->m_Min && !m_autPrefs->GetLanName().IsEmpty()) )
 		{		
@@ -156,17 +155,19 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 		}
 	}
 
-
-	//DELETE THIS
-	//m_autNetwork->ForceUltrapeer(true);
-
-
 	// Start connecting
 	if(m_pPrefsEx->m_AutoConnect)
 	{
-		m_autCore->Connect();
+		m_autCore->Connect2(NETWORK_GNUTELLA);
+		m_autCore->Connect2(NETWORK_G2);
+		
+		m_autNetwork->ClientMode();
 		m_pChat->m_AutoConnect = true;;
 	}
+
+	//DELETE THIS
+	m_autNetwork->ForceUltrapeer2(false, NETWORK_GNUTELLA);
+	//m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
 
 
 	// Connect to chat
@@ -183,7 +184,7 @@ void CGnucleusDoc::ConnectCore()
 	m_autCore = new CAutCore;
 	if(!m_autCore->CreateDispatch("GnucDNA.Core"))
 	{
-		AfxMessageBox("Could not load GnucleusDNA");
+		AfxMessageBox("Could not load GnucDNA");
 		return;
 	}
 
@@ -196,7 +197,7 @@ void CGnucleusDoc::ConnectCore()
 
 	if(atoi(CoreVersion) < atoi(BuildVersion))
 	{
-		AfxMessageBox("GnucleusDNA " + CString(BUILD_CORE_VERSION) + " or higher needed, please update");
+		AfxMessageBox("GnucDNA " + CString(BUILD_CORE_VERSION) + " or higher needed, please update");
 		return;
 	}
 
@@ -322,31 +323,30 @@ void CGnucleusDoc::DisconnectCore()
 
 CGnucleusDoc::~CGnucleusDoc()
 {
-	m_pPrefsEx->SavePrefsEx(m_RunPath + "GnuConfigEx.ini");
+	m_pPrefsEx->SavePrefsEx(m_RunPath + "Data\\GnuConfigEx.ini");
 
 	// Save preferences
-	m_autPrefs->SaveConfig( m_RunPath + "GnuConfig.ini");
-	m_autPrefs->SaveBlocked(m_RunPath  + "GnuBlocked.net");
+	m_autPrefs->SaveConfig( m_RunPath + "Data\\GnuConfig.ini");
+	m_autPrefs->SaveBlocked(m_RunPath  + "Data\\GnuBlocked.net");
 
 
 	// Save node caches
-	m_autCache->SaveCache(m_RunPath + "GnuCache.net");
-	m_autCache->SaveUltraCache(m_RunPath + "GnuUltraCache.net");
-	
+	m_autCache->SaveCache(m_RunPath + "Data\\GnuCache.net");
+
 
 	// Save web caches
 	if(m_autPrefs->GetLanMode())
-		m_autCache->SaveWebCache(m_RunPath + "LanWebCache.net");
+		m_autCache->SaveWebCache(m_RunPath + "Data\\LanWebCache.net");
 	else
 	{	
 		if(!m_autCache->GetWebCacheSize())
 		{
 			// HARDCODED: a few default caches
-			m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
-			m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
+			//m_autCache->AddWebCache("http://www.zero-g.net/gcache/gcache.php");
+			//m_autCache->AddWebCache("http://www.gnucleus.net/gcache/gcache.php");
 		}
 		
-		m_autCache->SaveWebCache(m_RunPath + "WebCache.net");
+		m_autCache->SaveWebCache(m_RunPath + "Data\\WebCache.net");
 	}
 
 	delete m_pPrefsEx;
