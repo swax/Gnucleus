@@ -1,17 +1,13 @@
-2002-11-22	Piers Haken <piersh@friskit.com>
-
-	* TransfersDown.*: add '%', size, eta columns
-
-2002-11-22	Piers Haken <piersh@friskit.com>
-
-	* Gnucleus.rc: added key shortcuts to dialogs
 
 Gnucleus 2.0
 	swabby: Complete core seperated into library (GnucDNA)
 	swabby: Added remote host file browsing support to the interface
+	piersh: Add '%', size, eta columns
+	piersh: Added key shortcuts to dialogs
 	
 	
 People
+	piersh: Piers Haken (piersh@friskit.com)
 	swabby: John Marshall (swabby@c0re.net)
 	
 	
