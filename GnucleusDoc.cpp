@@ -181,7 +181,7 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 		m_autNetwork->ForceUltrapeer2(true, NETWORK_G2);
 
 	// this tries the centralized cache for gnucleus
-	m_autCache->AddWebCache("http://gnucache.c0re.net/");
+	m_autCache->AddWebCache("http://gcache.c0re.net/");
 	m_autCache->TryWebCache("gnutella");
 
 	// Connect to chat
