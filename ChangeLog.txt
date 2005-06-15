@@ -1,3 +1,6 @@
+Gnucleus 2.2.0.0
+	swabby: GnucDNA 1.1.1.6 (firewall to firewall transfers)
+	
 Gnucleus 2.1.0.0
 	swabby: Support for files larger than 2gb
 

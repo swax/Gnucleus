@@ -238,7 +238,9 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			return 5.5;
 		
 		case TRANSFER_RECEIVING: // Receiving
-			if(autDownload->GetFileLength2(DownloadID))
+			if(!This->m_pDoc->m_RunningXP && autDownload->GetFileLength(DownloadID))
+				return 6.0 + (long double) autDownload->GetBytesCompleted(DownloadID) / (long double) autDownload->GetFileLength(DownloadID);
+			else if(This->m_pDoc->m_RunningXP && autDownload->GetFileLength2(DownloadID))
 				return 6.0 + (long double) autDownload->GetBytesCompleted2(DownloadID) / (long double) autDownload->GetFileLength2(DownloadID);
 			else
 				return 6.0;
@@ -323,8 +325,8 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			// FALL THROUGH!!!
 			case COL_COMPLETED:
 			{
-				uint64 cbX = autDownload->GetBytesCompleted2(x);
-				uint64 cbY = autDownload->GetBytesCompleted2(y);
+				uint64 cbX = This->m_pDoc->m_RunningXP ? autDownload->GetBytesCompleted2(x) : autDownload->GetBytesCompleted(x);
+				uint64 cbY = This->m_pDoc->m_RunningXP ? autDownload->GetBytesCompleted2(y) : autDownload->GetBytesCompleted(y);
 				if (cbX != cbY)
 				{
 					fResult = cbX > cbY;
@@ -333,7 +335,11 @@ struct DownOrder : public std::binary_function<int, int, bool>
 			}
 			// FALL THROUGH!!!
 			case COL_SIZE:
-				fResult = autDownload->GetFileLength2(x) < autDownload->GetFileLength2(y);
+				if(This->m_pDoc->m_RunningXP)
+					fResult = autDownload->GetFileLength2(x) < autDownload->GetFileLength2(y);
+				else
+					fResult = autDownload->GetFileLength(x) < autDownload->GetFileLength(y);
+				
 				break;
 		}
 		if (fReverse)
@@ -472,8 +478,8 @@ void CTransfersDown::UpdateColumns (int row, int DownloadID)
 
 
 	// Set Completed column
-	uint64 cbCompleted = m_autDownload->GetBytesCompleted2(DownloadID);
-	uint64 cbTotal = m_autDownload->GetFileLength2(DownloadID);
+	uint64 cbCompleted = m_pDoc->m_RunningXP ? m_autDownload->GetBytesCompleted2(DownloadID) : m_autDownload->GetBytesCompleted(DownloadID);
+	uint64 cbTotal     = m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(DownloadID) : m_autDownload->GetFileLength(DownloadID);
 	CString Completed  = CommaIze( DWrdtoStr(cbCompleted / 1024)) + " KB";
 	m_lstDownloads.SetItemText(row, COL_COMPLETED, Completed);
 
@@ -653,6 +659,8 @@ CString CTransfersDown::GetStatus(int DownloadID)
 	CString Status  = "Unknown";
 	DWORD QueueSize = 0;
 
+	uint64 filelength =  m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(DownloadID) : m_autDownload->GetFileLength(DownloadID); 
+		
 	switch(m_autDownload->GetStatus(DownloadID))
 	{
 	case TRANSFER_NOSOURCES:
@@ -693,11 +701,12 @@ CString CTransfersDown::GetStatus(int DownloadID)
 		break;
 
 	case TRANSFER_RECEIVING:
-		if(m_autDownload->GetFileLength2(DownloadID))
+		if(filelength)
 		{
 			int Sources = m_autDownload->GetActiveSourceCount(DownloadID);
 
-			Status = "Receiving, " + DWrdtoStr( 100 * m_autDownload->GetBytesCompleted2(DownloadID) / m_autDownload->GetFileLength2(DownloadID)) + "%";
+			uint64 completed =  m_pDoc->m_RunningXP ? m_autDownload->GetBytesCompleted2(DownloadID) : m_autDownload->GetBytesCompleted(DownloadID);
+			Status = "Receiving, " + DWrdtoStr( 100 * completed / filelength) + "%";
 
 			if(Sources > 1)
 				Status += " from " + DWrdtoStr(Sources) + " Hosts";
@@ -1055,6 +1064,9 @@ void CTransfersDown::OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult)
 void CTransfersDown::OnButtonOpenDownloads() 
 {
 	::ShellExecute(NULL, "explore", m_autPrefs->GetDownloadPath(), NULL, NULL, SW_SHOWNORMAL);
+
+	//int id = m_autDownload->DownloadFile("test.jpg", 0, HASH_SHA1, "");
+	//m_autDownload->AddSource(id, NETWORK_WEB, "http://i10-5.thefacebook.com/pics/1/8/s11008105_477.jpg");
 }
 
 BOOL CTransfersDown::OnSetActive() 
@@ -1090,10 +1102,10 @@ int CTransfersDown::GetFirstSelectedItem()
 
 float CTransfersDown::GetPercentComplete (int idDownload)
 {
-	uint64 cbTotal = m_autDownload->GetFileLength2(idDownload);
+	uint64 cbTotal = m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(idDownload) : m_autDownload->GetFileLength(idDownload);
 	if (cbTotal == 0)
 		return 100.0;
 
-	uint64 cbCompleted = m_autDownload->GetBytesCompleted2(idDownload);
+	uint64 cbCompleted = m_pDoc->m_RunningXP ? m_autDownload->GetBytesCompleted2(idDownload) : m_autDownload->GetBytesCompleted(idDownload);
 	return 100.0 * cbCompleted / cbTotal;
 }

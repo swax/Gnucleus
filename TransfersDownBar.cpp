@@ -28,6 +28,7 @@
 
 #include "stdafx.h"
 #include "gnucleus.h"
+#include "GnucleusDoc.h"
 
 #include "AutDownload.h"
 
@@ -128,12 +129,15 @@ void CTransfersDownBar::OnPaint()
 		Brush.CreateSolidBrush( m_autDownload->GetChunkFamily(m_DownloadID, ChunkID) /*RGB(0, 255, 0)*/ ); 
 		pOldBrush = (CBrush *) BarDC.SelectObject(&Brush); 
 
-		int offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
+		uint64 chunkStart = m_pDoc->m_RunningXP ? m_autDownload->GetChunkStart2(m_DownloadID, ChunkID) : m_autDownload->GetChunkStart(m_DownloadID, ChunkID);
+		uint64 fileLength = m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(m_DownloadID) : m_autDownload->GetFileLength(m_DownloadID);
+
+		int offset = (BarSize.right-1) * (float(chunkStart) / float(fileLength)); 
 
 		ColorBar.top = 0; 
 		ColorBar.left = offset; 
 		ColorBar.bottom = BarSize.bottom; 
-		ColorBar.right = offset + BarSize.right * (float(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
+		ColorBar.right = offset + BarSize.right * (float(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID)) / float(fileLength)); 
 
 		BarDC.FillRect(&ColorBar, &Brush); 
 
@@ -154,7 +158,10 @@ void CTransfersDownBar::OnPaint()
 		BarDC.MoveTo(0, 0); 
 
 		// End Pos dividers
-		offset = (BarSize.right-1) * (float(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID) + m_autDownload->GetChunkSize(m_DownloadID, ChunkID)) / float(m_autDownload->GetFileLength2(m_DownloadID))); 
+		uint64 chunkStart = m_pDoc->m_RunningXP ? m_autDownload->GetChunkStart2(m_DownloadID, ChunkID) : m_autDownload->GetChunkStart(m_DownloadID, ChunkID);
+		uint64 fileLength = m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(m_DownloadID) : m_autDownload->GetFileLength(m_DownloadID);
+
+		offset = (BarSize.right-1) * (float(chunkStart + m_autDownload->GetChunkSize(m_DownloadID, ChunkID)) / float(fileLength)); 
 
 		BarDC.MoveTo(offset, BarSize.bottom / 2); 
 		BarDC.LineTo(offset, BarSize.bottom); 

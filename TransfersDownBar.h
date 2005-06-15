@@ -8,6 +8,7 @@
 
 class CGnuDownloadShell;
 class CAutDownload;
+class CGnucleusDoc;
 
 class CTransfersDownBar : public CStatic
 {
@@ -19,7 +20,7 @@ public:
 
 	CGnuDownloadShell* Download;
 	CAutDownload*      m_autDownload;
-
+	CGnucleusDoc*      m_pDoc;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

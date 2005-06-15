@@ -96,7 +96,7 @@ BOOL CShareExDlg::OnInitDialog()
 
 	m_ebName.SetWindowText( m_autShare->GetFileName(m_FileID) );
 	m_ebIndex.SetWindowText( DWrdtoStr(m_autShare->GetFileIndex(m_FileID)));
-	m_ebSize.SetWindowText( CommaIze( DWrdtoStr(m_autShare->GetFileSize2(m_FileID))) + " Bytes");
+	m_ebSize.SetWindowText( CommaIze( DWrdtoStr(m_pDoc->m_RunningXP ? m_autShare->GetFileSize2(m_FileID) : m_autShare->GetFileSize(m_FileID))) + " Bytes");
 
 	m_ebSha1Hash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_SHA1) );
 	m_ebMd5Hash.SetWindowText( m_autShare->GetFileHash(m_FileID, HASH_MD5) );

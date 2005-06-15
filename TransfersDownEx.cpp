@@ -95,6 +95,7 @@ BOOL CTransfersDownEx::OnInitDialog()
 	CDialog::OnInitDialog();
 	
 	m_stcProgress.m_autDownload = m_autDownload;
+	m_stcProgress.m_pDoc = m_pView->m_pDoc;
 
 	// Setup list box
 	int offSet = ::GetSystemMetrics(SM_CXVSCROLL) + 3;
@@ -123,7 +124,8 @@ BOOL CTransfersDownEx::OnInitDialog()
 
 
 	m_stcName.SetWindowText("Name:  " + m_autDownload->GetName(m_DownloadID));
-	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(m_autDownload->GetFileLength2(m_DownloadID))) + " bytes");
+	uint64 size = m_pView->m_pDoc->m_RunningXP ? m_autDownload->GetFileLength2(m_DownloadID) : m_autDownload->GetFileLength(m_DownloadID);
+	m_stcSize.SetWindowText("Size:  " + CommaIze(DWrdtoStr(size)) + " bytes");
 	
 	m_stcSha1Hash.SetWindowText("SHA1 Hash:  " + m_autDownload->GetHash(m_DownloadID, HASH_SHA1));
 	
@@ -269,10 +271,12 @@ void CTransfersDownEx::UpdateInfo()
 	{
 		int ChunkID = ChunkList[i];
 
+		uint64 chunkStart = m_pView->m_pDoc->m_RunningXP ? m_autDownload->GetChunkStart2(m_DownloadID, ChunkID) : m_autDownload->GetChunkStart(m_DownloadID, ChunkID);
+	
 		if (itemCount <= i)
-			m_lstChunks.InsertItem(itemCount++, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID))));
+			m_lstChunks.InsertItem(itemCount++, CommaIze(DWrdtoStr(chunkStart)));
 		else
-			m_lstChunks.SetItemText(i, 0, CommaIze(DWrdtoStr(m_autDownload->GetChunkStart2(m_DownloadID, ChunkID))));
+			m_lstChunks.SetItemText(i, 0, CommaIze(DWrdtoStr(chunkStart)));
 	
 		m_lstChunks.SetItemText(i, 1, CommaIze(DWrdtoStr(m_autDownload->GetChunkCompleted(m_DownloadID, ChunkID))));
 		m_lstChunks.SetItemText(i, 2, CommaIze(DWrdtoStr(m_autDownload->GetChunkSize(m_DownloadID, ChunkID))));

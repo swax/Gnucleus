@@ -127,10 +127,10 @@ protected:
 	void LoadSharedList();
 	void RunSelected();
 
-	DWORD TotalFiles;
-	DWORD TotalSize;
-	DWORD TotalMatched;
-	DWORD TotalUploaded;
+	DWORD  TotalFiles;
+	uint64 TotalSize;
+	DWORD  TotalMatched;
+	DWORD  TotalUploaded;
 
 	CGnucleusDoc* m_pDoc;
 	CAutShare*    m_autShare;

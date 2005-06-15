@@ -237,7 +237,7 @@ void CViewShare::LoadSharedList()
 		File.FileID    = FileIDs[i];
 
 		File.Name	   = m_autShare->GetFileName(FileIDs[i]);
-		File.Size	   = m_autShare->GetFileSize2(FileIDs[i]);	
+		File.Size	   = m_pDoc->m_RunningXP ? m_autShare->GetFileSize2(FileIDs[i]) : m_autShare->GetFileSize(FileIDs[i]);	
 		File.Matches   = m_autShare->GetFileMatches(FileIDs[i]);
 		File.Uploads   = m_autShare->GetFileUploads(FileIDs[i]);
 		File.Hash	   = m_autShare->GetFileHash(FileIDs[i], HASH_SHA1);

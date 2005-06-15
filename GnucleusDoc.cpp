@@ -96,6 +96,13 @@ CGnucleusDoc::CGnucleusDoc(CGnucleusApp* pApp)
 	m_pViewTransfers = NULL;
 	m_pViewChat		 = NULL;
 
+	// Mark if XP
+	OSVERSIONINFO osv;
+	osv.dwOSVersionInfoSize = sizeof(osv);
+	GetVersionEx(&osv);
+	
+	m_RunningXP = (osv.dwMajorVersion == 5 && osv.dwMinorVersion == 1);
+
 	// Load main core
 	ConnectCore();
 

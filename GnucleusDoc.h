@@ -102,6 +102,7 @@ public:
 	int		m_nLastPref;		   // Last preference selected
 	CString m_CurrentSite;		   // Tells browser where to go
 	CString m_GnuVersion;		   // Gnucleus version info
+	bool    m_RunningXP;
 
 	//{{AFX_VIRTUAL(CGnucleusDoc)
 	public:
